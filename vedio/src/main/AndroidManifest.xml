@@ -41,14 +41,14 @@
         android:theme="@style/AppTheme"
         tools:node="replace"
         tools:replace="android:icon">
-        <activity android:name="com.app.video.MainActivity">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <!--<service android:name="com.squareup.leakcanary.DisplayLeakService"/>-->
-        <!--<service android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"/>-->
+        <service android:name="com.squareup.leakcanary.DisplayLeakService"/>
+        <service android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"/>
     </application>
 
 </manifest>
