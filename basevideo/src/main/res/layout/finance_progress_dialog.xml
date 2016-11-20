@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/mf_progress_dialog_background"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/finance_dimen_160px"
+        android:layout_height="@dimen/finance_dimen_160px"
+        android:src="@drawable/mf_insurane" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/finance_dimen_15px"
+        android:text="正在加载"
+        android:textColor="@color/finance_ff9700"
+        android:textSize="@dimen/finance_dimen_36px"></TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/finance_dimen_24px">
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="@dimen/finance_dimen_22px"
+            android:layout_height="@dimen/finance_dimen_22px"
+            android:src="@drawable/mf_dot_white" />
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="@dimen/finance_dimen_22px"
+            android:layout_height="@dimen/finance_dimen_22px"
+            android:layout_marginLeft="@dimen/finance_dimen_36px"
+            android:src="@drawable/mf_dot_orange" />
+
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_width="@dimen/finance_dimen_22px"
+            android:layout_height="@dimen/finance_dimen_22px"
+            android:layout_marginLeft="@dimen/finance_dimen_36px"
+            android:src="@drawable/mf_dot_orange" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+    <size
+        android:width="@dimen/finance_dimen_500px"
+        android:height="@dimen/finance_dimen_250px"/>
+    <corners android:radius="@dimen/finance_dimen_30px"></corners>
+    <solid android:color="@color/finance_ffffffff"></solid>
+</shape>

@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    /**
+     * 集成所有libs目录下的依赖JAR包
+     */
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    /**
+     * 单元测试
+     */
+    testCompile 'junit:junit:4.12'
+    /**
+     * 集成retrofit2 & okhttp3,二者配合搭建网络框架
+     */
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    compile 'com.squareup.okhttp3:okhttp:3.0.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.0.1'
+    /**
+     * 集成glide 图片加载框架,谷歌推荐
+     */
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+    /**
+     * 集成内存泄漏检查工具
+     */
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    /**
+     * 集成support-v4、support-v7包
+     */
+    compile 'com.android.support:support-v4:23.3.0'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+}

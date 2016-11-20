@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/finance_dimen_500px"
+    android:layout_height="@dimen/finance_dimen_250px"
+    android:background="@drawable/mf_alert_dialog_bg"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/finance_dimen_40px">
+
+    <x.TextView
+        android:id="@+id/alertDialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提示"
+        android:textColor="@color/finance_000000"
+        android:textSize="@dimen/finance_dimen_40px"
+        android:textStyle="bold">
+
+    </x.TextView>
+
+    <x.TextView
+        android:id="@+id/alertDialogContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/finance_dimen_16px"
+        android:paddingLeft="@dimen/finance_dimen_80px"
+        android:paddingRight="@dimen/finance_dimen_80px"
+        android:text="确定拨打电话 400-999-9595 吗?"
+        android:textColor="@color/finance_000000"
+        android:textSize="@dimen/finance_dimen_34px" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_1px"
+        android:layout_marginTop="@dimen/finance_dimen_50px"
+        android:background="@color/finance_c6c6c6" />
+
+    <x.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <x.TextView
+            android:id="@+id/alertDialogCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="@dimen/finance_dimen_30px"
+            android:paddingTop="@dimen/finance_dimen_30px"
+            android:text="取消"
+            android:textColor="@color/finance_3d98ff"
+            android:textSize="@dimen/finance_dimen_40px" />
+
+        <View
+            android:layout_width="@dimen/finance_dimen_1px"
+            android:layout_height="match_parent"
+            android:background="@color/finance_c6c6c6" />
+
+        <x.TextView
+            android:id="@+id/alertDialogConfirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="@dimen/finance_dimen_30px"
+            android:paddingTop="@dimen/finance_dimen_30px"
+            android:text="确定"
+            android:textColor="@color/finance_3d98ff"
+            android:textSize="@dimen/finance_dimen_40px" />
+    </x.LinearLayout>
+</LinearLayout>

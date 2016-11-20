@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">app</string>
+    <string name="no_network_try_again">无网络，请重试</string>
+    <string name="no_network_error">网络异常</string>
+    <string name="share">分享</string>
+    <string name="loading">加载中...</string>
+    <string name="loading_resourse_failed">资源加载失败...</string>
+    <string name="finance_contentdescript_back">返回</string>
+    <string name="finance_context_null">activityContext is null</string>
+
+
+
+
+    //-----------------H5 选择图片--------------------------------------
+    <string name="finance_title_bar_back">返回</string>
+    <string name="finance_choose_picture"> 选择图片</string>
+
+
+    <!-- 网络请求异常提示 -->
+    <string name="finance_net_error_common_tip">好像出错了,重新试下看看吧</string>
+    <string name="finance_more_info_insurance_title1">保险条例、特约说明、机动车综合商业保险、免责说</string>
+    <string name="finance_more_info_insurance_title2">明书、投保声明、浮动告知</string>
+    <string name="fiance_insurance_tip_give_more">立即支付，加送100元加油卡</string>
+    <string name="finance_base_info_tip_give">送</string>
+
+
+    <!-- 对话框标题 -->
+    <string name="finance_dialog_default_title">正在加载</string>
+
+</resources>

@@ -1,0 +1,9 @@
+<resources>
+
+    <string-array name="finance_picture_chooser_with_cancel">
+        <item>相册选取</item>
+        <item>相机拍摄</item>
+        <item>取消</item>
+    </string-array>
+
+</resources>

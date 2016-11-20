@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="finance_ff8903">#ff8903</color>
+    <color name="dark_gray">#666666</color>
+    <color name="link_gray">#878787</color>
+    <color name="finance_f08a27">#f08a27</color>
+
+
+    <!-- 时间选择组件 -->
+    <color name="timetimepicker_default_text_color">#999999</color>
+    <color name="timepicker_toolbar_bg">#e60012</color>
+    <color name="timepicker_dialog_bg">#80000000</color>
+    <color name="timepicker_line">#e8e8e8</color>
+
+
+    <!-- 标题栏 -->
+    <color name="finance_title_bar_bg">#fafafa</color>
+    <color name="finance_title_bar_line_bg">#e5e5e5</color>
+    <!-- 导航栏背景 -->
+    <color name="finance_f2f2f2">#f2f2f2</color>
+    <color name="finance_f6f6f6">#f6f6f6</color>
+    <color name="finance_48fa63">#48fa63</color>
+    <color name="finance_ffa46b">#ffa46b</color>
+    <color name="finance_ffffffff">#ffffffff</color>
+    <color name="finance_999999">#999999</color>
+    <color name="finance_828282">#828282</color>
+    <color name="finance_191d20">#191d20</color>
+    <color name="finance_c4c4c4">#c4c4c4</color>
+    <color name="finance_747879">#747879</color>
+    <color name="finance_535b70">#535b70</color>
+    <color name="finance_eaeaea">#eaeaea</color>
+    <color name="finance_fa8b2e">#fa8b2e</color>
+    <color name="finance_df893b">#df893b</color>
+    <color name="finance_000000">#000000</color>
+    <color name="finance_838383">#838383</color>
+    <color name="finance_707070">#707070</color>
+    <color name="finance_e0e0e0">#e0e0e0</color>
+    <color name="finance_969696">#969696</color>
+    <color name="finance_c6c6c6">#c6c6c6</color>
+    <color name="finance_b3b3b3">#b3b3b3</color>
+    <color name="finance_f0f0f0">#f0f0f0</color>
+    <color name="finance_e5e5e5">#e5e5e5</color>
+    <color name="finance_ff9191">#ff9191</color>
+    <color name="finance_666666">#666666</color>
+    <color name="finance_232323">#232323</color>
+    <color name="finance_353535">#353535</color>
+    <color name="finance_ff9700">#ff9700</color>
+    <color name="finance_3d98ff">#3d98ff</color>
+</resources>

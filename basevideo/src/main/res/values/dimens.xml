@@ -1,0 +1,75 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+
+    <dimen name="mf_activity_horizontal_margin">16dp</dimen>
+    <dimen name="mf_activity_vertical_margin">16dp</dimen>
+    <dimen name="mf_commen_title_bar_right_img_margin_right">34px</dimen>
+    <dimen name="mf_commen_title_bar_btn_margin_right">30px</dimen>
+    <dimen name="mf_common_title_bar_height">132px</dimen>
+    <dimen name="mf_common_title_line_height">2px</dimen>
+    <dimen name="mf_commen_title_bar_btn_margin_left">30px</dimen>
+
+    <dimen name="mf_picker_default_text_size">13sp</dimen>
+    <dimen name="mf_picker_toolbar_height">40dp</dimen>
+    <dimen name="mf_picker_dialog_height">210dp</dimen>
+    <dimen name="mf_textview_default_padding">12dp</dimen>
+    <dimen name="mf_picker_line_width">1dp</dimen>
+    <dimen name="mf_picker_line_mar">15dp</dimen>
+    <dimen name="mf_picker_height">250dp</dimen>
+
+    <dimen name="finance_dimen_1px">1px</dimen>
+    <dimen name="finance_dimen_2px">2px</dimen>
+    <dimen name="finance_dimen_4px">4px</dimen>
+    <dimen name="finance_dimen_8px">8px</dimen>
+    <dimen name="finance_dimen_9px">9px</dimen>
+    <dimen name="finance_dimen_10px">10px</dimen>
+    <dimen name="finance_dimen_12px">12px</dimen>
+    <dimen name="finance_dimen_15px">15px</dimen>
+    <dimen name="finance_dimen_16px">16px</dimen>
+    <dimen name="finance_dimen_20px">20px</dimen>
+    <dimen name="finance_dimen_22px">22px</dimen>
+    <dimen name="finance_dimen_24px">24px</dimen>
+    <dimen name="finance_dimen_26px">26px</dimen>
+    <dimen name="finance_dimen_28px">28px</dimen>
+    <dimen name="finance_dimen_30px">30px</dimen>
+    <dimen name="finance_dimen_32px">32px</dimen>
+    <dimen name="finance_dimen_34px">34px</dimen>
+    <dimen name="finance_dimen_36px">36px</dimen>
+    <dimen name="finance_dimen_38px">38px</dimen>
+    <dimen name="finance_dimen_40px">40px</dimen>
+    <dimen name="finance_dimen_42px">42px</dimen>
+    <dimen name="finance_dimen_44px">44px</dimen>
+    <dimen name="finance_dimen_46px">46px</dimen>
+    <dimen name="finance_dimen_48px">48px</dimen>
+    <dimen name="finance_dimen_50px">50px</dimen>
+    <dimen name="finance_dimen_52px">52px</dimen>
+    <dimen name="finance_dimen_54px">54px</dimen>
+    <dimen name="finance_dimen_55px">55px</dimen>
+    <dimen name="finance_dimen_56px">56px</dimen>
+    <dimen name="finance_dimen_60px">60px</dimen>
+    <dimen name="finance_dimen_64px">64px</dimen>
+    <dimen name="finance_dimen_68px">68px</dimen>
+    <dimen name="finance_dimen_78px">78px</dimen>
+    <dimen name="finance_dimen_80px">80px</dimen>
+    <dimen name="finance_dimen_90px">90px</dimen>
+    <dimen name="finance_dimen_100px">100px</dimen>
+    <dimen name="finance_dimen_110px">110px</dimen>
+    <dimen name="finance_dimen_116px">116px</dimen>
+    <dimen name="finance_dimen_120px">120px</dimen>
+    <dimen name="finance_dimen_140px">140px</dimen>
+    <dimen name="finance_dimen_150px">150px</dimen>
+    <dimen name="finance_dimen_160px">160px</dimen>
+    <dimen name="finance_dimen_180px">180px</dimen>
+    <dimen name="finance_dimen_200px">200px</dimen>
+    <dimen name="finance_dimen_210px">210px</dimen>
+    <dimen name="finance_dimen_220px">220px</dimen>
+    <dimen name="finance_dimen_230px">230px</dimen>
+    <dimen name="finance_dimen_240px">240px</dimen>
+    <dimen name="finance_dimen_250px">250px</dimen>
+    <dimen name="finance_dimen_300px">300px</dimen>
+    <dimen name="finance_dimen_400px">400px</dimen>
+    <dimen name="finance_dimen_450px">450px</dimen>
+    <dimen name="finance_dimen_500px">500px</dimen>
+
+
+</resources>

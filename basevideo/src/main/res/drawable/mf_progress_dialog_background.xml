@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/finance_191d20"></solid>
+    <corners android:radius="10dp"></corners>
+    <padding android:top="16dp"
+        android:bottom="16dp"
+        android:left="32dp"
+        android:right="32dp"></padding>
+</shape>
