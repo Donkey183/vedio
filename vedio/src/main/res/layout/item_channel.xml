@@ -7,10 +7,10 @@
     <ImageView
         android:id="@+id/channel_image"
         android:layout_width="match_parent"
-        android:layout_height="70pt"
+        android:layout_height="90pt"
         android:scaleType="fitXY"
-        android:layout_marginRight="10pt"
-        android:layout_marginLeft="10pt"/>
+        android:layout_marginRight="5pt"
+        android:layout_marginLeft="5pt"/>
 
     <TextView
         android:id="@+id/channel_text"
