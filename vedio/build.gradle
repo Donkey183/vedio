@@ -32,7 +32,6 @@ dependencies {
     compile project(':basevideo')
     compile 'com.youth.banner:banner:1.4.2'
     compile 'com.android.support:support-v4:23.3.0'
-    compile files('src/main/java/libs/libksyplayer.jar')
     compile files('src/main/libs/libksyplayer.jar')
     compile files('src/main/libs/libksystat.jar')
 }
