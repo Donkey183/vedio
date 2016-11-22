@@ -4,9 +4,7 @@ import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.base.MFBaseModel;
 import com.app.basevideo.net.CommonHttpRequest;
 
-/**
- * 片库Model
- */
+
 public class VaultModel extends MFBaseModel {
     /**
      * 使用BaseModel(Context)，context传入Activity(该Activity必须继承自{@link MFBaseActivity})

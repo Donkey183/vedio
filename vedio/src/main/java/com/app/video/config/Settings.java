@@ -1,8 +1,6 @@
 package com.app.video.config;
 
-/**
- * Created by liubohua on 16/7/18.
- */
+
 public class Settings {
     public static final String USESUFACE="usesufaceview";
     public static final String USETEXTURE="usetextureview";

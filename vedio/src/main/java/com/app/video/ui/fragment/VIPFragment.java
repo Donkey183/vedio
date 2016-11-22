@@ -20,9 +20,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by liubohua on 16/11/18.
- */
 public class VIPFragment extends android.app.Fragment {
     private RecyclerView vip_recyclerView;
     private VIPAdapter mAdapter;
