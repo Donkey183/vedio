@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50pt"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/forum_image"
+            android:layout_width="50pt"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/forum_image"
+            android:layout_marginLeft="3pt">
+
+            <TextView
+                android:id="@+id/forum_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="#EE30A7"
+                android:layout_marginTop="2pt"
+                />
+
+            <TextView
+                android:id="@+id/forum_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_marginTop="2pt"
+                android:textColor="#B5B5B5"
+                android:layout_below="@+id/forum_name" />
+            <TextView
+                android:id="@+id/forum_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="2pt"
+                android:textColor="#B5B5B5"
+                android:layout_below="@+id/forum_name"
+                android:layout_toRightOf="@+id/forum_send"
+                android:layout_marginLeft="3pt"/>
+            <TextView
+                android:id="@+id/forum_descript"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:layout_marginTop="2pt"
+                android:layout_below="@+id/forum_send"
+                android:textColor="#B5B5B5"
+                />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
