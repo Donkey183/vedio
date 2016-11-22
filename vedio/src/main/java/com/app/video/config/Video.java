@@ -1,8 +1,6 @@
 package com.app.video.config;
 
-/**
- * Created by liubohua on 16/11/18.
- */
+
 public class Video {
     private String name;
     private String Imageurl;

@@ -4,9 +4,7 @@ import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.base.MFBaseModel;
 import com.app.basevideo.net.CommonHttpRequest;
 
-/**
- * 频道Model
- */
+
 public class ChannelModel extends MFBaseModel {
 
     /**

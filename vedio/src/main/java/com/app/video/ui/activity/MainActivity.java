@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.app.video.R;
 import com.app.video.config.Settings;
+import com.app.video.ui.fragment.ChannelFragment;
 import com.app.video.ui.fragment.HomeFragment;
 import com.app.video.ui.fragment.VIPFragment;
 
@@ -20,10 +21,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private HomeFragment homeFragment;
     private VIPFragment vipFragment;
+    private ChannelFragment channelFragment;
+
     private ImageView main_user;
 
     private ImageView main_home;
     private ImageView main_vip;
+    private ImageView main_channel;
 
     private SharedPreferences settings ;
     private SharedPreferences.Editor editor;
@@ -39,10 +43,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         main_user = (ImageView) findViewById(R.id.main_user);
         main_home = (ImageView) findViewById(R.id.main_home);
         main_vip = (ImageView) findViewById(R.id.main_vip);
+        main_channel = (ImageView) findViewById(R.id.main_channel);
+
 
         main_user.setOnClickListener(this);
         main_vip.setOnClickListener(this);
         main_home.setOnClickListener(this);
+        main_channel.setOnClickListener(this);
 
         initSetting();
         setDefaultFragment();
@@ -65,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentTransaction transaction = fm.beginTransaction();
         homeFragment = new HomeFragment();
         vipFragment = new VIPFragment();
+        channelFragment = new ChannelFragment();
         transaction.replace(R.id.main_frame,homeFragment);
         transaction.commit();
     }
@@ -82,9 +90,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_user:
                 clickUser();
                 break;
+            case R.id.main_channel:
+                clickChannel();
+                break;
             default:
                 break;
         }
+    }
+
+    private void clickChannel() {
+        main_home.setImageResource(R.drawable.home);
+        main_vip.setImageResource(R.drawable.vip);
+        main_channel.setImageResource(R.drawable.channel2);
+        FragmentManager fm = this.getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.main_frame,channelFragment);
+        transaction.commit();
     }
 
     private void clickUser() {
@@ -94,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void clickVip() {
         main_home.setImageResource(R.drawable.home);
         main_vip.setImageResource(R.drawable.vip2);
+        main_channel.setImageResource(R.drawable.channel);
         FragmentManager fm = this.getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.main_frame,vipFragment);
@@ -104,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         main_home.setImageResource(R.drawable.home2);
         main_vip.setImageResource(R.drawable.vip);
+        main_channel.setImageResource(R.drawable.channel);
         FragmentManager fm = this.getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         transaction.replace(R.id.main_frame,homeFragment);

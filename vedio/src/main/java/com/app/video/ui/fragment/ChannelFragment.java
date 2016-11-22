@@ -1,6 +1,5 @@
 package com.app.video.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,16 +12,16 @@ import android.widget.TextView;
 
 import com.app.video.R;
 import com.app.video.config.Video;
+import com.app.video.config.VideoType;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
-import com.app.video.ui.activity.VideoPlayerActivity;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VIPFragment extends android.app.Fragment {
-    private RecyclerView vip_recyclerView;
-    private VIPAdapter mAdapter;
+
+public class ChannelFragment extends android.app.Fragment {
+    private RecyclerView channel_recycler;
 
     private String[] imgurls = {"http://img.taopic.com/uploads/allimg/121017/234940-12101FR22825.jpg",
             "http://pic44.nipic.com/20140721/11624852_001107119409_2.jpg",
@@ -36,62 +35,38 @@ public class VIPFragment extends android.app.Fragment {
             "http://img05.tooopen.com/images/20150531/tooopen_sy_127457023651.jpg",
             "http://pic32.nipic.com/20130815/10675263_110224052319_2.jpg"};
 
-    private List<Video> videoList;
+    private List<VideoType> typeList;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_vip, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_channel, container, false);
         initdata();
-        vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
-        vip_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
 
-        vip_recyclerView.setAdapter(mAdapter = new VIPAdapter());
-        mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Video v = videoList.get(position);
-                Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
-                intent.putExtra("path", v.getURL());
-                startActivity(intent);
-            }
-        });
 
+        channel_recycler = (RecyclerView) view.findViewById(R.id.channel_recycler);
+        channel_recycler.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        channel_recycler.setAdapter(new ChannelAdapter());
         return view;
     }
 
-
     private void initdata() {
-
-        videoList = new ArrayList<Video>();
-
-        for (int i = 0; i < 30; i++) {
-            Video video = new Video();
-            video.setName("testname");
-            video.setImageurl(imgurls[i % 11]);
-            video.setType("超清");
-            video.setURL("rtmp://live.hkstv.hk.lxdns.com/live/hks");
-            videoList.add(video);
-        }
-
-        for (int i = 0; i < 30; i++) {
-            Video video = new Video();
-            video.setName("testVIP");
-            video.setImageurl(imgurls[i % 11]);
-            video.setType("VIP");
-            video.setURL("rtmp://live.hkstv.hk.lxdns.com/live/hks");
-            videoList.add(video);
+        typeList = new ArrayList<VideoType>();
+        for (int i = 0; i < 10; i++) {
+            VideoType type = new VideoType();
+            type.setTypename("天天快递");
+            type.setTypeImg(imgurls[i%11]);
+            typeList.add(type);
         }
     }
 
 
-    class VIPAdapter extends RecyclerView.Adapter<VIPAdapter.MyViewHolder> implements View.OnClickListener {
+    class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.MyViewHolder> implements View.OnClickListener {
 
         private LayoutInflater mInflater;
         private OnRecyclerViewItemClickListener mOnItemClickListener = null;
@@ -100,7 +75,7 @@ public class VIPFragment extends android.app.Fragment {
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             this.mInflater = LayoutInflater.from(getActivity());
-            View view = mInflater.inflate(R.layout.item_vip, parent, false);
+            View view = mInflater.inflate(R.layout.item_channel, parent, false);
 
             MyViewHolder holder = new MyViewHolder(view);
 
@@ -111,8 +86,8 @@ public class VIPFragment extends android.app.Fragment {
 
         @Override
         public void onBindViewHolder(final MyViewHolder holder, int position) {
-            holder.video_name.setText(videoList.get(position).getName());
-            Glide.with(VIPFragment.this).load(videoList.get(position).getImageurl()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(holder.video_img);
+            holder.video_name.setText(typeList.get(position).getTypename());
+            Glide.with(ChannelFragment.this).load(typeList.get(position).getTypeImg()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(holder.video_img);
             if (mOnItemClickListener != null) {
                 //为ItemView设置监听器
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +103,7 @@ public class VIPFragment extends android.app.Fragment {
 
         @Override
         public int getItemCount() {
-            return videoList.size();
+            return typeList.size();
         }
 
         @Override
@@ -147,9 +122,10 @@ public class VIPFragment extends android.app.Fragment {
 
             public MyViewHolder(View view) {
                 super(view);
-                video_name = (TextView) view.findViewById(R.id.vip_name);
-                video_img = (ImageView) view.findViewById(R.id.vip_image);
+                video_name = (TextView) view.findViewById(R.id.channel_text);
+                video_img = (ImageView) view.findViewById(R.id.channel_image);
             }
         }
     }
+
 }
