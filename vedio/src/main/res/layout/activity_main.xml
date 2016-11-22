@@ -70,6 +70,15 @@
             android:paddingBottom="10sp"
             android:src="@drawable/vault" />
 
+        <ImageView
+            android:id="@+id/main_forum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:src="@drawable/forum" />
+
 
     </LinearLayout>
 
