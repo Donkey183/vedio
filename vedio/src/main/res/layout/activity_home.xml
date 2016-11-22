@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/main_bar"
+        android:layout_width="match_parent"
+        android:layout_height="24pt"
+        android:background="@color/home_bar">
+
+        <ImageView
+            android:id="@+id/main_user"
+            android:layout_width="20pt"
+            android:layout_height="20pt"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10pt"
+            android:src="@drawable/users"/>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/main_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/main_bar"
+        android:layout_above="@+id/main_botttom">
+
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/main_botttom"
+        android:layout_width="match_parent"
+        android:layout_height="32pt"
+        android:layout_alignParentBottom="true"
+        android:background="@color/home_bar"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/main_home"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:src="@drawable/home" />
+
+        <ImageView
+            android:id="@+id/main_vip"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:src="@drawable/vip" />
+
+        <ImageView
+            android:id="@+id/main_channel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:src="@drawable/channel" />
+
+        <ImageView
+            android:id="@+id/main_vault"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:src="@drawable/vault" />
+
+        <ImageView
+            android:id="@+id/main_forum"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp"
+            android:src="@drawable/forum" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

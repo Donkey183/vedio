@@ -1,9 +1,7 @@
 package com.app.video.model;
-
 import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.base.MFBaseModel;
 import com.app.basevideo.net.CommonHttpRequest;
-
 
 class ForumModel extends MFBaseModel {
     /**
