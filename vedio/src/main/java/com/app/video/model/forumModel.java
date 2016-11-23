@@ -3,6 +3,8 @@ import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.base.MFBaseModel;
 import com.app.basevideo.net.CommonHttpRequest;
 
+import retrofit2.Response;
+
 class ForumModel extends MFBaseModel {
     /**
      * 使用BaseModel(Context)，context传入Activity(该Activity必须继承自{@link MFBaseActivity})
@@ -16,6 +18,7 @@ class ForumModel extends MFBaseModel {
 
     @Override
     protected void sendHttpRequest(CommonHttpRequest request, int requestCode) {
+
 
     }
 

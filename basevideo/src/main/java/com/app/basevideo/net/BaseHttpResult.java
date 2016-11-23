@@ -15,7 +15,7 @@ public class BaseHttpResult<T> {
     /**
      * 错误原因
      */
-    public String errormsg;
+    public String msg;
 
 
     /**
@@ -35,6 +35,11 @@ public class BaseHttpResult<T> {
      */
     public T result;
 
+
+    /**
+     * 返回数据对象
+     */
+    public T list;
 
     /**
      * 是否成功

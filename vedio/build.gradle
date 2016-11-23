@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.app.video"
-        minSdkVersion 16
-        targetSdkVersion 23
+        minSdkVersion 15
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }

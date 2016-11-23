@@ -70,6 +70,7 @@ public class HomeActivityView extends MFBaseMVCView {
     private SharedPreferences settings;
     private SharedPreferences.Editor editor;
 
+    //TODO 作用？
     private void initSetting() {
         settings = mActivity.getSharedPreferences("SETTINGS", Context.MODE_PRIVATE);
         editor = settings.edit();
