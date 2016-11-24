@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    
+    <ImageView
+        android:id="@+id/dialog_img"
+        android:layout_width="120pt"
+        android:layout_height="80pt"
+        android:src="@drawable/forum"/>
+    
+    <RelativeLayout
+        android:layout_below="@+id/dialog_img"
+        android:layout_width="120pt"
+        android:layout_height="80pt"
+        android:background="#ffffff"
+        android:gravity="center_horizontal">
+        
+        <CheckBox
+            android:layout_marginTop="10pt"
+            android:id="@+id/check_zhifu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="支付宝"/>
+
+        <CheckBox
+            android:layout_marginTop="10pt"
+            android:layout_marginLeft="10pt"
+            android:id="@+id/check_wechat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/check_zhifu"
+            android:textColor="#000000"
+            android:text="微信"/>
+        
+    </RelativeLayout>
+
+</RelativeLayout>
