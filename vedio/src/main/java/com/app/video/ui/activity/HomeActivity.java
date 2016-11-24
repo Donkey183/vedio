@@ -19,7 +19,6 @@ import com.app.video.util.DesUtil;
 
 public class HomeActivity extends MFBaseActivity implements View.OnClickListener, INetFinish {
 
-
     private HomeActivityView mHomeView;
     private HomeActivityModel mHomeModel;
 

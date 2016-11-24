@@ -14,6 +14,7 @@ import com.app.video.config.Settings;
 import com.app.video.ui.activity.HomeActivity;
 import com.app.video.ui.fragment.ChannelFragment;
 import com.app.video.ui.fragment.ForumFragment;
+import com.app.video.ui.fragment.GalleryFragment;
 import com.app.video.ui.fragment.RecommendFragment;
 import com.app.video.ui.fragment.VIPFragment;
 import com.app.video.ui.fragment.VaultFragment;
@@ -31,6 +32,7 @@ public class HomeActivityView extends MFBaseMVCView {
     private ChannelFragment channelFragment;
     private VaultFragment vaultFragment;
     private ForumFragment forumFragment;
+    private GalleryFragment galleryFragment;
 
     private ImageView main_user;
 
@@ -90,10 +92,10 @@ public class HomeActivityView extends MFBaseMVCView {
         channelFragment = new ChannelFragment();
         vaultFragment = new VaultFragment();
         forumFragment = new ForumFragment();
-        transaction.replace(R.id.main_frame, mRecommendFragment);
+        galleryFragment = new GalleryFragment();
+        transaction.replace(R.id.main_frame, galleryFragment);
         transaction.commit();
     }
-
 
     public void clickForum() {
         resetTabUi(main_forum, forumFragment);
@@ -116,7 +118,7 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     public void clickHome() {
-        resetTabUi(main_home, mRecommendFragment);
+        resetTabUi(main_home, galleryFragment);
     }
 
     private void resetTabUi(View selectedView, Fragment selectedFragMent) {

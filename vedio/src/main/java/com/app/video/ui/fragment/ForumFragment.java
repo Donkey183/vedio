@@ -1,12 +1,17 @@
 package com.app.video.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +27,8 @@ import java.util.List;
 public class ForumFragment extends android.app.Fragment {
 
     private RecyclerView forum_recyclerView;
+
+    private ForumAdapter mAdapter;
 
 
     private String[] imgurls = {"http://img.taopic.com/uploads/allimg/121017/234940-12101FR22825.jpg",
@@ -50,7 +57,33 @@ public class ForumFragment extends android.app.Fragment {
         forum_recyclerView = (RecyclerView) view.findViewById(R.id.forum_recycler);
         forum_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
         initdata();
-        forum_recyclerView.setAdapter(new ForumAdapter());
+        mAdapter = new ForumAdapter();
+        forum_recyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                AlertDialog myDialog = new AlertDialog.Builder(getActivity()).create();
+                myDialog.show();
+                Window window = myDialog.getWindow();
+                window.setContentView(R.layout.dialog_layout);
+                CheckBox check_wechat = (CheckBox) window.findViewById(R.id.check_wechat);
+                CheckBox check_zhifu = (CheckBox) window.findViewById(R.id.check_zhifu);
+
+                check_wechat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                    }
+                });
+                check_zhifu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                    }
+                });
+            }
+        });
 
         return view;
     }
