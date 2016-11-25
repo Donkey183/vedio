@@ -35,7 +35,6 @@ public class HomeActivityView extends MFBaseMVCView {
     private GalleryFragment galleryFragment;
 
     private ImageView main_user;
-
     private ImageView main_home;
     private ImageView main_vip;
     private ImageView main_channel;
