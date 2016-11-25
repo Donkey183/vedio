@@ -22,6 +22,7 @@ public class VideoConstant {
     public static final String PARAM_USER_ID = "userId";//用户Id
     public static final String PARAM_SIGN = "sign";//签名
     public static final String PARAM_MOBILE_OPERATORS = "mobileOperators";//运营商
+    public static final String ENCY_STR = "encyStr";//加密串
 
     /**
      * 网络异常状态

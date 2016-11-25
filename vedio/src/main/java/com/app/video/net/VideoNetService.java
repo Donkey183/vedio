@@ -11,8 +11,62 @@ import retrofit2.http.GET;
 
 public interface VideoNetService {
 
+
     /**
-     * 获取频道信息
+     * 初始化，第一次安装完App调用
+     *
+     * @param params
+     * @return
+     */
+    @GET("dyap/dy_init.do")
+    @FormUrlEncoded
+    MFCall<ChannelResponse> initApp(@FieldMap Map<String, Object> params);
+
+
+    /**
+     * 获取电影资源信息
+     *
+     * @param params
+     * @return
+     */
+    @GET("dyap/dy_resources.do")
+    @FormUrlEncoded
+    MFCall<ChannelResponse> getVideoResources(@FieldMap Map<String, Object> params);
+
+    /**
+     * 获取支付信息
+     *
+     * @param params
+     * @return
+     */
+    @GET("dyap/dy_sysset.do")
+    @FormUrlEncoded
+    MFCall<ChannelResponse> getPayInfo(@FieldMap Map<String, Object> params);
+
+
+    /**
+     * 获取片库信息
+     *
+     * @param params
+     * @return
+     */
+    @GET("dyap/dy_dpics.do")
+    @FormUrlEncoded
+    MFCall<ChannelResponse> getVaultInfo(@FieldMap Map<String, Object> params);
+
+
+    /**
+     * 获取片库内容信息
+     *
+     * @param params
+     * @return
+     */
+    @GET("dyap/dy_dpicinfos.do")
+    @FormUrlEncoded
+    MFCall<ChannelResponse> getVaultContentInfo(@FieldMap Map<String, Object> params);
+
+    /**
+     * 获取电影频道信息
      *
      * @param params
      * @return
@@ -20,6 +74,27 @@ public interface VideoNetService {
     @GET("dyap/dy_channels.do")
     @FormUrlEncoded
     MFCall<ChannelResponse> getChannelInfo(@FieldMap Map<String, Object> params);
+
+
+    /**
+     * 获取电影频道内容信息
+     *
+     * @param params
+     * @return
+     */
+    @GET("dyap/dy_channelinfos.do")
+    @FormUrlEncoded
+    MFCall<ChannelResponse> getChannelContentInfo(@FieldMap Map<String, Object> params);
+
+    /**
+     * 获取验证码
+     *
+     * @param params
+     * @return
+     */
+    @GET("dyap/dy_verify.do")
+    @FormUrlEncoded
+    MFCall<ChannelResponse> getVerifyCode(@FieldMap Map<String, Object> params);
 
 
 }
