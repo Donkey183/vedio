@@ -7,6 +7,6 @@
     <color name="player_black">#000000</color>
     <color name="video_typeback">#FF0000</color>
     <color name="video_typetext">#FFFFFF</color>
-    <color name="home_bar">#FF7F24</color>
+    <color name="home_bar">#FF3030</color>
     <color name="player_yellow">#FFCC00</color>
 </resources>
