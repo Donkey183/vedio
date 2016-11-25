@@ -68,7 +68,6 @@ public class HomeActivityView extends MFBaseMVCView {
         setDefaultFragment();
     }
 
-
     private SharedPreferences settings;
     private SharedPreferences.Editor editor;
 
