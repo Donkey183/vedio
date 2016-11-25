@@ -44,7 +44,7 @@
         android:icon="@drawable/mf_app_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:node="replace"
         tools:replace="android:icon">
 

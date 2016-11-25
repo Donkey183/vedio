@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_marginTop="5pt"
-    android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/finance_dimen_10px">
 
     <ImageView
         android:id="@+id/channel_image"
         android:layout_width="match_parent"
-        android:layout_height="90pt"
-        android:scaleType="fitXY"
-        android:layout_marginRight="5pt"
-        android:layout_marginLeft="5pt"/>
+        android:layout_height="@dimen/finance_dimen_500px"
+        android:layout_marginLeft="@dimen/finance_dimen_10px"
+        android:layout_marginRight="@dimen/finance_dimen_10px"
+        android:scaleType="fitXY"/>
 
     <TextView
         android:id="@+id/channel_text"
-        android:layout_width="70pt"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10pt"
-        android:textSize="18sp"
         android:layout_below="@+id/channel_image"
-        android:layout_marginRight="10pt"
-        android:layout_marginLeft="10pt"/>
+        android:layout_marginTop="@dimen/finance_dimen_10px"
+        android:layout_marginLeft="@dimen/finance_dimen_10px"
+        android:textSize="@dimen/finance_dimen_46px"/>
 
 </RelativeLayout>

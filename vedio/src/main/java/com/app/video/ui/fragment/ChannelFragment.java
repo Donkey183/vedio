@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.config.Video;
 import com.app.video.config.VideoType;
@@ -76,7 +77,7 @@ public class ChannelFragment extends android.app.Fragment {
 
             this.mInflater = LayoutInflater.from(getActivity());
             View view = mInflater.inflate(R.layout.item_channel, parent, false);
-
+            WindowUtil.resizeRecursively(view);
             MyViewHolder holder = new MyViewHolder(view);
 
             view.setOnClickListener(this);

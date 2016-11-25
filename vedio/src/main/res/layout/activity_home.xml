@@ -5,16 +5,16 @@
     <RelativeLayout
         android:id="@+id/main_bar"
         android:layout_width="match_parent"
-        android:layout_height="24pt"
-        android:background="@color/home_bar">
+        android:layout_height="@dimen/finance_dimen_150px"
+        android:background="@color/finance_e84342">
 
         <ImageView
             android:id="@+id/main_user"
-            android:layout_width="20pt"
-            android:layout_height="20pt"
+            android:layout_width="@dimen/finance_dimen_110px"
+            android:layout_height="@dimen/finance_dimen_110px"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10pt"
+            android:layout_marginRight="@dimen/finance_dimen_50px"
             android:src="@drawable/users"/>
     </RelativeLayout>
 
@@ -29,9 +29,11 @@
     <LinearLayout
         android:id="@+id/main_botttom"
         android:layout_width="match_parent"
-        android:layout_height="32pt"
+        android:layout_height="@dimen/finance_dimen_160px"
         android:layout_alignParentBottom="true"
-        android:background="@color/home_bar"
+        android:background="@color/finance_e84342"
+        android:paddingTop="@dimen/finance_dimen_20px"
+        android:paddingBottom="@dimen/finance_dimen_20px"
         android:orientation="horizontal">
 
         <ImageView
@@ -39,8 +41,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingTop="10sp"
-            android:paddingBottom="10sp"
             android:src="@drawable/home" />
 
         <ImageView
@@ -48,8 +48,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingTop="10sp"
-            android:paddingBottom="10sp"
             android:src="@drawable/vip" />
 
         <ImageView
@@ -57,8 +55,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingTop="10sp"
-            android:paddingBottom="10sp"
             android:src="@drawable/channel" />
 
         <ImageView
@@ -66,8 +62,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingTop="10sp"
-            android:paddingBottom="10sp"
             android:src="@drawable/vault" />
 
         <ImageView
@@ -75,8 +69,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:paddingTop="10sp"
-            android:paddingBottom="10sp"
             android:src="@drawable/forum" />
 
 

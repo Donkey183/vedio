@@ -22,7 +22,7 @@ public class AppVersionConfig {
      * App使用的环境
      */
 
-    public static int VERSION_TYPE_USED = VERSION_TYPE_DEBUG;
+    public static int VERSION_TYPE_USED = VERSION_TYPE_ONLINE;
 
     /**
      * 设置app使用的环境(线上、测试、开发机)
