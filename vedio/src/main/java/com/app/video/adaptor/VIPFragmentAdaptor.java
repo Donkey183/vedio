@@ -21,7 +21,7 @@ public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.
     private LayoutInflater mInflater;
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
     private Context mContext;
-    private List<VideoData.ResultBean> mVIPList;
+    private List<VideoData.Vault> mVIPList;
 
     public VIPFragmentAdaptor(Context context) {
         mContext = context;
@@ -61,7 +61,7 @@ public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.
         return mVIPList.size();
     }
 
-    private VideoData.ResultBean getItem(int position) {
+    private VideoData.Vault getItem(int position) {
         return mVIPList.get(position);
     }
 
@@ -75,7 +75,7 @@ public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.
     }
 
 
-    public void showVIPView(List<VideoData.ResultBean> videoDatas) {
+    public void showVIPView(List<VideoData.Vault> videoDatas) {
         mVIPList = videoDatas;
         this.notifyDataSetChanged();
     }

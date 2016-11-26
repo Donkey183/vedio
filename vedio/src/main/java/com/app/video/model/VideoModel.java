@@ -20,6 +20,7 @@ public class VideoModel extends MFBaseFragmentModel {
     }
 
     public VideoData videoData;
+
     public static final int GET_VEDIO_EXPERINCE = 0x60001;
     public static final int GET_VEDIO_COMMON = 0x60002;
     public static final int GET_XXX_INFO = 0x60003;
@@ -35,7 +36,7 @@ public class VideoModel extends MFBaseFragmentModel {
         call.doRequest(new MFCallbackAdapter<VedioResponse>() {
             @Override
             public void onResponse(VedioResponse entity, Response<?> response, Throwable throwable) {
-                if (entity == null || !entity.success || entity.page == null) {
+                if (entity == null || !entity.success || entity.page == null || entity.page.getVaultList() == null) {
                     disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
                     return;
                 }

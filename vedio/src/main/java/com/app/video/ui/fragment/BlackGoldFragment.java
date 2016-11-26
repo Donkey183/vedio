@@ -14,20 +14,21 @@ import com.app.basevideo.base.MFBaseFragment;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
-import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.adaptor.BlackGoldAdapter;
 import com.app.video.config.VedioConstant;
+import com.app.video.data.VideoData;
 import com.app.video.model.VideoModel;
 import com.app.video.util.GallyPageTransformer;
+import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
     private ViewPager gallery_pager;
     private LinearLayout ll_main;
-    private List<ImageView> imageViews;
     private int pagerWidth;
     private VideoModel mVideoModel;
 
@@ -69,13 +70,20 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
             }
         });
         gallery_pager.setPageTransformer(true, new GallyPageTransformer());
-        WindowUtil.resizeRecursively(view);
+//        WindowUtil.resizeRecursively(view);
         return view;
     }
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        gallery_pager.setAdapter(new BlackGoldAdapter(this.getActivity(), mVideoModel.videoData.getResult()));
+        List<VideoData.Vault> resultBeenList = mVideoModel.videoData.getVaultList();
+        List<View> viewList = new ArrayList<>();
+        for (VideoData.Vault vault : resultBeenList) {
+            ImageView imageView = new ImageView(this.getActivity());
+            Glide.with(this.getActivity()).load(vault.getDypic()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(imageView);
+            viewList.add(imageView);
+        }
+        gallery_pager.setAdapter(new BlackGoldAdapter(viewList));
     }
 
 }

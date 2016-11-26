@@ -1,33 +1,24 @@
 package com.app.video.adaptor;
 
 
-import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.app.video.R;
-import com.app.video.data.VideoData;
-import com.bumptech.glide.Glide;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class BlackGoldAdapter extends PagerAdapter {
-    private List<VideoData.ResultBean> mResultBeanList;
-    private List<View> mViewList = new ArrayList<>();
+    private List<View> mViewList;
 
-    private Context mContext;
 
-    public BlackGoldAdapter(Context context, List<VideoData.ResultBean> mResultBeanList) {
-        this.mResultBeanList = mResultBeanList;
-        mContext = context;
+    public BlackGoldAdapter(List<View> viewList) {
+        this.mViewList = viewList;
     }
 
     @Override
     public int getCount() {
-        return mResultBeanList == null ? 0 : mResultBeanList.size();
+        return mViewList == null ? 0 : mViewList.size();
     }
 
     @Override
@@ -35,18 +26,23 @@ public class BlackGoldAdapter extends PagerAdapter {
         return view == object;
     }
 
+    private ImageView getItem(int position) {
+        int size = getCount();
+        return (ImageView) mViewList.get((position >= size ? size - 1 : position));
+    }
+
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ImageView imageView = new ImageView(mContext);
-        Glide.with(mContext).load(mResultBeanList.get(position).getDypic()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(imageView);
+        ImageView imageView = getItem(position);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        container.removeView(imageView);
         container.addView(imageView);
-        mViewList.add(imageView);
         return imageView;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView(mViewList.remove(position));
+        this.notifyDataSetChanged();
     }
 }
