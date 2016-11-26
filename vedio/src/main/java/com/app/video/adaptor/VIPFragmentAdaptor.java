@@ -41,7 +41,6 @@ public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.
         return holder;
     }
 
-
     @Override
     public void onBindViewHolder(final VIPViewHolder holder, int position) {
         holder.video_name.setText(getItem(position).getDname());
