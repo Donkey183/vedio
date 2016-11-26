@@ -30,7 +30,7 @@ public class ChannelModel extends MFBaseFragmentModel {
         call.doRequest(new MFCallbackAdapter<ChannelResponse>() {
             @Override
             public void onResponse(ChannelResponse entity, Response<?> response, Throwable throwable) {
-                if (entity == null || !entity.success) {
+                if (entity == null || !entity.success || entity.list == null) {
                     disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
                     return;
                 }

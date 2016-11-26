@@ -51,6 +51,6 @@ public class ChannelFragment extends MFBaseFragment implements INetFinish {
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
         mChannelAdaptor = new ChannelAdaptor(this.getActivity().getApplicationContext());
         channel_recycler.setAdapter(mChannelAdaptor);
-        mChannelAdaptor.showChannel(mChannelModel.channelList);
+        mChannelAdaptor.showChannelView(mChannelModel.channelList);
     }
 }

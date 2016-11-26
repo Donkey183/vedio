@@ -10,58 +10,63 @@ import android.widget.TextView;
 
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
-import com.app.video.data.ChannelData;
+import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class ChannelAdaptor extends RecyclerView.Adapter<ChannelAdaptor.ChannelViewHolder> implements View.OnClickListener {
+/**
+ * Created by JiangMin.Wei on 16/11/26.
+ */
+public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.VIPViewHolder> implements View.OnClickListener {
 
     private LayoutInflater mInflater;
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
     private Context mContext;
-    private List<ChannelData> mChannelList;
+    private List<VideoData.ResultBean> mVIPList;
 
-    public ChannelAdaptor(Context context) {
+    public VIPFragmentAdaptor(Context context) {
         mContext = context;
     }
 
     @Override
-    public ChannelViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VIPViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        mInflater = LayoutInflater.from(mContext);
-        View view = mInflater.inflate(R.layout.item_channel, parent, false);
-        WindowUtil.resizeRecursively(view);
-        ChannelViewHolder holder = new ChannelViewHolder(view);
+        this.mInflater = LayoutInflater.from(mContext);
+        View view = mInflater.inflate(R.layout.item_vip, parent, false);
+        VIPViewHolder holder = new VIPViewHolder(view);
         view.setOnClickListener(this);
+        WindowUtil.resizeRecursively(view);
         return holder;
     }
 
 
     @Override
-    public void onBindViewHolder(final ChannelViewHolder holder, int position) {
+    public void onBindViewHolder(final VIPViewHolder holder, int position) {
         holder.video_name.setText(getItem(position).getDname());
-        Glide.with(mContext).load(getItem(position).getDpic()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(holder.video_img);
+        Glide.with(mContext).load(getItem(position).getDypic()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(holder.video_img);
         if (mOnItemClickListener != null) {
             //为ItemView设置监听器
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = holder.getLayoutPosition(); // 1
-                    mOnItemClickListener.onItemClick(holder.itemView, position,null); // 2
+
+                    mOnItemClickListener.onItemClick(holder.itemView, position, getItem(position)); // 2
                 }
             });
         }
+
     }
 
     @Override
     public int getItemCount() {
-        return mChannelList.size();
+        return mVIPList.size();
     }
 
-    private ChannelData getItem(int position) {
-        return mChannelList.get(position);
+    private VideoData.ResultBean getItem(int position) {
+        return mVIPList.get(position);
     }
 
     @Override
@@ -73,21 +78,20 @@ public class ChannelAdaptor extends RecyclerView.Adapter<ChannelAdaptor.ChannelV
         this.mOnItemClickListener = listener;
     }
 
-    public void showChannelView(List<ChannelData> channelDatas) {
-        mChannelList = channelDatas;
+
+    public void showVIPView(List<VideoData.ResultBean> videoDatas) {
+        mVIPList = videoDatas;
         this.notifyDataSetChanged();
     }
 
-    class ChannelViewHolder extends RecyclerView.ViewHolder {
+    class VIPViewHolder extends RecyclerView.ViewHolder {
         TextView video_name;
         ImageView video_img;
 
-        public ChannelViewHolder(View view) {
+        public VIPViewHolder(View view) {
             super(view);
-            video_name = (TextView) view.findViewById(R.id.channel_text);
-            video_img = (ImageView) view.findViewById(R.id.channel_image);
+            video_name = (TextView) view.findViewById(R.id.vip_name);
+            video_img = (ImageView) view.findViewById(R.id.vip_image);
         }
     }
-
-
 }
