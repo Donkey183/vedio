@@ -32,24 +32,24 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        editor.putString("vip", Constants.NORMAL);
+        editor.putString("vip", Constants.BLACK);
         editor.commit();
-        checkConfig(sharedPreferences.getString("vip",Constants.NORMAL));
+        checkConfig(sharedPreferences.getString("vip", Constants.BLACK));
         mHomeView = new HomeActivityView(this, this);
         mHomeModel = new HomeActivityModel(this);
         preLoadPageData();
     }
 
     private void checkConfig(String config) {
-        if(config.equals(Constants.NORMAL)){
+        if (config.equals(Constants.NORMAL)) {
             Constants.config = Constants.nomor_config;
-        }else if(config.equals(Constants.GOLD)){
+        } else if (config.equals(Constants.GOLD)) {
             Constants.config = Constants.gold_config;
-        }else if(config.equals(Constants.DIAMOND)){
+        } else if (config.equals(Constants.DIAMOND)) {
             Constants.config = Constants.diamond_config;
-        }else if(config.equals(Constants.BLACK)){
+        } else if (config.equals(Constants.BLACK)) {
             Constants.config = Constants.black_config;
-        }else if(config.equals(Constants.CROWN)){
+        } else if (config.equals(Constants.CROWN)) {
             Constants.config = Constants.crown_config;
         }
     }

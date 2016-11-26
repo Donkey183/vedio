@@ -5,22 +5,20 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.app.basevideo.util.WindowUtil;
 
 import java.util.List;
 
-public class MyViewPagerAdapter extends PagerAdapter {
-    private List<ImageView> listViews;
+public class BlackGoldAdapter extends PagerAdapter {
+    private List<View> mViewList;
 
-    public MyViewPagerAdapter(List<ImageView> listViews) {
-        this.listViews = listViews;
+
+    public BlackGoldAdapter(List<View> viewList) {
+        this.mViewList = viewList;
     }
 
     @Override
     public int getCount() {
-        return listViews == null ? 0 : listViews.size();
+        return mViewList == null ? 0 : mViewList.size();
     }
 
     @Override
@@ -28,16 +26,23 @@ public class MyViewPagerAdapter extends PagerAdapter {
         return view == object;
     }
 
+    private ImageView getItem(int position) {
+        int size = getCount();
+        return (ImageView) mViewList.get((position >= size ? size - 1 : position));
+    }
+
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ImageView imageView = listViews.get(position);
+        ImageView imageView = getItem(position);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        container.removeView(imageView);
         container.addView(imageView);
         return imageView;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView(listViews.get(position));
+        container.removeView(mViewList.remove(position));
+        this.notifyDataSetChanged();
     }
 }

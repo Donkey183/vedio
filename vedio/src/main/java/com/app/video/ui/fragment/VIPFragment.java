@@ -73,7 +73,7 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam(VedioConstant.R_TYPE, 0);
         request.addParam(VedioConstant.PAGE_NO, 1);
-        mModel.sendHttpRequest(request, VideoModel.GET_VIDEO_INFO);
+        mModel.sendHttpRequest(request, VideoModel.GET_XXX_INFO);
     }
 
     @Override
@@ -81,17 +81,17 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
         mAdapter = new VIPFragmentAdaptor(this.getActivity().getApplicationContext());
         mAdapter.setOnItemClickListener(this);
         vip_recyclerView.setAdapter(mAdapter);
-        mAdapter.showVIPView(mModel.videoData.getResult());
+        mAdapter.showVIPView(mModel.videoData.getVaultList());
     }
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-        if (!(obj instanceof VideoData.ResultBean)) {
+        if (!(obj instanceof VideoData.Vault)) {
             return;
         }
-        VideoData.ResultBean resultBean = (VideoData.ResultBean) obj;
+        VideoData.Vault vault = (VideoData.Vault) obj;
         Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
-        intent.putExtra("path", resultBean.getDyres());
+        intent.putExtra("path", vault.getDyres());
         startActivity(intent);
     }
 }
