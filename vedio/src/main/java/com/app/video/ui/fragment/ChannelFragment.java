@@ -20,7 +20,8 @@ public class ChannelFragment extends android.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        mChannelModel = new ChannelModel(this.getActivity().getApplicationContext());
+//
+//     mChannelModel = new ChannelModel(this.getActivity().getApplicationContext());
     }
 
     @Nullable
