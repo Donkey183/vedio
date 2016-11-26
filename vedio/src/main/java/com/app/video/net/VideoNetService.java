@@ -3,9 +3,12 @@ package com.app.video.net;
 import com.app.basevideo.net.call.MFCall;
 import com.app.video.net.response.ChannelContentResponse;
 import com.app.video.net.response.ChannelResponse;
+import com.app.video.net.response.InitAppResponse;
+import com.app.video.net.response.PayResponse;
 import com.app.video.net.response.VaultContentResponse;
 import com.app.video.net.response.VaultResponse;
 import com.app.video.net.response.VedioResponse;
+import com.app.video.net.response.VerifyCodeResponse;
 
 import java.util.Map;
 
@@ -24,7 +27,7 @@ public interface VideoNetService {
      */
     @GET("dyap/dy_init.do")
     @FormUrlEncoded
-    MFCall<ChannelResponse> initApp(@FieldMap Map<String, Object> params);
+    MFCall<InitAppResponse> initApp(@FieldMap Map<String, Object> params);
 
 
     /**
@@ -45,7 +48,7 @@ public interface VideoNetService {
      */
     @GET("dyap/dy_sysset.do")
     @FormUrlEncoded
-    MFCall<ChannelResponse> getPayInfo(@FieldMap Map<String, Object> params);
+    MFCall<PayResponse> getPayInfo(@FieldMap Map<String, Object> params);
 
 
     /**
@@ -98,7 +101,7 @@ public interface VideoNetService {
      */
     @GET("dyap/dy_verify.do")
     @FormUrlEncoded
-    MFCall<ChannelResponse> getVerifyCode(@FieldMap Map<String, Object> params);
+    MFCall<VerifyCodeResponse> getVerifyCode(@FieldMap Map<String, Object> params);
 
 
 }
