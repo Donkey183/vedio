@@ -112,7 +112,7 @@ public class RecommendFragment extends android.app.Fragment {
             Video video = new Video();
             video.setName("testVIP");
             video.setImageurl(imgurls[i%11]);
-            video.setType("VIP");
+            video.setType("vip");
             video.setURL("rtmp://live.hkstv.hk.lxdns.com/live/hks");
             videoList.add(video);
         }

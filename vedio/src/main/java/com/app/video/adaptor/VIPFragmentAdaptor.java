@@ -16,9 +16,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-/**
- * Created by JiangMin.Wei on 16/11/26.
- */
 public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.VIPViewHolder> implements View.OnClickListener {
 
     private LayoutInflater mInflater;
