@@ -25,7 +25,6 @@ public class CommonAlert{
         this.context = context;
     }
 
-
     public void showAlert(String a, String b){
         alert = new AlertDialog.Builder(context).create();
 
