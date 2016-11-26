@@ -130,6 +130,7 @@ public class ForumFragment extends android.app.Fragment {
         @Override
         public void onClick(View view) {
 
+
         }
 
         public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
