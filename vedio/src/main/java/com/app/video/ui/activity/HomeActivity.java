@@ -1,5 +1,7 @@
 package com.app.video.ui.activity;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +13,8 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.basevideo.util.AppUtils;
 import com.app.video.R;
+import com.app.video.config.Config;
+import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.model.HomeActivityModel;
 import com.app.video.ui.view.HomeActivityView;
@@ -21,14 +25,35 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
 
     private HomeActivityView mHomeView;
     private HomeActivityModel mHomeModel;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString("vip", Constants.NORMAL);
+        editor.commit();
+        checkConfig(sharedPreferences.getString("vip",Constants.NORMAL));
         mHomeView = new HomeActivityView(this, this);
         mHomeModel = new HomeActivityModel(this);
         preLoadPageData();
+    }
+
+    private void checkConfig(String config) {
+        if(config.equals(Constants.NORMAL)){
+            Constants.config = Constants.nomor_config;
+        }else if(config.equals(Constants.GOLD)){
+            Constants.config = Constants.gold_config;
+        }else if(config.equals(Constants.DIAMOND)){
+            Constants.config = Constants.diamond_config;
+        }else if(config.equals(Constants.BLACK)){
+            Constants.config = Constants.black_config;
+        }else if(config.equals(Constants.CROWN)){
+            Constants.config = Constants.crown_config;
+        }
     }
 
     private void preLoadPageData() {

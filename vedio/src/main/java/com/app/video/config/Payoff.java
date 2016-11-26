@@ -1,8 +1,5 @@
 package com.app.video.config;
 
-/**
- * Created by liubohua on 16/11/26.
- */
 public class Payoff {
     private String vip_name;
     private String vip_message;

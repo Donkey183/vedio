@@ -7,9 +7,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.app.basevideo.base.MFBaseMVCView;
 import com.app.video.R;
+import com.app.video.config.Constants;
 import com.app.video.config.Settings;
 import com.app.video.ui.activity.HomeActivity;
 import com.app.video.ui.fragment.ChannelFragment;
@@ -41,6 +43,8 @@ public class HomeActivityView extends MFBaseMVCView {
     private ImageView main_vault;
     private ImageView main_forum;
 
+    private TextView tittle_text;
+
     public HomeActivityView(HomeActivity activity, View.OnClickListener onClickListener) {
         super(activity);
         mActivity = activity;
@@ -55,6 +59,7 @@ public class HomeActivityView extends MFBaseMVCView {
         main_channel = (ImageView) mActivity.findViewById(R.id.main_channel);
         main_vault = (ImageView) mActivity.findViewById(R.id.main_vault);
         main_forum = (ImageView) mActivity.findViewById(R.id.main_forum);
+        tittle_text = (TextView) mActivity.findViewById(R.id.tittle_text);
 
         main_user.setOnClickListener(mOnClickListener);
         main_vip.setOnClickListener(mOnClickListener);
@@ -70,7 +75,6 @@ public class HomeActivityView extends MFBaseMVCView {
     private SharedPreferences settings;
     private SharedPreferences.Editor editor;
 
-    //TODO 作用？
     private void initSetting() {
         settings = mActivity.getSharedPreferences("SETTINGS", Context.MODE_PRIVATE);
         editor = settings.edit();
@@ -81,8 +85,8 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     private void setDefaultFragment() {
-        main_home.setImageResource(R.drawable.home2);
-        main_vip.setImageResource(R.drawable.zuanshi);
+        main_home.setImageResource(Constants.config.getImg_first2());
+        main_vip.setImageResource(Constants.config.getImg_vip1());
         FragmentManager fm = mActivity.getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         mRecommendFragment = new RecommendFragment();
@@ -96,14 +100,17 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     public void clickForum() {
+        tittle_text.setText("论坛");
         resetTabUi(main_forum, forumFragment);
     }
 
     public void clickVault() {
+        tittle_text.setText("顶级片库");
         resetTabUi(main_vault, vaultFragment);
     }
 
     public void clickChannel() {
+        tittle_text.setText("频道");
         resetTabUi(main_channel, channelFragment);
     }
 
@@ -112,16 +119,18 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     public void clickVip() {
+        tittle_text.setText(Constants.config.getTittle_vip());
         resetTabUi(main_vip, vipFragment);
     }
 
     public void clickHome() {
+        tittle_text.setText(Constants.config.getTittle_first());
         resetTabUi(main_home, galleryFragment);
     }
 
     private void resetTabUi(View selectedView, Fragment selectedFragMent) {
-        main_home.setImageResource(selectedView == main_home ? R.drawable.home2 : R.drawable.home);
-        main_vip.setImageResource(selectedView == main_vip ? R.drawable.zuanshi2 : R.drawable.zuanshi);
+        main_home.setImageResource(selectedView == main_home ? Constants.config.getImg_first2(): Constants.config.getImg_first1());
+        main_vip.setImageResource(selectedView == main_vip ? Constants.config.getImg_vip2() : Constants.config.getImg_vip1());
         main_channel.setImageResource(selectedView == main_channel ? R.drawable.channel2 : R.drawable.channel);
         main_vault.setImageResource(selectedView == main_vault ? R.drawable.vault2 : R.drawable.vault);
         main_forum.setImageResource(selectedView == main_forum ? R.drawable.forum2 : R.drawable.forum);
