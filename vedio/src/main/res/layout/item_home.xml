@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5pt">
+        android:padding="@dimen/finance_dimen_30px">
 
         <RelativeLayout
             android:id="@+id/video_layout"
@@ -15,7 +15,7 @@
             <ImageView
                 android:id="@+id/home_image"
                 android:layout_width="match_parent"
-                android:layout_height="50pt"
+                android:layout_height="@dimen/finance_dimen_500px"
                 android:scaleType="fitXY" />
 
             <TextView
@@ -28,8 +28,8 @@
                 android:text="VIP"/>
 
             <ImageView
-                android:layout_width="20pt"
-                android:layout_height="20pt"
+                android:layout_width="@dimen/finance_dimen_120px"
+                android:layout_height="@dimen/finance_dimen_120px"
                 android:src="@drawable/home_play"
                 android:layout_centerInParent="true"/>
 

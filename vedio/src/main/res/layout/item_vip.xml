@@ -7,19 +7,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="5pt">
+        android:padding="@dimen/finance_dimen_10px">
 
         <ImageView
             android:id="@+id/vip_image"
             android:layout_width="match_parent"
-            android:layout_height="70pt"
+            android:layout_height="@dimen/finance_dimen_420px"
             android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/vip_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="@dimen/finance_dimen_50px"
             android:layout_below="@+id/vip_image"/>
 
 

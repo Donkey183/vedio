@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.util.GallyPageTransformer;
 import com.bumptech.glide.Glide;
@@ -67,6 +68,7 @@ public class GalleryFragment extends android.app.Fragment {
         });
         gallery_pager.setPageTransformer(true, new GallyPageTransformer());
         gallery_pager.setAdapter(new MyViewPagerAdapter(imageViews));
+        WindowUtil.resizeRecursively(view);
         return view;
     }
 

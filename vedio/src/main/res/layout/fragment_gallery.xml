@@ -12,9 +12,8 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/gallery_pager"
-        android:layout_width="130pt"
-        android:layout_height="190pt"
-        >
+        android:layout_width="@dimen/finance_dimen_800px"
+        android:layout_height="@dimen/finance_dimen_1100px">
 
     </android.support.v4.view.ViewPager>
 

@@ -9,12 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.config.Forum;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
@@ -30,7 +28,6 @@ public class ForumFragment extends android.app.Fragment {
     private RecyclerView forum_recyclerView;
 
     private ForumAdapter mAdapter;
-
 
     private String[] imgurls = {"http://img.taopic.com/uploads/allimg/121017/234940-12101FR22825.jpg",
             "http://pic44.nipic.com/20140721/11624852_001107119409_2.jpg",
@@ -60,7 +57,6 @@ public class ForumFragment extends android.app.Fragment {
         initdata();
         mAdapter = new ForumAdapter();
         forum_recyclerView.setAdapter(mAdapter);
-
         mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -97,7 +93,7 @@ public class ForumFragment extends android.app.Fragment {
 
             this.mInflater = LayoutInflater.from(getActivity());
             View view = mInflater.inflate(R.layout.item_forum, parent, false);
-
+            WindowUtil.resizeRecursively(view);
             MyViewHolder holder = new MyViewHolder(view);
 
             view.setOnClickListener(this);
