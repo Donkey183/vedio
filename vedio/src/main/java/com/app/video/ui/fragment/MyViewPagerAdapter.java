@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.app.basevideo.util.WindowUtil;
+
 import java.util.List;
 
 public class MyViewPagerAdapter extends PagerAdapter {

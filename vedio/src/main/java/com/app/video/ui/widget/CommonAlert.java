@@ -2,6 +2,7 @@ package com.app.video.ui.widget;
 
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.CheckBox;
@@ -10,9 +11,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 
-public class CommonAlert{
+public class CommonAlert {
 
     private Context context;
     private ImageView alert_cha;
@@ -26,12 +28,15 @@ public class CommonAlert{
         this.context = context;
     }
 
-    public void showAlert(String a, String b){
+    public void showAlert(String a, String b) {
         alert = new AlertDialog.Builder(context).create();
 
         alert.show();
         Window window = alert.getWindow();
-        window.setContentView(R.layout.dialog_layout);
+        LayoutInflater inflate = LayoutInflater.from(context);
+        View contentView = inflate.inflate(R.layout.dialog_layout, null);
+        WindowUtil.resizeRecursively(contentView);
+        window.setContentView(contentView);
 
         check_wechat = (CheckBox) window.findViewById(R.id.check_wechat);
         check_zhifu = (CheckBox) window.findViewById(R.id.check_zhifu);
@@ -43,8 +48,7 @@ public class CommonAlert{
         zhifu2 = (RelativeLayout) window.findViewById(R.id.layout_zhifu2);
 
 
-
-        if(b==null){
+        if (b == null) {
             zhifu2.setVisibility(View.GONE);
         }
 
@@ -58,7 +62,7 @@ public class CommonAlert{
         check_wechat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     check_zhifu.setChecked(false);
                 }
             }
@@ -66,7 +70,7 @@ public class CommonAlert{
         check_zhifu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     check_wechat.setChecked(false);
                 }
             }
