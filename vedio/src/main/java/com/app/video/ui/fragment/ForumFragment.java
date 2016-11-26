@@ -1,6 +1,5 @@
 package com.app.video.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
+import com.app.video.config.Constants;
 import com.app.video.config.Forum;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.ui.widget.CommonAlert;
@@ -59,9 +59,9 @@ public class ForumFragment extends android.app.Fragment {
         forum_recyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
-            public void onItemClick(View view, int position, Object object) {
+            public void onItemClick(View view, int position,Object object) {
                 CommonAlert alert = new CommonAlert(getActivity());
-                alert.showAlert("aaa","bbb");
+                alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img());
             }
         });
 
