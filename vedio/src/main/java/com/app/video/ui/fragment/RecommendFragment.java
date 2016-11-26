@@ -2,6 +2,7 @@ package com.app.video.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.config.Video;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
+import com.app.video.ui.activity.PreplayActivity;
 import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.util.GlideImageLoader;
 import com.bumptech.glide.Glide;
@@ -136,6 +138,23 @@ public class RecommendFragment extends android.app.Fragment {
           }
         });
         banner.start();
+<<<<<<< HEAD
+        my_recyclerView = (RecyclerView) view.findViewById(R.id.main_recycler);
+        my_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        my_recyclerView.setAdapter(mAdapter = new HomeAdapter());
+
+        mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position, Object object) {
+                Video v = videoList.get(position);
+                Intent intent = new Intent(getActivity(),PreplayActivity.class);
+                intent.putExtra("path", v.getURL());
+                startActivity(intent);
+            }
+        });
+
+        return view;
+=======
       } else {
         this.mInflater = LayoutInflater.from(getActivity());
         view = mInflater.inflate(R.layout.item_home, parent, false);
@@ -145,6 +164,7 @@ public class RecommendFragment extends android.app.Fragment {
       MyViewHolder holder = new MyViewHolder(view);
       return holder;
     }
+>>>>>>> 053a39537a72102c5c08ea0f2f71a3505357fc8b
 
     @Override public void onBindViewHolder(final MyViewHolder holder, int position) {
       if (getItemViewType(position) == IS_HEADER) return;

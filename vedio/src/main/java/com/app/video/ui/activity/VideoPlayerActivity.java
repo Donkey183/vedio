@@ -1,6 +1,5 @@
 package com.app.video.ui.activity;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
@@ -9,7 +8,6 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -184,6 +182,7 @@ public class VideoPlayerActivity extends Activity
                 mVideoResolution.setVisibility(View.GONE);
                 mFrameRate.setVisibility(View.GONE);
                 mVideoBitrate.setVisibility(View.GONE);
+                mPlayerPosition.setVisibility(View.GONE);
                 mLoadText.setVisibility(View.GONE);
                 mCpu.setVisibility(View.GONE);
                 mMemInfo.setVisibility(View.GONE);
@@ -515,7 +514,6 @@ public class VideoPlayerActivity extends Activity
   }
 
     //android <=4.4 后台切回后不会再触发onSurfaceTextureAvailable，所以在此处调用setSurfaceTexture
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void reinitTextureView(TextureView view) {
         mVideoTextureView = view;
         mVideoTextureView.setSurfaceTextureListener(this);

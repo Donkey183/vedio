@@ -56,8 +56,16 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
 
             }
         });
+
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
-        vip_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        vip_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
+
+
         return view;
     }
 
