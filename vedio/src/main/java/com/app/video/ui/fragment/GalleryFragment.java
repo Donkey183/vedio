@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
+import com.app.video.adaptor.MyViewPagerAdapter;
 import com.app.video.util.GallyPageTransformer;
 import com.bumptech.glide.Glide;
 

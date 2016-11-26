@@ -1,0 +1,7 @@
+<shape android:shape="rectangle"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke android:color="@color/finance_ff0000"
+        android:width="@dimen/finance_dimen_5px">
+
+    </stroke>
+</shape>
