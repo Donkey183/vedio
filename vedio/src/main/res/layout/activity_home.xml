@@ -46,40 +46,121 @@
         android:paddingBottom="@dimen/finance_dimen_20px"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/main_home"
+        <RelativeLayout
+            android:id="@+id/home_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/home" />
+            android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/main_vip"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/zuanshi" />
+            <ImageView
+                android:id="@+id/main_home"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/home"
+                android:layout_above="@+id/text_home"/>
 
-        <ImageView
-            android:id="@+id/main_channel"
+
+            <TextView
+                android:id="@+id/text_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/vip_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/channel" />
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/main_vip"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/vip"
+                android:layout_above="@+id/text_vip" />
+
+            <TextView
+                android:id="@+id/text_vip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/channel_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/main_channel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/channel"
+                android:layout_above="@+id/text_channel" />
+
+            <TextView
+                android:id="@+id/text_channel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="频道"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+        android:id="@+id/vault_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <ImageView
             android:id="@+id/main_vault"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/vault" />
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/vault"
+            android:layout_above="@+id/text_vault" />
 
-        <ImageView
-            android:id="@+id/main_forum"
+        <TextView
+            android:id="@+id/text_vault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="片库"/>
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/forum_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/forum" />
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/main_forum"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/forum"
+                android:layout_above="@+id/text_forum" />
+
+            <TextView
+                android:id="@+id/text_forum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="论坛"/>
+        </RelativeLayout>
 
 
     </LinearLayout>

@@ -70,10 +70,10 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.main_home:
+            case R.id.home_layout:
                 mHomeView.clickHome();
                 break;
-            case R.id.main_vip:
+            case R.id.vip_layout:
                 mHomeView.clickVip();
                 LogUtil.e("=====uuid=====" + AppUtils.getUUID());
                 LogUtil.e(DesUtil.decrypt(AppUtils.getUUID(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
@@ -81,13 +81,13 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
             case R.id.main_user:
                 mHomeView.clickUser();
                 break;
-            case R.id.main_channel:
+            case R.id.channel_layout:
                 mHomeView.clickChannel();
                 break;
-            case R.id.main_vault:
+            case R.id.vault_layout:
                 mHomeView.clickVault();
                 break;
-            case R.id.main_forum:
+            case R.id.forum_layout:
                 mHomeView.clickForum();
                 break;
             default:

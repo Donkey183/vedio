@@ -5,8 +5,10 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.basevideo.base.MFBaseMVCView;
@@ -20,6 +22,7 @@ import com.app.video.ui.fragment.GalleryFragment;
 import com.app.video.ui.fragment.RecommendFragment;
 import com.app.video.ui.fragment.VIPFragment;
 import com.app.video.ui.fragment.VaultFragment;
+import com.app.video.ui.widget.CommonAlert;
 
 /**
  * Created by JiangMin.Wei on 16/11/23.
@@ -45,6 +48,18 @@ public class HomeActivityView extends MFBaseMVCView {
 
     private TextView tittle_text;
 
+    private TextView text_home;
+    private TextView text_vip;
+    private TextView text_channel;
+    private TextView text_vault;
+    private TextView text_forum;
+
+    private RelativeLayout home_layout;
+    private RelativeLayout vip_layout;
+    private RelativeLayout channel_layout;
+    private RelativeLayout vault_layout;
+    private RelativeLayout forum_layout;
+
     public HomeActivityView(HomeActivity activity, View.OnClickListener onClickListener) {
         super(activity);
         mActivity = activity;
@@ -61,12 +76,31 @@ public class HomeActivityView extends MFBaseMVCView {
         main_forum = (ImageView) mActivity.findViewById(R.id.main_forum);
         tittle_text = (TextView) mActivity.findViewById(R.id.tittle_text);
 
+        text_home = (TextView) mActivity.findViewById(R.id.text_home);
+        text_vip = (TextView) mActivity.findViewById(R.id.text_vip);
+        text_vault = (TextView) mActivity.findViewById(R.id.text_vault);
+        text_forum = (TextView) mActivity.findViewById(R.id.text_forum);
+        text_channel = (TextView) mActivity.findViewById(R.id.text_channel);
+
+        home_layout = (RelativeLayout) mActivity.findViewById(R.id.home_layout);
+        vip_layout = (RelativeLayout) mActivity.findViewById(R.id.vip_layout);
+        channel_layout = (RelativeLayout) mActivity.findViewById(R.id.channel_layout);
+        vault_layout = (RelativeLayout) mActivity.findViewById(R.id.vault_layout);
+        forum_layout = (RelativeLayout) mActivity.findViewById(R.id.forum_layout);
+
+        text_vip.setText(Constants.config.getTittle_vip());
+        text_home.setText(Constants.config.getTittle_first());
+        tittle_text.setText(Constants.config.getTittle_first());
+        main_home.setImageResource(Constants.config.getImg_first1());
+        main_vip.setImageResource(Constants.config.getImg_vip1());
+
+
         main_user.setOnClickListener(mOnClickListener);
-        main_vip.setOnClickListener(mOnClickListener);
-        main_home.setOnClickListener(mOnClickListener);
-        main_channel.setOnClickListener(mOnClickListener);
-        main_vault.setOnClickListener(mOnClickListener);
-        main_forum.setOnClickListener(mOnClickListener);
+        vip_layout.setOnClickListener(mOnClickListener);
+        home_layout.setOnClickListener(mOnClickListener);
+        channel_layout.setOnClickListener(mOnClickListener);
+        vault_layout.setOnClickListener(mOnClickListener);
+        forum_layout.setOnClickListener(mOnClickListener);
 
         initSetting();
         setDefaultFragment();
@@ -95,22 +129,31 @@ public class HomeActivityView extends MFBaseMVCView {
         vaultFragment = new VaultFragment();
         forumFragment = new ForumFragment();
         galleryFragment = new GalleryFragment();
-        transaction.replace(R.id.main_frame, galleryFragment);
+
+        if(Constants.config.getVip_now().equals(Constants.BLACK)||Constants.config.getVip_now().equals(Constants.CROWN)){
+            transaction.replace(R.id.main_frame, galleryFragment);
+        }else{
+            transaction.replace(R.id.main_frame, mRecommendFragment);
+        }
+
         transaction.commit();
     }
 
     public void clickForum() {
         tittle_text.setText("论坛");
+        text_forum.setText("论坛");
         resetTabUi(main_forum, forumFragment);
     }
 
     public void clickVault() {
         tittle_text.setText("顶级片库");
+        text_vault.setText("片库");
         resetTabUi(main_vault, vaultFragment);
     }
 
     public void clickChannel() {
         tittle_text.setText("频道");
+        text_channel.setText("频道");
         resetTabUi(main_channel, channelFragment);
     }
 
@@ -119,13 +162,19 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     public void clickVip() {
+        text_vip.setText(Constants.config.getTittle_vip());
         tittle_text.setText(Constants.config.getTittle_vip());
         resetTabUi(main_vip, vipFragment);
     }
 
     public void clickHome() {
+        text_home.setText(Constants.config.getTittle_first());
         tittle_text.setText(Constants.config.getTittle_first());
-        resetTabUi(main_home, galleryFragment);
+        if(Constants.config.getVip_now().equals(Constants.BLACK)||Constants.config.getVip_now().equals(Constants.CROWN)){
+            resetTabUi(main_home, galleryFragment);
+        }else{
+            resetTabUi(main_home, mRecommendFragment);
+        }
     }
 
     private void resetTabUi(View selectedView, Fragment selectedFragMent) {
