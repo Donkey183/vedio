@@ -65,7 +65,7 @@ public class ForumFragment extends android.app.Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 CommonAlert alert = new CommonAlert(getActivity());
-                alert.showAlert("aaa",null);
+                alert.showAlert("aaa","bbb");
             }
         });
 

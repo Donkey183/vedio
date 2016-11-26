@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.app.video.R;
 public class CommonAlert{
 
     private Context context;
+    private ImageView alert_cha;
     private CheckBox check_wechat;
     private CheckBox check_zhifu;
     private RelativeLayout zhifu1;
@@ -34,6 +36,8 @@ public class CommonAlert{
         check_wechat = (CheckBox) window.findViewById(R.id.check_wechat);
         check_zhifu = (CheckBox) window.findViewById(R.id.check_zhifu);
 
+        alert_cha = (ImageView) window.findViewById(R.id.dialog_cha);
+
         zhifu1 = (RelativeLayout) window.findViewById(R.id.layout_zhifu1);
 
         zhifu2 = (RelativeLayout) window.findViewById(R.id.layout_zhifu2);
@@ -43,6 +47,13 @@ public class CommonAlert{
         if(b==null){
             zhifu2.setVisibility(View.GONE);
         }
+
+        alert_cha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.dismiss();
+            }
+        });
 
         check_wechat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
