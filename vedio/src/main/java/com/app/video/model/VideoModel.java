@@ -20,7 +20,14 @@ public class VideoModel extends MFBaseFragmentModel {
     }
 
     public VideoData videoData;
-    public static final int GET_VIDEO_INFO = 0x50991;
+    public static final int GET_VEDIO_EXPERINCE = 0x60001;
+    public static final int GET_VEDIO_COMMON = 0x60002;
+    public static final int GET_XXX_INFO = 0x60003;
+    public static final int GET_VEDIO_GLOD = 0x60004;
+    public static final int GET_VEDIO_DIAMOND = 0x60006;
+    public static final int GET_VEDIO_BLACK_GLOD = 0x60005;
+    public static final int GET_VEDIO_CROWN = 0x60007;
+
 
     @Override
     public void sendHttpRequest(CommonHttpRequest request, int requestCode) {
@@ -33,7 +40,7 @@ public class VideoModel extends MFBaseFragmentModel {
                     return;
                 }
                 videoData = entity.page;
-                disPatchRequestSuccessMessage(GET_VIDEO_INFO);
+                disPatchRequestSuccessMessage(GET_XXX_INFO);
             }
         });
     }

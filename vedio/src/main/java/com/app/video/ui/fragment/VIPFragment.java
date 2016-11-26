@@ -65,7 +65,7 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam(VedioConstant.R_TYPE, 0);
         request.addParam(VedioConstant.PAGE_NO, 1);
-        mModel.sendHttpRequest(request, VideoModel.GET_VIDEO_INFO);
+        mModel.sendHttpRequest(request, VideoModel.GET_XXX_INFO);
     }
 
     @Override

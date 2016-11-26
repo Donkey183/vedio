@@ -18,7 +18,7 @@ import com.app.video.config.Settings;
 import com.app.video.ui.activity.HomeActivity;
 import com.app.video.ui.fragment.ChannelFragment;
 import com.app.video.ui.fragment.ForumFragment;
-import com.app.video.ui.fragment.GalleryFragment;
+import com.app.video.ui.fragment.BlackGoldFragment;
 import com.app.video.ui.fragment.RecommendFragment;
 import com.app.video.ui.fragment.VIPFragment;
 import com.app.video.ui.fragment.VaultFragment;
@@ -37,7 +37,7 @@ public class HomeActivityView extends MFBaseMVCView {
     private ChannelFragment channelFragment;
     private VaultFragment vaultFragment;
     private ForumFragment forumFragment;
-    private GalleryFragment galleryFragment;
+    private BlackGoldFragment galleryFragment;
 
     private ImageView main_user;
     private ImageView main_home;
@@ -128,7 +128,7 @@ public class HomeActivityView extends MFBaseMVCView {
         channelFragment = new ChannelFragment();
         vaultFragment = new VaultFragment();
         forumFragment = new ForumFragment();
-        galleryFragment = new GalleryFragment();
+        galleryFragment = new BlackGoldFragment();
 
         if(Constants.config.getVip_now().equals(Constants.BLACK)||Constants.config.getVip_now().equals(Constants.CROWN)){
             transaction.replace(R.id.main_frame, galleryFragment);
