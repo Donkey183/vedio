@@ -1,7 +1,11 @@
 package com.app.video.net;
 
 import com.app.basevideo.net.call.MFCall;
+import com.app.video.net.response.ChannelContentResponse;
 import com.app.video.net.response.ChannelResponse;
+import com.app.video.net.response.VaultContentResponse;
+import com.app.video.net.response.VaultResponse;
+import com.app.video.net.response.VedioResponse;
 
 import java.util.Map;
 
@@ -31,7 +35,7 @@ public interface VideoNetService {
      */
     @GET("dyap/dy_resources.do")
     @FormUrlEncoded
-    MFCall<ChannelResponse> getVideoResources(@FieldMap Map<String, Object> params);
+    MFCall<VedioResponse> getVideoResources(@FieldMap Map<String, Object> params);
 
     /**
      * 获取支付信息
@@ -52,7 +56,7 @@ public interface VideoNetService {
      */
     @GET("dyap/dy_dpics.do")
     @FormUrlEncoded
-    MFCall<ChannelResponse> getVaultInfo(@FieldMap Map<String, Object> params);
+    MFCall<VaultResponse> getVaultInfo(@FieldMap Map<String, Object> params);
 
 
     /**
@@ -63,7 +67,7 @@ public interface VideoNetService {
      */
     @GET("dyap/dy_dpicinfos.do")
     @FormUrlEncoded
-    MFCall<ChannelResponse> getVaultContentInfo(@FieldMap Map<String, Object> params);
+    MFCall<VaultContentResponse> getVaultContentInfo(@FieldMap Map<String, Object> params);
 
     /**
      * 获取电影频道信息
@@ -84,7 +88,7 @@ public interface VideoNetService {
      */
     @GET("dyap/dy_channelinfos.do")
     @FormUrlEncoded
-    MFCall<ChannelResponse> getChannelContentInfo(@FieldMap Map<String, Object> params);
+    MFCall<ChannelContentResponse> getChannelContentInfo(@FieldMap Map<String, Object> params);
 
     /**
      * 获取验证码

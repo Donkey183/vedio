@@ -6,34 +6,34 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.call.MFCall;
 import com.app.basevideo.net.callback.MFCallbackAdapter;
-import com.app.video.data.VaultData;
+import com.app.video.data.ChannelContentData;
 import com.app.video.net.VideoNetService;
-import com.app.video.net.response.VaultResponse;
+import com.app.video.net.response.ChannelContentResponse;
 
 import retrofit2.Response;
 
 
-public class VaultModel extends MFBaseModel {
+public class ChannelContentModel extends MFBaseModel {
 
-    public VaultModel(MFBaseActivity activityContext) {
+    public ChannelContentModel(MFBaseActivity activityContext) {
         super(activityContext);
     }
 
-    public VaultData vaultData;
-    public static final int GET_VAULT_INFO = 0x10061;
+    public ChannelContentData channelContentData;
+    public static final int GET_CHANNEL_CONTENT_INFO = 0x30001;
 
     @Override
     protected void sendHttpRequest(CommonHttpRequest request, int requestCode) {
-        MFCall<VaultResponse> call = HttpRequestService.createService(VideoNetService.class).getVaultInfo(request.buildParams());
-        call.doRequest(new MFCallbackAdapter<VaultResponse>() {
+        MFCall<ChannelContentResponse> call = HttpRequestService.createService(VideoNetService.class).getChannelContentInfo(request.buildParams());
+        call.doRequest(new MFCallbackAdapter<ChannelContentResponse>() {
             @Override
-            public void onResponse(VaultResponse entity, Response<?> response, Throwable throwable) {
+            public void onResponse(ChannelContentResponse entity, Response<?> response, Throwable throwable) {
                 if (entity == null || !entity.success) {
                     disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
                     return;
                 }
-                vaultData = entity.list;
-                disPatchRequestSuccessMessage(GET_VAULT_INFO);
+                channelContentData = entity.list;
+                disPatchRequestSuccessMessage(GET_CHANNEL_CONTENT_INFO);
             }
         });
     }

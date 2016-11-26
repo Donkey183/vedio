@@ -1,8 +1,8 @@
 package com.app.video.net.response;
 
 import com.app.basevideo.net.BaseHttpResult;
-import com.app.video.data.VedioData;
+import com.app.video.data.VideoData;
 
-public class VedioResponse extends BaseHttpResult<VedioData> {
+public class VedioResponse extends BaseHttpResult<VideoData> {
 
 }

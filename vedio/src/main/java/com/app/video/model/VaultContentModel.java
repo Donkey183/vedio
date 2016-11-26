@@ -6,34 +6,34 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.call.MFCall;
 import com.app.basevideo.net.callback.MFCallbackAdapter;
-import com.app.video.data.VaultData;
+import com.app.video.data.VaultContentData;
 import com.app.video.net.VideoNetService;
-import com.app.video.net.response.VaultResponse;
+import com.app.video.net.response.VaultContentResponse;
 
 import retrofit2.Response;
 
 
-public class VaultModel extends MFBaseModel {
+public class VaultContentModel extends MFBaseModel {
 
-    public VaultModel(MFBaseActivity activityContext) {
+    public VaultContentModel(MFBaseActivity activityContext) {
         super(activityContext);
     }
 
-    public VaultData vaultData;
-    public static final int GET_VAULT_INFO = 0x10061;
+    public VaultContentData vaultContentData;
+    public static final int GET_VAULT_CONTENT = 0x70012;
 
     @Override
     protected void sendHttpRequest(CommonHttpRequest request, int requestCode) {
-        MFCall<VaultResponse> call = HttpRequestService.createService(VideoNetService.class).getVaultInfo(request.buildParams());
-        call.doRequest(new MFCallbackAdapter<VaultResponse>() {
+        MFCall<VaultContentResponse> call = HttpRequestService.createService(VideoNetService.class).getVaultContentInfo(request.buildParams());
+        call.doRequest(new MFCallbackAdapter<VaultContentResponse>() {
             @Override
-            public void onResponse(VaultResponse entity, Response<?> response, Throwable throwable) {
+            public void onResponse(VaultContentResponse entity, Response<?> response, Throwable throwable) {
                 if (entity == null || !entity.success) {
                     disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
                     return;
                 }
-                vaultData = entity.list;
-                disPatchRequestSuccessMessage(GET_VAULT_INFO);
+                vaultContentData = entity.list;
+                disPatchRequestSuccessMessage(GET_VAULT_CONTENT);
             }
         });
     }
