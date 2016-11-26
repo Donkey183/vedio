@@ -18,4 +18,5 @@
     <dimen name="finance_dimen_1300px">1300px</dimen>
     <dimen name="finance_dimen_420px">420px</dimen>
     <dimen name="finance_dimen_1100px">1100px</dimen>
+    <dimen name="dimen_20">20dp</dimen>
 </resources>
