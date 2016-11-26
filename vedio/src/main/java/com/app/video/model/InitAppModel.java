@@ -7,7 +7,7 @@ import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.call.MFCall;
 import com.app.basevideo.net.callback.MFCallbackAdapter;
 import com.app.video.data.InitAppData;
-import com.app.video.net.VideoNetService;
+import com.app.video.net.VedioNetService;
 import com.app.video.net.response.InitAppResponse;
 
 import retrofit2.Response;
@@ -24,7 +24,7 @@ public class InitAppModel extends MFBaseModel {
 
     @Override
     protected void sendHttpRequest(CommonHttpRequest request, int requestCode) {
-        MFCall<InitAppResponse> call = HttpRequestService.createService(VideoNetService.class).initApp(request.buildParams());
+        MFCall<InitAppResponse> call = HttpRequestService.createService(VedioNetService.class).initApp(request.buildParams());
         call.doRequest(new MFCallbackAdapter<InitAppResponse>() {
             @Override
             public void onResponse(InitAppResponse entity, Response<?> response, Throwable throwable) {

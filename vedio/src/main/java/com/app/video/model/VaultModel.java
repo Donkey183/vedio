@@ -7,7 +7,7 @@ import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.call.MFCall;
 import com.app.basevideo.net.callback.MFCallbackAdapter;
 import com.app.video.data.VaultData;
-import com.app.video.net.VideoNetService;
+import com.app.video.net.VedioNetService;
 import com.app.video.net.response.VaultResponse;
 
 import retrofit2.Response;
@@ -24,7 +24,7 @@ public class VaultModel extends MFBaseModel {
 
     @Override
     protected void sendHttpRequest(CommonHttpRequest request, int requestCode) {
-        MFCall<VaultResponse> call = HttpRequestService.createService(VideoNetService.class).getVaultInfo(request.buildParams());
+        MFCall<VaultResponse> call = HttpRequestService.createService(VedioNetService.class).getVaultInfo(request.buildParams());
         call.doRequest(new MFCallbackAdapter<VaultResponse>() {
             @Override
             public void onResponse(VaultResponse entity, Response<?> response, Throwable throwable) {

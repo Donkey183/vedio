@@ -14,12 +14,14 @@ import com.app.video.data.ChannelData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
 public class ChannelAdaptor extends RecyclerView.Adapter<ChannelAdaptor.ChannelViewHolder> implements View.OnClickListener {
 
     private LayoutInflater mInflater;
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
     private Context mContext;
-    private ChannelData mChannelData;
+    private List<ChannelData> mChannelList;
 
     public ChannelAdaptor(Context context) {
         mContext = context;
@@ -56,11 +58,11 @@ public class ChannelAdaptor extends RecyclerView.Adapter<ChannelAdaptor.ChannelV
 
     @Override
     public int getItemCount() {
-        return mChannelData.channelList.size();
+        return mChannelList.size();
     }
 
-    private ChannelData.Channel getItem(int position) {
-        return mChannelData.channelList.get(position);
+    private ChannelData getItem(int position) {
+        return mChannelList.get(position);
     }
 
     @Override
@@ -72,8 +74,9 @@ public class ChannelAdaptor extends RecyclerView.Adapter<ChannelAdaptor.ChannelV
         this.mOnItemClickListener = listener;
     }
 
-    public void setChannelData(ChannelData channelData) {
-        mChannelData = channelData;
+    public void showChannel(List<ChannelData> channelDatas) {
+        mChannelList = channelDatas;
+        this.notifyDataSetChanged();
     }
 
     class ChannelViewHolder extends RecyclerView.ViewHolder {

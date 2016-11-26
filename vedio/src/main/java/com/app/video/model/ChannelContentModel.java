@@ -7,7 +7,7 @@ import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.call.MFCall;
 import com.app.basevideo.net.callback.MFCallbackAdapter;
 import com.app.video.data.ChannelContentData;
-import com.app.video.net.VideoNetService;
+import com.app.video.net.VedioNetService;
 import com.app.video.net.response.ChannelContentResponse;
 
 import retrofit2.Response;
@@ -24,7 +24,7 @@ public class ChannelContentModel extends MFBaseModel {
 
     @Override
     protected void sendHttpRequest(CommonHttpRequest request, int requestCode) {
-        MFCall<ChannelContentResponse> call = HttpRequestService.createService(VideoNetService.class).getChannelContentInfo(request.buildParams());
+        MFCall<ChannelContentResponse> call = HttpRequestService.createService(VedioNetService.class).getChannelContentInfo(request.buildParams());
         call.doRequest(new MFCallbackAdapter<ChannelContentResponse>() {
             @Override
             public void onResponse(ChannelContentResponse entity, Response<?> response, Throwable throwable) {

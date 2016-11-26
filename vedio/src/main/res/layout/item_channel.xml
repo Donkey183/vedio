@@ -19,6 +19,7 @@
         android:layout_below="@+id/channel_image"
         android:layout_marginTop="@dimen/finance_dimen_10px"
         android:layout_marginLeft="@dimen/finance_dimen_10px"
+        android:textColor="@color/finance_666666"
         android:textSize="@dimen/finance_dimen_46px"/>
 
 </RelativeLayout>

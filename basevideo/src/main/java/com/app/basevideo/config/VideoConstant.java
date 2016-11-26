@@ -18,7 +18,7 @@ public class VideoConstant {
     public static final String PARAM_CLIENT_TYPE = "clientType";//客户端类型
     public static final String PARAM_SCREEN_WIDTH = "screenWidth";//屏幕宽度
     public static final String PARAM_SCREEN_HEIGHT = "screenHeight";//屏幕高度
-    public static final String PARAM_TIMESTAMP = "timestamp";//时间戳
+    public static final String PARAM_TIMESTAMP = "stamp";//时间戳
     public static final String PARAM_USER_ID = "userId";//用户Id
     public static final String PARAM_SIGN = "sign";//签名
     public static final String PARAM_MOBILE_OPERATORS = "mobileOperators";//运营商

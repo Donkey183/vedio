@@ -7,7 +7,7 @@ import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.call.MFCall;
 import com.app.basevideo.net.callback.MFCallbackAdapter;
 import com.app.video.data.VerifyCodeData;
-import com.app.video.net.VideoNetService;
+import com.app.video.net.VedioNetService;
 import com.app.video.net.response.VerifyCodeResponse;
 
 import retrofit2.Response;
@@ -24,7 +24,7 @@ public class VerifyModel extends MFBaseModel {
 
     @Override
     protected void sendHttpRequest(CommonHttpRequest request, int requestCode) {
-        MFCall<VerifyCodeResponse> call = HttpRequestService.createService(VideoNetService.class).getVerifyCode(request.buildParams());
+        MFCall<VerifyCodeResponse> call = HttpRequestService.createService(VedioNetService.class).getVerifyCode(request.buildParams());
         call.doRequest(new MFCallbackAdapter<VerifyCodeResponse>() {
             @Override
             public void onResponse(VerifyCodeResponse entity, Response<?> response, Throwable throwable) {

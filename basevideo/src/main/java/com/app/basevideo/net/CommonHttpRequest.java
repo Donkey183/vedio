@@ -39,7 +39,7 @@ public class CommonHttpRequest {
 //        params.put(VideoConstant.PARAM_OS_VERSION, AppUtils.getSystemSDKName());
 //        params.put(VideoConstant.PARAM_MOBILE_BRAND, AppUtils.getManufacturer());
 //        params.put(VideoConstant.PARAM_MOBILE_OPERATORS, AppUtils.getMobileOperators());
-        params.put(VideoConstant.PARAM_TIMESTAMP, DateUtil.createDate("ddhhmmss"));
+        params.put(VideoConstant.PARAM_TIMESTAMP, "1234");//DateUtil.createDate("ddhhmmss")
         params.put(VideoConstant.PARAM_TOKEN, "BD9F6B08527789FC");
         params.put(VideoConstant.ENCY_STR, "D3BF8A21D8AE9941AD4021DB9ABCD50D");
     }

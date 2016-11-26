@@ -15,8 +15,9 @@ import java.util.Map;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
-public interface VideoNetService {
+public interface VedioNetService {
 
 
     /**
@@ -25,7 +26,7 @@ public interface VideoNetService {
      * @param params
      * @return
      */
-    @GET("dyap/dy_init.do")
+    @POST("dyap/dy_init.do")
     @FormUrlEncoded
     MFCall<InitAppResponse> initApp(@FieldMap Map<String, Object> params);
 
@@ -36,7 +37,7 @@ public interface VideoNetService {
      * @param params
      * @return
      */
-    @GET("dyap/dy_resources.do")
+    @POST("dyap/dy_resources.do")
     @FormUrlEncoded
     MFCall<VedioResponse> getVideoResources(@FieldMap Map<String, Object> params);
 
@@ -46,7 +47,7 @@ public interface VideoNetService {
      * @param params
      * @return
      */
-    @GET("dyap/dy_sysset.do")
+    @POST("dyap/dy_sysset.do")
     @FormUrlEncoded
     MFCall<PayResponse> getPayInfo(@FieldMap Map<String, Object> params);
 
@@ -57,7 +58,7 @@ public interface VideoNetService {
      * @param params
      * @return
      */
-    @GET("dyap/dy_dpics.do")
+    @POST("dyap/dy_dpics.do")
     @FormUrlEncoded
     MFCall<VaultResponse> getVaultInfo(@FieldMap Map<String, Object> params);
 
@@ -68,20 +69,19 @@ public interface VideoNetService {
      * @param params
      * @return
      */
-    @GET("dyap/dy_dpicinfos.do")
+    @POST("dyap/dy_dpicinfos.do")
     @FormUrlEncoded
     MFCall<VaultContentResponse> getVaultContentInfo(@FieldMap Map<String, Object> params);
 
     /**
      * 获取电影频道信息
      *
-     * @param params
      * @return
      */
-    @GET("dyap/dy_channels.do")
+    @POST("dyap/dy_channels.do")
     @FormUrlEncoded
     MFCall<ChannelResponse> getChannelInfo(@FieldMap Map<String, Object> params);
-
+//@Query("token") String token, @Query("encyStr") String encyStr, @Query("timestamp") String timestamp
 
     /**
      * 获取电影频道内容信息
@@ -89,7 +89,7 @@ public interface VideoNetService {
      * @param params
      * @return
      */
-    @GET("dyap/dy_channelinfos.do")
+    @POST("dyap/dy_channelinfos.do")
     @FormUrlEncoded
     MFCall<ChannelContentResponse> getChannelContentInfo(@FieldMap Map<String, Object> params);
 
@@ -99,7 +99,7 @@ public interface VideoNetService {
      * @param params
      * @return
      */
-    @GET("dyap/dy_verify.do")
+    @POST("dyap/dy_verify.do")
     @FormUrlEncoded
     MFCall<VerifyCodeResponse> getVerifyCode(@FieldMap Map<String, Object> params);
 
