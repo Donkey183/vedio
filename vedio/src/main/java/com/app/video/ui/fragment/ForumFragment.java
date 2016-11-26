@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.app.video.R;
 import com.app.video.config.Forum;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
+import com.app.video.ui.widget.CommonAlert;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -63,25 +64,8 @@ public class ForumFragment extends android.app.Fragment {
         mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                AlertDialog myDialog = new AlertDialog.Builder(getActivity()).create();
-                myDialog.show();
-                Window window = myDialog.getWindow();
-                window.setContentView(R.layout.dialog_layout);
-                CheckBox check_wechat = (CheckBox) window.findViewById(R.id.check_wechat);
-                CheckBox check_zhifu = (CheckBox) window.findViewById(R.id.check_zhifu);
-
-                check_wechat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                    }
-                });
-                check_zhifu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                    }
-                });
+                CommonAlert alert = new CommonAlert(getActivity());
+                alert.showAlert("aaa",null);
             }
         });
 

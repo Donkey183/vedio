@@ -8,4 +8,7 @@
     <dimen name="finance_dimen_600px">600px</dimen>
     <dimen name="finance_dimen_550px">550px</dimen>
     <dimen name="finance_dimen_130px">130px</dimen>
+    <dimen name="finance_dimen_45px">45px</dimen>
+    <dimen name="finance_dimen_70px">70px</dimen>
+    <dimen name="finance_dimen_5px">5px</dimen>
 </resources>
