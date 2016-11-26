@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,8 @@ import java.util.List;
 public class VIPFragment extends android.app.Fragment {
     private RecyclerView vip_recyclerView;
     private VIPAdapter mAdapter;
+    private Button btn1;
+    private Button btn2;
 
     private String[] imgurls = {"http://img.taopic.com/uploads/allimg/121017/234940-12101FR22825.jpg",
             "http://pic44.nipic.com/20140721/11624852_001107119409_2.jpg",
@@ -50,18 +53,34 @@ public class VIPFragment extends android.app.Fragment {
 
         View view = inflater.inflate(R.layout.fragment_vip, container, false);
         initdata();
+        btn1 = (Button) view.findViewById(R.id.btn1);
+        btn2 = (Button) view.findViewById(R.id.btn2);
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
         vip_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
 
         vip_recyclerView.setAdapter(mAdapter = new VIPAdapter());
         mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view, int position,Object sourceData) {
                 Video v = videoList.get(position);
                 Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
                 intent.putExtra("path", v.getURL());
                 startActivity(intent);
             }
+
         });
 
         return view;
@@ -118,7 +137,8 @@ public class VIPFragment extends android.app.Fragment {
                     @Override
                     public void onClick(View v) {
                         int position = holder.getLayoutPosition(); // 1
-                        mOnItemClickListener.onItemClick(holder.itemView, position); // 2
+
+                        mOnItemClickListener.onItemClick(holder.itemView, position,null); // 2
                     }
                 });
             }

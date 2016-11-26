@@ -24,6 +24,7 @@ import com.youth.banner.listener.OnBannerClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class RecommendFragment extends android.app.Fragment {
@@ -80,7 +81,7 @@ public class RecommendFragment extends android.app.Fragment {
 
         mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view, int position, Object object) {
                 Video v = videoList.get(position);
                 Intent intent = new Intent(getActivity(),VideoPlayerActivity.class);
                 intent.putExtra("path", v.getURL());
@@ -125,12 +126,18 @@ public class RecommendFragment extends android.app.Fragment {
     class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.MyViewHolder> implements View.OnClickListener
     {
 
+        private static final int IS_HEADER = 2;
+        private static final int IS_FOOTER = 3;
+        private static final int IS_NORMAL = 1;
+
         private LayoutInflater mInflater;
         private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
         {
+
+
 
             this.mInflater=LayoutInflater.from(getActivity());
             View view=mInflater.inflate(R.layout.item_home,parent,false);
@@ -152,7 +159,7 @@ public class RecommendFragment extends android.app.Fragment {
                     @Override
                     public void onClick(View v) {
                         int position = holder.getLayoutPosition(); // 1
-                        mOnItemClickListener.onItemClick(holder.itemView,position); // 2
+                        mOnItemClickListener.onItemClick(holder.itemView,position,null); // 2
                     }
                 });
             }

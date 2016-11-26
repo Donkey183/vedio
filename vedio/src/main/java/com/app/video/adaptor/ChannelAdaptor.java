@@ -49,7 +49,7 @@ public class ChannelAdaptor extends RecyclerView.Adapter<ChannelAdaptor.ChannelV
                 @Override
                 public void onClick(View v) {
                     int position = holder.getLayoutPosition(); // 1
-                    mOnItemClickListener.onItemClick(holder.itemView, position); // 2
+                    mOnItemClickListener.onItemClick(holder.itemView, position,null); // 2
                 }
             });
         }
