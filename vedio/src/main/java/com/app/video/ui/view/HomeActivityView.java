@@ -82,7 +82,7 @@ public class HomeActivityView extends MFBaseMVCView {
 
     private void setDefaultFragment() {
         main_home.setImageResource(R.drawable.home2);
-        main_vip.setImageResource(R.drawable.vip);
+        main_vip.setImageResource(R.drawable.zuanshi);
         FragmentManager fm = mActivity.getFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         mRecommendFragment = new RecommendFragment();
@@ -121,7 +121,7 @@ public class HomeActivityView extends MFBaseMVCView {
 
     private void resetTabUi(View selectedView, Fragment selectedFragMent) {
         main_home.setImageResource(selectedView == main_home ? R.drawable.home2 : R.drawable.home);
-        main_vip.setImageResource(selectedView == main_vip ? R.drawable.vip2 : R.drawable.vip);
+        main_vip.setImageResource(selectedView == main_vip ? R.drawable.zuanshi2 : R.drawable.zuanshi);
         main_channel.setImageResource(selectedView == main_channel ? R.drawable.channel2 : R.drawable.channel);
         main_vault.setImageResource(selectedView == main_vault ? R.drawable.vault2 : R.drawable.vault);
         main_forum.setImageResource(selectedView == main_forum ? R.drawable.forum2 : R.drawable.forum);
