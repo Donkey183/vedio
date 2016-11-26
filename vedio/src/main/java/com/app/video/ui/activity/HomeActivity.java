@@ -13,13 +13,11 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.basevideo.util.AppUtils;
 import com.app.video.R;
-import com.app.video.config.Config;
 import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.model.HomeActivityModel;
 import com.app.video.ui.view.HomeActivityView;
 import com.app.video.util.DesUtil;
-
 
 public class HomeActivity extends MFBaseActivity implements View.OnClickListener, INetFinish {
 

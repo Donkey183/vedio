@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/item_img"
+        android:layout_margin="@dimen/finance_dimen_10px"
+        android:layout_width="@dimen/finance_dimen_220px"
+        android:scaleType="fitXY"
+        android:layout_height="@dimen/finance_dimen_220px" />
+
+    <LinearLayout
+        android:layout_toRightOf="@+id/item_img"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/finance_dimen_10px"
+        android:layout_height="@dimen/finance_dimen_220px"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="日我吧"
+            android:textSize="@dimen/finance_dimen_50px"
+            android:textColor="@color/finance_ff0000"
+            android:textStyle="bold"
+            android:layout_margin="@dimen/finance_dimen_10px"
+            android:layout_toRightOf="@+id/item_img"/>
+        <TextView
+            android:id="@+id/item_mesg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="日我吧"
+            android:layout_margin="@dimen/finance_dimen_10px"
+            android:textSize="@dimen/finance_dimen_30px"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/item_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="30分钟之前"
+            android:textSize="@dimen/finance_dimen_24px"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/finance_dimen_10px" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

@@ -2,6 +2,7 @@ package com.app.video.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.config.Video;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
+import com.app.video.ui.activity.PreplayActivity;
 import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.util.GlideImageLoader;
 import com.bumptech.glide.Glide;
@@ -83,7 +85,7 @@ public class RecommendFragment extends android.app.Fragment {
             @Override
             public void onItemClick(View view, int position, Object object) {
                 Video v = videoList.get(position);
-                Intent intent = new Intent(getActivity(),VideoPlayerActivity.class);
+                Intent intent = new Intent(getActivity(),PreplayActivity.class);
                 intent.putExtra("path", v.getURL());
                 startActivity(intent);
             }
