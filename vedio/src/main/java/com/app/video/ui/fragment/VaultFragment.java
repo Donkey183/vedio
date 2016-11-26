@@ -24,7 +24,6 @@ import java.util.List;
 public class VaultFragment extends android.app.Fragment {
     private RecyclerView valut_recyclerView;
 
-
     private String[] imgurls = {"http://img.taopic.com/uploads/allimg/121017/234940-12101FR22825.jpg",
             "http://pic44.nipic.com/20140721/11624852_001107119409_2.jpg",
             "http://pic47.nipic.com/20140901/6608733_145238341000_2.jpg",
@@ -53,9 +52,7 @@ public class VaultFragment extends android.app.Fragment {
         valut_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
         initdata();
         valut_recyclerView.setAdapter(new VaultAdapter());
-
         return view;
-
     }
 
     private void initdata() {
@@ -104,7 +101,7 @@ public class VaultFragment extends android.app.Fragment {
                     @Override
                     public void onClick(View v) {
                         int position = holder.getLayoutPosition(); // 1
-                        mOnItemClickListener.onItemClick(holder.itemView, position); // 2
+                        mOnItemClickListener.onItemClick(holder.itemView, position,null); // 2
                     }
                 });
             }

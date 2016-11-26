@@ -3,7 +3,6 @@ package com.app.video.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,6 +20,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class ForumFragment extends android.app.Fragment {
@@ -59,7 +59,7 @@ public class ForumFragment extends android.app.Fragment {
         forum_recyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(View view, int position, Object object) {
                 CommonAlert alert = new CommonAlert(getActivity());
                 alert.showAlert("aaa","bbb");
             }
@@ -115,7 +115,7 @@ public class ForumFragment extends android.app.Fragment {
                     @Override
                     public void onClick(View v) {
                         int position = holder.getLayoutPosition(); // 1
-                        mOnItemClickListener.onItemClick(holder.itemView, position); // 2
+                        mOnItemClickListener.onItemClick(holder.itemView, position,null); // 2
                     }
                 });
             }

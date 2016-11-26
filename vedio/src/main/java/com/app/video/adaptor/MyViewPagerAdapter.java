@@ -1,4 +1,4 @@
-package com.app.video.ui.fragment;
+package com.app.video.adaptor;
 
 
 import android.support.v4.view.PagerAdapter;
