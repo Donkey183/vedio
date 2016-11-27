@@ -14,6 +14,7 @@ import com.app.basevideo.base.MFBaseFragment;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
+import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.adaptor.VIPFragmentAdaptor;
 import com.app.video.config.VedioConstant;
@@ -65,7 +66,7 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
             }
         });
 
-
+        WindowUtil.resizeRecursively(view);
         return view;
     }
 

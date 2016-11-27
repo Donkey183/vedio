@@ -145,19 +145,6 @@ public class RecommendFragment extends android.app.Fragment {
                     }
                 });
                 banner.start();
-                my_recyclerView = (RecyclerView) view.findViewById(R.id.main_recycler);
-                my_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-                my_recyclerView.setAdapter(mAdapter = new HomeAdapter());
-
-                mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position, Object object) {
-                        Video v = videoList.get(position);
-                        Intent intent = new Intent(getActivity(), PreplayActivity.class);
-                        intent.putExtra("path", v.getURL());
-                        startActivity(intent);
-                    }
-                });
 
             } else {
                 this.mInflater = LayoutInflater.from(getActivity());

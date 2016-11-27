@@ -24,9 +24,6 @@ import com.app.video.ui.fragment.VIPFragment;
 import com.app.video.ui.fragment.VaultFragment;
 import com.app.video.ui.widget.CommonAlert;
 
-/**
- * Created by JiangMin.Wei on 16/11/23.
- */
 public class HomeActivityView extends MFBaseMVCView {
 
     private HomeActivity mActivity;
@@ -38,6 +35,9 @@ public class HomeActivityView extends MFBaseMVCView {
     private VaultFragment vaultFragment;
     private ForumFragment forumFragment;
     private BlackGoldFragment galleryFragment;
+
+    private FragmentManager fm;
+    private FragmentTransaction transaction;
 
     private ImageView main_user;
     private ImageView main_home;
@@ -121,19 +121,41 @@ public class HomeActivityView extends MFBaseMVCView {
     private void setDefaultFragment() {
         main_home.setImageResource(Constants.config.getImg_first2());
         main_vip.setImageResource(Constants.config.getImg_vip1());
-        FragmentManager fm = mActivity.getFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        mRecommendFragment = new RecommendFragment();
-        vipFragment = new VIPFragment();
-        channelFragment = new ChannelFragment();
-        vaultFragment = new VaultFragment();
-        forumFragment = new ForumFragment();
-        galleryFragment = new BlackGoldFragment();
+        fm = mActivity.getFragmentManager();
+        transaction = fm.beginTransaction();
+        if(vipFragment == null){
+            vipFragment = new VIPFragment();
+            transaction.add(R.id.main_frame,vipFragment);
+        }
 
+        if (forumFragment==null){
+            forumFragment = new ForumFragment();
+            transaction.add(R.id.main_frame,forumFragment);
+        }
+
+        if(vaultFragment == null){
+            vaultFragment = new VaultFragment();
+            transaction.add(R.id.main_frame,vaultFragment);
+        }
+        if(channelFragment == null){
+            channelFragment = new ChannelFragment();
+            transaction.add(R.id.main_frame,channelFragment);
+        }
+
+        if(galleryFragment == null){
+            galleryFragment = new BlackGoldFragment();
+            transaction.add(R.id.main_frame,galleryFragment);
+        }
+
+        if(mRecommendFragment == null){
+            mRecommendFragment = new RecommendFragment();
+            transaction.add(R.id.main_frame,mRecommendFragment);
+        }
+        hideFragment();
         if(Constants.config.getVip_now().equals(Constants.BLACK)||Constants.config.getVip_now().equals(Constants.CROWN)){
-            transaction.replace(R.id.main_frame, galleryFragment);
+            transaction.show(galleryFragment);
         }else{
-            transaction.replace(R.id.main_frame, mRecommendFragment);
+            transaction.show( mRecommendFragment);
         }
 
         transaction.commit();
@@ -183,12 +205,33 @@ public class HomeActivityView extends MFBaseMVCView {
         main_channel.setImageResource(selectedView == main_channel ? R.drawable.channel2 : R.drawable.channel);
         main_vault.setImageResource(selectedView == main_vault ? R.drawable.vault2 : R.drawable.vault);
         main_forum.setImageResource(selectedView == main_forum ? R.drawable.forum2 : R.drawable.forum);
-        FragmentManager fm = mActivity.getFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_frame, selectedFragMent);
+        fm = mActivity.getFragmentManager();
+        transaction = fm.beginTransaction();
+        hideFragment();
+        transaction.show(selectedFragMent);
         transaction.commit();
     }
 
+    private void hideFragment(){
+        if(vipFragment!=null){
+            transaction.hide(vipFragment);
+        }
+        if(channelFragment!=null){
+            transaction.hide(channelFragment);
+        }
+        if(vipFragment!=null){
+            transaction.hide(vaultFragment);
+        }
+        if(forumFragment!=null){
+            transaction.hide(forumFragment);
+        }
+        if(galleryFragment!=null){
+            transaction.hide(galleryFragment);
+        }
+        if(mRecommendFragment!=null){
+            transaction.hide(mRecommendFragment);
+        }
+    }
     @Override
     protected int getLayoutRecourseId() {
         return R.layout.activity_home;
