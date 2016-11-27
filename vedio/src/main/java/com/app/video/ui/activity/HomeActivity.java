@@ -32,7 +32,7 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        editor.putString("vip", Constants.BLACK);
+        editor.putString("vip", Constants.NORMAL);
         editor.commit();
         checkConfig(sharedPreferences.getString("vip", Constants.BLACK));
         mHomeView = new HomeActivityView(this, this);
