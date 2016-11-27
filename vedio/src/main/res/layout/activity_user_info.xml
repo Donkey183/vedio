@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.video.ui.activity.UserInfoActivity"
+    android:background="@color/finance_f0f0f0">
+
+    <RelativeLayout
+        android:id="@+id/user_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_150px"
+        android:background="@color/finance_fe8ca2">
+
+        <ImageView
+            android:id="@+id/user_back"
+            android:layout_width="@dimen/finance_dimen_110px"
+            android:layout_height="@dimen/finance_dimen_110px"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/finance_dimen_20px"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:id="@+id/tittle_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/finance_ffffffff"
+            android:textSize="@dimen/finance_dimen_60px"
+            android:text="我的"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/user_layout"
+        android:layout_below="@+id/user_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_250px">
+
+        <ImageView
+            android:id="@+id/user_head"
+            android:scaleType="fitXY"
+            android:layout_width="@dimen/finance_dimen_200px"
+            android:layout_height="@dimen/finance_dimen_200px"
+            android:layout_margin="@dimen/finance_dimen_25px"/>
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/finance_dimen_30px"
+            android:layout_toRightOf="@id/user_head"
+            android:text="您的专属账号:198wuacaquwoquwe"
+            android:layout_marginTop="@dimen/finance_dimen_40px"/>
+
+
+        <TextView
+            android:id="@+id/user_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/finance_dimen_30px"
+            android:layout_toRightOf="@id/user_head"
+            android:layout_below="@+id/user_name"
+            android:text="密码:"
+            android:layout_marginTop="@dimen/finance_dimen_40px"/>
+
+        <TextView
+            android:id="@+id/user_pass2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/finance_dimen_30px"
+            android:layout_toRightOf="@id/user_pass"
+            android:layout_below="@+id/user_name"
+            android:text="adadasj"
+            android:inputType="textPassword"
+            android:layout_marginTop="@dimen/finance_dimen_40px"/>
+
+        <Button
+            android:id="@+id/btn_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击显示"
+            android:background="@color/finance_DA70D6"
+            android:textColor="@color/finance_ffffffff"
+            android:layout_below="@+id/user_name"
+            android:layout_toRightOf="@+id/user_pass2"
+            android:layout_marginLeft="@dimen/finance_dimen_20px"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/user_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_300px"
+        android:layout_below="@+id/user_layout"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/finance_dimen_20px"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/text_tittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="头衔"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/finance_dimen_40px"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_tittle"
+                android:textSize="@dimen/finance_dimen_30px"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/finance_DA70D6"
+                android:layout_marginTop="@dimen/finance_dimen_40px"
+                android:text="普通会员"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/text_privilege"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="特权"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/finance_dimen_40px"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_privilege"
+                android:textSize="@dimen/finance_dimen_30px"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/finance_DA70D6"
+                android:layout_marginTop="@dimen/finance_dimen_40px"
+                android:text="观看体验区电影"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/text_operation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="头衔"
+
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/finance_dimen_40px"/>
+
+            <Button
+                android:id="@+id/user_operation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_operation"
+                android:textSize="@dimen/finance_dimen_30px"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/finance_ffffffff"
+                android:background="@color/finance_DA70D6"
+                android:layout_marginTop="@dimen/finance_dimen_40px"
+                android:text="普通会员"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/user_layout3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_300px"
+        android:layout_below="@+id/user_layout2"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/finance_dimen_20px"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_pianku"
+                android:layout_width="@dimen/finance_dimen_100px"
+                android:layout_height="@dimen/finance_dimen_100px"
+                android:text="头衔"
+                android:src="@drawable/pianku"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/finance_dimen_40px"/>
+
+            <TextView
+                android:id="@+id/text_pianku"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_pianku"
+                android:textSize="@dimen/finance_dimen_30px"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/finance_83c6c2"
+                android:layout_marginTop="@dimen/finance_dimen_40px"
+                android:text="海量片库"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_tuku"
+                android:layout_width="@dimen/finance_dimen_100px"
+                android:layout_height="@dimen/finance_dimen_100px"
+                android:text="头衔"
+                android:src="@drawable/tuku"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/finance_dimen_40px"/>
+
+
+            <TextView
+                android:id="@+id/text_tuku"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_tuku"
+                android:textSize="@dimen/finance_dimen_30px"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/finance_83c6c2"
+                android:layout_marginTop="@dimen/finance_dimen_40px"
+                android:text="海量片库"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_hd"
+                android:layout_width="@dimen/finance_dimen_100px"
+                android:layout_height="@dimen/finance_dimen_100px"
+                android:text="头衔"
+                android:src="@drawable/hd"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/finance_dimen_40px"/>
+
+            <TextView
+                android:id="@+id/text_hd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_hd"
+                android:textSize="@dimen/finance_dimen_30px"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/finance_83c6c2"
+                android:layout_marginTop="@dimen/finance_dimen_40px"
+                android:text="海量片库"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_kefu"
+                android:layout_width="@dimen/finance_dimen_100px"
+                android:layout_height="@dimen/finance_dimen_100px"
+                android:text="头衔"
+                android:src="@drawable/kefu"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/finance_dimen_40px"/>
+
+            <TextView
+                android:id="@+id/text_kefu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_kefu"
+                android:textSize="@dimen/finance_dimen_30px"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/finance_83c6c2"
+                android:layout_marginTop="@dimen/finance_dimen_40px"
+                android:text="海量片库"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/user_layout3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_50px">
+
+        <TextView
+            android:layout_marginLeft="@dimen/finance_dimen_20px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系客服"/>
+
+    </LinearLayout>
+</RelativeLayout>

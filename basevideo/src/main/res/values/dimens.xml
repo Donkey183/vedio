@@ -72,6 +72,7 @@
     <dimen name="finance_dimen_480px">480px</dimen>
     <dimen name="finance_dimen_500px">500px</dimen>
     <dimen name="finance_dimen_510px">510px</dimen>
+    <dimen name="finance_dimen_270px">270px</dimen>
 
 
 </resources>
