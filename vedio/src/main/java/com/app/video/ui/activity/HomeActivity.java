@@ -66,6 +66,17 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
     }
 
     @Override
+    protected void onResume() {
+        sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString("vip", Constants.GOLD);
+        editor.commit();
+        checkConfig(sharedPreferences.getString("vip", Constants.BLACK));
+        mHomeView = new HomeActivityView(this, this);
+        super.onResume();
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.home_layout:

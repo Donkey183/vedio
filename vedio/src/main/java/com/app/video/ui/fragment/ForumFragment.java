@@ -1,5 +1,6 @@
 package com.app.video.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -15,8 +16,11 @@ import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.Forum;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
+import com.app.video.ui.activity.TestActivity;
 import com.app.video.ui.widget.CommonAlert;
 import com.bumptech.glide.Glide;
+
+import junit.framework.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +65,7 @@ public class ForumFragment extends android.app.Fragment {
             public void onItemClick(View view, int position,Object object) {
                 CommonAlert alert = new CommonAlert(getActivity());
                 alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img());
+
             }
         });
 

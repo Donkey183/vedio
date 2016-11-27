@@ -1,6 +1,7 @@
 package com.app.video.ui.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.config.Payoff;
+import com.app.video.ui.activity.TestActivity;
 
 public class CommonAlert {
 
@@ -117,6 +119,8 @@ public class CommonAlert {
         zhifu1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, TestActivity.class);
+                context.startActivity(intent);
                 Toast.makeText(context, "支付111111", Toast.LENGTH_SHORT).show();
             }
         });
