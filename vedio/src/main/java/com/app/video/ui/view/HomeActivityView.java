@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.Settings;
 import com.app.video.ui.activity.HomeActivity;
+import com.app.video.ui.activity.UserInfoActivity;
 import com.app.video.ui.fragment.ChannelFragment;
 import com.app.video.ui.fragment.ForumFragment;
 import com.app.video.ui.fragment.BlackGoldFragment;
@@ -180,7 +182,8 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     public void clickUser() {
-
+        Intent intent = new Intent(mActivity, UserInfoActivity.class);
+        mActivity.startActivity(intent);
     }
 
     public void clickVip() {
