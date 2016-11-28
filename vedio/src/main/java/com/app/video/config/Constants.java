@@ -24,4 +24,6 @@ public class Constants {
     public static Config crown_config = new Config(CROWN,"黑金区",R.drawable.black,R.drawable.black2,"皇冠区",R.drawable.crown1,R.drawable.crown2,vip_king,null,R.drawable.pay4);
 
     public static Config config;
+
+    public static Config pay_config;
 }

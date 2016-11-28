@@ -84,7 +84,7 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
             Toast.makeText(HomeActivity.this,(String) responsedMessage.getData(), Toast.LENGTH_SHORT).show();
             sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
             editor = sharedPreferences.edit();
-            editor.putString("vip", Constants.BLACK);
+            editor.putString("vip", Constants.pay_config.getVip_now());
             editor.commit();
             checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
         }
