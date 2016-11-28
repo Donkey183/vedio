@@ -1,5 +1,6 @@
 package com.app.video.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,21 +15,20 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.adaptor.ChannelAdaptor;
+import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.ChannelModel;
-import com.app.video.model.PayModel;
+import com.app.video.ui.activity.ChannelActivity;
 
 
-public class ChannelFragment extends MFBaseFragment implements INetFinish {
+public class ChannelFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener {
     private RecyclerView channel_recycler;
     private ChannelModel mChannelModel;
-    private PayModel mPayModel;
     private ChannelAdaptor mChannelAdaptor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mChannelModel = new ChannelModel(this);
-        mPayModel = new PayModel(this);
         getChannelInfo();
     }
 
@@ -49,8 +49,14 @@ public class ChannelFragment extends MFBaseFragment implements INetFinish {
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        mChannelAdaptor = new ChannelAdaptor(this.getActivity().getApplicationContext());
+        mChannelAdaptor = new ChannelAdaptor(this.getActivity().getApplicationContext(), this);
         channel_recycler.setAdapter(mChannelAdaptor);
         mChannelAdaptor.showChannelView(mChannelModel.channelList);
+    }
+
+    @Override
+    public void onItemClick(View view, int position, Object obj) {
+        Intent intent = new Intent(ChannelFragment.this.getActivity(), ChannelActivity.class);
+        startActivity(intent);
     }
 }

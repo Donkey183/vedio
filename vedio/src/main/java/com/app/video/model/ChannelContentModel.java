@@ -19,11 +19,11 @@ public class ChannelContentModel extends MFBaseModel {
         super(activityContext);
     }
 
-    public ChannelContentData channelContentData;
+    public ChannelContentData channelContentData = new ChannelContentData();
     public static final int GET_CHANNEL_CONTENT_INFO = 0x30001;
 
     @Override
-    protected void sendHttpRequest(CommonHttpRequest request, int requestCode) {
+    public void sendHttpRequest(CommonHttpRequest request, int requestCode) {
         MFCall<ChannelContentResponse> call = HttpRequestService.createService(VedioNetService.class).getChannelContentInfo(request.buildParams());
         call.doRequest(new MFCallbackAdapter<ChannelContentResponse>() {
             @Override
@@ -32,7 +32,7 @@ public class ChannelContentModel extends MFBaseModel {
                     disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
                     return;
                 }
-                channelContentData = entity.list;
+                channelContentData.channelContentList = entity.list;
                 disPatchRequestSuccessMessage(GET_CHANNEL_CONTENT_INFO);
             }
         });

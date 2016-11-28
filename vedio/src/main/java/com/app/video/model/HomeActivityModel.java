@@ -5,7 +5,7 @@ import com.app.basevideo.base.MFBaseModel;
 import com.app.basevideo.net.CommonHttpRequest;
 
 public class HomeActivityModel extends MFBaseModel {
-    public static final int GET_PAGE_DATA = 1;
+    public static final int GET_PAGE_DATA = 0x2345;
 
     /**
      * 使用BaseModel(Context)，context传入Activity(该Activity必须继承自{@link MFBaseActivity})

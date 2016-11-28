@@ -8,9 +8,9 @@ import java.util.List;
  * 频道内容信息
  */
 public class ChannelContentData implements Serializable {
-    public static final List<ChannelContent> channelContentList = new ArrayList<>();
+    public List<ChannelContent> channelContentList;
 
-    public class ChannelContent implements Serializable{
+    public class ChannelContent implements Serializable {
         private String id;
         private String createTime;
         private String seqNo;

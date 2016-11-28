@@ -56,6 +56,7 @@
             android:name=".ui.activity.VideoPlayerActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".ui.activity.PreplayActivity" />
+        <activity android:name=".ui.activity.ChannelActivity" />
         <activity android:name=".ui.activity.TestActivity" />
 
         <activity android:name=".ui.activity.UserInfoActivity"></activity>
