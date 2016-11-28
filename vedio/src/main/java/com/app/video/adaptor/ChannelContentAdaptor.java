@@ -24,8 +24,9 @@ public class ChannelContentAdaptor extends RecyclerView.Adapter<ChannelContentAd
     private Context mContext;
     private List<ChannelContentData.ChannelContent> mChannelList = new ArrayList<>();
 
-    public ChannelContentAdaptor(Context context) {
+    public ChannelContentAdaptor(Context context, OnRecyclerViewItemClickListener clickListener) {
         mContext = context;
+        mOnItemClickListener = clickListener;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class ChannelContentAdaptor extends RecyclerView.Adapter<ChannelContentAd
                 @Override
                 public void onClick(View v) {
                     int position = holder.getLayoutPosition(); // 1
-                    mOnItemClickListener.onItemClick(holder.itemView, position, null); // 2
+                    mOnItemClickListener.onItemClick(holder.itemView, position, getItem(position)); // 2
                 }
             });
         }

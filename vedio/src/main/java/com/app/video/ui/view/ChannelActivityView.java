@@ -9,6 +9,7 @@ import com.app.basevideo.base.MFBaseMVCView;
 import com.app.video.R;
 import com.app.video.adaptor.ChannelContentAdaptor;
 import com.app.video.data.ChannelContentData;
+import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.ui.activity.ChannelActivity;
 
 import java.util.List;
@@ -16,16 +17,16 @@ import java.util.List;
 public class ChannelActivityView extends MFBaseMVCView {
 
     private ChannelActivity mActivity;
-    private View.OnClickListener mOnClickListener;
     private RecyclerView vip_recyclerView;
     private ChannelContentAdaptor mAdapter;
+    private OnRecyclerViewItemClickListener mClickListener;
     private Button btn1;
     private Button btn2;
 
-    public ChannelActivityView(ChannelActivity activity, View.OnClickListener onClickListener) {
+    public ChannelActivityView(ChannelActivity activity, OnRecyclerViewItemClickListener clickListener) {
         super(activity);
         mActivity = activity;
-        mOnClickListener = onClickListener;
+        mClickListener = clickListener;
         init();
     }
 
@@ -34,7 +35,7 @@ public class ChannelActivityView extends MFBaseMVCView {
         btn1 = (Button) mActivity.findViewById(R.id.btn1);
         btn2 = (Button) mActivity.findViewById(R.id.btn2);
         vip_recyclerView.setLayoutManager(new GridLayoutManager(mActivity, 2));
-        mAdapter = new ChannelContentAdaptor(mActivity);
+        mAdapter = new ChannelContentAdaptor(mActivity,mClickListener);
         vip_recyclerView.setAdapter(mAdapter);
     }
 
@@ -51,4 +52,5 @@ public class ChannelActivityView extends MFBaseMVCView {
     protected void onDestroy() {
 
     }
+
 }
