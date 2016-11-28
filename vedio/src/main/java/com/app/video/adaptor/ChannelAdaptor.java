@@ -39,7 +39,6 @@ public class ChannelAdaptor extends RecyclerView.Adapter<ChannelAdaptor.ChannelV
         return holder;
     }
 
-
     @Override
     public void onBindViewHolder(final ChannelViewHolder holder, int position) {
         holder.video_name.setText(getItem(position).getDname());
