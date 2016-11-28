@@ -34,6 +34,15 @@ public class BaseHttpResult<T> {
      * 返回数据对象
      */
     public T result;
+    /**
+     * 返回数据对象
+     */
+    public T list1;
+
+    /**
+     * 返回数据对象
+     */
+    public T list2;
 
     /**
      * 返回数据对象
