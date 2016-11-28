@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
+import com.app.video.config.Constants;
 import com.app.video.config.Payoff;
 import com.app.video.ui.activity.TestActivity;
 
@@ -44,7 +45,7 @@ public class CommonAlert {
         this.context = context;
     }
 
-    public void showAlert(Payoff pay1, Payoff pay2,int id) {
+    public void showAlert(final Payoff pay1,final Payoff pay2,int id) {
         alert = new AlertDialog.Builder(context).create();
 
         alert.show();
@@ -119,6 +120,7 @@ public class CommonAlert {
         zhifu1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                check_packoff(pay1);
                 Intent intent = new Intent(context, TestActivity.class);
                 context.startActivity(intent);
                 Toast.makeText(context, "支付111111", Toast.LENGTH_SHORT).show();
@@ -127,9 +129,26 @@ public class CommonAlert {
         zhifu2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                check_packoff(pay2);
+                Intent intent = new Intent(context, TestActivity.class);
+                context.startActivity(intent);
                 Toast.makeText(context, "支付222222", Toast.LENGTH_SHORT).show();
             }
+
+
         });
+    }
+
+    private void check_packoff(Payoff pay) {
+        if(pay.getVip_name().equals("黄金会员")){
+            Constants.pay_config = Constants.gold_config;
+        }else if(pay.getVip_name().equals("钻石会员")){
+            Constants.pay_config = Constants.diamond_config;
+        }else if(pay.getVip_name().equals("黑金会员")){
+            Constants.pay_config = Constants.black_config;
+        }else if(pay.getVip_name().equals("皇冠会员")){
+            Constants.pay_config = Constants.crown_config;
+        }
     }
 
 

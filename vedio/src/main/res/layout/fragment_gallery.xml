@@ -7,7 +7,7 @@
     android:layerType="software"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/finance_f0f0f0"
+    android:background="@drawable/pay2"
     tools:context=".ui.fragment.BlackGoldFragment">
 
     <android.support.v4.view.ViewPager
