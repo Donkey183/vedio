@@ -1,6 +1,5 @@
 package com.app.video.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,11 +15,8 @@ import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.adaptor.RecommendAdaptor;
 import com.app.video.config.VedioConstant;
-import com.app.video.data.VideoData;
-import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.ChannelModel;
 import com.app.video.model.VideoModel;
-import com.app.video.ui.activity.PreplayActivity;
 
 public class RecommendFragment extends MFBaseFragment implements INetFinish {
     private RecyclerView my_recyclerView;
@@ -30,7 +26,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mVideoModel =  new VideoModel(this);
+        mVideoModel = new VideoModel(this);
     }
 
     @Nullable
@@ -66,15 +62,15 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish {
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
         my_recyclerView.setAdapter(mAdapter = new RecommendAdaptor(RecommendFragment.this.getActivity()));
-        mAdapter.showRecommendView(mVideoModel.videoData.getVideoList());
-        mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position, Object object) {
-                VideoData.Video video = (VideoData.Video) object;
-                Intent intent = new Intent(getActivity(), PreplayActivity.class);
-                intent.putExtra("path", video.getDyres());
-                startActivity(intent);
-            }
-        });
+//        mAdapter.showRecommendView(mVideoModel.videoData.getVideoList());
+//        mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position, Object object) {
+//                VideoData.Video video = (VideoData.Video) object;
+//                Intent intent = new Intent(getActivity(), PreplayActivity.class);
+//                intent.putExtra("path", video.getDyres());
+//                startActivity(intent);
+//            }
+//        });
     }
 }

@@ -9,6 +9,7 @@ import com.app.video.net.response.VaultContentResponse;
 import com.app.video.net.response.VaultResponse;
 import com.app.video.net.response.VedioResponse;
 import com.app.video.net.response.VerifyCodeResponse;
+import com.app.video.net.response.VideoDetailResponse;
 
 import java.util.Map;
 
@@ -103,5 +104,14 @@ public interface VedioNetService {
     @FormUrlEncoded
     MFCall<VerifyCodeResponse> getVerifyCode(@FieldMap Map<String, Object> params);
 
+    /**
+     *
+     *
+     * @param params
+     * @return
+     */
+    @POST("dyap/dy_view.do")
+    @FormUrlEncoded
+    MFCall<VideoDetailResponse> getVideoDetailInfo(@FieldMap Map<String, Object> params);
 
 }
