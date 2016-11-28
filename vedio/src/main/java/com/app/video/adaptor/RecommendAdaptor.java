@@ -10,12 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.basevideo.framework.util.LogUtil;
+import com.app.basevideo.util.ListUtil;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.data.VaultData;
 import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
-import com.app.video.model.VideoModel;
 import com.app.video.util.GlideImageLoader;
 import com.bumptech.glide.Glide;
 import com.youth.banner.Banner;
@@ -34,7 +34,6 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
     private static final int IS_NORMAL = 1;
     private View mHeaderView;
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
-    private VideoModel mVideoModel;
     private List<VideoData.Page.Video> mVideoList;
 
     public RecommendAdaptor(Context context) {
@@ -57,7 +56,7 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
     }
 
     private VideoData.Page.Video getItem(int position) {
-        return mVideoList.get(position);
+        return ListUtil.getItem(mVideoList, position);
     }
 
     private List<String> getBannerImageUrlList() {
@@ -125,7 +124,7 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
 
     @Override
     public int getItemCount() {
-        return 0;//videoList.size();
+        return ListUtil.getCount(mVideoList);
     }
 
 
