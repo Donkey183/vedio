@@ -1,13 +1,16 @@
 package com.app.video.ui.activity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -31,6 +34,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.app.video.R;
+import com.app.video.config.Constants;
 import com.app.video.config.QosObject;
 import com.app.video.config.Settings;
 import com.app.video.ui.widget.BarrageView;
@@ -54,7 +58,6 @@ public class VideoPlayerActivity extends Activity
     implements TextureView.SurfaceTextureListener, View.OnClickListener {
 
   private static final String TAG = "VideoPlayerActivity";
-  //两两弹幕之间的间隔时间
   public static final int DELAY_TIME = 2000;
 
   public static final int UPDATE_SEEKBAR = 0;
@@ -514,6 +517,7 @@ public class VideoPlayerActivity extends Activity
   }
 
     //android <=4.4 后台切回后不会再触发onSurfaceTextureAvailable，所以在此处调用setSurfaceTexture
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void reinitTextureView(TextureView view) {
         mVideoTextureView = view;
         mVideoTextureView.setSurfaceTextureListener(this);
@@ -609,8 +613,8 @@ public class VideoPlayerActivity extends Activity
     mPlayerSeekbar.setProgress((int) time);
 
     if (time >= 0) {
-      if (time / 1000 > 15) {
-        videoPlayEnd();
+      if (time / 1000 > 15 && Constants.config.getVip_now().equals(Constants.NORMAL)) {
+        videoPlayEndnormal();
       }
       String progress = Strings.millisToString(time) + "/" + Strings.millisToString(length);
       mPlayerPosition.setText(progress);
@@ -683,6 +687,23 @@ public class VideoPlayerActivity extends Activity
 
     finish();
   }
+  private void videoPlayEndnormal() {
+    if (ksyMediaPlayer != null) {
+      ksyMediaPlayer.release();
+      ksyMediaPlayer = null;
+    }
+
+    if (mQosThread != null) {
+      mQosThread.stopThread();
+      mQosThread = null;
+    }
+    Intent intent = getIntent();
+    setResult(99,intent);
+    mHandler = null;
+
+    finish();
+  }
+
 
   private View.OnClickListener mStartBtnListener = new View.OnClickListener() {
     @Override public void onClick(View v) {
@@ -789,7 +810,7 @@ public class VideoPlayerActivity extends Activity
     switch (view.getId()) {
       case R.id.player_reload:
         String mVideoUrl2 = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
-        // 播放新的视频
+        //播放新的视频
         ksyMediaPlayer.reload(mVideoUrl2, true);
 
         break;

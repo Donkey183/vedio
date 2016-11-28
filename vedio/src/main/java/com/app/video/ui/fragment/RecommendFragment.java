@@ -13,14 +13,14 @@ import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
-import com.app.video.adaptor.RecommendAdaptor;
+//import com.app.video.adaptor.RecommendAdaptor;
 import com.app.video.config.VedioConstant;
 import com.app.video.model.ChannelModel;
 import com.app.video.model.VideoModel;
 
 public class RecommendFragment extends MFBaseFragment implements INetFinish {
     private RecyclerView my_recyclerView;
-    private RecommendAdaptor mAdapter;
+    //private RecommendAdaptor mAdapter;
     private VideoModel mVideoModel;
 
     @Override
@@ -61,7 +61,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish {
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        my_recyclerView.setAdapter(mAdapter = new RecommendAdaptor(RecommendFragment.this.getActivity()));
+ //       my_recyclerView.setAdapter(mAdapter = new RecommendAdaptor(RecommendFragment.this.getActivity()));
 //        mAdapter.showRecommendView(mVideoModel.videoData.getVideoList());
 //        mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
 //            @Override

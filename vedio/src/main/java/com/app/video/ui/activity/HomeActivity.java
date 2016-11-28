@@ -2,11 +2,15 @@ package com.app.video.ui.activity;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.res.ObbInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.app.basevideo.base.MFBaseActivity;
+import com.app.basevideo.config.VideoCmd;
+import com.app.basevideo.framework.listener.MessageListener;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.framework.util.LogUtil;
 import com.app.basevideo.net.CommonHttpRequest;
@@ -18,6 +22,7 @@ import com.app.video.config.VedioConstant;
 import com.app.video.model.HomeActivityModel;
 import com.app.video.ui.view.HomeActivityView;
 import com.app.video.util.DesUtil;
+import com.app.video.util.Strings;
 
 public class HomeActivity extends MFBaseActivity implements View.OnClickListener, INetFinish {
 
@@ -34,10 +39,11 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
         editor = sharedPreferences.edit();
         editor.putString("vip", Constants.NORMAL);
         editor.commit();
-        checkConfig(sharedPreferences.getString("vip", Constants.BLACK));
+        checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
         mHomeView = new HomeActivityView(this, this);
         mHomeModel = new HomeActivityModel(this);
         preLoadPageData();
+        registerListener(paySuccessListener);
     }
 
     private void checkConfig(String config) {
@@ -65,16 +71,25 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
 
     }
 
-    @Override
-    protected void onResume() {
-        sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putString("vip", Constants.GOLD);
-        editor.commit();
-        checkConfig(sharedPreferences.getString("vip", Constants.BLACK));
-        mHomeView = new HomeActivityView(this, this);
-        super.onResume();
-    }
+
+    MessageListener paySuccessListener = new MessageListener(VideoCmd.CMD_PAY_SUCCESS) {
+        @Override
+        public void onMessage(CommonMessage<?> responsedMessage) {
+            //充值成功回调
+
+            if(responsedMessage instanceof Object){
+
+            }
+            Toast.makeText(HomeActivity.this,(String) responsedMessage.getData(), Toast.LENGTH_SHORT).show();
+            sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
+            editor = sharedPreferences.edit();
+            editor.putString("vip", Constants.BLACK);
+            editor.commit();
+            checkConfig(sharedPreferences.getString("vip", Constants.BLACK));
+            mHomeView = new HomeActivityView(HomeActivity.this, HomeActivity.this);
+        }
+    };
+
 
     @Override
     public void onClick(View view) {
