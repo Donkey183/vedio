@@ -29,7 +29,6 @@ public class VideoModel extends MFBaseFragmentModel {
     public static final int GET_VEDIO_BLACK_GLOD = 0x60005;
     public static final int GET_VEDIO_CROWN = 0x60007;
 
-
     @Override
     public void sendHttpRequest(CommonHttpRequest request, int requestCode) {
         MFCall<VedioResponse> call = HttpRequestService.createService(VedioNetService.class).getVideoResources(request.buildParams());
