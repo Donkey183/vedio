@@ -40,7 +40,7 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
         editor.putString("vip", Constants.NORMAL);
         editor.commit();
         checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
-        mHomeView = new HomeActivityView(this, this);
+        mHomeView = new HomeActivityView(this,this);
         mHomeModel = new HomeActivityModel(this);
         preLoadPageData();
         registerListener(paySuccessListener);
@@ -71,22 +71,22 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mHomeView = new HomeActivityView(this,this);
+    }
 
     MessageListener paySuccessListener = new MessageListener(VideoCmd.CMD_PAY_SUCCESS) {
         @Override
         public void onMessage(CommonMessage<?> responsedMessage) {
             //充值成功回调
-
-            if(responsedMessage instanceof Object){
-
-            }
             Toast.makeText(HomeActivity.this,(String) responsedMessage.getData(), Toast.LENGTH_SHORT).show();
             sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
             editor = sharedPreferences.edit();
             editor.putString("vip", Constants.BLACK);
             editor.commit();
-            checkConfig(sharedPreferences.getString("vip", Constants.BLACK));
-            mHomeView = new HomeActivityView(HomeActivity.this, HomeActivity.this);
+            checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
         }
     };
 
