@@ -25,7 +25,7 @@ import com.app.video.ui.activity.VideoPlayerActivity;
 
 public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener {
     private RecyclerView vip_recyclerView;
-    private VIPFragmentAdaptor mAdapter;
+        private VIPFragmentAdaptor mAdapter;
     private VideoModel mModel;
     private Button btn1;
     private Button btn2;
@@ -59,7 +59,7 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
         });
 
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
-        vip_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3){
+        vip_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3) {
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -72,9 +72,15 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
 
     private void getVideoInfo() {
         CommonHttpRequest request = new CommonHttpRequest();
-        request.addParam(VedioConstant.R_TYPE, 0);
-        request.addParam(VedioConstant.PAGE_NO, 1);
+        request.addParam(VedioConstant.R_TYPE, "0");
+        request.addParam(VedioConstant.PAGE_NO, "1");
         mModel.sendHttpRequest(request, VideoModel.GET_XXX_INFO);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getVideoInfo();
     }
 
     @Override
@@ -82,15 +88,15 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
         mAdapter = new VIPFragmentAdaptor(this.getActivity().getApplicationContext());
         mAdapter.setOnItemClickListener(this);
         vip_recyclerView.setAdapter(mAdapter);
-        mAdapter.showVIPView(mModel.videoData.getVaultList());
+        mAdapter.showVIPView(mModel.videoData.page.result);
     }
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-        if (!(obj instanceof VideoData.Vault)) {
+        if (!(obj instanceof VideoData.Page.Video)) {
             return;
         }
-        VideoData.Vault vault = (VideoData.Vault) obj;
+        VideoData.Page.Video vault = (VideoData.Page.Video) obj;
         Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
         intent.putExtra("path", vault.getDyres());
         startActivity(intent);

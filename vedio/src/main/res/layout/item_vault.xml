@@ -1,53 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/finance_ffffffff">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/finance_dimen_500px">
+        android:layout_height="@dimen/finance_dimen_400px"
+        android:layout_marginBottom="@dimen/finance_dimen_15px">
 
         <ImageView
             android:id="@+id/vault_img"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/finance_dimen_30px"
+            android:layout_marginLeft="@dimen/finance_dimen_30px"
+            android:layout_marginRight="@dimen/finance_dimen_30px"
             android:scaleType="fitXY"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/vault_visitor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:textColor="@color/player_black"
-                android:textStyle="bold"
-                android:textSize="@dimen/finance_dimen_40px"/>
+                android:textColor="@color/finance_232323"
+                android:textSize="@dimen/finance_dimen_50px"/>
 
             <TextView
                 android:id="@+id/vault_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#00000000"
-                android:textColor="@color/player_black"
                 android:layout_marginTop="@dimen/finance_dimen_40px"
-                android:textStyle="bold"
-                android:textSize="@dimen/finance_dimen_100px"/>
+                android:textColor="@color/finance_232323"
+                android:textSize="@dimen/finance_dimen_80px"/>
+
             <TextView
                 android:id="@+id/vault_updatas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:layout_marginTop="8pt"
+                android:layout_marginTop="@dimen/finance_dimen_40px"
+                android:background="@color/finance_ffffffff"
                 android:paddingLeft="@dimen/finance_dimen_30px"
                 android:paddingRight="@dimen/finance_dimen_30px"
-                android:textColor="@color/player_black"
-                android:textSize="@dimen/finance_dimen_50px"/>
+                android:textColor="@color/finance_232323"
+                android:textSize="@dimen/finance_dimen_46px"/>
         </LinearLayout>
 
 

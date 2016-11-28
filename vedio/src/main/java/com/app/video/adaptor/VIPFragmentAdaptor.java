@@ -8,20 +8,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.basevideo.util.ListUtil;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.VIPViewHolder> implements View.OnClickListener {
 
     private LayoutInflater mInflater;
-    private OnRecyclerViewItemClickListener mOnItemClickListener = null;
+    private OnRecyclerViewItemClickListener mOnItemClickListener;
     private Context mContext;
-    private List<VideoData.Vault> mVIPList;
+    private List<VideoData.Page.Video> mVIPList = new ArrayList<>();
 
     public VIPFragmentAdaptor(Context context) {
         mContext = context;
@@ -58,11 +60,11 @@ public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.
 
     @Override
     public int getItemCount() {
-        return mVIPList.size();
+        return ListUtil.getCount(mVIPList);
     }
 
-    private VideoData.Vault getItem(int position) {
-        return mVIPList.get(position);
+    private VideoData.Page.Video getItem(int position) {
+        return ListUtil.getItem(mVIPList, position);
     }
 
     @Override
@@ -75,7 +77,7 @@ public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.
     }
 
 
-    public void showVIPView(List<VideoData.Vault> videoDatas) {
+    public void showVIPView(List<VideoData.Page.Video> videoDatas) {
         mVIPList = videoDatas;
         this.notifyDataSetChanged();
     }

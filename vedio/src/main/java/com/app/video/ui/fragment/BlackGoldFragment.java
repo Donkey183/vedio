@@ -76,9 +76,9 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        List<VideoData.Vault> resultBeenList = mVideoModel.videoData.getVaultList();
+        List<VideoData.Page.Video> resultBeenList = mVideoModel.videoData.page.result;
         List<View> viewList = new ArrayList<>();
-        for (VideoData.Vault vault : resultBeenList) {
+        for (VideoData.Page.Video vault : resultBeenList) {
             ImageView imageView = new ImageView(this.getActivity());
             Glide.with(this.getActivity()).load(vault.getDypic()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(imageView);
             viewList.add(imageView);
