@@ -13,7 +13,9 @@ import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.adaptor.PreListAdapter;
+import com.app.video.config.Constants;
 import com.app.video.config.Data;
+import com.app.video.ui.widget.CommonAlert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +68,7 @@ public class PreplayActivity extends MFBaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PreplayActivity.this,VideoPlayerActivity.class);
                 intent.putExtra("path", url);
-                startActivity(intent);
+                startActivityForResult(intent,0);
             }
         });
 
@@ -81,6 +83,19 @@ public class PreplayActivity extends MFBaseActivity {
             data.setInfo("不日白不日.....");
             data.setTime("1分钟之前");
             datalist.add(data);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode){
+            case 99:
+                CommonAlert alert = new CommonAlert(this);
+                alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img());
+                break;
+            default:
+                break;
         }
     }
 }

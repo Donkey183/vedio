@@ -12,7 +12,6 @@ import com.app.video.net.response.VideoDetailResponse;
 
 import retrofit2.Response;
 
-
 public class VideoDetailModel extends MFBaseModel {
 
     public VideoDetailModel(MFBaseActivity activityContext) {

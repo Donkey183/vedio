@@ -31,4 +31,9 @@ public class VideoCmd {
      * 跳转App配置页面
      */
     public static final int CMD_GOTO_APP_CONFIG_ACTIVITY = CMD_START + 4;
+
+    /**
+     * 充值成功回调
+     */
+    public static final int CMD_PAY_SUCCESS = CMD_START + 5;
 }
