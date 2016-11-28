@@ -52,5 +52,4 @@ public class ChannelActivityView extends MFBaseMVCView {
     protected void onDestroy() {
 
     }
-
 }
