@@ -185,7 +185,6 @@ public class VideoPlayerActivity extends Activity
                 mVideoResolution.setVisibility(View.GONE);
                 mFrameRate.setVisibility(View.GONE);
                 mVideoBitrate.setVisibility(View.GONE);
-                mPlayerPosition.setVisibility(View.GONE);
                 mLoadText.setVisibility(View.GONE);
                 mCpu.setVisibility(View.GONE);
                 mMemInfo.setVisibility(View.GONE);
@@ -614,7 +613,9 @@ public class VideoPlayerActivity extends Activity
 
     if (time >= 0) {
       if (time / 1000 > 15 && Constants.config.getVip_now().equals(Constants.NORMAL)) {
-        videoPlayEndnormal();
+        Intent intent = getIntent();
+        setResult(99,intent);
+        videoPlayEnd();
       }
       String progress = Strings.millisToString(time) + "/" + Strings.millisToString(length);
       mPlayerPosition.setText(progress);
@@ -623,7 +624,8 @@ public class VideoPlayerActivity extends Activity
     Message msg = new Message();
     msg.what = UPDATE_SEEKBAR;
 
-    if (mHandler != null) mHandler.sendMessageDelayed(msg, 1000);
+    if (mHandler != null)
+      mHandler.sendMessageDelayed(msg, 1000);
     return (int) time;
   }
 
@@ -687,23 +689,6 @@ public class VideoPlayerActivity extends Activity
 
     finish();
   }
-  private void videoPlayEndnormal() {
-    if (ksyMediaPlayer != null) {
-      ksyMediaPlayer.release();
-      ksyMediaPlayer = null;
-    }
-
-    if (mQosThread != null) {
-      mQosThread.stopThread();
-      mQosThread = null;
-    }
-    Intent intent = getIntent();
-    setResult(99,intent);
-    mHandler = null;
-
-    finish();
-  }
-
 
   private View.OnClickListener mStartBtnListener = new View.OnClickListener() {
     @Override public void onClick(View v) {
