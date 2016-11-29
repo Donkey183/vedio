@@ -13,6 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.framework.listener.MessageListener;
+import com.app.basevideo.framework.manager.MessageManager;
+import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
@@ -43,9 +47,19 @@ public class CommonAlert {
 
     public CommonAlert(Context context) {
         this.context = context;
+        MessageManager.getInstance().registerListener(dissmissAlertListener);
     }
 
-    public void showAlert(final Payoff pay1,final Payoff pay2,int id) {
+    private MessageListener dissmissAlertListener = new MessageListener(VedioCmd.DISS_MISS_ALERT) {
+        @Override
+        public void onMessage(CommonMessage<?> responsedMessage) {
+            if (alert != null) {
+                alert.dismiss();
+            }
+        }
+    };
+
+    public void showAlert(final Payoff pay1, final Payoff pay2, int id) {
         alert = new AlertDialog.Builder(context).create();
 
         alert.show();
@@ -64,7 +78,7 @@ public class CommonAlert {
 
         dialog_img.setImageResource(id);
 
-        zhifu1_text.setText("￥"+pay1.getVip_money());
+        zhifu1_text.setText("￥" + pay1.getVip_money());
         zhifu1_text1.setText(pay1.getVip_name());
         zhifu1_text2.setText(pay1.getVip_message());
         zhifu1_img.setImageResource(pay1.getVip_img());
@@ -86,8 +100,8 @@ public class CommonAlert {
 
         if (pay2 == null) {
             zhifu2.setVisibility(View.GONE);
-        }else{
-            zhifu2_text.setText("￥"+pay2.getVip_money());
+        } else {
+            zhifu2_text.setText("￥" + pay2.getVip_money());
             zhifu2_text1.setText(pay2.getVip_name());
             zhifu2_text2.setText(pay2.getVip_message());
             zhifu2_img.setImageResource(pay2.getVip_img());
@@ -140,13 +154,13 @@ public class CommonAlert {
     }
 
     private void check_packoff(Payoff pay) {
-        if(pay.getVip_name().equals("黄金会员")){
+        if (pay.getVip_name().equals("黄金会员")) {
             Constants.pay_config = Constants.gold_config;
-        }else if(pay.getVip_name().equals("钻石会员")){
+        } else if (pay.getVip_name().equals("钻石会员")) {
             Constants.pay_config = Constants.diamond_config;
-        }else if(pay.getVip_name().equals("黑金会员")){
+        } else if (pay.getVip_name().equals("黑金会员")) {
             Constants.pay_config = Constants.black_config;
-        }else if(pay.getVip_name().equals("皇冠会员")){
+        } else if (pay.getVip_name().equals("皇冠会员")) {
             Constants.pay_config = Constants.crown_config;
         }
     }

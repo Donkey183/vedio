@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,15 +13,16 @@
             android:id="@+id/vip_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/finance_dimen_420px"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"/>
 
         <TextView
             android:id="@+id/vip_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/finance_dimen_50px"
-            android:textColor="#000000"
-            android:layout_below="@+id/vip_image"/>
+            android:layout_below="@+id/vip_image"
+            android:singleLine="true"
+            android:textColor="@color/finance_353535"
+            android:textSize="@dimen/finance_dimen_46px"/>
 
     </RelativeLayout>
 

@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/finance_dimen_30px">
+        android:layout_marginBottom="@dimen/finance_dimen_10px"
+        android:layout_marginLeft="@dimen/finance_dimen_20px"
+        android:layout_marginRight="@dimen/finance_dimen_10px"
+        android:layout_marginTop="@dimen/finance_dimen_10px">
 
         <RelativeLayout
             android:id="@+id/video_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/home_image"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/finance_dimen_500px"
-                android:scaleType="fitXY" />
+                android:layout_height="@dimen/finance_dimen_550px"
+                android:scaleType="fitXY"/>
 
             <TextView
                 android:id="@+id/home_type"
@@ -24,14 +28,15 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:background="@color/video_typeback"
+                android:text="VIP"
                 android:textColor="@color/video_typetext"
-                android:text="VIP"/>
+                android:textSize="@dimen/finance_dimen_46px"/>
 
             <ImageView
-                android:layout_width="@dimen/finance_dimen_120px"
-                android:layout_height="@dimen/finance_dimen_120px"
-                android:src="@drawable/home_play"
-                android:layout_centerInParent="true"/>
+                android:layout_width="@dimen/finance_dimen_110px"
+                android:layout_height="@dimen/finance_dimen_110px"
+                android:layout_centerInParent="true"
+                android:src="@drawable/home_play"/>
 
         </RelativeLayout>
 
@@ -39,12 +44,10 @@
             android:id="@+id/home_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_below="@+id/video_layout"/>
-
-
-
+            android:layout_below="@+id/video_layout"
+            android:layout_marginTop="@dimen/finance_dimen_10px"
+            android:singleLine="true"
+            android:textSize="@dimen/finance_dimen_46px"/>
 
     </RelativeLayout>
-
 </LinearLayout>

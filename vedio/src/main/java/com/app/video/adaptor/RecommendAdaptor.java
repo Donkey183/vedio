@@ -85,6 +85,7 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
         if (viewType == IS_HEADER) {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.head_banner_layout, parent, false);
+            WindowUtil.resizeRecursively(view);
             Banner banner = (Banner) view.findViewById(R.id.home_banner);
             banner.setImageLoader(new GlideImageLoader());
             banner.setImages(getBannerImageUrlList());

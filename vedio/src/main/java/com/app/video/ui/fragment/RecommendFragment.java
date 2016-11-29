@@ -59,6 +59,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
 
     private void getRecommendInfo() {
         CommonHttpRequest request = new CommonHttpRequest();
+        //TODO 请求页数
         request.addParam(VedioConstant.PAGE_NO, "1");
         request.addParam(VedioConstant.R_TYPE, VedioConstant.CHANNEL_EXPERIENCE);
         mVideoModel.sendHttpRequest(request, ChannelModel.GET_CHANNEL_INFO);

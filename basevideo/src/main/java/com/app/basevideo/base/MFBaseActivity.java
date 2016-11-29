@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.app.basevideo.R;
 import com.app.basevideo.config.IntentConfig;
-import com.app.basevideo.config.VideoCmd;
+import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.config.VideoConstant;
 import com.app.basevideo.config.VideoErrorData;
 import com.app.basevideo.framework.UniqueId;
@@ -460,7 +460,7 @@ public abstract class MFBaseActivity extends FragmentActivity {
                     IntentConfig loginConfig = new IntentConfig();
                     loginConfig.mActivity = MFBaseActivity.this;
                     loginConfig.mTag = true;
-                    sendMessage(new TaskMessage<Object>(VideoCmd.CMD_GOTO_LOGIN_ACTIVITY, loginConfig));
+                    sendMessage(new TaskMessage<Object>(VedioCmd.CMD_GOTO_LOGIN_ACTIVITY, loginConfig));
                 }
             }
         }

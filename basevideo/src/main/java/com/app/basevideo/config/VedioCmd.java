@@ -3,7 +3,7 @@ package com.app.basevideo.config;
 
 import com.app.basevideo.util.MessageConfig;
 
-public class VideoCmd {
+public class VedioCmd {
     /**
      * 业务层启始命令号,定义为10000
      * 前1000为BaseFinance 包中使用，保留 {@link MessageConfig#CMD_BASE}
@@ -36,4 +36,10 @@ public class VideoCmd {
      * 充值成功回调
      */
     public static final int CMD_PAY_SUCCESS = CMD_START + 5;
+
+
+    /**
+     * 销毁支付弹框
+     */
+    public static final int DISS_MISS_ALERT = CMD_START + 6;
 }
