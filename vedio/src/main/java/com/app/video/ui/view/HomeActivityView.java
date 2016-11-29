@@ -97,7 +97,6 @@ public class HomeActivityView extends MFBaseMVCView {
         main_home.setImageResource(Constants.config.getImg_first1());
         main_vip.setImageResource(Constants.config.getImg_vip1());
 
-
         main_user.setOnClickListener(mOnClickListener);
         vip_layout.setOnClickListener(mOnClickListener);
         home_layout.setOnClickListener(mOnClickListener);

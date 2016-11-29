@@ -2,7 +2,6 @@ package com.app.video.adaptor;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,9 +34,11 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
     private View mHeaderView;
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
     private List<VideoData.Page.Video> mVideoList;
+    private List<VideoData.Page.Banner> mBannerList;
 
-    public RecommendAdaptor(Context context) {
+    public RecommendAdaptor(Context context, OnRecyclerViewItemClickListener onItemClickListener) {
         mContext = context;
+        mOnItemClickListener = onItemClickListener;
     }
 
     public void setHeaderView(View headerView) {
@@ -45,13 +46,15 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
         notifyItemInserted(0);
     }
 
-    public void showRecommendView(List<VideoData.Page.Video> videoDataList) {
+    public void showRecommendView(List<VideoData.Page.Video> videoDataList, List<VideoData.Page.Banner> bannerList) {
+
         if (videoDataList == null) {
             LogUtil.e("showRecommendView failed,videoDataList is null");
             return;
         }
-        mVideoList = videoDataList;
 
+        mVideoList = videoDataList;
+        mBannerList = bannerList;
         this.notifyDataSetChanged();
     }
 
@@ -59,20 +62,28 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
         return ListUtil.getItem(mVideoList, position);
     }
 
+    private VideoData.Page.Banner getBanner(int position) {
+        return ListUtil.getItem(mBannerList, position);
+    }
+
     private List<String> getBannerImageUrlList() {
+
         List<String> urlList = new ArrayList<>();
-        for (VideoData.Page.Video video : mVideoList) {
-            if (video.getDypic() != null && !"".endsWith(video.getDypic()))
-                urlList.add(video.getDypic());
+
+        for (VideoData.Page.Banner banner : mBannerList) {
+            if (banner.getDypic() != null && !"".endsWith(banner.getDypic()))
+                urlList.add(banner.getDypic());
         }
+
         return urlList;
     }
 
     @Override
     public RecommendViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view;
+        final View view;
+
         if (viewType == IS_HEADER) {
-            view = (Banner) LayoutInflater.from(parent.getContext())
+            view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.head_banner_layout, parent, false);
             Banner banner = (Banner) view.findViewById(R.id.home_banner);
             banner.setImageLoader(new GlideImageLoader());
@@ -80,7 +91,7 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
             banner.setOnBannerClickListener(new OnBannerClickListener() {
                 @Override
                 public void OnBannerClick(int position) {
-                    Log.d("Banner:", getBannerImageUrlList().get(position - 1));
+                    mOnItemClickListener.onItemClick(view, position, getBanner(position));
                 }
             });
             banner.start();
@@ -89,7 +100,6 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
             this.mInflater = LayoutInflater.from(mContext);
             view = mInflater.inflate(R.layout.item_home, parent, false);
             WindowUtil.resizeRecursively(view);
-            view.setOnClickListener(null);
         }
         RecommendViewHolder holder = new RecommendViewHolder(view);
         return holder;
@@ -112,14 +122,10 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
                 @Override
                 public void onClick(View v) {
                     int position = holder.getLayoutPosition(); // 1
-                    mOnItemClickListener.onItemClick(holder.itemView, position, null); // 2
+                    mOnItemClickListener.onItemClick(holder.itemView, position, getItem(position)); // 2
                 }
             });
         }
-    }
-
-    public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
-        this.mOnItemClickListener = listener;
     }
 
     @Override

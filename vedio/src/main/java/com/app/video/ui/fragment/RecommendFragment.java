@@ -23,7 +23,7 @@ import com.app.video.model.VideoModel;
 import com.app.video.ui.activity.PreplayActivity;
 
 
-public class RecommendFragment extends MFBaseFragment implements INetFinish {
+public class RecommendFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener {
     private RecyclerView my_recyclerView;
     private RecommendAdaptor mAdapter;
     private VideoModel mVideoModel;
@@ -60,23 +60,30 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish {
     private void getRecommendInfo() {
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam(VedioConstant.PAGE_NO, "1");
-        request.addParam(VedioConstant.R_TYPE, "0");
+        request.addParam(VedioConstant.R_TYPE, VedioConstant.CHANNEL_EXPERIENCE);
         mVideoModel.sendHttpRequest(request, ChannelModel.GET_CHANNEL_INFO);
     }
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        mAdapter = new RecommendAdaptor(RecommendFragment.this.getActivity());
+        mAdapter = new RecommendAdaptor(RecommendFragment.this.getActivity(), this);
         my_recyclerView.setAdapter(mAdapter);
-        mAdapter.showRecommendView(mVideoModel.videoData.page.result);
-        mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position, Object object) {
-                VideoData.Page.Video video = (VideoData.Page.Video) object;
-                Intent intent = new Intent(getActivity(), PreplayActivity.class);
-                intent.putExtra("path", video.getDyres());
-                startActivity(intent);
-            }
-        });
+        mAdapter.showRecommendView(mVideoModel.videoData.page.result, mVideoModel.videoData.page.list1);
     }
+
+    @Override
+    public void onItemClick(View view, int position, Object obj) {
+
+        String recourseUrl = "";
+        if (obj instanceof VideoData.Page.Video) {
+            recourseUrl = ((VideoData.Page.Video) obj).getDyres();
+        } else if (obj instanceof VideoData.Page.Banner) {
+            recourseUrl = ((VideoData.Page.Banner) obj).getDyresource();
+        }
+
+        Intent intent = new Intent(getActivity(), PreplayActivity.class);
+        intent.putExtra("path", recourseUrl);
+        startActivity(intent);
+    }
+
 }
