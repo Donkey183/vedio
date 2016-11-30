@@ -153,9 +153,9 @@ public class CommonAlert {
                     return;
                 }
                 check_packoff(pay1);
-                Intent intent = new Intent(context, TestActivity.class);
-                context.startActivity(intent);
-                Toast.makeText(context, "支付111111", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(context, TestActivity.class);
+//                context.startActivity(intent);
+//                Toast.makeText(context, "支付111111", Toast.LENGTH_SHORT).show();
             }
         });
         zhifu2.setOnClickListener(new View.OnClickListener() {
@@ -166,11 +166,10 @@ public class CommonAlert {
                     return;
                 }
                 check_packoff(pay2);
-                Intent intent = new Intent(context, TestActivity.class);
-                context.startActivity(intent);
-                Toast.makeText(context, "支付222222", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(context, TestActivity.class);
+//                context.startActivity(intent);
+//                Toast.makeText(context, "支付222222", Toast.LENGTH_SHORT).show();
             }
-
 
         });
     }
@@ -198,7 +197,8 @@ public class CommonAlert {
     }
 
     private void doWxPay(PayData payData){
-        wxapi = WXAPIFactory.createWXAPI(context,payData.getWxAppid());
+
+//        wxapi = WXAPIFactory.createWXAPI(context,payData.it());
     }
 
     private void check_packoff(Payoff pay) {
