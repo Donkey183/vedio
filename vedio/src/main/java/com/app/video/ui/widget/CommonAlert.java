@@ -135,6 +135,10 @@ public class CommonAlert {
         zhifu1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!check_wechat.isChecked() && !check_zhifu.isChecked()) {
+                    Toast.makeText(context, "请选择支付方式", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 check_packoff(pay1);
                 Intent intent = new Intent(context, TestActivity.class);
                 intent.putExtra("layout",num);

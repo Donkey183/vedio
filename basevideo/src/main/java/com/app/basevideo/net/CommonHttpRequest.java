@@ -1,7 +1,9 @@
 package com.app.basevideo.net;
 
 import com.app.basevideo.config.VideoConstant;
+import com.app.basevideo.util.AppUtils;
 import com.app.basevideo.util.DateUtil;
+import com.app.basevideo.util.DesUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,17 +33,13 @@ public class CommonHttpRequest {
     }
 
     private void addCommonParams() {
-//        params.put(VideoConstant.PARAM_IMEI, AppUtils.getIMEI(MFBaseApplication.getInstance()));
-//        params.put(VideoConstant.PARAM_APP_VERSION, AppUtils.getAppVersion());
-//        params.put(VideoConstant.PARAM_NET_TYPE, AppUtils.getNetworkType());
-//        params.put(VideoConstant.PARAM_PHONE_MODEL, AppUtils.getModel());
-//        params.put(VideoConstant.PARAM_OS_TYPE, "android");
-//        params.put(VideoConstant.PARAM_OS_VERSION, AppUtils.getSystemSDKName());
-//        params.put(VideoConstant.PARAM_MOBILE_BRAND, AppUtils.getManufacturer());
-//        params.put(VideoConstant.PARAM_MOBILE_OPERATORS, AppUtils.getMobileOperators());
-        params.put(VideoConstant.PARAM_TIMESTAMP, "1234");//DateUtil.createDate("ddhhmmss")
-        params.put(VideoConstant.PARAM_TOKEN, "BD9F6B08527789FC");
-        params.put(VideoConstant.ENCY_STR, "D3BF8A21D8AE9941AD4021DB9ABCD50D");
+
+        String uuid = AppUtils.getUUID();
+        String timeStamp = DateUtil.createDate("ddhhmmss");
+        String encyStr = uuid + timeStamp;
+        params.put(VideoConstant.PARAM_TIMESTAMP, timeStamp);
+        params.put(VideoConstant.PARAM_TOKEN, DesUtil.encrypt(uuid, "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));//"BD9F6B08527789FC"
+        params.put(VideoConstant.ENCY_STR, DesUtil.encrypt(encyStr, "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));//D3BF8A21D8AE9941AD4021DB9ABCD50D
     }
 
 

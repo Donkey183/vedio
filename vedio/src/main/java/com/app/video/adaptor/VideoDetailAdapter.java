@@ -11,29 +11,31 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.basevideo.util.ListUtil;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
-import com.app.video.config.Data;
+import com.app.video.data.VideoDetailData;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import java.util.List;
 
-public class PreListAdapter extends RecyclerView.Adapter<PreListAdapter.ViewHolder>{
-    private LayoutInflater mInflater;
-    private List<Data> data;
+public class VideoDetailAdapter extends RecyclerView.Adapter<VideoDetailAdapter.ViewHolder> {
+    private List<VideoDetailData.Detail> mRecommendVideoList;
+    private List<VideoDetailData.Detail> mVideoCommentList;
+    private List<VideoDetailData.Detail> mPageCommentList;
     private Context context;
+    private View.OnClickListener mOnClickListener;
 
-    public PreListAdapter(Context context,List<Data> list){
+    public VideoDetailAdapter(Context context, View.OnClickListener onClickListener) {
         this.context = context;
-        mInflater = LayoutInflater.from(context);
-        this.data = list;
+        mOnClickListener = onClickListener;
     }
 
     @Override
-    public PreListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        mInflater = LayoutInflater.from(context);
-        View view = mInflater.inflate(R.layout.preplay_item, parent, false);
+    public VideoDetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.preplay_item, parent, false);
         WindowUtil.resizeRecursively(view);
         ViewHolder holder = new ViewHolder(view);
         return holder;
@@ -42,10 +44,10 @@ public class PreListAdapter extends RecyclerView.Adapter<PreListAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.name.setText(data.get(position).getName());
-        holder.info.setText(data.get(position).getInfo());
-        holder.time.setText(data.get(position).getTime());
-        Glide.with(context).load(data.get(position).getImg()).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.img) {
+        holder.name.setText(getItem(position).getDname());
+        holder.info.setText(getItem(position).getContent());
+        holder.time.setText(getItem(position).getCreateTime());
+        Glide.with(context).load(getItem(position).getDypic()).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.img) {
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable =
@@ -56,14 +58,23 @@ public class PreListAdapter extends RecyclerView.Adapter<PreListAdapter.ViewHold
         });
     }
 
-
-    @Override
-    public int getItemCount() {
-        return data.size();
+    private VideoDetailData.Detail getItem(int position) {
+        return ListUtil.getItem(mPageCommentList, position);
     }
 
 
-    public final class ViewHolder extends RecyclerView.ViewHolder{
+    public void showVideoDetail(VideoDetailData detailData) {
+
+        this.notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemCount() {
+        return ListUtil.getCount(mPageCommentList);
+    }
+
+
+    public final class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView img;
         public TextView name;
         public TextView info;

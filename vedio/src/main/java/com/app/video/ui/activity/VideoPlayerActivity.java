@@ -33,6 +33,8 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.app.basevideo.base.MFBaseActivity;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.QosObject;
@@ -54,7 +56,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class VideoPlayerActivity extends Activity
+public class VideoPlayerActivity extends MFBaseActivity
     implements TextureView.SurfaceTextureListener, View.OnClickListener {
 
   private static final String TAG = "VideoPlayerActivity";
@@ -343,7 +345,7 @@ public class VideoPlayerActivity extends Activity
     }
   };
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     mContext = this.getApplicationContext();
