@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Video.iml" filepath="$PROJECT_DIR$/Video.iml" />
       <module fileurl="file://$PROJECT_DIR$/basevideo/basevideo.iml" filepath="$PROJECT_DIR$/basevideo/basevideo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/vedio/vedio.iml" filepath="$PROJECT_DIR$/vedio/vedio.iml" />
       <module fileurl="file://$PROJECT_DIR$/vedio.iml" filepath="$PROJECT_DIR$/vedio.iml" />
       <module fileurl="file://$PROJECT_DIR$/vedio/vedio-vedio.iml" filepath="$PROJECT_DIR$/vedio/vedio-vedio.iml" />
     </modules>
