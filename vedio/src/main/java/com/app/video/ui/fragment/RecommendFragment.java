@@ -20,7 +20,7 @@ import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.ChannelModel;
 import com.app.video.model.VideoModel;
-import com.app.video.ui.activity.PreplayActivity;
+import com.app.video.ui.activity.VedioDetailActivity;
 
 
 public class RecommendFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener {
@@ -82,7 +82,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
             recourseUrl = ((VideoData.Page.Banner) obj).getDyresource();
         }
 
-        Intent intent = new Intent(getActivity(), PreplayActivity.class);
+        Intent intent = new Intent(getActivity(), VedioDetailActivity.class);
         intent.putExtra("path", recourseUrl);
         startActivity(intent);
     }

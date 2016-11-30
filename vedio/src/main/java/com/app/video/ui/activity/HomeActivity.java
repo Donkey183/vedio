@@ -21,7 +21,7 @@ import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.model.HomeActivityModel;
 import com.app.video.ui.view.HomeActivityView;
-import com.app.video.util.DesUtil;
+import com.app.basevideo.util.DesUtil;
 
 public class HomeActivity extends MFBaseActivity implements View.OnClickListener, INetFinish {
 
@@ -101,8 +101,6 @@ public class HomeActivity extends MFBaseActivity implements View.OnClickListener
                 break;
             case R.id.vip_layout:
                 mHomeView.clickVip();
-                LogUtil.e("=====uuid=====" + AppUtils.getUUID());
-                LogUtil.e(DesUtil.decrypt(AppUtils.getUUID(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
                 break;
             case R.id.main_user:
                 mHomeView.clickUser();

@@ -6,7 +6,6 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,15 +16,13 @@ import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.Settings;
 import com.app.video.ui.activity.HomeActivity;
-import com.app.video.ui.activity.PreplayActivity;
-import com.app.video.ui.activity.UserInfoActivity;
+import com.app.video.ui.activity.VedioDetailActivity;
 import com.app.video.ui.fragment.ChannelFragment;
 import com.app.video.ui.fragment.ForumFragment;
 import com.app.video.ui.fragment.BlackGoldFragment;
 import com.app.video.ui.fragment.RecommendFragment;
 import com.app.video.ui.fragment.VIPFragment;
 import com.app.video.ui.fragment.VaultFragment;
-import com.app.video.ui.widget.CommonAlert;
 
 public class HomeActivityView extends MFBaseMVCView {
 
@@ -182,7 +179,7 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     public void clickUser() {
-        Intent intent = new Intent(mActivity, PreplayActivity.class);
+        Intent intent = new Intent(mActivity, VedioDetailActivity.class);
         intent.putExtra("path","rtmp://live.hkstv.hk.lxdns.com/live/hks");
         mActivity.startActivity(intent);
     }

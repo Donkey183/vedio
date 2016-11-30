@@ -1,4 +1,4 @@
-package com.app.video.util;
+package com.app.basevideo.util;
 
 import java.security.SecureRandom;
 

@@ -18,7 +18,7 @@ public class VideoDetailModel extends MFBaseModel {
         super(activityContext);
     }
 
-    public VideoDetailData videoDetailData;
+    public VideoDetailData videoDetailData = new VideoDetailData();
 
     public static final int GET_VEDIO_DERAIL = 0x340001;
 
