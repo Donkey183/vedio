@@ -1,5 +1,6 @@
 package com.app.video.ui.view;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.app.video.R;
 import com.app.video.adaptor.VideoDetailAdapter;
 import com.app.video.data.VideoDetailData;
 import com.app.video.ui.activity.VedioDetailActivity;
+import com.app.video.ui.activity.VideoPlayerActivity;
 
 public class VideoDetailView extends MFBaseMVCView {
 
@@ -43,17 +45,17 @@ public class VideoDetailView extends MFBaseMVCView {
             }
         });
 
-//        Intent intent = mActivity.getIntent();
-//        url = intent.getStringExtra("path");
-//
-//        mplayerImg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(VedioDetailActivity.this, VideoPlayerActivity.class);
-//                intent.putExtra("path", url);
-//                startActivityForResult(intent, 0);
-//            }
-//        });
+        Intent intent = mActivity.getIntent();
+        final String url = intent.getStringExtra("path");
+
+        mplayerImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mActivity, VideoPlayerActivity.class);
+                intent.putExtra("path", url);
+                mActivity.startActivityForResult(intent, 0);
+            }
+        });
     }
 
     public void showVideoDetail(VideoDetailData detailData) {

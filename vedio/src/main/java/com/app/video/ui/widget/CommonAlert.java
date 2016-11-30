@@ -59,7 +59,8 @@ public class CommonAlert {
         }
     };
 
-    public void showAlert(final Payoff pay1, final Payoff pay2, int id) {
+    public void showAlert(final Payoff pay1, final Payoff pay2, int id, final int num) {
+
         alert = new AlertDialog.Builder(context).create();
 
         alert.show();
@@ -140,6 +141,7 @@ public class CommonAlert {
                 }
                 check_packoff(pay1);
                 Intent intent = new Intent(context, TestActivity.class);
+                intent.putExtra("layout",num);
                 context.startActivity(intent);
                 Toast.makeText(context, "支付111111", Toast.LENGTH_SHORT).show();
             }
@@ -149,6 +151,7 @@ public class CommonAlert {
             public void onClick(View v) {
                 check_packoff(pay2);
                 Intent intent = new Intent(context, TestActivity.class);
+                intent.putExtra("layout",num);
                 context.startActivity(intent);
                 Toast.makeText(context, "支付222222", Toast.LENGTH_SHORT).show();
             }

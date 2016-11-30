@@ -16,7 +16,7 @@ public class TestActivity extends MFBaseActivity {
         setContentView(R.layout.activity_test);
 
         //此处充值成功
-        MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess"));
+        MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess"+"*"+getIntent().getIntExtra("layout",1)));
 
     }
 }
