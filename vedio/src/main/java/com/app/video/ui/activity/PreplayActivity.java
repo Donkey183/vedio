@@ -92,7 +92,7 @@ public class PreplayActivity extends MFBaseActivity {
         switch (resultCode){
             case 99:
                 CommonAlert alert = new CommonAlert(this);
-                alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img());
+                alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.home_layout);
                 break;
             default:
                 break;
