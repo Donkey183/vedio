@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-    android:id="@+id/scroll" xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/finance_f0f0f0">
+        android:background="@color/finance_f0f0f0"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/player_img"
             android:layout_width="match_parent"
             android:layout_height="@dimen/finance_dimen_400px"
-            android:layout_margin="@dimen/finance_dimen_10px" />
+            android:layout_margin="@dimen/finance_dimen_10px"/>
 
         <RelativeLayout
             android:id="@+id/preplay_bar"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/finance_dimen_10px"
-            android:layout_height="@dimen/finance_dimen_70px">
-
-            <TextView
-                android:layout_marginLeft="@dimen/finance_dimen_20px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="猜你喜欢"
-                android:layout_centerVertical="true"/>
+            android:layout_height="@dimen/finance_dimen_70px"
+            android:layout_marginTop="@dimen/finance_dimen_10px">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/finance_dimen_20px"
+                android:text="猜你喜欢"
+                android:textSize="@dimen/finance_dimen_46px"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/finance_dimen_20px"
-                android:text="更多>>"/>
+                android:text="更多>>"
+                android:textSize="@dimen/finance_dimen_46px"/>
 
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/finance_dimen_400px"
@@ -46,29 +50,33 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_margin="@dimen/finance_dimen_10px"
-                android:src="@drawable/zhifu"
-                android:scaleType="fitXY"/>
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/zhifu"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_margin="@dimen/finance_dimen_10px"
-                android:src="@drawable/zhifu"
-                android:scaleType="fitXY"/>
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/zhifu"/>
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_margin="@dimen/finance_dimen_10px"
-                android:src="@drawable/zhifu"
-                android:scaleType="fitXY"/>
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/zhifu"/>
         </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/pre_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/finance_dimen_20px">
 
         </android.support.v7.widget.RecyclerView>
 

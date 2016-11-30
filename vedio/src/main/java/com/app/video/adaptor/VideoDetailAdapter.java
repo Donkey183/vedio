@@ -44,10 +44,10 @@ public class VideoDetailAdapter extends RecyclerView.Adapter<VideoDetailAdapter.
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.name.setText(getItem(position).getDname());
+        holder.name.setText(getItem(position).getUserName() == null ? ("用户" + (position / 2 * 3 + 7)) : getItem(position).getUserName());
         holder.info.setText(getItem(position).getContent());
-        holder.time.setText(getItem(position).getCreateTime());
-        Glide.with(context).load(getItem(position).getDypic()).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.img) {
+        holder.time.setText(getItem(position).getUtime());
+        Glide.with(context).load(getItem(position).getUserimg()).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.img) {
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable =
@@ -64,7 +64,7 @@ public class VideoDetailAdapter extends RecyclerView.Adapter<VideoDetailAdapter.
 
 
     public void showVideoDetail(VideoDetailData detailData) {
-
+        mPageCommentList = detailData.pageCommentList;
         this.notifyDataSetChanged();
     }
 

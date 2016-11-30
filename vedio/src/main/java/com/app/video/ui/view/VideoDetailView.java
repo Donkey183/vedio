@@ -61,8 +61,9 @@ public class VideoDetailView extends MFBaseMVCView {
     public void showVideoDetail(VideoDetailData detailData) {
 
         mDetailAdapter = new VideoDetailAdapter(mActivity, mOnClickListener);
-        mDetailAdapter.showVideoDetail(detailData);
         mListView.setAdapter(mDetailAdapter);
+        mDetailAdapter.showVideoDetail(detailData);
+
 
     }
 
