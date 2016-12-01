@@ -16,7 +16,7 @@ import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.Settings;
 import com.app.video.ui.activity.HomeActivity;
-import com.app.video.ui.activity.VedioDetailActivity;
+import com.app.video.ui.activity.UserInfoActivity;
 import com.app.video.ui.fragment.ChannelFragment;
 import com.app.video.ui.fragment.ForumFragment;
 import com.app.video.ui.fragment.BlackGoldFragment;
@@ -151,10 +151,10 @@ public class HomeActivityView extends MFBaseMVCView {
             transaction.add(R.id.main_frame,mRecommendFragment);
         }
         hideFragment();
-        if(Constants.config.getVip_now().equals(Constants.BLACK)||Constants.config.getVip_now().equals(Constants.CROWN)){
-            transaction.show(galleryFragment);
-        }else{
+        if(Constants.config.getVip_now().equals(Constants.NORMAL)||Constants.config.getVip_now().equals(Constants.GOLD)||Constants.config.getVip_now().equals(Constants.DIAMOND)){
             transaction.show( mRecommendFragment);
+        }else{
+            transaction.show(galleryFragment);
         }
 
         transaction.commit();
@@ -179,8 +179,7 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     public void clickUser() {
-        Intent intent = new Intent(mActivity, VedioDetailActivity.class);
-        intent.putExtra("path","rtmp://live.hkstv.hk.lxdns.com/live/hks");
+        Intent intent = new Intent(mActivity, UserInfoActivity.class);
         mActivity.startActivity(intent);
     }
 
@@ -193,10 +192,11 @@ public class HomeActivityView extends MFBaseMVCView {
     public void clickHome() {
         text_home.setText(Constants.config.getTittle_first());
         tittle_text.setText(Constants.config.getTittle_first());
-        if(Constants.config.getVip_now().equals(Constants.BLACK)||Constants.config.getVip_now().equals(Constants.CROWN)){
-            resetTabUi(main_home, galleryFragment);
-        }else{
+        if(Constants.config.getVip_now().equals(Constants.NORMAL)||Constants.config.getVip_now().equals(Constants.GOLD)||Constants.config.getVip_now().equals(Constants.DIAMOND)){
             resetTabUi(main_home, mRecommendFragment);
+        }else{
+            resetTabUi(main_home, galleryFragment);
+
         }
     }
 

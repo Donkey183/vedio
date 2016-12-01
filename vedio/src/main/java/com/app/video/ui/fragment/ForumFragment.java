@@ -63,7 +63,7 @@ public class ForumFragment extends android.app.Fragment {
         mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position,Object object) {
-                if(!Constants.config.getVip_now().equals(Constants.CROWN)){
+                if(!Constants.config.getVip_now().equals(Constants.RED)){
                     CommonAlert alert = new CommonAlert(getActivity());
                     alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
                 }

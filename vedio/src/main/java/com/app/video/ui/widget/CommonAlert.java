@@ -1,6 +1,7 @@
 package com.app.video.ui.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,9 @@ import com.app.video.config.Constants;
 import com.app.video.config.Payoff;
 import com.app.video.data.WechatPayData;
 import com.app.video.model.PayModel;
-import com.app.video.pay.wxpay.WechatPay;
+import com.app.video.net.VedioNetService;
+import com.app.video.net.response.PayResponse;
+import com.app.video.ui.activity.TestActivity;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 
 public class CommonAlert {
@@ -188,6 +191,12 @@ public class CommonAlert {
             Constants.pay_config = Constants.black_config;
         } else if (pay.getVip_name().equals("皇冠会员")) {
             Constants.pay_config = Constants.crown_config;
+        } else if (pay.getVip_name().equals("紫钻会员")) {
+            Constants.pay_config = Constants.purple_config;
+        } else if (pay.getVip_name().equals("蓝钻会员")) {
+            Constants.pay_config = Constants.blue_config;
+        } else if (pay.getVip_name().equals("打赏红包")) {
+            Constants.pay_config = Constants.red_config;
         }
     }
 }

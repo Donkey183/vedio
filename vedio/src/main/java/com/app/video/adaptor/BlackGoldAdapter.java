@@ -1,19 +1,23 @@
 package com.app.video.adaptor;
 
 
+import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class BlackGoldAdapter extends PagerAdapter {
     private List<View> mViewList;
+    private Context context;
 
 
-    public BlackGoldAdapter(List<View> viewList) {
+    public BlackGoldAdapter(List<View> viewList,Context context) {
         this.mViewList = viewList;
+        this.context = context;
     }
 
     @Override
@@ -32,17 +36,21 @@ public class BlackGoldAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         ImageView imageView = getItem(position);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        container.removeView(imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context.getApplicationContext(), position+"", Toast.LENGTH_SHORT).show();
+            }
+        });
         container.addView(imageView);
         return imageView;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView(mViewList.remove(position));
-        this.notifyDataSetChanged();
+        container.removeView(mViewList.get(position));
     }
 }

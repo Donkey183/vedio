@@ -54,6 +54,12 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
             Constants.config = Constants.black_config;
         } else if (config.equals(Constants.CROWN)) {
             Constants.config = Constants.crown_config;
+        }else if (config.equals(Constants.PURPLE)) {
+            Constants.config = Constants.purple_config;
+        }else if (config.equals(Constants.BLUE)) {
+            Constants.config = Constants.blue_config;
+        }else if (config.equals(Constants.RED)) {
+            Constants.config = Constants.red_config;
         }
     }
 
@@ -93,21 +99,17 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
             checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
             int id = Integer.parseInt(str.split("\\*")[1]);
 
-            clickall();
+            choseClick(R.id.home_layout);
+            Log.d("adasd111","adsdsadas");
+            choseClick(R.id.vip_layout);
+            choseClick(R.id.channel_layout);
+            choseClick(R.id.vault_layout);
+            choseClick(R.id.forum_layout);
             choseClick(id);
             //销毁充值对话框
             MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.DISS_MISS_ALERT));
         }
     };
-
-    private void clickall() {
-        choseClick(R.id.home_layout);
-        Log.d("adasd111","adsdsadas");
-        choseClick(R.id.vip_layout);
-        choseClick(R.id.channel_layout);
-        choseClick(R.id.vault_layout);
-        choseClick(R.id.forum_layout);
-    }
 
 
     private void choseClick(int id) {
