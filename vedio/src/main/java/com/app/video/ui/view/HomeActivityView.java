@@ -16,7 +16,7 @@ import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.Settings;
 import com.app.video.ui.activity.HomeActivity;
-import com.app.video.ui.activity.VedioDetailActivity;
+import com.app.video.ui.activity.UserInfoActivity;
 import com.app.video.ui.fragment.ChannelFragment;
 import com.app.video.ui.fragment.ForumFragment;
 import com.app.video.ui.fragment.BlackGoldFragment;
@@ -179,8 +179,7 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     public void clickUser() {
-        Intent intent = new Intent(mActivity, VedioDetailActivity.class);
-        intent.putExtra("path","rtmp://live.hkstv.hk.lxdns.com/live/hks");
+        Intent intent = new Intent(mActivity, UserInfoActivity.class);
         mActivity.startActivity(intent);
     }
 

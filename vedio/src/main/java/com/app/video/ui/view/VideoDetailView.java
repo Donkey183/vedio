@@ -6,13 +6,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.app.basevideo.base.MFBaseMVCView;
 import com.app.video.R;
 import com.app.video.adaptor.VideoDetailAdapter;
+import com.app.video.config.Constants;
 import com.app.video.data.VideoDetailData;
 import com.app.video.ui.activity.VedioDetailActivity;
 import com.app.video.ui.activity.VideoPlayerActivity;
+import com.app.video.ui.widget.CommonAlert;
+import com.bumptech.glide.Glide;
+
+import java.util.List;
 
 public class VideoDetailView extends MFBaseMVCView {
 
@@ -20,6 +26,14 @@ public class VideoDetailView extends MFBaseMVCView {
     private View.OnClickListener mOnClickListener;
     private ImageView mplayerImg;
     private ScrollView mScrollView;
+
+    private ImageView img1;
+    private ImageView img2;
+    private ImageView img3;
+
+    private TextView text1;
+    private TextView text2;
+    private TextView text3;
 
     private RecyclerView mListView;
     private VideoDetailAdapter mDetailAdapter;
@@ -35,6 +49,15 @@ public class VideoDetailView extends MFBaseMVCView {
         mplayerImg = (ImageView) mActivity.findViewById(R.id.player_img);
         mListView = (RecyclerView) mActivity.findViewById(R.id.pre_list);
         mScrollView = (ScrollView) mActivity.findViewById(R.id.scroll);
+
+        img1 = (ImageView) mActivity.findViewById(R.id.img1);
+        img2 = (ImageView) mActivity.findViewById(R.id.img2);
+        img3 = (ImageView) mActivity.findViewById(R.id.img3);
+
+        text1 = (TextView) mActivity.findViewById(R.id.text1);
+        text2 = (TextView) mActivity.findViewById(R.id.text2);
+        text3 = (TextView) mActivity.findViewById(R.id.text3);
+
         mScrollView.setFocusable(true);
         mScrollView.setFocusableInTouchMode(true);
         mScrollView.requestFocus();
@@ -47,6 +70,8 @@ public class VideoDetailView extends MFBaseMVCView {
 
         Intent intent = mActivity.getIntent();
         final String url = intent.getStringExtra("path");
+        final String img = intent.getStringExtra("img");
+        Glide.with(mActivity).load(img).error(R.drawable.cha).into(mplayerImg);
 
         mplayerImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +88,47 @@ public class VideoDetailView extends MFBaseMVCView {
         mDetailAdapter = new VideoDetailAdapter(mActivity, mOnClickListener);
         mListView.setAdapter(mDetailAdapter);
         mDetailAdapter.showVideoDetail(detailData);
+        showRecom(detailData);
 
+
+    }
+
+    private void showRecom(VideoDetailData detailData){
+        List<VideoDetailData.Detail> datalist= detailData.recommendVideoList;
+        Glide.with(mActivity).load(datalist.get(0).getDypic()).into(img1);
+        Glide.with(mActivity).load(datalist.get(1).getDypic()).into(img2);
+        Glide.with(mActivity).load(datalist.get(2).getDypic()).into(img3);
+        text1.setText(datalist.get(0).getDname());
+        text2.setText(datalist.get(1).getDname());
+        text3.setText(datalist.get(2).getDname());
+
+        img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!Constants.config.getVip_now().equals(Constants.RED)){
+                    CommonAlert alert = new CommonAlert(mActivity);
+                    alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+                }
+            }
+        });
+        img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!Constants.config.getVip_now().equals(Constants.RED)){
+                    CommonAlert alert = new CommonAlert(mActivity);
+                    alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+                }
+            }
+        });
+        img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!Constants.config.getVip_now().equals(Constants.RED)){
+                    CommonAlert alert = new CommonAlert(mActivity);
+                    alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+                }
+            }
+        });
 
     }
 

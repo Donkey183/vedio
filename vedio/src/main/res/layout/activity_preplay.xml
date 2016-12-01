@@ -14,6 +14,7 @@
         <ImageView
             android:id="@+id/player_img"
             android:layout_width="match_parent"
+            android:scaleType="fitXY"
             android:layout_height="@dimen/finance_dimen_400px"
             android:layout_margin="@dimen/finance_dimen_10px"/>
 
@@ -47,29 +48,86 @@
             android:layout_height="@dimen/finance_dimen_400px"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/finance_dimen_10px"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                android:src="@drawable/zhifu"/>
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/finance_dimen_10px"
                 android:layout_weight="1"
-                android:scaleType="fitXY"
-                android:src="@drawable/zhifu"/>
+                android:orientation="vertical">
 
-            <ImageView
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:scaleType="fitXY"
+                    android:layout_weight="1"
+                    android:src="@drawable/zhifu"/>
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="8"
+                    android:text="111"
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/finance_dimen_20px"
+                    android:layout_weight="0"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/finance_dimen_10px"
                 android:layout_weight="1"
-                android:scaleType="fitXY"
-                android:src="@drawable/zhifu"/>
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:scaleType="fitXY"
+                    android:layout_weight="1"
+                    android:src="@drawable/zhifu"/>
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="111"
+                    android:maxLength="8"
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/finance_dimen_20px"
+                    android:layout_weight="0"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:scaleType="fitXY"
+                    android:layout_weight="1"
+                    android:src="@drawable/zhifu"/>
+                <TextView
+                    android:id="@+id/text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="111"
+                    android:maxLength="8"
+                    android:singleLine="true"
+                    android:layout_marginLeft="@dimen/finance_dimen_20px"
+                    android:layout_weight="0"/>
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

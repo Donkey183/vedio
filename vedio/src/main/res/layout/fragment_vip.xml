@@ -44,7 +44,6 @@
             <Button
                 android:id="@+id/btn2"
                 android:layout_width="@dimen/finance_dimen_70px"
-
                 android:layout_height="@dimen/finance_dimen_70px"
                 android:layout_margin="@dimen/finance_dimen_10px"
                 android:background="@drawable/btn_back"

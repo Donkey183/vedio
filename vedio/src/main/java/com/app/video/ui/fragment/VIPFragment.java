@@ -17,18 +17,28 @@ import com.app.basevideo.net.INetFinish;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.adaptor.VIPFragmentAdaptor;
+import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.VideoModel;
 import com.app.video.ui.activity.VideoPlayerActivity;
+import com.app.video.ui.widget.CommonAlert;
 
-public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener {
+public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener,View.OnClickListener {
     private RecyclerView vip_recyclerView;
         private VIPFragmentAdaptor mAdapter;
     private VideoModel mModel;
+
     private Button btn1;
     private Button btn2;
+    private Button btn3;
+    private Button btn4;
+    private Button btn5;
+    private Button btn6;
+    private Button btn7;
+    private Button btn_next;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,21 +52,7 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_vip, container, false);
-        btn1 = (Button) view.findViewById(R.id.btn1);
-        btn2 = (Button) view.findViewById(R.id.btn2);
 
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
         vip_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3) {
@@ -65,6 +61,26 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
                 return false;
             }
         });
+
+
+        btn1 = (Button) view.findViewById(R.id.btn1);
+        btn2 = (Button) view.findViewById(R.id.btn2);
+        btn3 = (Button) view.findViewById(R.id.btn3);
+        btn4 = (Button) view.findViewById(R.id.btn4);
+        btn5 = (Button) view.findViewById(R.id.btn5);
+        btn6 = (Button) view.findViewById(R.id.btn6);
+        btn7 = (Button) view.findViewById(R.id.btn7);
+        btn_next = (Button) view.findViewById(R.id.btn_next);
+
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+        btn3.setOnClickListener(this);
+        btn4.setOnClickListener(this);
+        btn5.setOnClickListener(this);
+        btn6.setOnClickListener(this);
+        btn7.setOnClickListener(this);
+        btn_next.setOnClickListener(this);
+
 
         WindowUtil.resizeRecursively(view);
         return view;
@@ -100,5 +116,13 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
         Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
         intent.putExtra("path", vault.getDyres());
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view){
+        if(!Constants.config.getVip_now().equals(Constants.RED)){
+            CommonAlert alert = new CommonAlert(getActivity());
+            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+        }
     }
 }
