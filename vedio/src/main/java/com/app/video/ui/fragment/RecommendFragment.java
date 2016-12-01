@@ -76,14 +76,18 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
     public void onItemClick(View view, int position, Object obj) {
 
         String recourseUrl = "";
+        String img = "";
         if (obj instanceof VideoData.Page.Video) {
             recourseUrl = ((VideoData.Page.Video) obj).getDyres();
+            img = ((VideoData.Page.Video) obj).getDypic();
         } else if (obj instanceof VideoData.Page.Banner) {
             recourseUrl = ((VideoData.Page.Banner) obj).getDyresource();
+            img = ((VideoData.Page.Video) obj).getDypic();
         }
 
         Intent intent = new Intent(getActivity(), VedioDetailActivity.class);
         intent.putExtra("path", recourseUrl);
+        intent.putExtra("img",img);
         startActivity(intent);
     }
 
