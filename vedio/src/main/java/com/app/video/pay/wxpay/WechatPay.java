@@ -58,9 +58,4 @@ public class WechatPay {
         LogUtil.e("==========key============" + DesUtil.decrypt(payData.getKey(),"URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
     }
 
-
-
-
-
-
 }
