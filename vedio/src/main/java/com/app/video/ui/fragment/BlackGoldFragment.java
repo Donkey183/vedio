@@ -83,7 +83,7 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
             Glide.with(this.getActivity()).load(vault.getDypic()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(imageView);
             viewList.add(imageView);
         }
-        gallery_pager.setAdapter(new BlackGoldAdapter(viewList));
+        gallery_pager.setAdapter(new BlackGoldAdapter(viewList,getActivity()));
     }
 
 }
