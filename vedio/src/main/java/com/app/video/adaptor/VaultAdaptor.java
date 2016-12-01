@@ -23,8 +23,9 @@ public class VaultAdaptor extends RecyclerView.Adapter<VaultAdaptor.MyViewHolder
     private Context mContext;
     private List<VaultData> mVaultList;
 
-    public VaultAdaptor(Context context) {
+    public VaultAdaptor(Context context, OnRecyclerViewItemClickListener onItemClickListener) {
         mContext = context;
+        mOnItemClickListener = onItemClickListener;
     }
 
     @Override

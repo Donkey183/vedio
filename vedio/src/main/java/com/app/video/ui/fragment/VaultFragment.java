@@ -14,10 +14,13 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.adaptor.VaultAdaptor;
+import com.app.video.config.Constants;
+import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.VaultModel;
+import com.app.video.ui.widget.CommonAlert;
 
 
-public class VaultFragment extends MFBaseFragment implements INetFinish {
+public class VaultFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener {
     private RecyclerView valut_recyclerView;
 
     private VaultModel mVaultModel;
@@ -45,8 +48,14 @@ public class VaultFragment extends MFBaseFragment implements INetFinish {
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        VaultAdaptor vaultAdaptor = new VaultAdaptor(VaultFragment.this.getActivity());
+        VaultAdaptor vaultAdaptor = new VaultAdaptor(VaultFragment.this.getActivity(), VaultFragment.this);
         valut_recyclerView.setAdapter(vaultAdaptor);
         vaultAdaptor.showVaultView(mVaultModel.vaultList);
+    }
+
+    @Override
+    public void onItemClick(View view, int position, Object obj) {
+//        CommonAlert alert = new CommonAlert(VaultFragment.this.getActivity());
+//        alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(), R.id.forum_layout);
     }
 }
