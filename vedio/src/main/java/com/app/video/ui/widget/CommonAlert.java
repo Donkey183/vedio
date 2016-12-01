@@ -16,23 +16,14 @@ import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.framework.listener.MessageListener;
 import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
-import com.app.basevideo.framework.util.LogUtil;
-import com.app.basevideo.net.CommonHttpRequest;
-import com.app.basevideo.net.HttpRequestService;
-import com.app.basevideo.net.call.MFCall;
-import com.app.basevideo.net.callback.MFCallbackAdapter;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.Payoff;
-import com.app.video.data.PayData;
+import com.app.video.data.WechatPayData;
 import com.app.video.model.PayModel;
-import com.app.video.net.VedioNetService;
-import com.app.video.net.response.PayResponse;
+import com.app.video.pay.wxpay.WechatPay;
 import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.WXAPIFactory;
-
-import retrofit2.Response;
 
 public class CommonAlert {
 
@@ -153,6 +144,7 @@ public class CommonAlert {
                     return;
                 }
                 check_packoff(pay1);
+                getPayInfo("", "");
 //                Intent intent = new Intent(context, TestActivity.class);
 //                context.startActivity(intent);
 //                Toast.makeText(context, "支付111111", Toast.LENGTH_SHORT).show();
@@ -174,31 +166,17 @@ public class CommonAlert {
         });
     }
 
-    private PayData payData;
+    private WechatPayData mWechatPayData;
     private IWXAPI wxapi;
 
     private void getPayInfo(String payType, String payAmount) {
-        CommonHttpRequest request = new CommonHttpRequest();
-        MFCall<PayResponse> call = HttpRequestService.createService(VedioNetService.class).getPayInfo(request.buildParams());
-        call.doRequest(new MFCallbackAdapter<PayResponse>() {
-            @Override
-            public void onResponse(PayResponse entity, Response<?> response, Throwable throwable) {
-                if (entity == null || !entity.success) {
-                    Toast.makeText(context, "支付失败!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                payData = entity.data;
-                LogUtil.d("paydata" + entity.data);
-                //TODO 发送支付成功消息
-                //此处充值成功
-                MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess"));
-            }
-        });
+        WechatPay pay = new WechatPay();
+        pay.getWechatInfo(context);
     }
 
-    private void doWxPay(PayData payData){
+    private void doWxPay(WechatPayData wechatPayData) {
 
-//        wxapi = WXAPIFactory.createWXAPI(context,payData.it());
+//        wxapi = WXAPIFactory.createWXAPI(context,mWechatPayData.it());
     }
 
     private void check_packoff(Payoff pay) {
@@ -212,6 +190,4 @@ public class CommonAlert {
             Constants.pay_config = Constants.crown_config;
         }
     }
-
-
 }

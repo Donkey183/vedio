@@ -4,7 +4,7 @@ import com.app.basevideo.net.call.MFCall;
 import com.app.video.net.response.ChannelContentResponse;
 import com.app.video.net.response.ChannelResponse;
 import com.app.video.net.response.InitAppResponse;
-import com.app.video.net.response.PayResponse;
+import com.app.video.net.response.WechatPayResponse;
 import com.app.video.net.response.VaultContentResponse;
 import com.app.video.net.response.VaultResponse;
 import com.app.video.net.response.VedioResponse;
@@ -15,7 +15,6 @@ import java.util.Map;
 
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface VedioNetService {
@@ -50,7 +49,7 @@ public interface VedioNetService {
      */
     @POST("dyap/dy_sysset.do")
     @FormUrlEncoded
-    MFCall<PayResponse> getPayInfo(@FieldMap Map<String, Object> params);
+    MFCall<WechatPayResponse> getPayInfo(@FieldMap Map<String, Object> params);
 
 
     /**
@@ -105,13 +104,21 @@ public interface VedioNetService {
     MFCall<VerifyCodeResponse> getVerifyCode(@FieldMap Map<String, Object> params);
 
     /**
-     *
-     *
      * @param params
      * @return
      */
     @POST("dyap/dy_view.do")
     @FormUrlEncoded
     MFCall<VideoDetailResponse> getVideoDetailInfo(@FieldMap Map<String, Object> params);
+
+
+    /**
+     * 微信支付
+     * @param
+     * @return
+     */
+    @POST("wxpay/getPrePayId.do")
+    @FormUrlEncoded
+    MFCall<WechatPayResponse> getWechatPayInfo(@FieldMap Map<String, Object> params);
 
 }

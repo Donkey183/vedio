@@ -13,9 +13,8 @@ public class MD5 {
 
     /**
      * 将字符串进行MD5加密
-     * 
-     * @param string
-     *            要加密的字符串
+     *
+     * @param string 要加密的字符串
      * @return 加密后的字符串
      */
     public static String md5(String string) {
@@ -43,9 +42,8 @@ public class MD5 {
 
     /**
      * 读取文件的MD5值
-     * 
-     * @param file
-     *            文件路径
+     *
+     * @param file 文件路径
      * @return 文件的MD5值
      */
     public static String fileMd5(String file) {
@@ -92,6 +90,27 @@ public class MD5 {
             return null;
         } else {
             return ret;
+        }
+    }
+
+
+    public final static String getMessageDigest(byte[] buffer) {
+        char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+        try {
+            MessageDigest mdTemp = MessageDigest.getInstance("MD5");
+            mdTemp.update(buffer);
+            byte[] md = mdTemp.digest();
+            int j = md.length;
+            char str[] = new char[j * 2];
+            int k = 0;
+            for (int i = 0; i < j; i++) {
+                byte byte0 = md[i];
+                str[k++] = hexDigits[byte0 >>> 4 & 0xf];
+                str[k++] = hexDigits[byte0 & 0xf];
+            }
+            return new String(str);
+        } catch (Exception e) {
+            return null;
         }
     }
 }
