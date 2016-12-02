@@ -3,6 +3,7 @@ package com.app.video.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.adaptor.BlackGoldAdapter;
+import com.app.video.adaptor.CrownAdapter;
 import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.model.VideoModel;
@@ -25,8 +27,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+public class CrownFragment extends MFBaseFragment implements INetFinish {
 
-public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
     private ViewPager gallery_pager;
     private LinearLayout ll_main;
     private int pagerWidth;
@@ -41,9 +43,9 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
 
     private void getVideoInfo() {
         CommonHttpRequest request = new CommonHttpRequest();
-        request.addParam(VedioConstant.R_TYPE, 4);
+        request.addParam(VedioConstant.R_TYPE, 7);
         request.addParam(VedioConstant.PAGE_NO, 1);
-        mVideoModel.sendHttpRequest(request, VideoModel.GET_VEDIO_BLACK_GLOD);
+        mVideoModel.sendHttpRequest(request, VideoModel.GET_VEDIO_CROWN);
     }
 
     @Nullable
@@ -70,14 +72,13 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
             }
         });
         gallery_pager.setPageTransformer(true, new GallyPageTransformer());
-//        WindowUtil.resizeRecursively(view);
         return view;
     }
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        List<VideoData.Page.Video> resultBeenList = mVideoModel.videoData.page.result;
-        gallery_pager.setAdapter(new BlackGoldAdapter(resultBeenList, getActivity()));
+        List<VideoData.Page.Banner> resultBeenList = mVideoModel.videoData.page.list1;
+        Log.e("aaaaa",resultBeenList.toString());
+        gallery_pager.setAdapter(new CrownAdapter(resultBeenList, getActivity()));
     }
-
 }

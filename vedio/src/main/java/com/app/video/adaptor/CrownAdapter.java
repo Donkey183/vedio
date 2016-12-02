@@ -1,6 +1,5 @@
 package com.app.video.adaptor;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
@@ -16,13 +15,13 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlackGoldAdapter extends PagerAdapter {
-    private List<VideoData.Page.Video> mViewList;
+public class CrownAdapter extends PagerAdapter {
+    private List<VideoData.Page.Banner> mViewList;
     private Context context;
     private List<View> viewList;
 
 
-    public BlackGoldAdapter(List<VideoData.Page.Video> viewList, Context context) {
+    public CrownAdapter(List<VideoData.Page.Banner> viewList, Context context) {
         this.viewList = new ArrayList<View>();
         this.mViewList = viewList;
         this.context = context;
@@ -38,14 +37,14 @@ public class BlackGoldAdapter extends PagerAdapter {
         return view == object;
     }
 
-    private VideoData.Page.Video getItem(int position) {
+    private VideoData.Page.Banner getItem(int position) {
         int size = getCount();
-        return (VideoData.Page.Video) mViewList.get((position >= size ? size - 1 : position));
+        return (VideoData.Page.Banner) mViewList.get((position >= size ? size - 1 : position));
     }
 
     @Override
     public Object instantiateItem(final ViewGroup container, final int position) {
-        final VideoData.Page.Video video = getItem(position);
+        final VideoData.Page.Banner video = getItem(position);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         Glide.with(context).load(video.getDypic()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(imageView);
@@ -53,7 +52,7 @@ public class BlackGoldAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, VideoPlayerActivity.class);
-                intent.putExtra("path", video.getDyres());
+                intent.putExtra("path", video.getDyresource());
                 context.startActivity(intent);
             }
         });

@@ -1,5 +1,7 @@
 package com.app.video.model;
 
+import android.util.Log;
+
 import com.app.basevideo.base.MFBaseFragment;
 import com.app.basevideo.base.MFBaseFragmentModel;
 import com.app.basevideo.net.CommonHttpRequest;
@@ -21,26 +23,33 @@ public class VideoModel extends MFBaseFragmentModel {
 
     public VideoData videoData = new VideoData();
 
-    public static final int GET_VEDIO_EXPERINCE = 0x60001;
-    public static final int GET_VEDIO_COMMON = 0x60002;
-    public static final int GET_XXX_INFO = 0x60003;
-    public static final int GET_VEDIO_GLOD = 0x60004;
-    public static final int GET_VEDIO_DIAMOND = 0x60006;
-    public static final int GET_VEDIO_BLACK_GLOD = 0x60005;
-    public static final int GET_VEDIO_CROWN = 0x60007;
+    private int code;
+
+    public static final int GET_VEDIO_EXPERINCE = 0;
+    public static final int GET_VEDIO_COMMON = 1;
+    public static final int GET_XXX_INFO = 2;
+    public static final int GET_VEDIO_GLOD = 3;
+    public static final int GET_VEDIO_DIAMOND = 4;
+    public static final int GET_VEDIO_BLACK_GLOD = 5;
+    public static final int GET_VEDIO_CROWN = 6;
 
     @Override
     public void sendHttpRequest(CommonHttpRequest request, int requestCode) {
+        Log.e("sendHttpRequest", "sendHttpRequest" + requestCode);
+        code = requestCode;
         MFCall<VedioResponse> call = HttpRequestService.createService(VedioNetService.class).getVideoResources(request.buildParams());
         call.doRequest(new MFCallbackAdapter<VedioResponse>() {
             @Override
             public void onResponse(VedioResponse entity, Response<?> response, Throwable throwable) {
                 if (entity == null || !entity.success || entity.page == null || entity.page.result == null || entity.page.list1 == null) {
                     disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
+
                     return;
                 }
+                Log.e("sendHttpRequest",code + "         " + entity.toString());
                 videoData.page = entity.page;
-                disPatchRequestSuccessMessage(GET_XXX_INFO);
+
+                disPatchRequestSuccessMessage(code);
             }
         });
     }
