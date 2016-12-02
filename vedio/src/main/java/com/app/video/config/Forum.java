@@ -1,8 +1,5 @@
 package com.app.video.config;
 
-/**
- * Created by liubohua on 16/11/22.
- */
 public class Forum {
     private String name;
     private String image;

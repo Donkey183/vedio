@@ -27,6 +27,7 @@
             android:textColor="@color/finance_ff0000" />
 
         <LinearLayout
+            android:id="@+id/btn_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/finance_dimen_100px"
             android:layout_below="@+id/vit_text"

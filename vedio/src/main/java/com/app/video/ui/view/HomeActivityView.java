@@ -18,8 +18,11 @@ import com.app.video.config.Settings;
 import com.app.video.ui.activity.HomeActivity;
 import com.app.video.ui.activity.UserInfoActivity;
 import com.app.video.ui.fragment.ChannelFragment;
+import com.app.video.ui.fragment.CrownFragment;
+import com.app.video.ui.fragment.DiamondFragment;
 import com.app.video.ui.fragment.ForumFragment;
 import com.app.video.ui.fragment.BlackGoldFragment;
+import com.app.video.ui.fragment.GoldFragment;
 import com.app.video.ui.fragment.RecommendFragment;
 import com.app.video.ui.fragment.VIPFragment;
 import com.app.video.ui.fragment.VaultFragment;
@@ -34,7 +37,10 @@ public class HomeActivityView extends MFBaseMVCView {
     private ChannelFragment channelFragment;
     private VaultFragment vaultFragment;
     private ForumFragment forumFragment;
-    private BlackGoldFragment galleryFragment;
+    private BlackGoldFragment blackGoldFragment;
+    private GoldFragment goldFragment;
+    private DiamondFragment diamondFragment;
+    private CrownFragment crownFragment;
 
     private FragmentManager fm;
     private FragmentTransaction transaction;
@@ -141,23 +147,32 @@ public class HomeActivityView extends MFBaseMVCView {
             transaction.add(R.id.main_frame,channelFragment);
         }
 
-        if(galleryFragment == null){
-            galleryFragment = new BlackGoldFragment();
-            transaction.add(R.id.main_frame,galleryFragment);
+        if(blackGoldFragment == null){
+            blackGoldFragment = new BlackGoldFragment();
+            transaction.add(R.id.main_frame,blackGoldFragment);
         }
 
         if(mRecommendFragment == null){
             mRecommendFragment = new RecommendFragment();
             transaction.add(R.id.main_frame,mRecommendFragment);
         }
-        hideFragment();
-        if(Constants.config.getVip_now().equals(Constants.NORMAL)||Constants.config.getVip_now().equals(Constants.GOLD)||Constants.config.getVip_now().equals(Constants.DIAMOND)){
-            transaction.show( mRecommendFragment);
-        }else{
-            transaction.show(galleryFragment);
+
+        if(goldFragment == null){
+            goldFragment = new GoldFragment();
+            transaction.add(R.id.main_frame,goldFragment);
+        }
+        if(diamondFragment == null){
+            diamondFragment = new DiamondFragment();
+            transaction.add(R.id.main_frame,diamondFragment);
+        }
+        if(crownFragment == null){
+            crownFragment = new CrownFragment();
+            transaction.add(R.id.main_frame,crownFragment);
         }
 
+        hideFragment();
         transaction.commit();
+        resetTabUi(main_home, checkFragment(Constants.config.getTittle_first()));
     }
 
     public void clickForum() {
@@ -186,18 +201,13 @@ public class HomeActivityView extends MFBaseMVCView {
     public void clickVip() {
         text_vip.setText(Constants.config.getTittle_vip());
         tittle_text.setText(Constants.config.getTittle_vip());
-        resetTabUi(main_vip, vipFragment);
+        resetTabUi(main_vip, checkFragment(Constants.config.getTittle_vip()));
     }
 
     public void clickHome() {
         text_home.setText(Constants.config.getTittle_first());
         tittle_text.setText(Constants.config.getTittle_first());
-        if(Constants.config.getVip_now().equals(Constants.NORMAL)||Constants.config.getVip_now().equals(Constants.GOLD)||Constants.config.getVip_now().equals(Constants.DIAMOND)){
-            resetTabUi(main_home, mRecommendFragment);
-        }else{
-            resetTabUi(main_home, galleryFragment);
-
-        }
+        resetTabUi(main_home, checkFragment(Constants.config.getTittle_first()));
     }
 
     private void resetTabUi(View selectedView, Fragment selectedFragMent) {
@@ -213,6 +223,24 @@ public class HomeActivityView extends MFBaseMVCView {
         transaction.commit();
     }
 
+    private Fragment checkFragment(String str){
+        if(str.equals("体验区")){
+            return mRecommendFragment;
+        }else if(str.equals("vip")){
+            return vipFragment;
+        }else if(str.equals("黄金区")){
+            return goldFragment;
+        }else if(str.equals("钻石区")){
+            return diamondFragment;
+        }else if(str.equals("黑金区")){
+            return blackGoldFragment;
+        }else if(str.equals("皇冠区")){
+            return crownFragment;
+        }else{
+            return crownFragment;
+        }
+    }
+
     private void hideFragment(){
         if(vipFragment!=null){
             transaction.hide(vipFragment);
@@ -226,11 +254,20 @@ public class HomeActivityView extends MFBaseMVCView {
         if(forumFragment!=null){
             transaction.hide(forumFragment);
         }
-        if(galleryFragment!=null){
-            transaction.hide(galleryFragment);
+        if(blackGoldFragment!=null){
+            transaction.hide(blackGoldFragment);
         }
         if(mRecommendFragment!=null){
             transaction.hide(mRecommendFragment);
+        }
+        if(goldFragment!=null){
+            transaction.hide(goldFragment);
+        }
+        if(diamondFragment!= null){
+            transaction.hide(diamondFragment);
+        }
+        if(crownFragment!= null){
+            transaction.hide(crownFragment);
         }
     }
     @Override
