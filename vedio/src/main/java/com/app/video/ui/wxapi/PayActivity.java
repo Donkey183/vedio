@@ -136,6 +136,5 @@ public class PayActivity extends MFBaseActivity {
         msgApi.sendReq(req);
     }
 
-
 }
 
