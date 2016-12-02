@@ -113,10 +113,15 @@ public class GoldFragment extends MFBaseFragment implements INetFinish, OnRecycl
         if (!(obj instanceof VideoData.Page.Video)) {
             return;
         }
-        VideoData.Page.Video vault = (VideoData.Page.Video) obj;
-        Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
-        intent.putExtra("path", vault.getDyres());
-        startActivity(intent);
+        if(!Constants.config.getVip_now().equals(Constants.GOLD)){
+            CommonAlert alert = new CommonAlert(getActivity());
+            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+        }else{
+            VideoData.Page.Video vault = (VideoData.Page.Video) obj;
+            Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
+            intent.putExtra("path", vault.getDyres());
+            startActivity(intent);
+        }
     }
 
     @Override

@@ -145,6 +145,7 @@ public class CommonAlert {
                     return;
                 }
                 check_packoff(pay1);
+
                 Intent intent = new Intent(context, PayActivity.class);
                 intent.putExtra("lauout",id);
                 context.startActivity(intent);
@@ -159,6 +160,7 @@ public class CommonAlert {
                 }
                 check_packoff(pay2);
                 Intent intent = new Intent(context, PayActivity.class);
+                intent.putExtra("lauout",id);
                 context.startActivity(intent);
             }
 

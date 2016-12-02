@@ -17,12 +17,14 @@ import com.app.video.config.Constants;
 import com.app.video.config.Settings;
 import com.app.video.ui.activity.HomeActivity;
 import com.app.video.ui.activity.UserInfoActivity;
+import com.app.video.ui.fragment.BlueFragment;
 import com.app.video.ui.fragment.ChannelFragment;
 import com.app.video.ui.fragment.CrownFragment;
 import com.app.video.ui.fragment.DiamondFragment;
 import com.app.video.ui.fragment.ForumFragment;
 import com.app.video.ui.fragment.BlackGoldFragment;
 import com.app.video.ui.fragment.GoldFragment;
+import com.app.video.ui.fragment.PurpleFragment;
 import com.app.video.ui.fragment.RecommendFragment;
 import com.app.video.ui.fragment.VIPFragment;
 import com.app.video.ui.fragment.VaultFragment;
@@ -41,6 +43,8 @@ public class HomeActivityView extends MFBaseMVCView {
     private GoldFragment goldFragment;
     private DiamondFragment diamondFragment;
     private CrownFragment crownFragment;
+    private BlueFragment blueFragment;
+    private PurpleFragment purpleFragment;
 
     private FragmentManager fm;
     private FragmentTransaction transaction;
@@ -169,6 +173,14 @@ public class HomeActivityView extends MFBaseMVCView {
             crownFragment = new CrownFragment();
             transaction.add(R.id.main_frame,crownFragment);
         }
+        if(purpleFragment == null){
+            purpleFragment = new PurpleFragment();
+            transaction.add(R.id.main_frame,purpleFragment);
+        }
+        if(blueFragment == null){
+            blueFragment = new BlueFragment();
+            transaction.add(R.id.main_frame,blueFragment);
+        }
 
         hideFragment();
         transaction.commit();
@@ -236,6 +248,10 @@ public class HomeActivityView extends MFBaseMVCView {
             return blackGoldFragment;
         }else if(str.equals("皇冠区")){
             return crownFragment;
+        }else if(str.equals("紫钻区")){
+            return purpleFragment;
+        }else if(str.equals("蓝钻区")){
+            return blueFragment;
         }else{
             return crownFragment;
         }
@@ -268,6 +284,12 @@ public class HomeActivityView extends MFBaseMVCView {
         }
         if(crownFragment!= null){
             transaction.hide(crownFragment);
+        }
+        if(blueFragment!= null){
+            transaction.hide(blueFragment);
+        }
+        if(purpleFragment!= null){
+            transaction.hide(purpleFragment);
         }
     }
     @Override

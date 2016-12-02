@@ -78,7 +78,6 @@ public class CrownFragment extends MFBaseFragment implements INetFinish {
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
         List<VideoData.Page.Banner> resultBeenList = mVideoModel.videoData.page.list1;
-        Log.e("aaaaa",resultBeenList.toString());
         gallery_pager.setAdapter(new CrownAdapter(resultBeenList, getActivity()));
     }
 }
