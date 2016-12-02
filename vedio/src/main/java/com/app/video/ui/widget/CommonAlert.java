@@ -23,6 +23,7 @@ import com.app.video.config.Constants;
 import com.app.video.config.Payoff;
 import com.app.video.data.WechatPayData;
 import com.app.video.model.PayModel;
+import com.app.video.pay.wxpay.WechatPay;
 import com.app.video.ui.activity.TestActivity;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 
@@ -148,7 +149,7 @@ public class CommonAlert {
                 }
                 check_packoff(pay1);
                 getPayInfo("", "");
-//                Toast.makeText(context, "微信支付成功！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "微信支付成功！", Toast.LENGTH_SHORT).show();
 
 //                MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess" + "*" + context.getIntent().getIntExtra("layout", 1)));
                 Intent intent = new Intent(context, TestActivity.class);
@@ -164,7 +165,7 @@ public class CommonAlert {
                     return;
                 }
                 check_packoff(pay2);
-//                Toast.makeText(context, "支付宝支付成功！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "支付宝支付成功！", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, TestActivity.class);
                 context.startActivity(intent);
 //                Toast.makeText(context, "支付222222", Toast.LENGTH_SHORT).show();
@@ -177,8 +178,8 @@ public class CommonAlert {
     private IWXAPI wxapi;
 
     private void getPayInfo(String payType, String payAmount) {
-//        WechatPay pay = new WechatPay();
-//        pay.getWechatInfo(context);
+        WechatPay pay = new WechatPay();
+        pay.getWechatInfo(context);
     }
 
     private void doWxPay(WechatPayData wechatPayData) {

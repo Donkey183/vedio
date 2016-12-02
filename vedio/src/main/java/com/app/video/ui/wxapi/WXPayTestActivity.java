@@ -1,6 +1,9 @@
-package com.app.video.pay.wxpay;
+package com.app.video.ui.wxapi;
 
-import android.content.Context;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
 
 import com.app.basevideo.framework.util.LogUtil;
 import com.app.basevideo.net.CommonHttpRequest;
@@ -9,6 +12,7 @@ import com.app.basevideo.net.call.MFCall;
 import com.app.basevideo.net.callback.MFCallbackAdapter;
 import com.app.basevideo.util.DesUtil;
 import com.app.basevideo.util.MD5;
+import com.app.video.R;
 import com.app.video.data.WechatPayData;
 import com.app.video.net.VedioNetService;
 import com.app.video.net.response.WechatPayResponse;
@@ -25,14 +29,33 @@ import java.util.Random;
 
 import retrofit2.Response;
 
-public class WechatPay {
+public class WXPayTestActivity extends Activity {
+
+    private static final String TAG = "MicroMsg.SDKSample.WXPayEntryActivity";
+
+    private IWXAPI api;
+
+    //appid 微信分配的公众账号ID
+    public static final String APP_ID = "wx310fce993d9b2cc7";
+
+    //商户号 微信分配的公众账号ID
+    public static final String MCH_ID = "1412344602";
+
+    //  API密钥，在商户平台设置
+    public static final String API_KEY = "004859871f07c245cc39829471201101";
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.pay_test);
+    }
 
 
-    public void getWechatInfo(final Context context) {
+    public void getWechatInfo() {
 
         CommonHttpRequest request = new CommonHttpRequest();
-        request.addParam("pid", "100");
-        request.addParam("totalMoney", "0.1");
+        request.addParam("pid", "90");
+        request.addParam("totalMoney", "21");
 
         MFCall<WechatPayResponse> call = HttpRequestService.createService(VedioNetService.class).getWechatPayInfo(request.buildParams());
         call.doRequest(new MFCallbackAdapter<WechatPayResponse>() {
@@ -41,7 +64,7 @@ public class WechatPay {
                 if (entity == null || !entity.success || entity.data == null) {
                     return;
                 }
-                doWechatPay(context, entity.data);
+                doWechatPay(entity.data);
             }
         });
     }
@@ -50,22 +73,26 @@ public class WechatPay {
 
     IWXAPI wechatApi;
 
-    public void doWechatPay(Context context, WechatPayData payData) {
-        mPayReq.appId = DesUtil.decrypt(payData.getAppid(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE");
+    public void doWechatPay(WechatPayData payData) {
+        wechatApi = WXAPIFactory.createWXAPI(WXPayTestActivity.this, APP_ID);
+        wechatApi.registerApp(APP_ID);
+        mPayReq.appId = APP_ID;//DesUtil.decrypt(payData.getAppid(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE");
         mPayReq.prepayId = payData.getPrepayId();
         mPayReq.sign = payData.getSign();
         mPayReq.timeStamp = genTimeStamp();
-        mPayReq.partnerId = DesUtil.decrypt(payData.getMchid(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE");
+        mPayReq.partnerId = MCH_ID;//DesUtil.decrypt(payData.getMchid(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE");
         mPayReq.nonceStr = genNonceStr();
         mPayReq.packageValue = "Sign=WXPay";
-        wechatApi = WXAPIFactory.createWXAPI(context, null);
-        wechatApi.registerApp(DesUtil.decrypt(payData.getAppid(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
+       //DesUtil.decrypt(payData.getAppid(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE")
         wechatApi.sendReq(mPayReq);
         LogUtil.e("==========appId============" + DesUtil.decrypt(payData.getAppid(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
         LogUtil.e("==========商户号============" + DesUtil.decrypt(payData.getMchid(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
         LogUtil.e("==========key============" + DesUtil.decrypt(payData.getKey(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
     }
 
+    public void onBtnClick(View view) {
+        getWechatInfo();
+    }
 
     private void genSign() {
         List<NameValuePair> signParams = new LinkedList();
