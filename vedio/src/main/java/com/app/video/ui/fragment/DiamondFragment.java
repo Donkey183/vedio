@@ -26,7 +26,7 @@ import com.app.video.model.VideoModel;
 import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.ui.widget.CommonAlert;
 
-public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener,View.OnClickListener{
+public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener {
 
     private RecyclerView vip_recyclerView;
     private VIPFragmentAdaptor mAdapter;
@@ -113,17 +113,23 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
         if (!(obj instanceof VideoData.Page.Video)) {
             return;
         }
-        VideoData.Page.Video vault = (VideoData.Page.Video) obj;
-        Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
-        intent.putExtra("path", vault.getDyres());
-        startActivity(intent);
+        if (!Constants.config.getVip_now().equals(Constants.DIAMOND)) {
+            CommonAlert alert = new CommonAlert(getActivity());
+            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+        } else {
+            VideoData.Page.Video vault = (VideoData.Page.Video) obj;
+            Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
+            intent.putExtra("path", vault.getDyres());
+            startActivity(intent);
+        }
+
     }
 
     @Override
-    public void onClick(View view){
-        if(!Constants.config.getVip_now().equals(Constants.RED)){
+    public void onClick(View view) {
+        if (!Constants.config.getVip_now().equals(Constants.RED)) {
             CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
         }
     }
 

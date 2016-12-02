@@ -151,7 +151,6 @@ public class CommonAlert {
                 getPayInfo("", "");
                 Toast.makeText(context, "微信支付成功！", Toast.LENGTH_SHORT).show();
 
-//                MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess" + "*" + context.getIntent().getIntExtra("layout", 1)));
                 Intent intent = new Intent(context, TestActivity.class);
                 context.startActivity(intent);
 //                Toast.makeText(context, "支付111111", Toast.LENGTH_SHORT).show();

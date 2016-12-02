@@ -31,11 +31,12 @@ public class VideoModel extends MFBaseFragmentModel {
     public static final int GET_VEDIO_GLOD = 3;
     public static final int GET_VEDIO_DIAMOND = 4;
     public static final int GET_VEDIO_BLACK_GLOD = 5;
-    public static final int GET_VEDIO_CROWN = 6;
+    public static final int GET_VEDIO_PURPLE = 6;
+    public static final int GET_VEDIO_BLUE = 7;
+    public static final int GET_VEDIO_CROWN = 8;
 
     @Override
     public void sendHttpRequest(CommonHttpRequest request, int requestCode) {
-        Log.e("sendHttpRequest", "sendHttpRequest" + requestCode);
         code = requestCode;
         MFCall<VedioResponse> call = HttpRequestService.createService(VedioNetService.class).getVideoResources(request.buildParams());
         call.doRequest(new MFCallbackAdapter<VedioResponse>() {
@@ -46,7 +47,6 @@ public class VideoModel extends MFBaseFragmentModel {
 
                     return;
                 }
-                Log.e("sendHttpRequest",code + "         " + entity.toString());
                 videoData.page = entity.page;
 
                 disPatchRequestSuccessMessage(code);

@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.app.video.R;
+import com.app.video.config.Constants;
 import com.app.video.data.VideoData;
 import com.app.video.ui.activity.VideoPlayerActivity;
+import com.app.video.ui.widget.CommonAlert;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -52,9 +54,15 @@ public class BlackGoldAdapter extends PagerAdapter {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, VideoPlayerActivity.class);
-                intent.putExtra("path", video.getDyres());
-                context.startActivity(intent);
+                if (!Constants.config.getVip_now().equals(Constants.BLACK)) {
+                    CommonAlert alert = new CommonAlert(context);
+                    alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+                } else {
+                    Intent intent = new Intent(context, VideoPlayerActivity.class);
+                    intent.putExtra("path", video.getDyres());
+                    context.startActivity(intent);
+                }
+
             }
         });
         viewList.add(imageView);
