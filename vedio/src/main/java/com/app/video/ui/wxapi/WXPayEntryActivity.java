@@ -47,6 +47,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         Log.e("pay", "微信支付回调");
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
             Log.e("pay", "微信支付成功");
+
 //			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //			builder.setTitle(R.string.app_tip);
 //			builder.setMessage(getString(R.string.pay_result_callback_msg, resp.errStr +";code=" + String.valueOf(resp.errCode)));
