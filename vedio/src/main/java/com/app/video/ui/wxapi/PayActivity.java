@@ -58,7 +58,6 @@ public class PayActivity extends MFBaseActivity {
         });
     }
 
-
     public void getWechatInfo() {
 
         CommonHttpRequest request = new CommonHttpRequest();
