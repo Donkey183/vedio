@@ -55,7 +55,9 @@ public class VaultFragment extends MFBaseFragment implements INetFinish, OnRecyc
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-//        CommonAlert alert = new CommonAlert(VaultFragment.this.getActivity());
-//        alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(), R.id.forum_layout);
+        if(!Constants.config.getVip_now().equals(Constants.RED)){
+            CommonAlert alert = new CommonAlert(getActivity());
+            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(), R.id.vault_layout);
+        }
     }
 }

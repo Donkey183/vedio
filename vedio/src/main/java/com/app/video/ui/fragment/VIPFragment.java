@@ -116,14 +116,14 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
 //        intent.putExtra("path", vault.getDyres());
 //        startActivity(intent);
         CommonAlert alert = new CommonAlert(getActivity());
-        alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+        alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.vip_layout);
     }
 
     @Override
     public void onClick(View view){
         if(!Constants.config.getVip_now().equals(Constants.RED)){
             CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.vip_layout);
         }
     }
 }

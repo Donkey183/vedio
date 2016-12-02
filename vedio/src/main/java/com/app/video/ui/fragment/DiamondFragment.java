@@ -115,7 +115,7 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
         }
         if (!Constants.config.getVip_now().equals(Constants.DIAMOND)) {
             CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
         } else {
             VideoData.Page.Video vault = (VideoData.Page.Video) obj;
             Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
@@ -129,7 +129,7 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
     public void onClick(View view) {
         if (!Constants.config.getVip_now().equals(Constants.RED)) {
             CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
         }
     }
 

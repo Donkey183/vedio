@@ -8,10 +8,13 @@ import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
+import com.app.video.R;
+import com.app.video.config.Constants;
 import com.app.video.data.ChannelContentData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.ChannelContentModel;
 import com.app.video.ui.view.ChannelActivityView;
+import com.app.video.ui.widget.CommonAlert;
 
 public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRecyclerViewItemClickListener {
 
@@ -47,10 +50,31 @@ public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRec
     public void onItemClick(View view, int position, Object obj) {
         if (obj != null && obj instanceof ChannelContentData.ChannelContent) {
             ChannelContentData.ChannelContent content = (ChannelContentData.ChannelContent) obj;
-            Intent intent = new Intent(ChannelActivity.this,VideoPlayerActivity.class);
-            intent.putExtra("path",content.getCresource());
+            Intent intent = new Intent(ChannelActivity.this, VideoPlayerActivity.class);
+            intent.putExtra("path", content.getCresource());
             startActivity(intent);
         }
 
     }
+
+
+    public void onBtnClick(View v) {
+        switch (v.getId()){
+            case R.id.btn1:
+            case R.id.btn2:
+            case R.id.btn3:
+            case R.id.btn4:
+            case R.id.btn5:
+            case R.id.btn6:
+            case R.id.btn7:
+            case R.id.btn_next:
+                if(!Constants.config.getVip_now().equals(Constants.RED)){
+                    CommonAlert alert = new CommonAlert(this);
+                    alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(), -1);
+                    break;
+                }
+
+        }
+    }
+
 }

@@ -22,6 +22,7 @@ import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.Payoff;
 import com.app.video.model.PayModel;
+import com.app.video.ui.activity.TestActivity;
 import com.app.video.ui.wxapi.PayActivity;
 
 //import com.app.video.net.response.PayResponse;
@@ -146,7 +147,7 @@ public class CommonAlert {
                 }
                 check_packoff(pay1);
 
-                Intent intent = new Intent(context, PayActivity.class);
+                Intent intent = new Intent(context, TestActivity.class);
                 intent.putExtra("lauout",id);
                 context.startActivity(intent);
             }

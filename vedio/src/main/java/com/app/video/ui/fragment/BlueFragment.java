@@ -118,7 +118,7 @@ public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecycl
         }
         if (!Constants.config.getVip_now().equals(Constants.BLUE)&&!Constants.config.getVip_now().equals(Constants.RED)&&!Constants.config.getVip_now().equals(Constants.CROWN)) {
             CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
         } else {
             VideoData.Page.Banner vault = (VideoData.Page.Banner) obj;
             Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
@@ -132,7 +132,7 @@ public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecycl
     public void onClick(View view){
         if(!Constants.config.getVip_now().equals(Constants.RED)){
             CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.vip_layout);
         }
     }
 

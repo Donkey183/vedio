@@ -56,7 +56,7 @@ public class BlackGoldAdapter extends PagerAdapter {
             public void onClick(View v) {
                 if (!Constants.config.getVip_now().equals(Constants.BLACK)) {
                     CommonAlert alert = new CommonAlert(context);
-                    alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+                    alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
                 } else {
                     Intent intent = new Intent(context, VideoPlayerActivity.class);
                     intent.putExtra("path", video.getDyres());
