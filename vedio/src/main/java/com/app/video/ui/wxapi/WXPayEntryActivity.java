@@ -4,9 +4,12 @@ package com.app.video.ui.wxapi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.video.R;
+import com.app.video.config.Constants;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPI;
@@ -26,7 +29,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_result);
 
-        api = WXAPIFactory.createWXAPI(this, "DEF5AC9EF41B6087B0FF3AD76957141A9B5343568BA3896D");
+        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
         api.handleIntent(getIntent(), this);
     }
 
@@ -49,6 +52,8 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         intent.putExtra("errCode", resp.errCode);
         sendBroadcast(intent);
 
+        Toast.makeText(WXPayEntryActivity.this, "微信支付返回成功", Toast.LENGTH_SHORT).show();
+        Log.e("pay", "微信支付返回成功");
         System.out.println("微信返回结果：****************");
         finish();
 //		if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {

@@ -71,15 +71,15 @@ public class WxPayActivity extends Activity {
                 payBtn.setEnabled(true);
             }
         });
-        Button checkPayBtn = (Button) findViewById(R.id.check_pay_btn);
-        checkPayBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                boolean isPaySupported = api.getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT;
-                Toast.makeText(WxPayActivity.this, String.valueOf(isPaySupported), Toast.LENGTH_SHORT).show();
-            }
-        });
+//        Button checkPayBtn = (Button) findViewById(R.id.check_pay_btn);
+//        checkPayBtn.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                boolean isPaySupported = api.getWXAppSupportAPI() >= Build.PAY_SUPPORTED_SDK_INT;
+//                Toast.makeText(WxPayActivity.this, String.valueOf(isPaySupported), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
 }

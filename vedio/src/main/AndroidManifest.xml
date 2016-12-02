@@ -45,25 +45,40 @@
         <service android:name="com.squareup.leakcanary.DisplayLeakService"/>
         <service android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"/>
 
-        <activity android:name=".ui.wxapi.WXPayTestActivity">
-            <data android:scheme="wx310fce993d9b2cc7"/>
+        <!--<activity android:name=".ui.wxapi.WXPayTestActivity">-->
+        <!--<data android:scheme="wx310fce993d9b2cc7"/>-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN"/>-->
+
+        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <activity
+            android:name=".ui.activity.HomeActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
+
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".ui.activity.VideoPlayerActivity"
             android:screenOrientation="landscape"/>
         <activity android:name=".ui.activity.VedioDetailActivity"/>
         <activity android:name=".ui.activity.ChannelActivity"/>
         <activity android:name=".ui.activity.TestActivity"/>
-        <activity android:name=".ui.wxapi.WXPayEntryActivity"/>
-        <!--<activity android:name=".ui.wxapi.WXPayTestActivity">-->
-        <!--<data android:scheme="wx310fce993d9b2cc7"/>-->
-        <!--</activity>-->
-
+        <activity android:name="com.app.video.ui.wxapi.WXPayEntryActivity">
+            <data android:scheme="wx310fce993d9b2cc7"/>
+        </activity>
+        <activity android:name="com.app.video.ui.wxapi.PayActivity">
+            <data android:scheme="wx310fce993d9b2cc7"/>
+        </activity>
 
         <activity android:name=".ui.activity.UserInfoActivity"></activity>
     </application>
