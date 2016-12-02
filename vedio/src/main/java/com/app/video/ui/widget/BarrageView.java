@@ -13,9 +13,7 @@ import android.widget.TextView;
 import com.app.video.R;
 import java.util.Random;
 
-/**
- * Created by AZZ on 15/10/18 19:43.
- */
+
 public class BarrageView extends TextView {
 
   private static final String TAG = "BarrageView";
