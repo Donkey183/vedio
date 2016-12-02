@@ -21,11 +21,8 @@ import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.Payoff;
-import com.app.video.data.WechatPayData;
 import com.app.video.model.PayModel;
-import com.app.video.pay.wxpay.WechatPay;
-import com.app.video.ui.activity.TestActivity;
-import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.app.video.ui.wxapi.PayActivity;
 
 //import com.app.video.net.response.PayResponse;
 
@@ -67,13 +64,13 @@ public class CommonAlert {
         }
     };
 
-    public void showAlert(final Payoff pay1, final Payoff pay2, int id, final int num) {
+    public void showAlert(final Payoff pay1, final Payoff pay2, final int id, final int num) {
 
         alert = new AlertDialog.Builder(context).create();
 
         alert.show();
         Window window = alert.getWindow();
-        LayoutInflater inflate = LayoutInflater.from(context);
+        final LayoutInflater inflate = LayoutInflater.from(context);
         View contentView = inflate.inflate(R.layout.dialog_layout, null);
         WindowUtil.resizeRecursively(contentView);
         window.setContentView(contentView);
@@ -148,12 +145,10 @@ public class CommonAlert {
                     return;
                 }
                 check_packoff(pay1);
-                getPayInfo("", "");
-                Toast.makeText(context, "微信支付成功！", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(context, TestActivity.class);
+                Intent intent = new Intent(context, PayActivity.class);
+                intent.putExtra("lauout",id);
                 context.startActivity(intent);
-//                Toast.makeText(context, "支付111111", Toast.LENGTH_SHORT).show();
             }
         });
         zhifu2.setOnClickListener(new View.OnClickListener() {
@@ -164,26 +159,12 @@ public class CommonAlert {
                     return;
                 }
                 check_packoff(pay2);
-                Toast.makeText(context, "支付宝支付成功！", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, TestActivity.class);
+                Intent intent = new Intent(context, PayActivity.class);
+                intent.putExtra("lauout",id);
                 context.startActivity(intent);
-//                Toast.makeText(context, "支付222222", Toast.LENGTH_SHORT).show();
             }
 
         });
-    }
-
-    private WechatPayData mWechatPayData;
-    private IWXAPI wxapi;
-
-    private void getPayInfo(String payType, String payAmount) {
-        WechatPay pay = new WechatPay();
-        pay.getWechatInfo(context);
-    }
-
-    private void doWxPay(WechatPayData wechatPayData) {
-
-//        wxapi = WXAPIFactory.createWXAPI(context,mWechatPayData.it());
     }
 
     private void check_packoff(Payoff pay) {

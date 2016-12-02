@@ -4,6 +4,16 @@ import com.app.video.R;
 
 
 public class Constants {
+
+    //appid 微信分配的公众账号ID
+    public static final String APP_ID = "wx310fce993d9b2cc7";
+
+    //商户号 微信分配的公众账号ID
+    public static final String MCH_ID = "1412344602";
+
+    //  API密钥，在商户平台设置
+    public static final String API_KEY = "004859871f07c245cc39829471201101";
+
     public static String NORMAL = "normal";
     public static String GOLD = "gold";
     public static String DIAMOND = "deamond";
@@ -22,8 +32,7 @@ public class Constants {
     public static Payoff vip_purple  = new Payoff("紫钻会员","高清大片任你选", R.drawable.purple_diamond,"10");
     public static Payoff vip_blue  = new Payoff("蓝钻会员","高清大片任你选", R.drawable.blue_diamond,"10");
     public static Payoff vip_red  = new Payoff("打赏红包","高清大片任你选", R.drawable.red,"10");
-    public static Payoff vip_king  = new Payoff("皇冠会员","每天3000佳片看到爽", R.drawable.crown,"30");
-
+    public static Payoff vip_king = new Payoff("皇冠会员", "每天3000佳片看到爽", R.drawable.crown, "30");
 
     public static Config nomor_config = new Config(NORMAL,"体验区",R.drawable.home,R.drawable.home2,"vip",R.drawable.vip,R.drawable.vip2,vip_gold,vip_diamond1,R.drawable.pay1);
     public static Config gold_config = new Config(GOLD,"黄金区",R.drawable.vip,R.drawable.vip2,"钻石区",R.drawable.zuanshi,R.drawable.zuanshi2,vip_diamond2,null,R.drawable.pay2);
