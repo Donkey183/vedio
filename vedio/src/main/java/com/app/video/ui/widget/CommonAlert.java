@@ -64,13 +64,13 @@ public class CommonAlert {
         }
     };
 
-    public void showAlert(final Payoff pay1, final Payoff pay2, int id, final int num) {
+    public void showAlert(final Payoff pay1, final Payoff pay2, final int id, final int num) {
 
         alert = new AlertDialog.Builder(context).create();
 
         alert.show();
         Window window = alert.getWindow();
-        LayoutInflater inflate = LayoutInflater.from(context);
+        final LayoutInflater inflate = LayoutInflater.from(context);
         View contentView = inflate.inflate(R.layout.dialog_layout, null);
         WindowUtil.resizeRecursively(contentView);
         window.setContentView(contentView);
@@ -146,6 +146,7 @@ public class CommonAlert {
                 }
                 check_packoff(pay1);
                 Intent intent = new Intent(context, PayActivity.class);
+                intent.putExtra("lauout",id);
                 context.startActivity(intent);
             }
         });

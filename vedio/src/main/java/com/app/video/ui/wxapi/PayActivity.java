@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.app.basevideo.base.MFBaseActivity;
+import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.framework.manager.MessageManager;
+import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.call.MFCall;
@@ -17,8 +20,12 @@ import com.app.video.config.Constants;
 import com.app.video.data.WechatPayData;
 import com.app.video.net.VedioNetService;
 import com.app.video.net.response.WechatPayResponse;
+import com.tencent.mm.sdk.constants.ConstantsAPI;
+import com.tencent.mm.sdk.modelbase.BaseReq;
+import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import org.apache.http.NameValuePair;
@@ -31,7 +38,7 @@ import java.util.Random;
 import retrofit2.Response;
 
 
-public class PayActivity extends MFBaseActivity {
+public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
 
     private static final String TAG = "MicroMsg.SDKSample.PayActivity";
 
@@ -136,5 +143,26 @@ public class PayActivity extends MFBaseActivity {
         msgApi.sendReq(req);
     }
 
+    @Override
+    public void onReq(BaseReq baseReq) {
+
+    }
+
+    @Override
+    public void onResp(BaseResp baseResp) {
+        Log.e("pay", "微信支付回调");
+        if (baseResp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+            Log.e("pay", "微信支付成功");
+//			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//			builder.setTitle(R.string.app_tip);
+//			builder.setMessage(getString(R.string.pay_result_callback_msg, resp.errStr +";code=" + String.valueOf(resp.errCode)));
+//			builder.show();
+        }
+
+        //此处充值成功
+        MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess"+"*"+getIntent().getIntExtra("layout",1)));
+
+
+    }
 }
 
