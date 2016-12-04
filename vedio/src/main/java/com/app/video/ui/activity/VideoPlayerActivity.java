@@ -621,18 +621,20 @@ public class VideoPlayerActivity extends MFBaseActivity
   public int setVideoProgress(int currentProgress) {
 
     if (ksyMediaPlayer == null) return -1;
-
+    long length;
     time = currentProgress > 0 ? currentProgress : ksyMediaPlayer.getCurrentPosition();
-    long length = ksyMediaPlayer.getDuration();
+    if (!Constants.config.getVip_now().equals(Constants.CROWN)&&!Constants.config.getVip_now().equals(Constants.RED)) {
+      length = Constants.config.getPlaylenth()*1000;
+    }else{
+      length = ksyMediaPlayer.getDuration();
+    }
 
     // Update all view elements
     mPlayerSeekbar.setMax((int) length);
     mPlayerSeekbar.setProgress((int) time);
 
     if (time >= 0) {
-      if (time / 1000 > 5 && Constants.config.getVip_now().equals(Constants.NORMAL)) {
-        Intent intent = getIntent();
-        setResult(99,intent);
+      if (time / 1000 > Constants.config.getPlaytime() && Constants.config.getVip_now().equals(Constants.NORMAL)) {
         videoPlayEnd();
       }
       String progress = Strings.millisToString(time) + "/" + Strings.millisToString(length);
@@ -693,6 +695,9 @@ public class VideoPlayerActivity extends MFBaseActivity
   }
 
   private void videoPlayEnd() {
+
+    Intent intent = getIntent();
+    setResult(99,intent);
     if (ksyMediaPlayer != null) {
       ksyMediaPlayer.release();
       ksyMediaPlayer = null;
