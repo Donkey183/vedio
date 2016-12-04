@@ -19,9 +19,9 @@
             <ImageView
                 android:id="@+id/player_img"
                 android:layout_width="match_parent"
-                android:scaleType="fitXY"
-                android:layout_height="@dimen/finance_dimen_600px"
-                android:layout_margin="@dimen/finance_dimen_10px"/>
+                android:layout_height="@dimen/finance_dimen_480px"
+                android:layout_margin="@dimen/finance_dimen_10px"
+                android:scaleType="fitXY"/>
 
             <ImageView
                 android:layout_width="@dimen/finance_dimen_130px"
@@ -29,7 +29,6 @@
                 android:layout_centerInParent="true"
                 android:src="@drawable/home_play"/>
         </RelativeLayout>
-
 
         <RelativeLayout
             android:id="@+id/preplay_bar"
@@ -61,9 +60,8 @@
             android:layout_height="@dimen/finance_dimen_500px"
             android:orientation="horizontal">
 
-
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -71,24 +69,26 @@
                 <ImageView
                     android:id="@+id/img1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:layout_height="@dimen/finance_dimen_400px"
+                    android:layout_marginBottom="@dimen/finance_dimen_10px"
+                    android:layout_marginLeft="@dimen/finance_dimen_10px"
+                    android:layout_marginRight="@dimen/finance_dimen_5px"
+                    android:layout_marginTop="@dimen/finance_dimen_10px"
                     android:scaleType="fitXY"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_launcher"/>
+
                 <TextView
                     android:id="@+id/text1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/finance_dimen_10px"
                     android:singleLine="true"
-                    android:layout_marginLeft="@dimen/finance_dimen_20px"
-                    android:layout_weight="0"/>
+                    android:textSize="@dimen/finance_dimen_40px"/>
 
             </LinearLayout>
 
-
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -96,24 +96,26 @@
                 <ImageView
                     android:id="@+id/img2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:layout_height="@dimen/finance_dimen_400px"
+                    android:layout_marginBottom="@dimen/finance_dimen_10px"
+                    android:layout_marginLeft="@dimen/finance_dimen_5px"
+                    android:layout_marginRight="@dimen/finance_dimen_5px"
+                    android:layout_marginTop="@dimen/finance_dimen_10px"
                     android:scaleType="fitXY"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_launcher"/>
+
                 <TextView
                     android:id="@+id/text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="111"
-                    android:maxLength="8"
+                    android:layout_marginLeft="@dimen/finance_dimen_5px"
                     android:singleLine="true"
-                    android:layout_marginLeft="@dimen/finance_dimen_20px"
-                    android:layout_weight="0"/>
+                    android:textSize="@dimen/finance_dimen_40px"/>
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -121,36 +123,32 @@
                 <ImageView
                     android:id="@+id/img3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:layout_height="@dimen/finance_dimen_400px"
+                    android:layout_marginBottom="@dimen/finance_dimen_10px"
+                    android:layout_marginLeft="@dimen/finance_dimen_5px"
+                    android:layout_marginRight="@dimen/finance_dimen_10px"
+                    android:layout_marginTop="@dimen/finance_dimen_10px"
                     android:scaleType="fitXY"
-                    android:layout_weight="1"
                     android:src="@drawable/ic_launcher"/>
+
                 <TextView
                     android:id="@+id/text3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="111"
-                    android:maxLength="8"
+                    android:layout_marginLeft="@dimen/finance_dimen_5px"
                     android:singleLine="true"
-                    android:layout_marginLeft="@dimen/finance_dimen_20px"
-                    android:layout_weight="0"/>
+                    android:textSize="@dimen/finance_dimen_40px"/>
 
             </LinearLayout>
-
-
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/pre_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/finance_dimen_20px">
-
+            android:layout_marginTop="@dimen/finance_dimen_10px">
         </android.support.v7.widget.RecyclerView>
 
-
     </LinearLayout>
-
 
 </ScrollView>
