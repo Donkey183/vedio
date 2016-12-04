@@ -1,6 +1,5 @@
 package com.app.video.ui.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -22,12 +21,11 @@ import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.VideoModel;
-import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.ui.widget.CommonAlert;
 
-public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener,View.OnClickListener {
+public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener {
     private RecyclerView vip_recyclerView;
-        private VIPFragmentAdaptor mAdapter;
+    private VIPFragmentAdaptor mAdapter;
     private VideoModel mModel;
 
     private Button btn1;
@@ -116,14 +114,14 @@ public class VIPFragment extends MFBaseFragment implements INetFinish, OnRecycle
 //        intent.putExtra("path", vault.getDyres());
 //        startActivity(intent);
         CommonAlert alert = new CommonAlert(getActivity());
-        alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.vip_layout);
+        alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
     }
 
     @Override
-    public void onClick(View view){
-        if(!Constants.config.getVip_now().equals(Constants.RED)){
+    public void onClick(View view) {
+        if (!Constants.config.getVip_now().equals(Constants.RED)) {
             CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.vip_layout);
+            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
         }
     }
 }

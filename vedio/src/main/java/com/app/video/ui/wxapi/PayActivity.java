@@ -56,20 +56,23 @@ public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
 
         //调起微信支付
         Button appayBtn = (Button) findViewById(R.id.appay_btn);
+
+
+        final String payAmount = getIntent().getExtras().getString("payAmount");
         appayBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                getWechatInfo();
+                getWechatInfo(payAmount);
             }
         });
     }
 
-    public void getWechatInfo() {
+    public void getWechatInfo(String payAmount) {
 
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam("pid", "100");
-        request.addParam("totalMoney", "" + Math.random());
+        request.addParam("totalMoney", "" + payAmount);
 
         MFCall<WechatPayResponse> call = HttpRequestService.createService(VedioNetService.class).getWechatPayInfo(request.buildParams());
         call.doRequest(new MFCallbackAdapter<WechatPayResponse>() {
@@ -160,7 +163,7 @@ public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
         }
 
         //此处充值成功
-        MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess"+"*"+getIntent().getIntExtra("layout",1)));
+        MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess" + "*" + getIntent().getIntExtra("layout", 1)));
 
 
     }

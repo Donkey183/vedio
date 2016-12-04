@@ -1,7 +1,7 @@
 package com.app.video.model;
 
-import com.app.basevideo.base.MFBaseFragment;
-import com.app.basevideo.base.MFBaseFragmentModel;
+import com.app.basevideo.base.MFBaseActivity;
+import com.app.basevideo.base.MFBaseModel;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.call.MFCall;
@@ -13,17 +13,23 @@ import com.app.video.net.response.WechatPayResponse;
 import retrofit2.Response;
 
 
-public class PayModel extends MFBaseFragmentModel {
+public class PayModel extends MFBaseModel {
 
-    public PayModel(MFBaseFragment activityContext) {
+    public PayModel(MFBaseActivity activityContext) {
         super(activityContext);
     }
 
     public WechatPayData mWechatPayData;
-    public static final int GET_PAY_INFO = 0x10001;
+    public static final int GET_PAY_GOLD = 90001;
+    public static final int GET_PAY_DIAMOND = 90002;
+    public static final int GET_PAY_BLACK = 90003;
+    public static final int GET_PAY_CROWN = 90004;
+    public static final int GET_PAY_PURPLE = 90005;
+    public static final int GET_PAY_BLUE = 900016;
+    public static final int GET_PAY_RED = 900017;
 
     @Override
-    public void sendHttpRequest(CommonHttpRequest request, int requestCode) {
+    public void sendHttpRequest(CommonHttpRequest request, final int requestCode) {
         MFCall<WechatPayResponse> call = HttpRequestService.createService(VedioNetService.class).getPayInfo(request.buildParams());
         call.doRequest(new MFCallbackAdapter<WechatPayResponse>() {
             @Override
@@ -33,7 +39,7 @@ public class PayModel extends MFBaseFragmentModel {
                     return;
                 }
                 mWechatPayData = entity.data;
-                disPatchRequestSuccessMessage(GET_PAY_INFO);
+                disPatchRequestSuccessMessage(requestCode);
             }
         });
     }
