@@ -39,7 +39,9 @@ import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.QosObject;
 import com.app.video.config.Settings;
+import com.app.video.config.Video;
 import com.app.video.ui.widget.BarrageView;
+import com.app.video.ui.widget.CommonAlert;
 import com.app.video.util.QosThread;
 import com.app.video.util.Strings;
 import com.ksyun.media.player.IMediaPlayer;
@@ -708,33 +710,44 @@ public class VideoPlayerActivity extends MFBaseActivity
 
   private View.OnClickListener mStartBtnListener = new View.OnClickListener() {
     @Override public void onClick(View v) {
-      mPause = !mPause;
-      mHandler.removeMessages(HIDDEN_SEEKBAR);
-      Message msg = new Message();
-      msg.what = HIDDEN_SEEKBAR;
-      mHandler.sendMessageDelayed(msg, 3000);
-      if (mPause) {
-        mPlayerStartBtn.setBackgroundResource(R.drawable.qyvideo_pause_btn);
-        ksyMediaPlayer.pause();
-        mPauseStartTime = System.currentTimeMillis();
-      } else {
-        mPlayerStartBtn.setBackgroundResource(R.drawable.qyvideo_start_btn);
-        ksyMediaPlayer.start();
-        mPausedTime += System.currentTimeMillis() - mPauseStartTime;
-        mPauseStartTime = 0;
-      }
+      playerstart();
     }
   };
+
+  public void playerstart(){
+    mPause = !mPause;
+    mHandler.removeMessages(HIDDEN_SEEKBAR);
+    Message msg = new Message();
+    msg.what = HIDDEN_SEEKBAR;
+    mHandler.sendMessageDelayed(msg, 3000);
+    if (mPause) {
+      mPlayerStartBtn.setBackgroundResource(R.drawable.qyvideo_pause_btn);
+      ksyMediaPlayer.pause();
+      mPauseStartTime = System.currentTimeMillis();
+    } else {
+      mPlayerStartBtn.setBackgroundResource(R.drawable.qyvideo_start_btn);
+      ksyMediaPlayer.start();
+      mPausedTime += System.currentTimeMillis() - mPauseStartTime;
+      mPauseStartTime = 0;
+    }
+  }
 
   private int mVideoProgress = 0;
   private SeekBar.OnSeekBarChangeListener mSeekBarListener = new SeekBar.OnSeekBarChangeListener() {
     @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
       if (fromUser) {
-        mVideoProgress = progress;
-        mHandler.removeMessages(HIDDEN_SEEKBAR);
-        Message msg = new Message();
-        msg.what = HIDDEN_SEEKBAR;
-        mHandler.sendMessageDelayed(msg, 3000);
+        if (!Constants.config.getVip_now().equals(Constants.CROWN)&&!Constants.config.getVip_now().equals(Constants.RED)) {
+          playerstart();
+          CommonAlert alert = new CommonAlert(VideoPlayerActivity.this);
+          alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
+        } else {
+          mVideoProgress = progress;
+          mHandler.removeMessages(HIDDEN_SEEKBAR);
+          Message msg = new Message();
+          msg.what = HIDDEN_SEEKBAR;
+          mHandler.sendMessageDelayed(msg, 3000);
+        }
       }
     }
 
@@ -743,8 +756,13 @@ public class VideoPlayerActivity extends MFBaseActivity
     }
 
     @Override public void onStopTrackingTouch(SeekBar seekBar) {
-      ksyMediaPlayer.seekTo(mVideoProgress);
-      setVideoProgress(mVideoProgress);
+
+      if (!Constants.config.getVip_now().equals(Constants.CROWN)&&!Constants.config.getVip_now().equals(Constants.RED)) {
+
+      } else {
+        ksyMediaPlayer.seekTo(mVideoProgress);
+        setVideoProgress(mVideoProgress);
+      }
     }
   };
 
