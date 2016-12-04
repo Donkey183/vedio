@@ -14,6 +14,15 @@ public class Config {
     private Payoff pay2;
     private @DrawableRes int pay_img;
     private int playtime;
+    private int playlenth;
+
+    public int getPlaylenth() {
+        return playlenth;
+    }
+
+    public void setPlaylenth(int playlenth) {
+        this.playlenth = playlenth;
+    }
 
     public int getPlaytime() {
         return playtime;
@@ -23,7 +32,7 @@ public class Config {
         this.playtime = playtime;
     }
 
-    public Config(String vip_now, String tittle_first, int img_first1, int img_first2, String tittle_vip, int img_vip1, int img_vip2, Payoff pay1, Payoff pay2, int pay_img,int playtime) {
+    public Config(String vip_now, String tittle_first, int img_first1, int img_first2, String tittle_vip, int img_vip1, int img_vip2, Payoff pay1, Payoff pay2, int pay_img,int playtime,int playlenth) {
         this.vip_now = vip_now;
         this.tittle_first = tittle_first;
         this.img_first1 = img_first1;
@@ -35,6 +44,7 @@ public class Config {
         this.pay2 = pay2;
         this.pay_img = pay_img;
         this.playtime = playtime;
+        this.playlenth = playlenth;
     }
 
     public String getVip_now() {
