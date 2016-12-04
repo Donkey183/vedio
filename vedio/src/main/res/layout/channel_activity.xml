@@ -1,113 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/finance_f0f0f0">
+            android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/channel_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="@dimen/finance_dimen_150px"
+        android:background="@color/finance_fe8ca2">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/vip_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-        </android.support.v7.widget.RecyclerView>
+        <ImageView
+            android:id="@+id/channel_back"
+            android:layout_width="@dimen/finance_dimen_110px"
+            android:layout_height="@dimen/finance_dimen_110px"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/finance_dimen_20px"
+            android:src="@drawable/back"/>
 
         <TextView
-            android:id="@+id/vit_text"
+            android:id="@+id/channel_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/vip_recycler"
+            android:layout_centerInParent="true"
+            android:textColor="@color/finance_ffffffff"
+            android:textSize="@dimen/finance_dimen_60px"
+            android:text="频道详情"
+            android:textStyle="bold"/>
 
-            android:text="请升级高级会员,获取更多影片资源!!"
-            android:textColor="@color/finance_ff0000"/>
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/channel_bar"
+        android:background="@color/finance_f0f0f0">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/finance_dimen_100px"
-            android:layout_below="@+id/vit_text"
-            android:layout_marginTop="@dimen/finance_dimen_30px"
-            android:gravity="center">
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn1"
-                android:layout_width="@dimen/finance_dimen_70px"
-                android:layout_height="@dimen/finance_dimen_70px"
-                android:layout_margin="@dimen/finance_dimen_10px"
-                android:background="@drawable/btn_back"
-                android:onClick="onBtnClick"
-                android:text="1"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/vip_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-            <Button
-                android:id="@+id/btn2"
-                android:layout_width="@dimen/finance_dimen_70px"
-                android:layout_height="@dimen/finance_dimen_70px"
-                android:layout_margin="@dimen/finance_dimen_10px"
-                android:background="@drawable/btn_back"
-                android:onClick="onBtnClick"
-                android:text="2"/>
+            </android.support.v7.widget.RecyclerView>
 
-            <Button
-                android:id="@+id/btn3"
-                android:layout_width="@dimen/finance_dimen_70px"
-                android:layout_height="@dimen/finance_dimen_70px"
-                android:layout_margin="@dimen/finance_dimen_10px"
-                android:background="@drawable/btn_back"
-                android:onClick="onBtnClick"
-                android:text="3"/>
-
-            <Button
-                android:id="@+id/btn4"
-                android:layout_width="@dimen/finance_dimen_70px"
-                android:layout_height="@dimen/finance_dimen_70px"
-                android:layout_margin="@dimen/finance_dimen_10px"
-                android:background="@drawable/btn_back"
-                android:onClick="onBtnClick"
-                android:text="4"/>
-
-            <Button
-                android:id="@+id/btn5"
-                android:layout_width="@dimen/finance_dimen_70px"
-                android:layout_height="@dimen/finance_dimen_70px"
-                android:layout_margin="@dimen/finance_dimen_10px"
-                android:background="@drawable/btn_back"
-                android:onClick="onBtnClick"
-                android:text="5"/>
-
-            <Button
-                android:id="@+id/btn6"
-                android:layout_width="@dimen/finance_dimen_70px"
-                android:layout_height="@dimen/finance_dimen_70px"
-                android:layout_margin="@dimen/finance_dimen_10px"
-                android:background="@drawable/btn_back"
-                android:onClick="onBtnClick"
-                android:text="6"/>
-
-            <Button
-                android:id="@+id/btn7"
-                android:layout_width="@dimen/finance_dimen_70px"
-                android:layout_height="@dimen/finance_dimen_70px"
-                android:layout_margin="@dimen/finance_dimen_10px"
-                android:background="@drawable/btn_back"
-                android:onClick="onBtnClick"
-                android:text="7"/>
-
-            <Button
-                android:id="@+id/btn_next"
+            <TextView
+                android:id="@+id/vit_text"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/finance_dimen_70px"
-                android:layout_margin="@dimen/finance_dimen_10px"
-                android:background="@drawable/btn_back"
-                android:onClick="onBtnClick"
-                android:text="下一页"/>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vip_recycler"
+
+                android:text="请升级高级会员,获取更多影片资源!!"
+                android:textColor="@color/finance_ff0000"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/finance_dimen_100px"
+                android:layout_below="@+id/vit_text"
+                android:layout_marginTop="@dimen/finance_dimen_30px"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn1"
+                    android:layout_width="@dimen/finance_dimen_70px"
+                    android:layout_height="@dimen/finance_dimen_70px"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:background="@drawable/btn_back"
+                    android:onClick="onBtnClick"
+                    android:text="1"/>
+
+                <Button
+                    android:id="@+id/btn2"
+                    android:layout_width="@dimen/finance_dimen_70px"
+                    android:layout_height="@dimen/finance_dimen_70px"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:background="@drawable/btn_back"
+                    android:onClick="onBtnClick"
+                    android:text="2"/>
+
+                <Button
+                    android:id="@+id/btn3"
+                    android:layout_width="@dimen/finance_dimen_70px"
+                    android:layout_height="@dimen/finance_dimen_70px"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:background="@drawable/btn_back"
+                    android:onClick="onBtnClick"
+                    android:text="3"/>
+
+                <Button
+                    android:id="@+id/btn4"
+                    android:layout_width="@dimen/finance_dimen_70px"
+                    android:layout_height="@dimen/finance_dimen_70px"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:background="@drawable/btn_back"
+                    android:onClick="onBtnClick"
+                    android:text="4"/>
+
+                <Button
+                    android:id="@+id/btn5"
+                    android:layout_width="@dimen/finance_dimen_70px"
+                    android:layout_height="@dimen/finance_dimen_70px"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:background="@drawable/btn_back"
+                    android:onClick="onBtnClick"
+                    android:text="5"/>
+
+                <Button
+                    android:id="@+id/btn6"
+                    android:layout_width="@dimen/finance_dimen_70px"
+                    android:layout_height="@dimen/finance_dimen_70px"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:background="@drawable/btn_back"
+                    android:onClick="onBtnClick"
+                    android:text="6"/>
+
+                <Button
+                    android:id="@+id/btn7"
+                    android:layout_width="@dimen/finance_dimen_70px"
+                    android:layout_height="@dimen/finance_dimen_70px"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:background="@drawable/btn_back"
+                    android:onClick="onBtnClick"
+                    android:text="7"/>
+
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/finance_dimen_70px"
+                    android:layout_margin="@dimen/finance_dimen_10px"
+                    android:background="@drawable/btn_back"
+                    android:onClick="onBtnClick"
+                    android:text="下一页"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
-</ScrollView>
+
+</RelativeLayout>

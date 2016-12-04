@@ -15,6 +15,8 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.adaptor.ChannelAdaptor;
+import com.app.video.data.ChannelData;
+import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.ChannelModel;
 import com.app.video.ui.activity.ChannelActivity;
@@ -56,7 +58,14 @@ public class ChannelFragment extends MFBaseFragment implements INetFinish, OnRec
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-        Intent intent = new Intent(ChannelFragment.this.getActivity(), ChannelActivity.class);
-        startActivity(intent);
+        if (!(obj instanceof ChannelData)) {
+            return;
+        }else{
+            ChannelData date = (ChannelData)obj;
+            Intent intent = new Intent(ChannelFragment.this.getActivity(), ChannelActivity.class);
+            intent.putExtra("name",date.getDname());
+            startActivity(intent);
+        }
+
     }
 }
