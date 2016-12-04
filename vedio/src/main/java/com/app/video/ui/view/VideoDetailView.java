@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ public class VideoDetailView extends MFBaseMVCView {
     private View.OnClickListener mOnClickListener;
     private ImageView mplayerImg;
     private ScrollView mScrollView;
+    private RelativeLayout player_layout;
 
     private ImageView img1;
     private ImageView img2;
@@ -49,6 +51,7 @@ public class VideoDetailView extends MFBaseMVCView {
         mplayerImg = (ImageView) mActivity.findViewById(R.id.player_img);
         mListView = (RecyclerView) mActivity.findViewById(R.id.pre_list);
         mScrollView = (ScrollView) mActivity.findViewById(R.id.scroll);
+        player_layout = (RelativeLayout) mActivity.findViewById(R.id.player_layout);
 
         img1 = (ImageView) mActivity.findViewById(R.id.img1);
         img2 = (ImageView) mActivity.findViewById(R.id.img2);
@@ -73,7 +76,7 @@ public class VideoDetailView extends MFBaseMVCView {
         final String img = intent.getStringExtra("img");
         Glide.with(mActivity).load(img).error(R.drawable.cha).into(mplayerImg);
 
-        mplayerImg.setOnClickListener(new View.OnClickListener() {
+        player_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mActivity, VideoPlayerActivity.class);
@@ -89,7 +92,6 @@ public class VideoDetailView extends MFBaseMVCView {
         mListView.setAdapter(mDetailAdapter);
         mDetailAdapter.showVideoDetail(detailData);
         showRecom(detailData);
-
 
     }
 
