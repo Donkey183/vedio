@@ -22,6 +22,7 @@ import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.model.HomeActivityModel;
+import com.app.video.model.PayModel;
 import com.app.video.ui.view.HomeActivityView;
 
 public class HomeActivity extends MFBaseActivity implements INetFinish {
@@ -30,6 +31,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
     private HomeActivityModel mHomeModel;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private PayModel mPayModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,9 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
         mHomeView = new HomeActivityView(this, linenter);
         mHomeModel = new HomeActivityModel(this);
+        mPayModel = new PayModel(this);
         preLoadPageData();
+        getPayInfos();
         registerListener(paySuccessListener);
     }
 
@@ -111,6 +115,9 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         }
     };
 
+   private void getPayInfos(){
+
+    }
 
     private void choseClick(int id) {
         switch (id) {

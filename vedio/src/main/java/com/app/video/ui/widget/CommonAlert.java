@@ -49,8 +49,6 @@ public class CommonAlert {
 
     AlertDialog alert;
 
-    private PayModel mPayModel;
-
     public CommonAlert(Context context) {
         this.context = context;
         MessageManager.getInstance().registerListener(dissmissAlertListener);
@@ -147,8 +145,9 @@ public class CommonAlert {
                 }
                 check_packoff(pay1);
 
-                Intent intent = new Intent(context, TestActivity.class);
-                intent.putExtra("lauout",id);
+                Intent intent = new Intent(context, check_wechat.isChecked() ? PayActivity.class : TestActivity.class);
+                intent.putExtra("lauout", id);
+                intent.putExtra("payAmount", pay1.getVip_money());
                 context.startActivity(intent);
             }
         });
@@ -160,8 +159,9 @@ public class CommonAlert {
                     return;
                 }
                 check_packoff(pay2);
-                Intent intent = new Intent(context, PayActivity.class);
-                intent.putExtra("lauout",id);
+                Intent intent = new Intent(context, check_wechat.isChecked() ? PayActivity.class : TestActivity.class);
+                intent.putExtra("lauout", id);
+                intent.putExtra("payAmount", pay2.getVip_money());
                 context.startActivity(intent);
             }
 
