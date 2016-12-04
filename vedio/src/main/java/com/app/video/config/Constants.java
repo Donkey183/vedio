@@ -42,6 +42,8 @@ public class Constants {
     public static Config purple_config = new Config(PURPLE,"紫钻区",R.drawable.zuanshi,R.drawable.zuanshi2,"蓝钻区",R.drawable.zuanshi,R.drawable.zuanshi2,vip_blue,null,R.drawable.pay5,120,6045);
     public static Config blue_config = new Config(BLUE,"蓝钻区",R.drawable.zuanshi,R.drawable.zuanshi2,"皇冠区",R.drawable.crown1,R.drawable.crown2,vip_king,null,R.drawable.pay6,180,6609);
     public static Config red_config = new Config(RED,"蓝钻区",R.drawable.zuanshi,R.drawable.zuanshi2,"皇冠区",R.drawable.crown1,R.drawable.crown2,null,null,R.drawable.pay6,-1,-1);
+    public static Config crown_config = new Config(CROWN,"蓝钻区",R.drawable.black,R.drawable.black2,"皇冠区",R.drawable.crown1,R.drawable.crown2,vip_red,null,R.drawable.pay7,-1,-1);
+
     public static Config config;
 
     public static Config pay_config;
