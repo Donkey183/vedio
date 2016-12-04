@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/finance_f9f9f9">
 
     <ImageView
         android:id="@+id/item_img"
         android:layout_width="@dimen/finance_dimen_160px"
         android:layout_height="@dimen/finance_dimen_160px"
+        android:layout_marginLeft="@dimen/finance_dimen_25px"
+        android:layout_marginTop="@dimen/finance_dimen_20px"
+        android:layout_centerVertical="true"
         android:scaleType="fitXY"/>
 
     <LinearLayout
+        android:id="@+id/lay_item"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/finance_dimen_220px"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_margin="@dimen/finance_dimen_15px"
+        android:layout_marginLeft="@dimen/finance_dimen_30px"
+        android:paddingBottom="@dimen/finance_dimen_20px"
         android:layout_toRightOf="@+id/item_img"
         android:orientation="vertical">
 
@@ -21,25 +27,32 @@
             android:id="@+id/item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/finance_dimen_20px"
             android:layout_toRightOf="@+id/item_img"
-            android:textColor="@color/finance_353535"
-            android:textSize="@dimen/finance_dimen_50px"/>
+            android:textColor="@color/finance_ff5f5f"
+            android:textSize="@dimen/finance_dimen_46px"/>
 
         <TextView
             android:id="@+id/item_mesg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/finance_dimen_34px"
-            android:textStyle="bold"/>
+            android:layout_marginTop="@dimen/finance_dimen_15px"
+            android:textColor="@color/finance_969696"
+            android:textSize="@dimen/finance_dimen_46px"/>
 
         <TextView
             android:id="@+id/item_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/finance_dimen_10px"
-            android:textSize="@dimen/finance_dimen_34px"
-            android:textStyle="bold"/>
+            android:layout_marginTop="@dimen/finance_dimen_15px"
+            android:textColor="@color/finance_969696"
+            android:textSize="@dimen/finance_dimen_42px"/>
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_1px"
+        android:layout_below="@+id/lay_item"
+        android:background="@color/finance_e0e0e0"/>
 </RelativeLayout>

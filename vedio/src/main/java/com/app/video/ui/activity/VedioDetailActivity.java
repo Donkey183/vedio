@@ -3,7 +3,6 @@ package com.app.video.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.framework.message.CommonMessage;
@@ -38,7 +37,8 @@ public class VedioDetailActivity extends MFBaseActivity implements INetFinish, V
 
     @Override
     public void onClick(View v) {
-
+        CommonAlert alert = new CommonAlert(VedioDetailActivity.this);
+        alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
     }
 
     @Override
@@ -49,10 +49,10 @@ public class VedioDetailActivity extends MFBaseActivity implements INetFinish, V
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (resultCode){
+        switch (resultCode) {
             case 99:
                 CommonAlert alert = new CommonAlert(this);
-                alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(), R.id.home_layout);
+                alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.home_layout);
                 break;
             default:
                 break;

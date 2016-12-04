@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/finance_f0f0f0">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/finance_f0f0f0"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -33,16 +33,19 @@
         <RelativeLayout
             android:id="@+id/preplay_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/finance_dimen_70px"
-            android:layout_marginTop="@dimen/finance_dimen_10px">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/finance_dimen_25px"
+            android:background="@color/finance_f9f9f9"
+            android:paddingBottom="@dimen/finance_dimen_10px">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/finance_dimen_20px"
+                android:layout_marginTop="@dimen/finance_dimen_15px"
                 android:text="猜你喜欢"
-                android:textSize="@dimen/finance_dimen_46px"/>
+                android:textSize="@dimen/finance_dimen_44px"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,13 +54,15 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/finance_dimen_20px"
                 android:text="更多>>"
-                android:textSize="@dimen/finance_dimen_46px"/>
+                android:textSize="@dimen/finance_dimen_46px"
+                android:visibility="invisible"/>
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/finance_dimen_500px"
+            android:background="@color/finance_f9f9f9"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -142,11 +147,50 @@
             </LinearLayout>
         </LinearLayout>
 
+        <RelativeLayout
+            android:id="@+id/hot_talk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/finance_dimen_24px"
+            android:background="@color/finance_f9f9f9"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/finance_dimen_20px"
+                android:layout_marginTop="@dimen/finance_dimen_20px"
+                android:text="狼友评论"
+                android:textColor="@color/finance_828282"
+                android:textSize="@dimen/finance_dimen_46px"/>
+
+            <TextView
+                android:id="@+id/hot_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/finance_dimen_40px"
+                android:layout_marginTop="@dimen/finance_dimen_20px"
+                android:background="@drawable/hot_talk_shape"
+                android:text="热评"
+                android:textColor="@color/finance_ffffffff"
+                android:textSize="@dimen/finance_dimen_40px"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/finance_dimen_1px"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/hot_tv"
+                android:layout_marginTop="@dimen/finance_dimen_20px"
+                android:background="@color/finance_e5e5e5"/>
+        </RelativeLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/pre_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/finance_dimen_10px">
+            android:background="@color/finance_f9f9f9">
         </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>

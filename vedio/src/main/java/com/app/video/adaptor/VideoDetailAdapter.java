@@ -18,6 +18,7 @@ import com.app.video.data.VideoDetailData;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VideoDetailAdapter extends RecyclerView.Adapter<VideoDetailAdapter.ViewHolder> {
@@ -36,6 +37,7 @@ public class VideoDetailAdapter extends RecyclerView.Adapter<VideoDetailAdapter.
     public VideoDetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.preplay_item, parent, false);
+        view.setOnClickListener(mOnClickListener);
         WindowUtil.resizeRecursively(view);
         ViewHolder holder = new ViewHolder(view);
         return holder;
