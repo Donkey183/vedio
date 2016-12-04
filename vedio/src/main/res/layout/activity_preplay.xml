@@ -24,8 +24,8 @@
                 android:layout_margin="@dimen/finance_dimen_10px"/>
 
             <ImageView
-                android:layout_width="@dimen/finance_dimen_240px"
-                android:layout_height="@dimen/finance_dimen_240px"
+                android:layout_width="@dimen/finance_dimen_130px"
+                android:layout_height="@dimen/finance_dimen_130px"
                 android:layout_centerInParent="true"
                 android:src="@drawable/home_play"/>
         </RelativeLayout>
@@ -75,13 +75,11 @@
                     android:layout_margin="@dimen/finance_dimen_10px"
                     android:scaleType="fitXY"
                     android:layout_weight="1"
-                    android:src="@drawable/zhifu"/>
+                    android:src="@drawable/ic_launcher"/>
                 <TextView
                     android:id="@+id/text1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLength="8"
-                    android:text="111"
                     android:singleLine="true"
                     android:layout_marginLeft="@dimen/finance_dimen_20px"
                     android:layout_weight="0"/>
@@ -102,7 +100,7 @@
                     android:layout_margin="@dimen/finance_dimen_10px"
                     android:scaleType="fitXY"
                     android:layout_weight="1"
-                    android:src="@drawable/zhifu"/>
+                    android:src="@drawable/ic_launcher"/>
                 <TextView
                     android:id="@+id/text2"
                     android:layout_width="wrap_content"
@@ -127,7 +125,7 @@
                     android:layout_margin="@dimen/finance_dimen_10px"
                     android:scaleType="fitXY"
                     android:layout_weight="1"
-                    android:src="@drawable/zhifu"/>
+                    android:src="@drawable/ic_launcher"/>
                 <TextView
                     android:id="@+id/text3"
                     android:layout_width="wrap_content"

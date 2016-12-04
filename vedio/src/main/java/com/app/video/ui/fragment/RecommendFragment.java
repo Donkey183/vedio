@@ -82,7 +82,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
             img = ((VideoData.Page.Video) obj).getDypic();
         } else if (obj instanceof VideoData.Page.Banner) {
             recourseUrl = ((VideoData.Page.Banner) obj).getDyresource();
-            img = ((VideoData.Page.Video) obj).getDypic();
+            img = ((VideoData.Page.Banner) obj).getDypic();
         }
 
         Intent intent = new Intent(getActivity(), VedioDetailActivity.class);
