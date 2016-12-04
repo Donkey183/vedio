@@ -51,7 +51,6 @@
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
-
             </intent-filter>
         </activity>
 
@@ -62,7 +61,7 @@
         <activity
             android:name=".ui.activity.VideoPlayerActivity"
             android:screenOrientation="landscape"/>
-        <activity android:name=".ui.activity.VedioDetailActivity"/>
+        <activity android:name=".ui.activity.VedioDetailActivity" />
         <activity android:name=".ui.activity.ChannelActivity"/>
         <activity android:name=".ui.activity.TestActivity"/>
         <activity android:name="com.app.video.ui.wxapi.PayActivity">

@@ -20,4 +20,5 @@
     <dimen name="finance_dimen_1100px">1100px</dimen>
     <dimen name="dimen_20">20dp</dimen>
     <dimen name="finance_dimen_25px">20px</dimen>
+    <dimen name="finance_dimen_170px">170px</dimen>
 </resources>

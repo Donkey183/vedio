@@ -85,6 +85,7 @@ public class VideoPlayerActivity extends MFBaseActivity
   private Handler mHandler;
 
   private RelativeLayout mPlayerPanel;
+  private RelativeLayout player_tittle;
   private ImageView mPlayerStartBtn;
   private SeekBar mPlayerSeekbar;
   private TextView mPlayerPosition;
@@ -100,6 +101,7 @@ public class VideoPlayerActivity extends MFBaseActivity
   private TextView mSdkVersion;
   private TextView mDNSTime;
   private TextView mHttpConnectionTime;
+  private ImageView player_back;
 
   private RelativeLayout toppanel;
   private Button reload;
@@ -369,6 +371,15 @@ public class VideoPlayerActivity extends MFBaseActivity
     mSdkVersion = (TextView) findViewById(R.id.player_sdk_version);
     mDNSTime = (TextView) findViewById(R.id.player_dns_time);
     mHttpConnectionTime = (TextView) findViewById(R.id.player_http_connection_time);
+    player_back = (ImageView) findViewById(R.id.player_back);
+    player_tittle = (RelativeLayout) findViewById(R.id.player_tittle);
+    player_tittle.setVisibility(View.GONE);
+    player_back.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        videoPlayEnd();
+      }
+    });
 
     toppanel = (RelativeLayout) findViewById(R.id.topPanel_player);
     reload = (Button) findViewById(R.id.player_reload);
@@ -410,6 +421,7 @@ public class VideoPlayerActivity extends MFBaseActivity
           case HIDDEN_SEEKBAR:
             mPlayerPanelShow = false;
             mPlayerPanel.setVisibility(View.GONE);
+            player_tittle.setVisibility(View.GONE);
             toppanel.setVisibility(View.GONE);
             break;
           case UPDATE_QOSMESS:
@@ -590,6 +602,7 @@ public class VideoPlayerActivity extends MFBaseActivity
 
     if (mPlayerPanelShow) {
       mPlayerPanel.setVisibility(View.VISIBLE);
+      player_tittle.setVisibility(View.VISIBLE);
       toppanel.setVisibility(View.VISIBLE);
 
       Message msg = new Message();
@@ -597,6 +610,7 @@ public class VideoPlayerActivity extends MFBaseActivity
       mHandler.sendMessageDelayed(msg, 3000);
     } else {
       mPlayerPanel.setVisibility(View.GONE);
+      player_tittle.setVisibility(View.GONE);
       toppanel.setVisibility(View.GONE);
       mHandler.removeMessages(HIDDEN_SEEKBAR);
     }
@@ -614,7 +628,7 @@ public class VideoPlayerActivity extends MFBaseActivity
     mPlayerSeekbar.setProgress((int) time);
 
     if (time >= 0) {
-      if (time / 1000 > 15 && Constants.config.getVip_now().equals(Constants.NORMAL)) {
+      if (time / 1000 > 5 && Constants.config.getVip_now().equals(Constants.NORMAL)) {
         Intent intent = getIntent();
         setResult(99,intent);
         videoPlayEnd();

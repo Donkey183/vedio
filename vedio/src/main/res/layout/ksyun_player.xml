@@ -236,4 +236,21 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/player_tittle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_170px"
+        android:layout_alignParentTop="true"
+        android:background="@color/finance_70000000">
+
+        <ImageView
+            android:id="@+id/player_back"
+            android:layout_width="@dimen/finance_dimen_100px"
+            android:layout_height="@dimen/finance_dimen_100px"
+            android:layout_marginLeft="@dimen/finance_dimen_32px"
+            android:layout_centerVertical="true"
+            android:src="@drawable/player_back"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>
