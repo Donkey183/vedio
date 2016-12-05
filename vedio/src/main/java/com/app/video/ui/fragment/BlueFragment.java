@@ -32,7 +32,7 @@ import com.app.video.ui.widget.CommonAlert;
 public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener,View.OnClickListener{
 
     private RecyclerView vip_recyclerView;
-    private BlueFragmentAdapter mAdapter;
+    private VIPFragmentAdaptor mAdapter;
     private VideoModel mModel;
     private LinearLayout btn_layout;
 
@@ -61,12 +61,19 @@ public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecycl
         btn_layout = (LinearLayout) view.findViewById(R.id.btn_layout);
         btn_layout.setVisibility(View.GONE);
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
-        vip_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4) {
+        GridLayoutManager manager = new GridLayoutManager(getActivity(),4) {
             @Override
             public boolean canScrollVertically() {
                 return false;
             }
+        };
+        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return position == 0 ? 4 : 1;
+            }
         });
+        vip_recyclerView.setLayoutManager(manager);
 
         btn1 = (Button) view.findViewById(R.id.btn1);
         btn2 = (Button) view.findViewById(R.id.btn2);
@@ -105,24 +112,30 @@ public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecycl
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        mAdapter = new BlueFragmentAdapter(this.getActivity().getApplicationContext());
+        mAdapter = new VIPFragmentAdaptor(this.getActivity().getApplicationContext());
         mAdapter.setOnItemClickListener(this);
         vip_recyclerView.setAdapter(mAdapter);
-        mAdapter.showVIPView(mModel.videoData.page.list1);
+        mAdapter.showVIPView(mModel.videoData.page.result,mModel.videoData.page.list1);
     }
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-        if (!(obj instanceof VideoData.Page.Banner)) {
-            return;
-        }
-        if (!Constants.config.getVip_now().equals(Constants.BLUE)&&!Constants.config.getVip_now().equals(Constants.RED)&&!Constants.config.getVip_now().equals(Constants.CROWN)) {
+        if(!Constants.config.getVip_now().equals(Constants.BLUE)){
             CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
-        } else {
-            VideoData.Page.Banner vault = (VideoData.Page.Banner) obj;
-            Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
-            intent.putExtra("path", vault.getDyresource());
+            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.vip_layout);
+        }else{
+            String recourseUrl = "";
+            String img = "";
+            if (obj instanceof VideoData.Page.Video) {
+                recourseUrl = ((VideoData.Page.Video) obj).getDyres();
+                img = ((VideoData.Page.Video) obj).getDypic();
+            } else if (obj instanceof VideoData.Page.Banner) {
+                recourseUrl = ((VideoData.Page.Banner) obj).getDyresource();
+                img = ((VideoData.Page.Banner) obj).getDypic();
+            }
+            Intent intent = new Intent(getActivity(),VideoPlayerActivity.class);
+            intent.putExtra("path", recourseUrl);
+            intent.putExtra("img",img);
             startActivity(intent);
         }
 

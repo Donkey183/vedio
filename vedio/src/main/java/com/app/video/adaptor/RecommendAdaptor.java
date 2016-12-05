@@ -81,7 +81,6 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
     @Override
     public RecommendViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View view;
-
         if (viewType == IS_HEADER) {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.head_banner_layout, parent, false);
@@ -111,7 +110,7 @@ public class RecommendAdaptor extends RecyclerView.Adapter<RecommendAdaptor.Reco
         if (getItemViewType(position) == IS_HEADER) return;
 
         holder.video_name.setText(getItem(position).getDname());
-        holder.video_type.setText(mVideoList.get(position).getDytype());
+        holder.video_type.setText(mVideoList.get(position).getDlabel());
         Glide.with(mContext)
                 .load(mVideoList.get(position).getDypic())
                 .placeholder(R.mipmap.ic_launcher)
