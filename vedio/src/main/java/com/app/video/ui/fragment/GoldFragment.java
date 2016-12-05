@@ -23,6 +23,7 @@ import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.VideoModel;
+import com.app.video.ui.activity.VedioDetailActivity;
 import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.ui.widget.CommonAlert;
 
@@ -58,12 +59,19 @@ public class GoldFragment extends MFBaseFragment implements INetFinish, OnRecycl
         btn_layout = (LinearLayout) view.findViewById(R.id.btn_layout);
         btn_layout.setVisibility(View.GONE);
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
-        vip_recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3) {
+        GridLayoutManager manager = new GridLayoutManager(getActivity(),3) {
             @Override
             public boolean canScrollVertically() {
                 return false;
             }
+        };
+        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return position == 0 ? 3 : 1;
+            }
         });
+        vip_recyclerView.setLayoutManager(manager);
 
         btn1 = (Button) view.findViewById(R.id.btn1);
         btn2 = (Button) view.findViewById(R.id.btn2);
@@ -105,21 +113,28 @@ public class GoldFragment extends MFBaseFragment implements INetFinish, OnRecycl
         mAdapter = new VIPFragmentAdaptor(this.getActivity().getApplicationContext());
         mAdapter.setOnItemClickListener(this);
         vip_recyclerView.setAdapter(mAdapter);
-        mAdapter.showVIPView(mModel.videoData.page.result);
+        mAdapter.showVIPView(mModel.videoData.page.result,mModel.videoData.page.list1);
     }
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-        if (!(obj instanceof VideoData.Page.Video)) {
-            return;
-        }
+
         if(!Constants.config.getVip_now().equals(Constants.GOLD)){
             CommonAlert alert = new CommonAlert(getActivity());
             alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.vip_layout);
         }else{
-            VideoData.Page.Video vault = (VideoData.Page.Video) obj;
-            Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
-            intent.putExtra("path", vault.getDyres());
+            String recourseUrl = "";
+            String img = "";
+            if (obj instanceof VideoData.Page.Video) {
+                recourseUrl = ((VideoData.Page.Video) obj).getDyres();
+                img = ((VideoData.Page.Video) obj).getDypic();
+            } else if (obj instanceof VideoData.Page.Banner) {
+                recourseUrl = ((VideoData.Page.Banner) obj).getDyresource();
+                img = ((VideoData.Page.Banner) obj).getDypic();
+            }
+            Intent intent = new Intent(getActivity(),VideoPlayerActivity.class);
+            intent.putExtra("path", recourseUrl);
+            intent.putExtra("img",img);
             startActivity(intent);
         }
     }

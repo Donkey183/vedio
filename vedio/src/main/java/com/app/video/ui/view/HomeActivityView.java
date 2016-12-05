@@ -26,7 +26,6 @@ import com.app.video.ui.fragment.ForumFragment;
 import com.app.video.ui.fragment.GoldFragment;
 import com.app.video.ui.fragment.PurpleFragment;
 import com.app.video.ui.fragment.RecommendFragment;
-import com.app.video.ui.fragment.VIPFragment;
 import com.app.video.ui.fragment.VaultFragment;
 
 public class HomeActivityView extends MFBaseMVCView {
@@ -35,7 +34,6 @@ public class HomeActivityView extends MFBaseMVCView {
     private View.OnClickListener mOnClickListener;
 
     private RecommendFragment mRecommendFragment;
-    private VIPFragment vipFragment;
     private ChannelFragment channelFragment;
     private VaultFragment vaultFragment;
     private ForumFragment forumFragment;
@@ -132,11 +130,6 @@ public class HomeActivityView extends MFBaseMVCView {
         main_vip.setImageResource(Constants.config.getImg_vip1());
         fm = mActivity.getFragmentManager();
         transaction = fm.beginTransaction();
-        if (vipFragment == null) {
-            vipFragment = new VIPFragment();
-            transaction.add(R.id.main_frame, vipFragment);
-        }
-
         if (forumFragment == null) {
             forumFragment = new ForumFragment();
             transaction.add(R.id.main_frame, forumFragment);
@@ -248,8 +241,6 @@ public class HomeActivityView extends MFBaseMVCView {
     private Fragment checkFragment(String str) {
         if (str.equals("体验区")) {
             return mRecommendFragment;
-        } else if (str.equals("vip")) {
-            return vipFragment;
         } else if (str.equals("黄金区")) {
             return goldFragment;
         } else if (str.equals("钻石区")) {
@@ -268,13 +259,10 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     private void hideFragment() {
-        if (vipFragment != null) {
-            transaction.hide(vipFragment);
-        }
         if (channelFragment != null) {
             transaction.hide(channelFragment);
         }
-        if (vipFragment != null) {
+        if (vaultFragment != null) {
             transaction.hide(vaultFragment);
         }
         if (forumFragment != null) {

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.app.basevideo.base.MFBaseFragment;
@@ -20,11 +19,8 @@ import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.model.VideoModel;
 import com.app.video.util.GallyPageTransformer;
-import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
     private ViewPager gallery_pager;
