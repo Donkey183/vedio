@@ -303,6 +303,7 @@ public class HomeActivityView extends MFBaseMVCView {
         }
     }
 
+
     @Override
     protected int getLayoutRecourseId() {
         return R.layout.activity_home;
