@@ -1,63 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="@dimen/finance_dimen_15px"
+              android:layout_marginLeft="@dimen/finance_dimen_20px"
+              android:layout_marginRight="@dimen/finance_dimen_20px"
+              android:layout_marginTop="@dimen/finance_dimen_15px"
+              android:background="@color/finance_f9f9f9"
+              android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_margin="@dimen/finance_dimen_10px"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/finance_dimen_250px">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/forum_image"
-            android:layout_width="@dimen/finance_dimen_250px"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/finance_dimen_280px"
+            android:layout_height="@dimen/finance_dimen_300px"
             android:scaleType="fitXY"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/forum_image"
-            android:layout_margin="@dimen/finance_dimen_10px">
+            android:layout_marginLeft="@dimen/finance_dimen_40px"
+            android:layout_toRightOf="@+id/forum_image">
 
             <TextView
                 android:id="@+id/forum_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="hah爱好"
+                android:textColor="#ff724e"
+                android:textSize="@dimen/finance_dimen_46px"
                 android:textStyle="bold"
-                android:textSize="@dimen/finance_dimen_45px"
-                android:textColor="#EE30A7"
-                android:layout_marginTop="@dimen/finance_dimen_20px"
                 />
 
             <TextView
                 android:id="@+id/forum_send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/finance_dimen_30px"
+                android:layout_below="@+id/forum_name"
                 android:layout_marginTop="@dimen/finance_dimen_20px"
+                android:text="发送jjj"
                 android:textColor="#B5B5B5"
-                android:layout_below="@+id/forum_name" />
+                android:textSize="@dimen/finance_dimen_40px"/>
+
             <TextView
                 android:id="@+id/forum_accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/finance_dimen_30px"
-                android:layout_marginTop="@dimen/finance_dimen_20px"
-                android:textColor="#B5B5B5"
                 android:layout_below="@+id/forum_name"
+                android:layout_marginLeft="@dimen/finance_dimen_30px"
+                android:layout_marginTop="@dimen/finance_dimen_20px"
                 android:layout_toRightOf="@+id/forum_send"
-                android:layout_marginLeft="@dimen/finance_dimen_30px"/>
+                android:text="去哦爱你"
+                android:textColor="#B5B5B5"
+                android:textSize="@dimen/finance_dimen_40px"/>
+
             <TextView
                 android:id="@+id/forum_descript"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/finance_dimen_30px"
-                android:layout_marginTop="@dimen/finance_dimen_20px"
                 android:layout_below="@+id/forum_send"
+                android:layout_marginTop="@dimen/finance_dimen_20px"
+                android:text="测试快快快"
                 android:textColor="#B5B5B5"
+                android:textSize="@dimen/finance_dimen_40px"
                 />
 
         </RelativeLayout>

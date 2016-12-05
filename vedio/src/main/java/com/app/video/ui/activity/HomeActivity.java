@@ -13,11 +13,8 @@ import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.framework.listener.MessageListener;
 import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
-import com.app.basevideo.framework.util.LogUtil;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
-import com.app.basevideo.util.AppUtils;
-import com.app.basevideo.util.DesUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
@@ -58,11 +55,11 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
             Constants.config = Constants.black_config;
         } else if (config.equals(Constants.CROWN)) {
             Constants.config = Constants.crown_config;
-        }else if (config.equals(Constants.PURPLE)) {
+        } else if (config.equals(Constants.PURPLE)) {
             Constants.config = Constants.purple_config;
-        }else if (config.equals(Constants.BLUE)) {
+        } else if (config.equals(Constants.BLUE)) {
             Constants.config = Constants.blue_config;
-        }else if (config.equals(Constants.RED)) {
+        } else if (config.equals(Constants.RED)) {
             Constants.config = Constants.red_config;
         }
     }
@@ -95,7 +92,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         public void onMessage(CommonMessage<?> responsedMessage) {
             //充值成功回调
             String str = (String) responsedMessage.getData();
-            Toast.makeText(HomeActivity.this, str , Toast.LENGTH_SHORT).show();
+            Toast.makeText(HomeActivity.this, str, Toast.LENGTH_SHORT).show();
             sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
             editor = sharedPreferences.edit();
             editor.putString("vip", Constants.pay_config.getVip_now());
@@ -104,7 +101,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
             int id = Integer.parseInt(str.split("\\*")[1]);
 
             choseClick(R.id.home_layout);
-            Log.d("adasd111","adsdsadas");
+            Log.d("adasd111", "adsdsadas");
             choseClick(R.id.vip_layout);
             choseClick(R.id.channel_layout);
             choseClick(R.id.vault_layout);
@@ -115,19 +112,21 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         }
     };
 
-   private void getPayInfos(){
-
+    private void getPayInfos() {
+        CommonHttpRequest request = new CommonHttpRequest();
+            request.addParam("","");
+//            mPayModel.sendHttpRequest();
     }
 
     private void choseClick(int id) {
         switch (id) {
             case R.id.home_layout:
-                Log.e("adasd","home");
+                Log.e("adasd", "home");
                 mHomeView.clickHome();
                 break;
             case R.id.vip_layout:
                 mHomeView.clickVip();
-                Log.e("adasd","vip");
+                Log.e("adasd", "vip");
 //                LogUtil.e("=====uuid=====" + AppUtils.getUUID());
 //                LogUtil.e(DesUtil.decrypt(AppUtils.getUUID(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
                 break;
@@ -141,15 +140,13 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 mHomeView.clickVault();
                 break;
             case R.id.forum_layout:
-                Log.e("adasd","forum");
+                Log.e("adasd", "forum");
                 mHomeView.clickForum();
                 break;
             default:
                 break;
         }
     }
-
-
 
 
 }

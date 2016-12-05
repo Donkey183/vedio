@@ -17,12 +17,12 @@ import com.app.video.config.Constants;
 import com.app.video.config.Settings;
 import com.app.video.ui.activity.HomeActivity;
 import com.app.video.ui.activity.UserInfoActivity;
+import com.app.video.ui.fragment.BlackGoldFragment;
 import com.app.video.ui.fragment.BlueFragment;
 import com.app.video.ui.fragment.ChannelFragment;
 import com.app.video.ui.fragment.CrownFragment;
 import com.app.video.ui.fragment.DiamondFragment;
 import com.app.video.ui.fragment.ForumFragment;
-import com.app.video.ui.fragment.BlackGoldFragment;
 import com.app.video.ui.fragment.GoldFragment;
 import com.app.video.ui.fragment.PurpleFragment;
 import com.app.video.ui.fragment.RecommendFragment;
@@ -132,54 +132,54 @@ public class HomeActivityView extends MFBaseMVCView {
         main_vip.setImageResource(Constants.config.getImg_vip1());
         fm = mActivity.getFragmentManager();
         transaction = fm.beginTransaction();
-        if(vipFragment == null){
+        if (vipFragment == null) {
             vipFragment = new VIPFragment();
-            transaction.add(R.id.main_frame,vipFragment);
+            transaction.add(R.id.main_frame, vipFragment);
         }
 
-        if (forumFragment==null){
+        if (forumFragment == null) {
             forumFragment = new ForumFragment();
-            transaction.add(R.id.main_frame,forumFragment);
+            transaction.add(R.id.main_frame, forumFragment);
         }
 
-        if(vaultFragment == null){
+        if (vaultFragment == null) {
             vaultFragment = new VaultFragment();
-            transaction.add(R.id.main_frame,vaultFragment);
+            transaction.add(R.id.main_frame, vaultFragment);
         }
-        if(channelFragment == null){
+        if (channelFragment == null) {
             channelFragment = new ChannelFragment();
-            transaction.add(R.id.main_frame,channelFragment);
+            transaction.add(R.id.main_frame, channelFragment);
         }
 
-        if(blackGoldFragment == null){
+        if (blackGoldFragment == null) {
             blackGoldFragment = new BlackGoldFragment();
-            transaction.add(R.id.main_frame,blackGoldFragment);
+            transaction.add(R.id.main_frame, blackGoldFragment);
         }
 
-        if(mRecommendFragment == null){
+        if (mRecommendFragment == null) {
             mRecommendFragment = new RecommendFragment();
-            transaction.add(R.id.main_frame,mRecommendFragment);
+            transaction.add(R.id.main_frame, mRecommendFragment);
         }
 
-        if(goldFragment == null){
+        if (goldFragment == null) {
             goldFragment = new GoldFragment();
-            transaction.add(R.id.main_frame,goldFragment);
+            transaction.add(R.id.main_frame, goldFragment);
         }
-        if(diamondFragment == null){
+        if (diamondFragment == null) {
             diamondFragment = new DiamondFragment();
-            transaction.add(R.id.main_frame,diamondFragment);
+            transaction.add(R.id.main_frame, diamondFragment);
         }
-        if(crownFragment == null){
+        if (crownFragment == null) {
             crownFragment = new CrownFragment();
-            transaction.add(R.id.main_frame,crownFragment);
+            transaction.add(R.id.main_frame, crownFragment);
         }
-        if(purpleFragment == null){
+        if (purpleFragment == null) {
             purpleFragment = new PurpleFragment();
-            transaction.add(R.id.main_frame,purpleFragment);
+            transaction.add(R.id.main_frame, purpleFragment);
         }
-        if(blueFragment == null){
+        if (blueFragment == null) {
             blueFragment = new BlueFragment();
-            transaction.add(R.id.main_frame,blueFragment);
+            transaction.add(R.id.main_frame, blueFragment);
         }
 
         hideFragment();
@@ -223,11 +223,21 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     private void resetTabUi(View selectedView, Fragment selectedFragMent) {
-        main_home.setImageResource(selectedView == main_home ? Constants.config.getImg_first2(): Constants.config.getImg_first1());
+        main_home.setImageResource(selectedView == main_home ? Constants.config.getImg_first2() : Constants.config.getImg_first1());
+        text_home.setTextColor(selectedView == main_home ? mActivity.getResources().getColor(R.color.finance_fd6b6b) : mActivity.getResources().getColor(R.color.finance_515151));
+
         main_vip.setImageResource(selectedView == main_vip ? Constants.config.getImg_vip2() : Constants.config.getImg_vip1());
+        text_vip.setTextColor(selectedView == main_vip ? mActivity.getResources().getColor(R.color.finance_fd6b6b) : mActivity.getResources().getColor(R.color.finance_515151));
+
         main_channel.setImageResource(selectedView == main_channel ? R.drawable.channel2 : R.drawable.channel);
+        text_channel.setTextColor(selectedView == main_channel ? mActivity.getResources().getColor(R.color.finance_fd6b6b) : mActivity.getResources().getColor(R.color.finance_515151));
+
         main_vault.setImageResource(selectedView == main_vault ? R.drawable.vault2 : R.drawable.vault);
+        text_vault.setTextColor(selectedView == main_vault ? mActivity.getResources().getColor(R.color.finance_fd6b6b) : mActivity.getResources().getColor(R.color.finance_515151));
+
         main_forum.setImageResource(selectedView == main_forum ? R.drawable.forum2 : R.drawable.forum);
+        text_forum.setTextColor(selectedView == main_forum ? mActivity.getResources().getColor(R.color.finance_fd6b6b) : mActivity.getResources().getColor(R.color.finance_515151));
+
         fm = mActivity.getFragmentManager();
         transaction = fm.beginTransaction();
         hideFragment();
@@ -235,63 +245,64 @@ public class HomeActivityView extends MFBaseMVCView {
         transaction.commit();
     }
 
-    private Fragment checkFragment(String str){
-        if(str.equals("体验区")){
+    private Fragment checkFragment(String str) {
+        if (str.equals("体验区")) {
             return mRecommendFragment;
-        }else if(str.equals("vip")){
+        } else if (str.equals("vip")) {
             return vipFragment;
-        }else if(str.equals("黄金区")){
+        } else if (str.equals("黄金区")) {
             return goldFragment;
-        }else if(str.equals("钻石区")){
+        } else if (str.equals("钻石区")) {
             return diamondFragment;
-        }else if(str.equals("黑金区")){
+        } else if (str.equals("黑金区")) {
             return blackGoldFragment;
-        }else if(str.equals("皇冠区")){
+        } else if (str.equals("皇冠区")) {
             return crownFragment;
-        }else if(str.equals("紫钻区")){
+        } else if (str.equals("紫钻区")) {
             return purpleFragment;
-        }else if(str.equals("蓝钻区")){
+        } else if (str.equals("蓝钻区")) {
             return blueFragment;
-        }else{
+        } else {
             return crownFragment;
         }
     }
 
-    private void hideFragment(){
-        if(vipFragment!=null){
+    private void hideFragment() {
+        if (vipFragment != null) {
             transaction.hide(vipFragment);
         }
-        if(channelFragment!=null){
+        if (channelFragment != null) {
             transaction.hide(channelFragment);
         }
-        if(vipFragment!=null){
+        if (vipFragment != null) {
             transaction.hide(vaultFragment);
         }
-        if(forumFragment!=null){
+        if (forumFragment != null) {
             transaction.hide(forumFragment);
         }
-        if(blackGoldFragment!=null){
+        if (blackGoldFragment != null) {
             transaction.hide(blackGoldFragment);
         }
-        if(mRecommendFragment!=null){
+        if (mRecommendFragment != null) {
             transaction.hide(mRecommendFragment);
         }
-        if(goldFragment!=null){
+        if (goldFragment != null) {
             transaction.hide(goldFragment);
         }
-        if(diamondFragment!= null){
+        if (diamondFragment != null) {
             transaction.hide(diamondFragment);
         }
-        if(crownFragment!= null){
+        if (crownFragment != null) {
             transaction.hide(crownFragment);
         }
-        if(blueFragment!= null){
+        if (blueFragment != null) {
             transaction.hide(blueFragment);
         }
-        if(purpleFragment!= null){
+        if (purpleFragment != null) {
             transaction.hide(purpleFragment);
         }
     }
+
     @Override
     protected int getLayoutRecourseId() {
         return R.layout.activity_home;
