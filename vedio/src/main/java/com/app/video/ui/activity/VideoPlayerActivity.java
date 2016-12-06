@@ -35,11 +35,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.basevideo.base.MFBaseActivity;
+import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.framework.manager.MessageManager;
+import com.app.basevideo.framework.message.CommonMessage;
+import com.app.basevideo.net.CommonHttpRequest;
+import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.QosObject;
 import com.app.video.config.Settings;
+import com.app.video.config.VedioConstant;
 import com.app.video.config.Video;
+import com.app.video.data.VideoData;
+import com.app.video.data.VideoDetailData;
+import com.app.video.model.VideoDetailModel;
 import com.app.video.ui.widget.BarrageView;
 import com.app.video.ui.widget.CommonAlert;
 import com.app.video.util.QosThread;
@@ -54,12 +63,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class VideoPlayerActivity extends MFBaseActivity
-    implements TextureView.SurfaceTextureListener, View.OnClickListener {
+    implements TextureView.SurfaceTextureListener, View.OnClickListener, INetFinish {
 
   private static final String TAG = "VideoPlayerActivity";
   public static final int DELAY_TIME = 2000;
@@ -73,6 +83,7 @@ public class VideoPlayerActivity extends MFBaseActivity
   private String chooseview;
   private String choosedecode;
   private String choosedebug;
+  private VideoDetailModel mDetailModel;
 
   private Context mContext;
   private KSYMediaPlayer ksyMediaPlayer;
@@ -151,7 +162,6 @@ public class VideoPlayerActivity extends MFBaseActivity
 
           //start player
           ksyMediaPlayer.start();
-          startBarrageView();
           //set progress
           setVideoProgress(0);
 
@@ -220,11 +230,17 @@ public class VideoPlayerActivity extends MFBaseActivity
         }
       };
 
-  private void startBarrageView() {
-    final String[] texts = getResources().getStringArray(R.array.default_text_array);
-    final ViewGroup.LayoutParams lp =
-        new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT);
+
+  @Override
+  public void onHttpResponse(CommonMessage<?> responsedMessage) {
+    List<VideoDetailData.Detail> datalist = mDetailModel.videoDetailData.videoCommentList;
+    startBarrageView(datalist);
+  }
+
+  private void startBarrageView(final List<VideoDetailData.Detail> texts) {
+    final LayoutParams lp =
+        new LayoutParams(LayoutParams.MATCH_PARENT,
+            LayoutParams.MATCH_PARENT);
 
     final Handler handler = new Handler();
     Runnable createBarrageView = new Runnable() {
@@ -233,7 +249,7 @@ public class VideoPlayerActivity extends MFBaseActivity
           Log.e("azzz", "发送弹幕");
           //新建一条弹幕，并设置文字
           final BarrageView barrageView = new BarrageView(VideoPlayerActivity.this);
-          barrageView.setText(texts[random.nextInt(texts.length)]); //随机设置文字
+          barrageView.setText(texts.get(random.nextInt(texts.size())).getContent()); //随机设置文字
           addContentView(barrageView, lp);
         }
         //发送下一条消息
@@ -349,12 +365,22 @@ public class VideoPlayerActivity extends MFBaseActivity
     }
   };
 
+
+  private void getVedioDetailInfo() {
+    CommonHttpRequest request = new CommonHttpRequest();
+    int a = (int)Math.ceil((Math.random()*7));
+    request.addParam(VedioConstant.R_TYPE,a+"");
+    mDetailModel.sendHttpRequest(request, VideoDetailModel.GET_VEDIO_DERAIL);
+  }
+
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     mContext = this.getApplicationContext();
     useHwCodec = getIntent().getBooleanExtra("HWCodec", false);
 
+    mDetailModel = new VideoDetailModel(this);
+    getVedioDetailInfo();
     setContentView(R.layout.ksyun_player);
 
     mPlayerPanel = (RelativeLayout) findViewById(R.id.player_panel);
@@ -698,6 +724,7 @@ public class VideoPlayerActivity extends MFBaseActivity
 
     Intent intent = getIntent();
     setResult(99,intent);
+    MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS,"videoplayend"));
     if (ksyMediaPlayer != null) {
       ksyMediaPlayer.release();
       ksyMediaPlayer = null;
@@ -892,4 +919,6 @@ public class VideoPlayerActivity extends MFBaseActivity
       e.printStackTrace();
     }
   }
+
+
 }

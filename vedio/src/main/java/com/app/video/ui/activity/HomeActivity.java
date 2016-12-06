@@ -1,6 +1,7 @@
 package com.app.video.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,30 +10,19 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.app.basevideo.base.MFBaseActivity;
-import com.app.basevideo.cache.MFSimpleCache;
 import com.app.basevideo.config.VedioCmd;
-import com.app.basevideo.config.VideoConstant;
 import com.app.basevideo.framework.listener.MessageListener;
 import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
-import com.app.basevideo.framework.util.LogUtil;
 import com.app.basevideo.net.CommonHttpRequest;
-import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.INetFinish;
-import com.app.basevideo.net.call.MFCall;
-import com.app.basevideo.net.callback.MFCallbackAdapter;
-import com.app.basevideo.util.ChannelUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.model.HomeActivityModel;
 import com.app.video.model.PayModel;
-import com.app.video.net.VedioNetService;
-import com.app.video.net.response.InitAppResponse;
 import com.app.video.ui.view.HomeActivityView;
-import com.ta.utdid2.android.utils.StringUtils;
-
-import retrofit2.Response;
+import com.app.video.ui.widget.CommonAlert;
 
 public class HomeActivity extends MFBaseActivity implements INetFinish {
 
@@ -54,7 +44,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         preLoadPageData();
         getPayInfos();
         registerListener(paySuccessListener);
-        checkFirstInstall();
     }
 
     private void checkConfig(String config) {
@@ -93,27 +82,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         super.onResume();
     }
 
-
-    private void checkFirstInstall() {
-        String cache = MFSimpleCache.get(this).getAsString(VideoConstant.HAS_INSTALL);
-        if (StringUtils.isEmpty(cache)) {
-            String channelId = ChannelUtil.getChannel(HomeActivity.this, ".null");
-            CommonHttpRequest request = new CommonHttpRequest();
-            request.addParam(VedioConstant.PROXY_ID, channelId);
-            MFCall<InitAppResponse> call = HttpRequestService.createService(VedioNetService.class).initApp(request.buildParams());
-            call.doRequest(new MFCallbackAdapter<InitAppResponse>() {
-                @Override
-                public void onResponse(InitAppResponse entity, Response<?> response, Throwable throwable) {
-                    if (entity == null || !entity.success) {
-                        return;
-                    }
-                    MFSimpleCache.get(HomeActivity.this).put(VideoConstant.HAS_INSTALL, VideoConstant.HAS_INSTALL);
-                }
-            });
-        }
-    }
-
-
     View.OnClickListener linenter = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -125,30 +93,38 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         @Override
         public void onMessage(CommonMessage<?> responsedMessage) {
             //充值成功回调
-            String str = (String) responsedMessage.getData();
-            Toast.makeText(HomeActivity.this, str, Toast.LENGTH_SHORT).show();
-            sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
-            editor = sharedPreferences.edit();
-            editor.putString("vip", Constants.pay_config.getVip_now());
-            editor.commit();
-            checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
-            int id = Integer.parseInt(str.split("\\*")[1]);
 
-            choseClick(R.id.home_layout);
-            Log.d("adasd111", "adsdsadas");
-            choseClick(R.id.vip_layout);
-            choseClick(R.id.channel_layout);
-            choseClick(R.id.vault_layout);
-            choseClick(R.id.forum_layout);
-            choseClick(id);
-            //销毁充值对话框
-            MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.DISS_MISS_ALERT));
+            String str = (String) responsedMessage.getData();
+            if(str.equals("videoplayend")){
+                CommonAlert alert = new CommonAlert(HomeActivity.this);
+                alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.home_layout);
+            }else{
+                Toast.makeText(HomeActivity.this, str, Toast.LENGTH_SHORT).show();
+                sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
+                editor = sharedPreferences.edit();
+                editor.putString("vip", Constants.pay_config.getVip_now());
+                editor.commit();
+                checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
+                int id = Integer.parseInt(str.split("\\*")[1]);
+
+                choseClick(R.id.home_layout);
+                Log.d("adasd111", "adsdsadas");
+                choseClick(R.id.vip_layout);
+                choseClick(R.id.channel_layout);
+                choseClick(R.id.vault_layout);
+                choseClick(R.id.forum_layout);
+                choseClick(id);
+                //销毁充值对话框
+                 MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.DISS_MISS_ALERT));
+            }
+
+
         }
     };
 
     private void getPayInfos() {
         CommonHttpRequest request = new CommonHttpRequest();
-        request.addParam("", "");
+            request.addParam("","");
 //            mPayModel.sendHttpRequest();
     }
 
@@ -160,6 +136,9 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 break;
             case R.id.vip_layout:
                 mHomeView.clickVip();
+                Log.e("adasd", "vip");
+//                LogUtil.e("=====uuid=====" + AppUtils.getUUID());
+//                LogUtil.e(DesUtil.decrypt(AppUtils.getUUID(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
                 break;
             case R.id.main_user:
                 mHomeView.clickUser();
@@ -173,6 +152,19 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
             case R.id.forum_layout:
                 Log.e("adasd", "forum");
                 mHomeView.clickForum();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+            case 99:
+                CommonAlert alert = new CommonAlert(this);
+                alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.home_layout);
                 break;
             default:
                 break;
