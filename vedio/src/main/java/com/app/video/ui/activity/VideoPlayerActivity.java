@@ -148,6 +148,8 @@ public class VideoPlayerActivity extends MFBaseActivity
   private String mDataSource;
   private long time;
 
+  private String parent;
+
   private Random random = new Random();
   private IMediaPlayer.OnPreparedListener mOnPreparedListener =
       new IMediaPlayer.OnPreparedListener() {
@@ -298,6 +300,9 @@ public class VideoPlayerActivity extends MFBaseActivity
         @Override public void onCompletion(IMediaPlayer mp) {
           Toast.makeText(mContext, "OnCompletionListener, play complete.", Toast.LENGTH_LONG)
               .show();
+          if(!parent.equals("detail")){
+            MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS,"videoplayend"));
+          }
           videoPlayEnd();
         }
       };
@@ -490,6 +495,7 @@ public class VideoPlayerActivity extends MFBaseActivity
     mQosThread = new QosThread(activityManager, mHandler, mContext);
 
     mDataSource = getIntent().getStringExtra("path");
+    parent = getIntent().getStringExtra("parent");
 
     ksyMediaPlayer = new KSYMediaPlayer.Builder(mContext).build();
     ksyMediaPlayer.setOnBufferingUpdateListener(mOnBufferingUpdateListener);
@@ -661,6 +667,9 @@ public class VideoPlayerActivity extends MFBaseActivity
 
     if (time >= 0) {
       if (time / 1000 > Constants.config.getPlaytime() && Constants.config.getVip_now().equals(Constants.NORMAL)) {
+        if(!parent.equals("detail")){
+          MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS,"videoplayend"));
+        }
         videoPlayEnd();
       }
       String progress = Strings.millisToString(time) + "/" + Strings.millisToString(length);
@@ -724,7 +733,6 @@ public class VideoPlayerActivity extends MFBaseActivity
 
     Intent intent = getIntent();
     setResult(99,intent);
-    MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS,"videoplayend"));
     if (ksyMediaPlayer != null) {
       ksyMediaPlayer.release();
       ksyMediaPlayer = null;

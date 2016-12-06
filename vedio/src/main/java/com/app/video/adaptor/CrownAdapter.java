@@ -59,6 +59,7 @@ public class CrownAdapter extends PagerAdapter {
                 } else {
                     Intent intent = new Intent(context, VideoPlayerActivity.class);
                     intent.putExtra("path", video.getDyresource());
+                    intent.putExtra("parent", "");
                     context.startActivity(intent);
                 }
             }

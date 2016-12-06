@@ -60,6 +60,7 @@ public class BlackGoldAdapter extends PagerAdapter {
                 } else {
                     Intent intent = new Intent(context, VideoPlayerActivity.class);
                     intent.putExtra("path", video.getDyres());
+                    intent.putExtra("parent", "");
                     context.startActivity(intent);
                 }
 

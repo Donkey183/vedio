@@ -135,6 +135,7 @@ public class GoldFragment extends MFBaseFragment implements INetFinish, OnRecycl
             Intent intent = new Intent(getActivity(),VideoPlayerActivity.class);
             intent.putExtra("path", recourseUrl);
             intent.putExtra("img",img);
+            intent.putExtra("parent", "");
             startActivity(intent);
         }
     }
