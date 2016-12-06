@@ -9,18 +9,30 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.app.basevideo.base.MFBaseActivity;
+import com.app.basevideo.cache.MFSimpleCache;
 import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.config.VideoConstant;
 import com.app.basevideo.framework.listener.MessageListener;
 import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
+import com.app.basevideo.framework.util.LogUtil;
 import com.app.basevideo.net.CommonHttpRequest;
+import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.INetFinish;
+import com.app.basevideo.net.call.MFCall;
+import com.app.basevideo.net.callback.MFCallbackAdapter;
+import com.app.basevideo.util.ChannelUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.model.HomeActivityModel;
 import com.app.video.model.PayModel;
+import com.app.video.net.VedioNetService;
+import com.app.video.net.response.InitAppResponse;
 import com.app.video.ui.view.HomeActivityView;
+import com.ta.utdid2.android.utils.StringUtils;
+
+import retrofit2.Response;
 
 public class HomeActivity extends MFBaseActivity implements INetFinish {
 
@@ -42,6 +54,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         preLoadPageData();
         getPayInfos();
         registerListener(paySuccessListener);
+        checkFirstInstall();
     }
 
     private void checkConfig(String config) {
@@ -80,6 +93,27 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         super.onResume();
     }
 
+
+    private void checkFirstInstall() {
+        String cache = MFSimpleCache.get(this).getAsString(VideoConstant.HAS_INSTALL);
+        if (StringUtils.isEmpty(cache)) {
+            String channelId = ChannelUtil.getChannel(HomeActivity.this, ".null");
+            CommonHttpRequest request = new CommonHttpRequest();
+            request.addParam(VedioConstant.PROXY_ID, channelId);
+            MFCall<InitAppResponse> call = HttpRequestService.createService(VedioNetService.class).initApp(request.buildParams());
+            call.doRequest(new MFCallbackAdapter<InitAppResponse>() {
+                @Override
+                public void onResponse(InitAppResponse entity, Response<?> response, Throwable throwable) {
+                    if (entity == null || !entity.success) {
+                        return;
+                    }
+                    MFSimpleCache.get(HomeActivity.this).put(VideoConstant.HAS_INSTALL, VideoConstant.HAS_INSTALL);
+                }
+            });
+        }
+    }
+
+
     View.OnClickListener linenter = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -114,7 +148,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
 
     private void getPayInfos() {
         CommonHttpRequest request = new CommonHttpRequest();
-            request.addParam("","");
+        request.addParam("", "");
 //            mPayModel.sendHttpRequest();
     }
 
@@ -126,9 +160,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 break;
             case R.id.vip_layout:
                 mHomeView.clickVip();
-                Log.e("adasd", "vip");
-//                LogUtil.e("=====uuid=====" + AppUtils.getUUID());
-//                LogUtil.e(DesUtil.decrypt(AppUtils.getUUID(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
                 break;
             case R.id.main_user:
                 mHomeView.clickUser();

@@ -5,8 +5,14 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
+import com.app.basevideo.cache.MFSimpleCache;
 import com.app.basevideo.framework.util.LogUtil;
+import com.app.basevideo.net.HttpRequestService;
+import com.app.basevideo.net.call.MFCall;
+import com.app.basevideo.net.callback.MFCallbackAdapter;
 import com.app.basevideo.net.utils.AppVersionConfig;
+
+import retrofit2.Response;
 
 
 public class MFBaseApplication extends Application {
@@ -28,6 +34,8 @@ public class MFBaseApplication extends Application {
         super.onCreate();
 //        LeakCanary.install(this);
     }
+
+
 
     private void initBaseApp() {
         sApp = this;
