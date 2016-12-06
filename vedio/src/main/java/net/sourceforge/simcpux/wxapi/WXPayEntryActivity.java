@@ -1,10 +1,11 @@
-package com.app.video.ui.wxapi;
+package net.sourceforge.simcpux.wxapi;
 
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.app.video.R;
 import com.app.video.config.Constants;
@@ -45,8 +46,10 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     public void onResp(BaseResp resp) {
         Log.e("pay", "微信支付回调");
+        Toast.makeText(WXPayEntryActivity.this, "微信支付回调", Toast.LENGTH_SHORT).show();
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
             Log.e("pay", "微信支付成功");
+            Toast.makeText(WXPayEntryActivity.this, "微信支付成功", Toast.LENGTH_SHORT).show();
 
 //			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //			builder.setTitle(R.string.app_tip);

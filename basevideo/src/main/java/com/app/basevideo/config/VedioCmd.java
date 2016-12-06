@@ -42,4 +42,10 @@ public class VedioCmd {
      * 销毁支付弹框
      */
     public static final int DISS_MISS_ALERT = CMD_START + 6;
+
+    /**
+     * 播放结束
+     */
+
+    public static final int VIDEO_PLAY_END = CMD_START + 7;
 }

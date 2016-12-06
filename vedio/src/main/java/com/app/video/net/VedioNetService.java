@@ -4,6 +4,7 @@ import com.app.basevideo.net.call.MFCall;
 import com.app.video.net.response.ChannelContentResponse;
 import com.app.video.net.response.ChannelResponse;
 import com.app.video.net.response.InitAppResponse;
+import com.app.video.net.response.PayLevelResponse;
 import com.app.video.net.response.WechatPayResponse;
 import com.app.video.net.response.VaultContentResponse;
 import com.app.video.net.response.VaultResponse;
@@ -49,7 +50,7 @@ public interface VedioNetService {
      */
     @POST("dyap/dy_sysset.do")
     @FormUrlEncoded
-    MFCall<WechatPayResponse> getPayInfo(@FieldMap Map<String, Object> params);
+    MFCall<PayLevelResponse> getPayInfo(@FieldMap Map<String, Object> params);
 
 
     /**

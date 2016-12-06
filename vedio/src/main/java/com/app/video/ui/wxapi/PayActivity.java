@@ -14,6 +14,7 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.call.MFCall;
 import com.app.basevideo.net.callback.MFCallbackAdapter;
+import com.app.basevideo.util.ChannelUtil;
 import com.app.basevideo.util.MD5;
 import com.app.video.R;
 import com.app.video.config.Constants;
@@ -71,8 +72,8 @@ public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
     public void getWechatInfo(String payAmount) {
 
         CommonHttpRequest request = new CommonHttpRequest();
-        request.addParam("pid", "100");
-        request.addParam("totalMoney", "" + payAmount);
+        request.addParam("pid", ChannelUtil.getChannel(PayActivity.this, "-1"));
+        request.addParam("totalMoney", payAmount);
 
         MFCall<WechatPayResponse> call = HttpRequestService.createService(VedioNetService.class).getWechatPayInfo(request.buildParams());
         call.doRequest(new MFCallbackAdapter<WechatPayResponse>() {
@@ -164,8 +165,6 @@ public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
 
         //此处充值成功
         MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess" + "*" + getIntent().getIntExtra("layout", 1)));
-
-
     }
 }
 

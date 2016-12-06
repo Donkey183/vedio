@@ -20,28 +20,22 @@ public class PayModel extends MFBaseModel {
     }
 
     public WechatPayData mWechatPayData;
-    public static final int GET_PAY_GOLD = 90001;
-    public static final int GET_PAY_DIAMOND = 90002;
-    public static final int GET_PAY_BLACK = 90003;
-    public static final int GET_PAY_CROWN = 90004;
-    public static final int GET_PAY_PURPLE = 90005;
-    public static final int GET_PAY_BLUE = 900016;
-    public static final int GET_PAY_RED = 900017;
+    public static final int GET_PAY_INFO = 90003;
 
     @Override
     public void sendHttpRequest(CommonHttpRequest request, final int requestCode) {
-        MFCall<WechatPayResponse> call = HttpRequestService.createService(VedioNetService.class).getPayInfo(request.buildParams());
-        call.doRequest(new MFCallbackAdapter<WechatPayResponse>() {
-            @Override
-            public void onResponse(WechatPayResponse entity, Response<?> response, Throwable throwable) {
-                if (entity == null || !entity.success) {
-                    disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
-                    return;
-                }
-                mWechatPayData = entity.data;
-                disPatchRequestSuccessMessage(requestCode);
-            }
-        });
+//        MFCall<WechatPayResponse> call = HttpRequestService.createService(VedioNetService.class).getPayInfo(request.buildParams());
+//        call.doRequest(new MFCallbackAdapter<WechatPayResponse>() {
+//            @Override
+//            public void onResponse(WechatPayResponse entity, Response<?> response, Throwable throwable) {
+//                if (entity == null || !entity.success) {
+//                    disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
+//                    return;
+//                }
+//                mWechatPayData = entity.data;
+//                disPatchRequestSuccessMessage(requestCode);
+//            }
+//        });
     }
 
     @Override

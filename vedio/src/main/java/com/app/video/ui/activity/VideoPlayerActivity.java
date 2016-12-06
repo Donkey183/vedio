@@ -1,7 +1,6 @@
 package com.app.video.ui.activity;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +23,6 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -45,8 +43,6 @@ import com.app.video.config.Constants;
 import com.app.video.config.QosObject;
 import com.app.video.config.Settings;
 import com.app.video.config.VedioConstant;
-import com.app.video.config.Video;
-import com.app.video.data.VideoData;
 import com.app.video.data.VideoDetailData;
 import com.app.video.model.VideoDetailModel;
 import com.app.video.ui.widget.BarrageView;

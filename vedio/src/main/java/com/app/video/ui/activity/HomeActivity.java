@@ -19,7 +19,9 @@ import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
+import com.app.video.data.PayLevelData;
 import com.app.video.model.HomeActivityModel;
+import com.app.video.model.PayLevelModel;
 import com.app.video.model.PayModel;
 import com.app.video.ui.view.HomeActivityView;
 import com.app.video.ui.widget.CommonAlert;
@@ -30,7 +32,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
     private HomeActivityModel mHomeModel;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private PayModel mPayModel;
+    private PayLevelModel mPayModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
         mHomeView = new HomeActivityView(this, linenter);
         mHomeModel = new HomeActivityModel(this);
-        mPayModel = new PayModel(this);
+        mPayModel = new PayLevelModel(this);
         preLoadPageData();
         getPayInfos();
         registerListener(paySuccessListener);
@@ -74,7 +76,10 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-
+        if (((Integer) responsedMessage.getData() == PayLevelModel.GET_PAY_INFO)) {
+            PayLevelData payLevelData = mPayModel.mPayLevelData;
+            Constants.upDatePayOff(payLevelData);
+        }
     }
 
     @Override
@@ -95,10 +100,11 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
             //充值成功回调
 
             String str = (String) responsedMessage.getData();
-            if(str.equals("videoplayend")){
+            if (str.equals("videoplayend")) {
                 CommonAlert alert = new CommonAlert(HomeActivity.this);
                 alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.home_layout);
-            }else{
+
+            } else {
                 Toast.makeText(HomeActivity.this, str, Toast.LENGTH_SHORT).show();
                 sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
                 editor = sharedPreferences.edit();
@@ -115,7 +121,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 choseClick(R.id.forum_layout);
                 choseClick(id);
                 //销毁充值对话框
-                 MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.DISS_MISS_ALERT));
+                MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.DISS_MISS_ALERT));
             }
 
 
@@ -124,8 +130,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
 
     private void getPayInfos() {
         CommonHttpRequest request = new CommonHttpRequest();
-            request.addParam("","");
-//            mPayModel.sendHttpRequest();
+        mPayModel.sendHttpRequest(request, PayLevelModel.GET_PAY_INFO);
     }
 
     private void choseClick(int id) {
