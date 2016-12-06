@@ -81,6 +81,7 @@ public class VideoDetailView extends MFBaseMVCView {
             public void onClick(View v) {
                 Intent intent = new Intent(mActivity, VideoPlayerActivity.class);
                 intent.putExtra("path", url);
+                intent.putExtra("parent","detail");
                 mActivity.startActivityForResult(intent, 0);
             }
         });
