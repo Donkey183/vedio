@@ -28,6 +28,7 @@ public class VideoDetailView extends MFBaseMVCView {
     private ImageView mplayerImg;
     private ScrollView mScrollView;
     private RelativeLayout player_layout;
+    private ImageView back;
 
     private ImageView img1;
     private ImageView img2;
@@ -60,6 +61,15 @@ public class VideoDetailView extends MFBaseMVCView {
         text1 = (TextView) mActivity.findViewById(R.id.text1);
         text2 = (TextView) mActivity.findViewById(R.id.text2);
         text3 = (TextView) mActivity.findViewById(R.id.text3);
+
+        back = (ImageView) mActivity.findViewById(R.id.detial_back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mActivity.finish();
+            }
+        });
 
         mScrollView.setFocusable(true);
         mScrollView.setFocusableInTouchMode(true);
