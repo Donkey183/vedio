@@ -7,7 +7,7 @@
         android:id="@+id/channel_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/finance_dimen_150px"
-        android:background="@color/finance_fe8ca2">
+        android:background="@color/finance_fd6b6b">
 
         <ImageView
             android:id="@+id/channel_back"
