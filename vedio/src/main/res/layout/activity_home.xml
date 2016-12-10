@@ -25,7 +25,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/finance_dimen_50px"
-            android:src="@drawable/users"/>
+            android:src="@drawable/users"
+            android:visibility="invisible"/>
     </RelativeLayout>
 
     <FrameLayout

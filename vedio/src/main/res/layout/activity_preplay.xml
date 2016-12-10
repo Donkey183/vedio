@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/detial_back"
-            android:layout_width="@dimen/finance_dimen_110px"
-            android:layout_height="@dimen/finance_dimen_110px"
+            android:layout_width="@dimen/finance_dimen_70px"
+            android:layout_height="@dimen/finance_dimen_70px"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/finance_dimen_20px"

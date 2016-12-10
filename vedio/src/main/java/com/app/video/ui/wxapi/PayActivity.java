@@ -1,5 +1,6 @@
 package com.app.video.ui.wxapi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,8 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
+import net.sourceforge.simcpux.wxapi.WXPayEntryActivity;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -46,11 +49,14 @@ public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
     PayReq req;
     TextView show;
     StringBuffer sb;
+    IWXAPI msgApi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay);
+        msgApi = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
+        msgApi.handleIntent(getIntent(), this);
         show = (TextView) findViewById(R.id.editText_prepay_id);
         req = new PayReq();
         sb = new StringBuffer();
@@ -65,15 +71,25 @@ public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
             @Override
             public void onClick(View v) {
                 getWechatInfo(payAmount);
+//                Intent intent = new Intent(PayActivity.this, WXPayEntryActivity.class);
+//                startActivity(intent);
             }
         });
+    }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        msgApi.handleIntent(intent, this);
     }
 
     public void getWechatInfo(String payAmount) {
 
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam("pid", ChannelUtil.getChannel(PayActivity.this, "-1"));
-        request.addParam("totalMoney", payAmount);
+        request.addParam("totalMoney", payAmount);//
 
         MFCall<WechatPayResponse> call = HttpRequestService.createService(VedioNetService.class).getWechatPayInfo(request.buildParams());
         call.doRequest(new MFCallbackAdapter<WechatPayResponse>() {
@@ -142,7 +158,6 @@ public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
 
     private void sendPayReq(WechatPayData data) {
         genPayReq(data);
-        final IWXAPI msgApi = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
         msgApi.registerApp(Constants.APP_ID);
         msgApi.sendReq(req);
     }

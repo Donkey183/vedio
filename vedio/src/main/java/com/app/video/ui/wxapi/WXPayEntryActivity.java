@@ -1,4 +1,4 @@
-package net.sourceforge.simcpux.wxapi;
+package com.app.video.ui.wxapi;
 
 
 import android.app.Activity;

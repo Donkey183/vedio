@@ -54,21 +54,44 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="net.sourceforge.simcpux.wxapi.WXPayEntryActivity">
-            <data android:scheme="wx310fce993d9b2cc7"/>
-        </activity>
+        <activity
+            android:name="net.sourceforge.simcpux.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"/>
+
+
+        <activity
+            android:name="com.app.video.ui.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"/>
 
         <activity
             android:name=".ui.activity.VideoPlayerActivity"
             android:screenOrientation="landscape"/>
-        <activity android:name=".ui.activity.VedioDetailActivity" />
+
+        <activity android:name=".ui.activity.VedioDetailActivity"/>
+
         <activity android:name=".ui.activity.ChannelActivity"/>
+
         <activity android:name=".ui.activity.TestActivity"/>
+
         <activity android:name="com.app.video.ui.wxapi.PayActivity">
-            <data android:scheme="wx310fce993d9b2cc7"/>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wx310fce993d9b2cc7"/>
+            </intent-filter>
         </activity>
 
         <activity android:name=".ui.activity.UserInfoActivity"></activity>
+
+        <!--<receiver-->
+            <!--android:name=".AppRegister">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP"/>-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
     </application>
 
 </manifest>
