@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.basevideo.base.MFBaseActivity;
@@ -15,15 +16,34 @@ import com.app.basevideo.framework.listener.MessageListener;
 import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
+import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.INetFinish;
+import com.app.basevideo.net.call.MFCall;
+import com.app.basevideo.net.callback.MFCallbackAdapter;
+import com.app.basevideo.util.ChannelUtil;
+import com.app.basevideo.util.MD5;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.data.PayLevelData;
+import com.app.video.data.WechatPayData;
 import com.app.video.model.HomeActivityModel;
 import com.app.video.model.PayLevelModel;
+import com.app.video.net.VedioNetService;
+import com.app.video.net.response.WechatPayResponse;
 import com.app.video.ui.view.HomeActivityView;
 import com.app.video.ui.widget.CommonAlert;
+import com.tencent.mm.sdk.modelpay.PayReq;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
+import retrofit2.Response;
 
 public class HomeActivity extends MFBaseActivity implements INetFinish {
 
@@ -45,6 +65,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         preLoadPageData();
         getPayInfos();
         registerListener(paySuccessListener);
+//        registerListener(payCallBackListener);
     }
 
     private void checkConfig(String config) {
@@ -118,8 +139,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 choseClick(R.id.vault_layout);
                 choseClick(R.id.forum_layout);
                 choseClick(id);
-                //销毁充值对话框
-                MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.DISS_MISS_ALERT));
             }
 
 
@@ -173,6 +192,4 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 break;
         }
     }
-
-
 }

@@ -50,9 +50,15 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             if (resp.errCode == 0) {
 //                Toast.makeText(WXPayEntryActivity.this, "支付成功!", Toast.LENGTH_SHORT).show();
                 MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_CALL_BACK));
+                //销毁充值对话框
+                MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.DISS_MISS_ALERT));
+                WXPayEntryActivity.this.finish();
                 return;
             }
             Toast.makeText(WXPayEntryActivity.this, "支付失败!返回码:" + resp.errCode, Toast.LENGTH_SHORT).show();
+            //销毁充值对话框
+            MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.DISS_MISS_ALERT));
+            WXPayEntryActivity.this.finish();
         }
     }
 }

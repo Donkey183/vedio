@@ -46,7 +46,7 @@
         <service android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"/>
 
         <activity android:name=".ui.activity.HomeActivity">
-            <!--<data android:scheme="wx310fce993d9b2cc7"/>-->
+            <data android:scheme="wx310fce993d9b2cc7"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -68,8 +68,6 @@
         <activity android:name=".ui.activity.VedioDetailActivity"/>
 
         <activity android:name=".ui.activity.ChannelActivity"/>
-
-        <activity android:name=".ui.activity.TestActivity"/>
 
         <activity
             android:name=".ui.activity.PayActivity"
