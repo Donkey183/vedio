@@ -22,7 +22,6 @@ import com.app.video.config.VedioConstant;
 import com.app.video.data.PayLevelData;
 import com.app.video.model.HomeActivityModel;
 import com.app.video.model.PayLevelModel;
-import com.app.video.model.PayModel;
 import com.app.video.ui.view.HomeActivityView;
 import com.app.video.ui.widget.CommonAlert;
 
@@ -100,7 +99,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
             //充值成功回调
 
             String str = (String) responsedMessage.getData();
-            if (str.equals("videoplayend")) {
+            if ("videoplayend".equals(str)) {
                 CommonAlert alert = new CommonAlert(HomeActivity.this);
                 alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.home_layout);
 
@@ -114,7 +113,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 int id = Integer.parseInt(str.split("\\*")[1]);
 
                 choseClick(R.id.home_layout);
-                Log.d("adasd111", "adsdsadas");
                 choseClick(R.id.vip_layout);
                 choseClick(R.id.channel_layout);
                 choseClick(R.id.vault_layout);

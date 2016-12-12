@@ -21,9 +21,8 @@ import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.Payoff;
-import com.app.video.model.PayModel;
 import com.app.video.ui.activity.TestActivity;
-import com.app.video.ui.wxapi.PayActivity;
+import com.app.video.ui.activity.PayActivity;
 
 //import com.app.video.net.response.PayResponse;
 

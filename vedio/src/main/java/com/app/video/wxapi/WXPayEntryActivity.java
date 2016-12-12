@@ -1,12 +1,14 @@
-package com.app.video.ui.wxapi;
+package com.app.video.wxapi;
 
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
+import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.framework.manager.MessageManager;
+import com.app.basevideo.framework.message.CommonMessage;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
@@ -17,8 +19,6 @@ import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
-
-    private static final String TAG = "MicroMsg.SDKSample.WXPayEntryActivity";
 
     private IWXAPI api;
 
@@ -41,20 +41,18 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     public void onReq(BaseReq req) {
+
     }
 
     @Override
     public void onResp(BaseResp resp) {
-        Log.e("payresp", "微信支付回调");
-        Toast.makeText(WXPayEntryActivity.this, "微信支付回调", Toast.LENGTH_SHORT).show();
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-            Log.e("payresp", "微信支付成功");
-            Toast.makeText(WXPayEntryActivity.this, "微信支付成功", Toast.LENGTH_SHORT).show();
-
-//			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//			builder.setTitle(R.string.app_tip);
-//			builder.setMessage(getString(R.string.pay_result_callback_msg, resp.errStr +";code=" + String.valueOf(resp.errCode)));
-//			builder.show();
+            if (resp.errCode == 0) {
+//                Toast.makeText(WXPayEntryActivity.this, "支付成功!", Toast.LENGTH_SHORT).show();
+                MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_CALL_BACK));
+                return;
+            }
+            Toast.makeText(WXPayEntryActivity.this, "支付失败!返回码:" + resp.errCode, Toast.LENGTH_SHORT).show();
         }
     }
 }

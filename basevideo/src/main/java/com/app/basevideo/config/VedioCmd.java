@@ -37,6 +37,11 @@ public class VedioCmd {
      */
     public static final int CMD_PAY_SUCCESS = CMD_START + 5;
 
+    /**
+     * 支付回调
+     */
+    public static final int CMD_PAY_CALL_BACK = CMD_START + 8;
+
 
     /**
      * 销毁支付弹框

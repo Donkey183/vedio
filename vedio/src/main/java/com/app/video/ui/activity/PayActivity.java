@@ -1,4 +1,4 @@
-package com.app.video.ui.wxapi;
+package com.app.video.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.framework.listener.MessageListener;
 import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
@@ -22,15 +24,9 @@ import com.app.video.config.Constants;
 import com.app.video.data.WechatPayData;
 import com.app.video.net.VedioNetService;
 import com.app.video.net.response.WechatPayResponse;
-import com.tencent.mm.sdk.constants.ConstantsAPI;
-import com.tencent.mm.sdk.modelbase.BaseReq;
-import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
-import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-
-import net.sourceforge.simcpux.wxapi.WXPayEntryActivity;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -42,37 +38,36 @@ import java.util.Random;
 import retrofit2.Response;
 
 
-public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
-
-    private static final String TAG = "MicroMsg.SDKSample.PayActivity";
+public class PayActivity extends MFBaseActivity {
 
     PayReq req;
     TextView show;
     StringBuffer sb;
     IWXAPI msgApi;
+    int recourseId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay);
         msgApi = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
-        msgApi.handleIntent(getIntent(), this);
         show = (TextView) findViewById(R.id.editText_prepay_id);
         req = new PayReq();
         sb = new StringBuffer();
+        registerListener(payCallBackListener);
 
         //调起微信支付
         Button appayBtn = (Button) findViewById(R.id.appay_btn);
 
 
         final String payAmount = getIntent().getExtras().getString("payAmount");
+        recourseId = getIntent().getExtras().getInt("lauout");
+
         appayBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 getWechatInfo(payAmount);
-//                Intent intent = new Intent(PayActivity.this, WXPayEntryActivity.class);
-//                startActivity(intent);
             }
         });
     }
@@ -82,14 +77,13 @@ public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
-        msgApi.handleIntent(intent, this);
     }
 
     public void getWechatInfo(String payAmount) {
 
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam("pid", ChannelUtil.getChannel(PayActivity.this, "-1"));
-        request.addParam("totalMoney", payAmount);//
+        request.addParam("totalMoney", "0.01");//payAmount
 
         MFCall<WechatPayResponse> call = HttpRequestService.createService(VedioNetService.class).getWechatPayInfo(request.buildParams());
         call.doRequest(new MFCallbackAdapter<WechatPayResponse>() {
@@ -162,24 +156,14 @@ public class PayActivity extends MFBaseActivity implements IWXAPIEventHandler {
         msgApi.sendReq(req);
     }
 
-    @Override
-    public void onReq(BaseReq baseReq) {
 
-    }
-
-    @Override
-    public void onResp(BaseResp baseResp) {
-        Log.e("pay", "微信支付回调");
-        if (baseResp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-            Log.e("pay", "微信支付成功");
-//			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//			builder.setTitle(R.string.app_tip);
-//			builder.setMessage(getString(R.string.pay_result_callback_msg, resp.errStr +";code=" + String.valueOf(resp.errCode)));
-//			builder.show();
+    MessageListener payCallBackListener = new MessageListener(VedioCmd.CMD_PAY_CALL_BACK) {
+        @Override
+        public void onMessage(CommonMessage<?> responsedMessage) {
+            Toast.makeText(PayActivity.this, "支付回调!", Toast.LENGTH_SHORT).show();
+            MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess" + "*" + getIntent().getIntExtra("layout", recourseId)));
         }
+    };
 
-        //此处充值成功
-        MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess" + "*" + getIntent().getIntExtra("layout", 1)));
-    }
 }
 

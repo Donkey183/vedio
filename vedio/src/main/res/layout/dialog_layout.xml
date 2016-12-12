@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/dialog_img"
         android:layout_width="@dimen/finance_dimen_900px"
         android:layout_height="@dimen/finance_dimen_550px"
         android:scaleType="fitXY"
-        android:src="@drawable/forum" />
+        android:src="@drawable/forum"/>
 
     <ImageView
         android:id="@+id/dialog_cha"
@@ -42,7 +42,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/finance_dimen_15px"
-                android:src="@drawable/gold" />
+                android:src="@drawable/gold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,16 +58,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="黄金会员"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/finance_dimen_40px" />
+                    android:textSize="@dimen/finance_dimen_40px"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/zhifu1_text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="约百部成人体验电影大片"
                     android:layout_marginTop="@dimen/finance_dimen_10px"
-                    android:textSize="@dimen/finance_dimen_30px" />
+                    android:text="约百部成人体验电影大片"
+                    android:textSize="@dimen/finance_dimen_30px"/>
             </LinearLayout>
 
             <TextView
@@ -79,7 +79,7 @@
                 android:layout_toLeftOf="@+id/jian1_text"
                 android:text="￥39"
                 android:textColor="@color/finance_ff0000"
-                android:textSize="@dimen/finance_dimen_60px" />
+                android:textSize="@dimen/finance_dimen_60px"/>
 
             <ImageView
                 android:id="@+id/jian1_text"
@@ -108,7 +108,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/finance_dimen_15px"
-                android:src="@drawable/gold" />
+                android:src="@drawable/gold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -124,16 +124,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="黄金会员"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/finance_dimen_40px" />
+                    android:textSize="@dimen/finance_dimen_40px"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/zhifu2_text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="约百部成人体验电影大片"
                     android:layout_marginTop="@dimen/finance_dimen_10px"
-                    android:textSize="@dimen/finance_dimen_30px" />
+                    android:text="约百部成人体验电影大片"
+                    android:textSize="@dimen/finance_dimen_30px"/>
             </LinearLayout>
 
             <TextView
@@ -145,7 +145,7 @@
                 android:layout_toLeftOf="@+id/jian2_text"
                 android:text="￥39"
                 android:textColor="@color/finance_ff0000"
-                android:textSize="@dimen/finance_dimen_60px" />
+                android:textSize="@dimen/finance_dimen_60px"/>
 
             <ImageView
                 android:id="@+id/jian2_text"
@@ -162,9 +162,9 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/finance_dimen_40px"
             android:layout_below="@+id/layout_zhifu2"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/finance_dimen_40px">
 
             <RelativeLayout
                 android:id="@+id/wechat_layout"
@@ -177,25 +177,26 @@
                     android:layout_width="@dimen/finance_dimen_90px"
                     android:layout_height="@dimen/finance_dimen_90px"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/wechat" />
+                    android:src="@drawable/wechat"/>
 
                 <CheckBox
                     android:id="@+id/check_wechat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/finance_dimen_10px"
                     android:layout_below="@+id/img_wechat"
+                    android:layout_marginTop="@dimen/finance_dimen_10px"
                     android:text="微信"
-                    android:textSize="@dimen/finance_dimen_40px"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="@dimen/finance_dimen_40px"/>
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/zhifu_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/finance_dimen_20px"
                 android:layout_marginLeft="@dimen/finance_dimen_70px"
+                android:layout_marginTop="@dimen/finance_dimen_20px"
+                android:visibility="gone"
                 android:layout_toRightOf="@+id/wechat_layout">
 
                 <ImageView
@@ -204,7 +205,7 @@
                     android:layout_height="@dimen/finance_dimen_90px"
                     android:layout_centerHorizontal="true"
                     android:background="@color/finance_ffffffff"
-                    android:src="@drawable/zhifu" />
+                    android:src="@drawable/zhifu"/>
 
                 <CheckBox
                     android:id="@+id/check_zhifu"
@@ -213,8 +214,8 @@
                     android:layout_below="@+id/img_zhifu"
                     android:layout_marginTop="@dimen/finance_dimen_10px"
                     android:text="支付宝"
-                    android:textSize="@dimen/finance_dimen_40px"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:textSize="@dimen/finance_dimen_40px"/>
 
             </RelativeLayout>
 
