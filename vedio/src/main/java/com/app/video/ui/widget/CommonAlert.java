@@ -162,7 +162,7 @@ public class CommonAlert {
                 check_packoff(pay1);
                 recourseId = id;
                 MessageManager.getInstance().registerListener(payCallBackListener);
-                getWechatInfo("0.01");//pay1.getVip_money()
+                getWechatInfo(pay1.getVip_money());//
 //                Intent intent = new Intent(context, check_wechat.isChecked() ? PayActivity.class : TestActivity.class);
 //                intent.putExtra("lauout", id);
 //                intent.putExtra("payAmount", pay1.getVip_money());

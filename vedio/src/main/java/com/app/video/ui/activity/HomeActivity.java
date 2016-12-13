@@ -48,7 +48,6 @@ import retrofit2.Response;
 public class HomeActivity extends MFBaseActivity implements INetFinish {
 
     private HomeActivityView mHomeView;
-    private HomeActivityModel mHomeModel;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private PayLevelModel mPayModel;
@@ -60,9 +59,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
         checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
         mHomeView = new HomeActivityView(this, linenter);
-        mHomeModel = new HomeActivityModel(this);
         mPayModel = new PayLevelModel(this);
-        preLoadPageData();
         getPayInfos();
         registerListener(paySuccessListener);
 //        registerListener(payCallBackListener);
@@ -86,12 +83,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         } else if (config.equals(Constants.RED)) {
             Constants.config = Constants.red_config;
         }
-    }
-
-    private void preLoadPageData() {
-        CommonHttpRequest request = new CommonHttpRequest();
-        request.addParam(VedioConstant.TOKEN, "12345");
-        mHomeModel.sendHttpRequest(request, HomeActivityModel.GET_PAGE_DATA);
     }
 
     @Override
@@ -140,8 +131,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 choseClick(R.id.forum_layout);
                 choseClick(id);
             }
-
-
         }
     };
 
@@ -159,8 +148,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
             case R.id.vip_layout:
                 mHomeView.clickVip();
                 Log.e("adasd", "vip");
-//                LogUtil.e("=====uuid=====" + AppUtils.getUUID());
-//                LogUtil.e(DesUtil.decrypt(AppUtils.getUUID(), "URIW853FKDJAF9363KDJKF7MFSFRTEWE"));
                 break;
             case R.id.main_user:
                 mHomeView.clickUser();
