@@ -1,9 +1,10 @@
 package com.app.video.model;
 
-import android.util.Log;
-
 import com.app.basevideo.base.MFBaseFragment;
 import com.app.basevideo.base.MFBaseFragmentModel;
+import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.framework.manager.MessageManager;
+import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.call.MFCall;
@@ -11,6 +12,8 @@ import com.app.basevideo.net.callback.MFCallbackAdapter;
 import com.app.video.data.VideoData;
 import com.app.video.net.VedioNetService;
 import com.app.video.net.response.VedioResponse;
+
+import java.util.ArrayList;
 
 import retrofit2.Response;
 
@@ -22,6 +25,7 @@ public class VideoModel extends MFBaseFragmentModel {
     }
 
     public VideoData videoData = new VideoData();
+    public int curPageNo = 1;
 
     private int code;
 
@@ -43,12 +47,16 @@ public class VideoModel extends MFBaseFragmentModel {
             @Override
             public void onResponse(VedioResponse entity, Response<?> response, Throwable throwable) {
                 if (entity == null || !entity.success || entity.page == null || entity.page.result == null || entity.page.list1 == null) {
-                    disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
-
+                    MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.GET_VIDEO_INFO_FAILED));
                     return;
                 }
-                videoData.page = entity.page;
-
+                if (videoData.page == null) {
+                    videoData.page = new VideoData.Page();
+                    videoData.page.result = new ArrayList<VideoData.Page.Video>();
+                }
+                videoData.page.result.addAll(entity.page.result);
+                videoData.page.list1 = entity.page.list1;
+                curPageNo++;
                 disPatchRequestSuccessMessage(code);
             }
         });

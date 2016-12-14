@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.cache.MFSimpleCache;
@@ -85,6 +86,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                     if (entity == null || !entity.success) {
                         return;
                     }
+                    Toast.makeText(HomeActivity.this, "第一次安装调用成功，代理号:" + ChannelUtil.getChannel(HomeActivity.this), Toast.LENGTH_LONG).show();
                     MFSimpleCache.get(HomeActivity.this).put("FIRST_INSTALL", "FIRST_INSTALL");
                 }
             });

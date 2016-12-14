@@ -53,4 +53,11 @@ public class VedioCmd {
      */
 
     public static final int VIDEO_PLAY_END = CMD_START + 7;
+
+
+    /**
+     * 获取视频信息失败
+     */
+
+    public static final int GET_VIDEO_INFO_FAILED = CMD_START + 8;
 }
