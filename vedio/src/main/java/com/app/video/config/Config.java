@@ -5,14 +5,22 @@ import android.support.annotation.DrawableRes;
 public class Config {
     private String vip_now;
     private String tittle_first;
-    private @DrawableRes int img_first1;
-    private @DrawableRes int img_first2;
+    private
+    @DrawableRes
+    int img_first1;
+    private
+    @DrawableRes
+    int img_first2;
     private String tittle_vip;
-    private @DrawableRes int img_vip1;
-    private @DrawableRes int img_vip2;
+    private
+    @DrawableRes
+    int img_vip1;
+    private
+    @DrawableRes
+    int img_vip2;
     private Payoff pay1;
     private Payoff pay2;
-    private @DrawableRes int pay_img;
+    private String pay_img;
     private int playtime;
     private int playlenth;
 
@@ -32,7 +40,7 @@ public class Config {
         this.playtime = playtime;
     }
 
-    public Config(String vip_now, String tittle_first, int img_first1, int img_first2, String tittle_vip, int img_vip1, int img_vip2, Payoff pay1, Payoff pay2, int pay_img,int playtime,int playlenth) {
+    public Config(String vip_now, String tittle_first, int img_first1, int img_first2, String tittle_vip, int img_vip1, int img_vip2, Payoff pay1, Payoff pay2, String pay_img, int playtime, int playlenth) {
         this.vip_now = vip_now;
         this.tittle_first = tittle_first;
         this.img_first1 = img_first1;
@@ -63,7 +71,9 @@ public class Config {
         this.tittle_first = tittle_first;
     }
 
-    public @DrawableRes int getImg_first1() {
+    public
+    @DrawableRes
+    int getImg_first1() {
         return img_first1;
     }
 
@@ -71,7 +81,9 @@ public class Config {
         this.img_first1 = img_first1;
     }
 
-    public @DrawableRes int getImg_first2() {
+    public
+    @DrawableRes
+    int getImg_first2() {
         return img_first2;
     }
 
@@ -87,7 +99,9 @@ public class Config {
         this.tittle_vip = tittle_vip;
     }
 
-    public @DrawableRes int getImg_vip1() {
+    public
+    @DrawableRes
+    int getImg_vip1() {
         return img_vip1;
     }
 
@@ -95,7 +109,9 @@ public class Config {
         this.img_vip1 = img_vip1;
     }
 
-    public @DrawableRes int getImg_vip2() {
+    public
+    @DrawableRes
+    int getImg_vip2() {
         return img_vip2;
     }
 
@@ -119,11 +135,11 @@ public class Config {
         this.pay2 = pay2;
     }
 
-    public @DrawableRes int getPay_img() {
+    public String getPay_img() {
         return pay_img;
     }
 
-    public @DrawableRes void setPay_img(int pay_img) {
+    public void setPay_img(String pay_img) {
         this.pay_img = pay_img;
     }
 }

@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.basevideo.cache.MFSimpleCache;
 import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.framework.listener.MessageListener;
 import com.app.basevideo.framework.manager.MessageManager;
@@ -30,6 +31,7 @@ import com.app.video.config.Payoff;
 import com.app.video.data.WechatPayData;
 import com.app.video.net.VedioNetService;
 import com.app.video.net.response.WechatPayResponse;
+import com.bumptech.glide.Glide;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -79,7 +81,7 @@ public class CommonAlert {
         }
     };
 
-    public void showAlert(final Payoff pay1, final Payoff pay2, final int id, final int num) {
+    public void showAlert(final Payoff pay1, final Payoff pay2, final String id, final int num) {
 
         alert = new AlertDialog.Builder(context).create();
 
@@ -91,13 +93,13 @@ public class CommonAlert {
         window.setContentView(contentView);
 
         dialog_img = (ImageView) window.findViewById(R.id.dialog_img);
+        String domain = MFSimpleCache.get(context).getAsString("PIC_DOMAIN");
+        Glide.with(context).load(domain + id).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(dialog_img);
 
         zhifu1_img = (ImageView) window.findViewById(R.id.zhifu1_img);
         zhifu1_text = (TextView) window.findViewById(R.id.zhifu1_text);
         zhifu1_text1 = (TextView) window.findViewById(R.id.zhifu1_text1);
         zhifu1_text2 = (TextView) window.findViewById(R.id.zhifu1_text2);
-
-        dialog_img.setImageResource(id);
 
         zhifu1_text.setText("￥" + pay1.getVip_money());
         zhifu1_text1.setText(pay1.getVip_name());
@@ -155,35 +157,31 @@ public class CommonAlert {
         zhifu1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!check_wechat.isChecked() && !check_zhifu.isChecked()) {
+                if (!check_wechat.isChecked()) {
                     Toast.makeText(context, "请选择支付方式", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 check_packoff(pay1);
-                recourseId = id;
                 MessageManager.getInstance().registerListener(payCallBackListener);
-                getWechatInfo(pay1.getVip_money());//
-//                Intent intent = new Intent(context, check_wechat.isChecked() ? PayActivity.class : TestActivity.class);
-//                intent.putExtra("lauout", id);
-//                intent.putExtra("payAmount", pay1.getVip_money());
-//                context.startActivity(intent);
+                getWechatInfo(pay1.getVip_money());
+                Toast.makeText(context, "正在获取支付信息...", Toast.LENGTH_LONG).show();
             }
         });
-//        zhifu2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (!check_wechat.isChecked() && !check_zhifu.isChecked()) {
-//                    Toast.makeText(context, "请选择支付方式", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//                check_packoff(pay2);
-//                Intent intent = new Intent(context, check_wechat.isChecked() ? PayActivity.class : TestActivity.class);
-//                intent.putExtra("lauout", id);
-//                intent.putExtra("payAmount", pay2.getVip_money());
-//                context.startActivity(intent);
-//            }
-//
-//        });
+
+        zhifu2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!check_wechat.isChecked()) {
+                    Toast.makeText(context, "请选择支付方式", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                check_packoff(pay2);
+                MessageManager.getInstance().registerListener(payCallBackListener);
+                getWechatInfo(pay2.getVip_money());
+                Toast.makeText(context, "正在获取支付信息...", Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
     private void check_packoff(Payoff pay) {
@@ -205,7 +203,6 @@ public class CommonAlert {
     }
 
 
-
     PayReq req;
     StringBuffer sb;
     IWXAPI msgApi;
@@ -215,7 +212,7 @@ public class CommonAlert {
 
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam("pid", ChannelUtil.getChannel(context, "-1"));
-        request.addParam("totalMoney", "0.01");//payAmount
+        request.addParam("totalMoney", payAmount);
 
         MFCall<WechatPayResponse> call = HttpRequestService.createService(VedioNetService.class).getWechatPayInfo(request.buildParams());
         call.doRequest(new MFCallbackAdapter<WechatPayResponse>() {
@@ -292,7 +289,6 @@ public class CommonAlert {
     MessageListener payCallBackListener = new MessageListener(VedioCmd.CMD_PAY_CALL_BACK) {
         @Override
         public void onMessage(CommonMessage<?> responsedMessage) {
-            Toast.makeText(context, "支付回调!", Toast.LENGTH_SHORT).show();
             MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.CMD_PAY_SUCCESS, "paysucess" + "*" + recourseId));
         }
     };

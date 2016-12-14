@@ -101,7 +101,7 @@ public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecy
     private void getVideoInfo() {
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam(VedioConstant.R_TYPE, "5");
-        request.addParam(VedioConstant.PAGE_NO, "1");
+        request.addParam(VedioConstant.PAGE_NO, "0");
         mModel.sendHttpRequest(request, VideoModel.GET_VEDIO_PURPLE);
     }
 

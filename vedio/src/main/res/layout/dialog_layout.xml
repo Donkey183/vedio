@@ -21,7 +21,7 @@
 
     <RelativeLayout
         android:layout_width="@dimen/finance_dimen_900px"
-        android:layout_height="@dimen/finance_dimen_700px"
+        android:layout_height="@dimen/finance_dimen_500px"
         android:layout_below="@+id/dialog_img"
         android:background="@color/finance_ff9191"
         android:gravity="center">
@@ -170,7 +170,8 @@
                 android:id="@+id/wechat_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/finance_dimen_20px">
+                android:layout_marginTop="@dimen/finance_dimen_20px"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/img_wechat"
@@ -185,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/img_wechat"
                     android:layout_marginTop="@dimen/finance_dimen_10px"
+                    android:checked="true"
                     android:text="微信"
                     android:textColor="#000000"
                     android:textSize="@dimen/finance_dimen_40px"/>

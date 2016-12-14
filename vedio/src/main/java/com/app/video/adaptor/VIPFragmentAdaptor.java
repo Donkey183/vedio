@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.basevideo.framework.util.LogUtil;
 import com.app.basevideo.util.ListUtil;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
@@ -37,6 +38,7 @@ public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.
     public VIPFragmentAdaptor(Context context) {
         mContext = context;
     }
+
     @Override
     public VIPViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View view;
@@ -94,15 +96,18 @@ public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) return IS_HEADER;
+        if (position == 0) {
+            return IS_HEADER;
+        }
         return IS_NORMAL;
     }
+
     private VideoData.Page.Video getItem(int position) {
         return ListUtil.getItem(mVIPList, position);
     }
 
     private VideoData.Page.Banner getBanner(int position) {
-        return ListUtil.getItem(mBannerList, position-1);
+        return ListUtil.getItem(mBannerList, position - 1);
     }
 
     private List<String> getBannerImageUrlList() {
@@ -127,11 +132,15 @@ public class VIPFragmentAdaptor extends RecyclerView.Adapter<VIPFragmentAdaptor.
     }
 
 
-
     public void showVIPView(List<VideoData.Page.Video> videoDatas, List<VideoData.Page.Banner> bannerList) {
-        mVIPList = videoDatas;
-        this.mBannerList = bannerList;
-        this.notifyDataSetChanged();
+        try {
+            mVIPList = videoDatas;
+            this.mBannerList = bannerList;
+            this.notifyDataSetChanged();
+        } catch (Exception e) {
+            LogUtil.e("showVIPView" + e.getMessage());
+        }
+
     }
 
     class VIPViewHolder extends RecyclerView.ViewHolder {

@@ -4,44 +4,30 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.basevideo.base.MFBaseActivity;
+import com.app.basevideo.cache.MFSimpleCache;
 import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.framework.listener.MessageListener;
-import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
+import com.app.basevideo.framework.util.LogUtil;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.INetFinish;
 import com.app.basevideo.net.call.MFCall;
 import com.app.basevideo.net.callback.MFCallbackAdapter;
 import com.app.basevideo.util.ChannelUtil;
-import com.app.basevideo.util.MD5;
 import com.app.video.R;
 import com.app.video.config.Constants;
-import com.app.video.config.VedioConstant;
 import com.app.video.data.PayLevelData;
-import com.app.video.data.WechatPayData;
-import com.app.video.model.HomeActivityModel;
 import com.app.video.model.PayLevelModel;
 import com.app.video.net.VedioNetService;
-import com.app.video.net.response.WechatPayResponse;
+import com.app.video.net.response.InitAppResponse;
 import com.app.video.ui.view.HomeActivityView;
 import com.app.video.ui.widget.CommonAlert;
-import com.tencent.mm.sdk.modelpay.PayReq;
-import com.tencent.mm.sdk.openapi.IWXAPI;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import com.ta.utdid2.android.utils.StringUtils;
 
 import retrofit2.Response;
 
@@ -62,6 +48,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         mPayModel = new PayLevelModel(this);
         getPayInfos();
         registerListener(paySuccessListener);
+        checkFirstInstall();
 //        registerListener(payCallBackListener);
     }
 
@@ -85,17 +72,38 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         }
     }
 
+    private void checkFirstInstall() {
+        String firstInstall = MFSimpleCache.get(HomeActivity.this).getAsString("FIRST_INSTALL");
+        if (StringUtils.isEmpty(firstInstall)) {
+            CommonHttpRequest request = new CommonHttpRequest();
+            request.addParam("proxyid", ChannelUtil.getChannel(HomeActivity.this));
+            request.addParam("ptype", "0");
+            MFCall<InitAppResponse> call = HttpRequestService.createService(VedioNetService.class).initApp(request.buildParams());
+            call.doRequest(new MFCallbackAdapter<InitAppResponse>() {
+                @Override
+                public void onResponse(InitAppResponse entity, Response<?> response, Throwable throwable) {
+                    if (entity == null || !entity.success) {
+                        return;
+                    }
+                    MFSimpleCache.get(HomeActivity.this).put("FIRST_INSTALL", "FIRST_INSTALL");
+                }
+            });
+        }
+    }
+
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
         if (((Integer) responsedMessage.getData() == PayLevelModel.GET_PAY_INFO)) {
             PayLevelData payLevelData = mPayModel.mPayLevelData;
             Constants.upDatePayOff(payLevelData);
+            MFSimpleCache.get(HomeActivity.this).put("PIC_DOMAIN", mPayModel.mPayLevelData.data.getPicdomain());
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        getPayInfos();
     }
 
     View.OnClickListener linenter = new View.OnClickListener() {
@@ -105,6 +113,8 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
             choseClick(id);
         }
     };
+
+
     MessageListener paySuccessListener = new MessageListener(VedioCmd.CMD_PAY_SUCCESS) {
         @Override
         public void onMessage(CommonMessage<?> responsedMessage) {
@@ -116,7 +126,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.home_layout);
 
             } else {
-                Toast.makeText(HomeActivity.this, str, Toast.LENGTH_SHORT).show();
                 sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
                 editor = sharedPreferences.edit();
                 editor.putString("vip", Constants.pay_config.getVip_now());
@@ -124,8 +133,18 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
                 int id = Integer.parseInt(str.split("\\*")[1]);
 
-                choseClick(R.id.home_layout);
-                choseClick(R.id.vip_layout);
+                try {
+                    choseClick(R.id.home_layout);
+                } catch (Exception e) {
+                    LogUtil.e("tabClick" + e.getMessage());
+                }
+
+                try {
+                    choseClick(R.id.vip_layout);
+                } catch (Exception e) {
+                    LogUtil.e("tabClick" + e.getMessage());
+                }
+
                 choseClick(R.id.channel_layout);
                 choseClick(R.id.vault_layout);
                 choseClick(R.id.forum_layout);
@@ -142,12 +161,10 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
     private void choseClick(int id) {
         switch (id) {
             case R.id.home_layout:
-                Log.e("adasd", "home");
                 mHomeView.clickHome();
                 break;
             case R.id.vip_layout:
                 mHomeView.clickVip();
-                Log.e("adasd", "vip");
                 break;
             case R.id.main_user:
                 mHomeView.clickUser();
@@ -159,7 +176,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 mHomeView.clickVault();
                 break;
             case R.id.forum_layout:
-                Log.e("adasd", "forum");
                 mHomeView.clickForum();
                 break;
             default:
@@ -179,4 +195,5 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 break;
         }
     }
+
 }

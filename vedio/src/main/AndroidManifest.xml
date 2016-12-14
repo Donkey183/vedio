@@ -42,16 +42,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:node="replace"
         tools:replace="android:icon">
-        <service android:name="com.squareup.leakcanary.DisplayLeakService"/>
-        <service android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"/>
 
         <activity android:name=".ui.activity.HomeActivity">
             <data android:scheme="wx310fce993d9b2cc7"/>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <activity
@@ -81,14 +74,12 @@
         </activity>
 
         <activity android:name=".ui.activity.UserInfoActivity"></activity>
-
-        <!--<receiver-->
-        <!--android:name=".AppRegister">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP"/>-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
-
+        <activity android:name=".ui.activity.SpalshActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -102,6 +102,15 @@ public class PayLevelData implements Serializable {
         private String wxapiKey;
         private String ifVerify;
         private String ifpay;
+        private String picdomain;
+
+        public String getPicdomain() {
+            return picdomain;
+        }
+
+        public void setPicdomain(String picdomain) {
+            this.picdomain = picdomain;
+        }
 
         public String getUuid() {
             return uuid;

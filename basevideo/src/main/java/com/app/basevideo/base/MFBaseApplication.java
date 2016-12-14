@@ -32,7 +32,6 @@ public class MFBaseApplication extends Application {
     public void onCreate() {
         initBaseApp();
         super.onCreate();
-//        LeakCanary.install(this);
     }
 
 
