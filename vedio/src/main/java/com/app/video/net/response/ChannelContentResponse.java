@@ -6,6 +6,6 @@ import com.app.video.data.ChannelContentData;
 
 import java.util.List;
 
-public class ChannelContentResponse extends BaseHttpResult<List<ChannelContentData.ChannelContent>> {
+public class ChannelContentResponse extends BaseHttpResult<ChannelContentData> {
 
 }

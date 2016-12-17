@@ -13,6 +13,7 @@ import com.app.video.config.Constants;
 import com.app.video.data.VideoData;
 import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.ui.widget.CommonAlert;
+import com.app.video.util.PlayCountUtil;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -58,6 +59,11 @@ public class BlackGoldAdapter extends PagerAdapter {
                     CommonAlert alert = new CommonAlert(context);
                     alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
                 } else {
+                    if (!PlayCountUtil.hasAuth("BLACK")) {
+                        CommonAlert alert = new CommonAlert(context);
+                        alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+                        return;
+                    }
                     Intent intent = new Intent(context, VideoPlayerActivity.class);
                     intent.putExtra("path", video.getDyres());
                     intent.putExtra("parent", "");

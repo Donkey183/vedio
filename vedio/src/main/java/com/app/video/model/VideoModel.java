@@ -40,7 +40,7 @@ public class VideoModel extends MFBaseFragmentModel {
     public static final int GET_VEDIO_CROWN = 8;
 
     @Override
-    public void sendHttpRequest(CommonHttpRequest request, int requestCode) {
+    public void sendHttpRequest(final CommonHttpRequest request, final int requestCode) {
         code = requestCode;
         MFCall<VedioResponse> call = HttpRequestService.createService(VedioNetService.class).getVideoResources(request.buildParams());
         call.doRequest(new MFCallbackAdapter<VedioResponse>() {
@@ -50,13 +50,23 @@ public class VideoModel extends MFBaseFragmentModel {
                     MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.GET_VIDEO_INFO_FAILED));
                     return;
                 }
-                if (videoData.page == null) {
-                    videoData.page = new VideoData.Page();
-                    videoData.page.result = new ArrayList<VideoData.Page.Video>();
+                if (requestCode == GET_VEDIO_EXPERINCE) {
+                    if (videoData.page == null) {
+                        videoData.page = new VideoData.Page();
+                        videoData.page.result = new ArrayList<VideoData.Page.Video>();
+                    }
+                    videoData.page.setTotalCount(entity.page.getTotalCount());
+                    videoData.page.result.addAll(entity.page.result);
+                    videoData.page.list1 = entity.page.list1;
+                    curPageNo++;
+                    if (entity.page.result.size() == 0) {
+                        curPageNo = -1;
+                    }
+                } else {
+                    videoData.page = entity.page;
                 }
-                videoData.page.result.addAll(entity.page.result);
-                videoData.page.list1 = entity.page.list1;
-                curPageNo++;
+
+
                 disPatchRequestSuccessMessage(code);
             }
         });

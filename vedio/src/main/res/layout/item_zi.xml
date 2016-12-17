@@ -9,12 +9,12 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/finance_dimen_10px"
         android:layout_marginRight="@dimen/finance_dimen_10px"
-        android:paddingTop="@dimen/finance_dimen_10px">
+        android:layout_marginTop="@dimen/finance_dimen_10px">
 
         <ImageView
             android:id="@+id/vip_image"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/finance_dimen_400px"
+            android:layout_height="@dimen/finance_dimen_330px"
             android:scaleType="fitXY"/>
 
         <TextView
@@ -22,9 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/vip_image"
+            android:layout_marginTop="@dimen/finance_dimen_10px"
             android:singleLine="true"
             android:textColor="@color/finance_353535"
-            android:textSize="@dimen/finance_dimen_40px"/>
+            android:textSize="@dimen/finance_dimen_34px"/>
 
     </RelativeLayout>
 

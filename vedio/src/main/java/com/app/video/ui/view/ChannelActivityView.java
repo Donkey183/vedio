@@ -62,8 +62,8 @@ public class ChannelActivityView extends MFBaseMVCView {
                 if (!Constants.config.getVip_now().equals(Constants.RED)) {
                     CommonAlert alert = new CommonAlert(mActivity);
                     alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
-                } else if (object instanceof ChannelContentData.ChannelContent) {
-                    ChannelContentData.ChannelContent content = (ChannelContentData.ChannelContent) object;
+                } else if (object instanceof ChannelContentData.ResultBean) {
+                    ChannelContentData.ResultBean content = (ChannelContentData.ResultBean) object;
                     Intent intent = new Intent(mActivity, VideoPlayerActivity.class);
                     intent.putExtra("path", content.getCresource());
                     mActivity.startActivity(intent);
@@ -72,7 +72,7 @@ public class ChannelActivityView extends MFBaseMVCView {
         });
     }
 
-    public void showPageView(List<ChannelContentData.ChannelContent> channelContents) {
+    public void showPageView(List<ChannelContentData.ResultBean> channelContents) {
         mAdapter.showChannelView(channelContents);
     }
 

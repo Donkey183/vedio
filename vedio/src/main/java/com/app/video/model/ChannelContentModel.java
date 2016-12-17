@@ -32,7 +32,7 @@ public class ChannelContentModel extends MFBaseModel {
                     disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
                     return;
                 }
-                channelContentData.channelContentList = entity.list;
+                channelContentData = entity.page;
                 disPatchRequestSuccessMessage(GET_CHANNEL_CONTENT_INFO);
             }
         });

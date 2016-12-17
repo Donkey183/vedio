@@ -26,6 +26,7 @@ import com.app.video.model.VideoModel;
 import com.app.video.ui.activity.VedioDetailActivity;
 import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.ui.widget.CommonAlert;
+import com.app.video.util.PlayCountUtil;
 
 
 public class GoldFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener,View.OnClickListener{
@@ -123,6 +124,11 @@ public class GoldFragment extends MFBaseFragment implements INetFinish, OnRecycl
             CommonAlert alert = new CommonAlert(getActivity());
             alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.vip_layout);
         }else{
+            if (!PlayCountUtil.hasAuth("GOLD")) {
+                CommonAlert alert = new CommonAlert(GoldFragment.this.getActivity());
+                alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+                return;
+            }
             String recourseUrl = "";
             String img = "";
             if (obj instanceof VideoData.Page.Video) {

@@ -1,9 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/finance_f0f0f0"
-    tools:context="com.app.video.ui.fragment.VaultFragment">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/finance_f0f0f0"
+             tools:context="com.app.video.ui.fragment.VaultFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/vault_recycler"

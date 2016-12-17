@@ -53,6 +53,7 @@ public class CommonAlert {
     private CheckBox check_zhifu;
     private RelativeLayout zhifu1;
     private RelativeLayout zhifu2;
+    private RelativeLayout zhifu;
 
     private ImageView dialog_img;
     private ImageView zhifu1_img;
@@ -88,7 +89,9 @@ public class CommonAlert {
         alert.show();
         Window window = alert.getWindow();
         final LayoutInflater inflate = LayoutInflater.from(context);
-        View contentView = inflate.inflate(R.layout.dialog_layout, null);
+        int recourseId = pay2 == null ? R.layout.dialog_layout2 : R.layout.dialog_layout;
+
+        View contentView = inflate.inflate(recourseId, null);
         WindowUtil.resizeRecursively(contentView);
         window.setContentView(contentView);
 
@@ -116,6 +119,7 @@ public class CommonAlert {
 
         alert_cha = (ImageView) window.findViewById(R.id.dialog_cha);
 
+        zhifu = (RelativeLayout) window.findViewById(R.id.lay_zhifu);
         zhifu1 = (RelativeLayout) window.findViewById(R.id.layout_zhifu1);
 
         zhifu2 = (RelativeLayout) window.findViewById(R.id.layout_zhifu2);

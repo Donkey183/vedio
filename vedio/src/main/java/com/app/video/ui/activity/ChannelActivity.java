@@ -31,13 +31,14 @@ public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRec
 
     private void loadPageData() {
         CommonHttpRequest request = new CommonHttpRequest();
-        request.addParam("cid", "3");
+        String cid = getIntent().getExtras().getString("cid");
+        request.addParam("cid", cid);
         mChanneModel.sendHttpRequest(request, ChannelContentModel.GET_CHANNEL_CONTENT_INFO);
     }
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        mChannelView.showPageView(mChanneModel.channelContentData.channelContentList);
+        mChannelView.showPageView(mChanneModel.channelContentData.result);
     }
 
     @Override
@@ -48,8 +49,8 @@ public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRec
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-        if (obj != null && obj instanceof ChannelContentData.ChannelContent) {
-            ChannelContentData.ChannelContent content = (ChannelContentData.ChannelContent) obj;
+        if (obj != null && obj instanceof ChannelContentData.ResultBean) {
+            ChannelContentData.ResultBean content = (ChannelContentData.ResultBean) obj;
             Intent intent = new Intent(ChannelActivity.this, VideoPlayerActivity.class);
             intent.putExtra("path", content.getCresource());
             startActivity(intent);
@@ -59,7 +60,7 @@ public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRec
 
 
     public void onBtnClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn1:
             case R.id.btn2:
             case R.id.btn3:
@@ -68,9 +69,9 @@ public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRec
             case R.id.btn6:
             case R.id.btn7:
             case R.id.btn_next:
-                if(!Constants.config.getVip_now().equals(Constants.RED)){
+                if (!Constants.config.getVip_now().equals(Constants.RED)) {
                     CommonAlert alert = new CommonAlert(this);
-                    alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(), -1);
+                    alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), -1);
                     break;
                 }
 

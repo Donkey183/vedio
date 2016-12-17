@@ -7,9 +7,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
+import com.app.basevideo.base.MFBaseApplication;
 import com.app.basevideo.base.MFBaseFragment;
+import com.app.basevideo.cache.MFSimpleCache;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
@@ -19,14 +22,18 @@ import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.model.VideoModel;
 import com.app.video.util.GallyPageTransformer;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+
 public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
     private ViewPager gallery_pager;
-    private LinearLayout ll_main;
+    private RelativeLayout ll_main;
     private int pagerWidth;
     private VideoModel mVideoModel;
+    private ImageView backgroundImg;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,10 +54,14 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_gallery, container, false);
+        backgroundImg = (ImageView) view.findViewById(R.id.background_img);
+        String url = MFSimpleCache.get(MFBaseApplication.getInstance()).getAsString("PIC_DOMAIN") + "/dapp/heijinbj.jpg";
+        Glide.with(MFBaseApplication.getInstance()).load(url).into(backgroundImg);
+        Glide.with(BlackGoldFragment.this.getActivity()).load(url).into(backgroundImg);
         gallery_pager = (ViewPager) view.findViewById(R.id.gallery_pager);
-        ll_main = (LinearLayout) view.findViewById(R.id.gallery_layout);
+        ll_main = (RelativeLayout) view.findViewById(R.id.gallery_layout);
         gallery_pager.setOffscreenPageLimit(3);
-        pagerWidth = (int) (getResources().getDisplayMetrics().widthPixels * 3.0f / 5.0f);
+        pagerWidth = (int) (getResources().getDisplayMetrics().widthPixels * 3.0f / 3.6f);
         ViewGroup.LayoutParams lp = gallery_pager.getLayoutParams();
         if (lp == null) {
             lp = new ViewGroup.LayoutParams(pagerWidth, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -66,7 +77,6 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
             }
         });
         gallery_pager.setPageTransformer(true, new GallyPageTransformer());
-//        WindowUtil.resizeRecursively(view);
         return view;
     }
 

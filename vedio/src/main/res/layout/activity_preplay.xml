@@ -92,7 +92,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/finance_dimen_500px"
+                android:layout_height="wrap_content"
                 android:background="@color/finance_f9f9f9"
                 android:orientation="horizontal">
 
@@ -105,7 +105,7 @@
                     <ImageView
                         android:id="@+id/img1"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/finance_dimen_400px"
+                        android:layout_height="@dimen/finance_dimen_260px"
                         android:layout_marginBottom="@dimen/finance_dimen_10px"
                         android:layout_marginLeft="@dimen/finance_dimen_10px"
                         android:layout_marginRight="@dimen/finance_dimen_5px"
@@ -132,7 +132,7 @@
                     <ImageView
                         android:id="@+id/img2"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/finance_dimen_400px"
+                        android:layout_height="@dimen/finance_dimen_260px"
                         android:layout_marginBottom="@dimen/finance_dimen_10px"
                         android:layout_marginLeft="@dimen/finance_dimen_5px"
                         android:layout_marginRight="@dimen/finance_dimen_5px"
@@ -159,7 +159,7 @@
                     <ImageView
                         android:id="@+id/img3"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/finance_dimen_400px"
+                        android:layout_height="@dimen/finance_dimen_260px"
                         android:layout_marginBottom="@dimen/finance_dimen_10px"
                         android:layout_marginLeft="@dimen/finance_dimen_5px"
                         android:layout_marginRight="@dimen/finance_dimen_10px"

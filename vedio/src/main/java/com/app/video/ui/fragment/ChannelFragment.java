@@ -64,6 +64,7 @@ public class ChannelFragment extends MFBaseFragment implements INetFinish, OnRec
             ChannelData date = (ChannelData)obj;
             Intent intent = new Intent(ChannelFragment.this.getActivity(), ChannelActivity.class);
             intent.putExtra("name",date.getDname());
+            intent.putExtra("cid",date.getId());
             startActivity(intent);
         }
 

@@ -6,7 +6,7 @@
     <ImageView
         android:id="@+id/dialog_img"
         android:layout_width="@dimen/finance_dimen_900px"
-        android:layout_height="@dimen/finance_dimen_500px"
+        android:layout_height="@dimen/finance_dimen_550px"
         android:scaleType="fitXY"
         android:src="@drawable/forum"/>
 
@@ -22,7 +22,7 @@
     <RelativeLayout
         android:id="@+id/lay_zhifu"
         android:layout_width="@dimen/finance_dimen_900px"
-        android:layout_height="@dimen/finance_dimen_500px"
+        android:layout_height="@dimen/finance_dimen_280px"
         android:layout_below="@+id/dialog_img"
         android:background="@color/finance_ff9191"
         android:gravity="center">

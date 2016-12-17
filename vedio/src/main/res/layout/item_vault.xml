@@ -2,20 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/finance_dimen_60px"
+                android:layout_marginRight="@dimen/finance_dimen_60px"
+                android:layout_marginTop="@dimen/finance_dimen_36px"
                 android:background="@color/finance_ffffffff">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/finance_dimen_400px"
-        android:layout_marginBottom="@dimen/finance_dimen_15px">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/vault_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/finance_dimen_30px"
-            android:layout_marginLeft="@dimen/finance_dimen_30px"
-            android:layout_marginRight="@dimen/finance_dimen_30px"
+            android:layout_height="@dimen/finance_dimen_360px"
             android:scaleType="fitXY"/>
 
         <LinearLayout
@@ -53,8 +52,6 @@
                 android:textColor="@color/finance_232323"
                 android:textSize="@dimen/finance_dimen_46px"/>
         </LinearLayout>
-
-
     </RelativeLayout>
 
 </RelativeLayout>

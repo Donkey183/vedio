@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/finance_dimen_30px"
+                android:layout_marginTop="@dimen/finance_dimen_30px">
 
     <RelativeLayout
         android:id="@+id/channel_bar"
@@ -23,9 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:text="频道详情"
             android:textColor="@color/finance_ffffffff"
             android:textSize="@dimen/finance_dimen_60px"
-            android:text="频道详情"
             android:textStyle="bold"/>
 
     </RelativeLayout>
@@ -56,16 +58,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/vip_recycler"
-
                 android:text="请升级高级会员,获取更多影片资源!!"
-                android:textColor="@color/finance_ff0000"/>
+                android:textColor="@color/finance_ff0000"
+                android:visibility="invisible"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/finance_dimen_100px"
                 android:layout_below="@+id/vit_text"
                 android:layout_marginTop="@dimen/finance_dimen_30px"
-                android:gravity="center">
+                android:gravity="center"
+                android:visibility="invisible">
 
                 <Button
                     android:id="@+id/btn1"

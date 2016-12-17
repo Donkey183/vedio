@@ -3,6 +3,7 @@ package com.app.video.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,8 +26,9 @@ import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.VideoModel;
 import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.ui.widget.CommonAlert;
+import com.app.video.util.PlayCountUtil;
 
-public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener {
+public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView vip_recyclerView;
     private VIPFragmentAdaptor mAdapter;
@@ -41,6 +43,9 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
     private Button btn6;
     private Button btn7;
     private Button btn_next;
+
+    private SwipeRefreshLayout mSwipeRefresh;
+    private int lastVisibleItem;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,7 +63,7 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
         btn_layout = (LinearLayout) view.findViewById(R.id.btn_layout);
         btn_layout.setVisibility(View.GONE);
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
-        GridLayoutManager manager = new GridLayoutManager(getActivity(),3) {
+        GridLayoutManager manager = new GridLayoutManager(getActivity(), 3) {
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -112,15 +117,20 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
         mAdapter = new VIPFragmentAdaptor(this.getActivity().getApplicationContext());
         mAdapter.setOnItemClickListener(this);
         vip_recyclerView.setAdapter(mAdapter);
-        mAdapter.showVIPView(mModel.videoData.page.result,mModel.videoData.page.list1);
+        mAdapter.showVIPView(mModel.videoData.page.result, mModel.videoData.page.list1);
     }
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-        if(!Constants.config.getVip_now().equals(Constants.DIAMOND)){
+        if (!Constants.config.getVip_now().equals(Constants.DIAMOND)) {
             CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.vip_layout);
-        }else{
+            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
+        } else {
+            if (!PlayCountUtil.hasAuth("DIAMOND")) {
+                CommonAlert alert = new CommonAlert(DiamondFragment.this.getActivity());
+                alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+                return;
+            }
             String recourseUrl = "";
             String img = "";
             if (obj instanceof VideoData.Page.Video) {
@@ -130,9 +140,9 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
                 recourseUrl = ((VideoData.Page.Banner) obj).getDyresource();
                 img = ((VideoData.Page.Banner) obj).getDypic();
             }
-            Intent intent = new Intent(getActivity(),VideoPlayerActivity.class);
+            Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
             intent.putExtra("path", recourseUrl);
-            intent.putExtra("img",img);
+            intent.putExtra("img", img);
             intent.putExtra("parent", "");
             startActivity(intent);
         }
@@ -148,4 +158,8 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
     }
 
 
+    @Override
+    public void onRefresh() {
+
+    }
 }

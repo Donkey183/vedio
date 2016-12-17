@@ -17,6 +17,7 @@ import com.app.video.data.VideoDetailData;
 import com.app.video.ui.activity.VedioDetailActivity;
 import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.ui.widget.CommonAlert;
+import com.app.video.util.PlayCountUtil;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -89,13 +90,20 @@ public class VideoDetailView extends MFBaseMVCView {
         player_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!PlayCountUtil.hasAuth("DETAIL_VIEW")) {
+                    CommonAlert alert = new CommonAlert(mActivity);
+                    alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+                    return;
+                }
+
                 Intent intent = new Intent(mActivity, VideoPlayerActivity.class);
                 intent.putExtra("path", url);
-                intent.putExtra("parent","detail");
+                intent.putExtra("parent", "detail");
                 mActivity.startActivityForResult(intent, 0);
             }
         });
     }
+
 
     public void showVideoDetail(VideoDetailData detailData) {
 
@@ -106,8 +114,8 @@ public class VideoDetailView extends MFBaseMVCView {
 
     }
 
-    private void showRecom(VideoDetailData detailData){
-        List<VideoDetailData.Detail> datalist= detailData.recommendVideoList;
+    private void showRecom(VideoDetailData detailData) {
+        List<VideoDetailData.Detail> datalist = detailData.recommendVideoList;
         Glide.with(mActivity).load(datalist.get(0).getDypic()).into(img1);
         Glide.with(mActivity).load(datalist.get(1).getDypic()).into(img2);
         Glide.with(mActivity).load(datalist.get(2).getDypic()).into(img3);
@@ -118,27 +126,27 @@ public class VideoDetailView extends MFBaseMVCView {
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!Constants.config.getVip_now().equals(Constants.RED)){
+                if (!Constants.config.getVip_now().equals(Constants.RED)) {
                     CommonAlert alert = new CommonAlert(mActivity);
-                    alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+                    alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
                 }
             }
         });
         img2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!Constants.config.getVip_now().equals(Constants.RED)){
+                if (!Constants.config.getVip_now().equals(Constants.RED)) {
                     CommonAlert alert = new CommonAlert(mActivity);
-                    alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+                    alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
                 }
             }
         });
         img3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!Constants.config.getVip_now().equals(Constants.RED)){
+                if (!Constants.config.getVip_now().equals(Constants.RED)) {
                     CommonAlert alert = new CommonAlert(mActivity);
-                    alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.forum_layout);
+                    alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
                 }
             }
         });

@@ -20,12 +20,13 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.adaptor.RecommendAdaptor;
+import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
-import com.app.video.model.ChannelModel;
 import com.app.video.model.VideoModel;
 import com.app.video.ui.activity.VedioDetailActivity;
+import com.app.video.ui.widget.CommonAlert;
 
 
 public class RecommendFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, SwipeRefreshLayout.OnRefreshListener {
@@ -106,10 +107,14 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
     }
 
     private void getRecommendInfo(String pageNo) {
+        if (mVideoModel.curPageNo < 0 && mVideoModel.videoData.page != null && mVideoModel.videoData.page.result != null && mVideoModel.videoData.page.result.size() > 0) {
+            mSwipeRefresh.setRefreshing(false);
+            return;
+        }
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam(VedioConstant.PAGE_NO, pageNo);
         request.addParam(VedioConstant.R_TYPE, VedioConstant.CHANNEL_EXPERIENCE);
-        mVideoModel.sendHttpRequest(request, ChannelModel.GET_CHANNEL_INFO);
+        mVideoModel.sendHttpRequest(request, VideoModel.GET_VEDIO_EXPERINCE);
     }
 
     @Override
@@ -118,7 +123,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
         my_recyclerView.setAdapter(mAdapter);
         mAdapter.showRecommendView(mVideoModel.videoData.page.result, mVideoModel.videoData.page.list1);
         mSwipeRefresh.setRefreshing(false);
-        my_recyclerView.smoothScrollToPosition(lastVisibleItem * 2);
+        my_recyclerView.smoothScrollToPosition(lastVisibleItem);
     }
 
     @Override
@@ -136,6 +141,8 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
         Intent intent = new Intent(getActivity(), VedioDetailActivity.class);
         intent.putExtra("path", recourseUrl);
         intent.putExtra("img", img);
+        intent.putExtra("CUR_AREA", "0");
+
         startActivity(intent);
     }
 

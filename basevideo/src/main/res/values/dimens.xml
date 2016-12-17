@@ -70,12 +70,18 @@
     <dimen name="finance_dimen_280px">280px</dimen>
     <dimen name="finance_dimen_300px">300px</dimen>
     <dimen name="finance_dimen_320px">320px</dimen>
+    <dimen name="finance_dimen_330px">330px</dimen>
+    <dimen name="finance_dimen_360px">360px</dimen>
     <dimen name="finance_dimen_400px">400px</dimen>
     <dimen name="finance_dimen_450px">450px</dimen>
     <dimen name="finance_dimen_480px">480px</dimen>
     <dimen name="finance_dimen_500px">500px</dimen>
     <dimen name="finance_dimen_510px">510px</dimen>
+    <dimen name="finance_dimen_530px">530px</dimen>
+    <dimen name="finance_dimen_565px">565px</dimen>
     <dimen name="finance_dimen_270px">270px</dimen>
+    <dimen name="finance_dimen_830px">8300px</dimen>
+    <dimen name="finance_dimen_920px">920px</dimen>
 
 
 </resources>

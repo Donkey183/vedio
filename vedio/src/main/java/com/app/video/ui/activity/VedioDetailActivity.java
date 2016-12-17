@@ -26,12 +26,13 @@ public class VedioDetailActivity extends MFBaseActivity implements INetFinish, V
         super.onCreate(savedInstanceState);
         mDetailModel = new VideoDetailModel(this);
         mDetailView = new VideoDetailView(this, this);
-        getVedioDetailInfo();
+        String curType = getIntent().getExtras().getString("CUR_AREA");
+        getVedioDetailInfo(curType);
     }
 
-    private void getVedioDetailInfo() {
+    private void getVedioDetailInfo(String curType) {
         CommonHttpRequest request = new CommonHttpRequest();
-        request.addParam(VedioConstant.R_TYPE, VedioConstant.CHANNEL_NORMAL);
+        request.addParam(VedioConstant.R_TYPE, curType == null ? "0" : curType);
         mDetailModel.sendHttpRequest(request, VideoDetailModel.GET_VEDIO_DERAIL);
     }
 

@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import com.app.basevideo.cache.MFSimpleCache;
 import com.app.basevideo.config.VideoErrorData;
 import com.app.basevideo.framework.UniqueId;
 import com.app.basevideo.framework.listener.AbsMessageListener;

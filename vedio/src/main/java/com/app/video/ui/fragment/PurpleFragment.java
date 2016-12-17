@@ -3,7 +3,6 @@ package com.app.video.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +17,7 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
-import com.app.video.adaptor.VIPFragmentAdaptor;
+import com.app.video.adaptor.ZiZuanFragmentAdaptor;
 import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
@@ -26,14 +25,12 @@ import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.VideoModel;
 import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.ui.widget.CommonAlert;
-import com.app.video.util.GallyPageTransformer;
-
-import java.util.List;
+import com.app.video.util.PlayCountUtil;
 
 public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener {
 
     private RecyclerView vip_recyclerView;
-    private VIPFragmentAdaptor mAdapter;
+    private ZiZuanFragmentAdaptor mAdapter;
     private VideoModel mModel;
     private LinearLayout btn_layout;
 
@@ -62,7 +59,7 @@ public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecy
         btn_layout = (LinearLayout) view.findViewById(R.id.btn_layout);
         btn_layout.setVisibility(View.GONE);
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
-        GridLayoutManager manager = new GridLayoutManager(getActivity(),4) {
+        GridLayoutManager manager = new GridLayoutManager(getActivity(), 3) {
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -71,7 +68,7 @@ public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecy
         manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                return position == 0 ? 4 : 1;
+                return position == 0 ? 3 : 1;
             }
         });
         vip_recyclerView.setLayoutManager(manager);
@@ -101,7 +98,7 @@ public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecy
     private void getVideoInfo() {
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam(VedioConstant.R_TYPE, "5");
-        request.addParam(VedioConstant.PAGE_NO, "0");
+        request.addParam(VedioConstant.PAGE_NO, "1");
         mModel.sendHttpRequest(request, VideoModel.GET_VEDIO_PURPLE);
     }
 
@@ -113,18 +110,23 @@ public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecy
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        mAdapter = new VIPFragmentAdaptor(this.getActivity().getApplicationContext());
+        mAdapter = new ZiZuanFragmentAdaptor(this.getActivity().getApplicationContext());
         mAdapter.setOnItemClickListener(this);
         vip_recyclerView.setAdapter(mAdapter);
-        mAdapter.showVIPView(mModel.videoData.page.result,mModel.videoData.page.list1);
+        mAdapter.showVIPView(mModel.videoData.page.result, mModel.videoData.page.list1);
     }
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-        if(!Constants.config.getVip_now().equals(Constants.PURPLE)){
+        if (!Constants.config.getVip_now().equals(Constants.PURPLE)) {
             CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(),R.id.vip_layout);
-        }else{
+            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
+        } else {
+            if (!PlayCountUtil.hasAuth("ZIZUAN")) {
+                CommonAlert alert = new CommonAlert(PurpleFragment.this.getActivity());
+                alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
+                return;
+            }
             String recourseUrl = "";
             String img = "";
             if (obj instanceof VideoData.Page.Video) {
@@ -134,9 +136,9 @@ public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecy
                 recourseUrl = ((VideoData.Page.Banner) obj).getDyresource();
                 img = ((VideoData.Page.Banner) obj).getDypic();
             }
-            Intent intent = new Intent(getActivity(),VideoPlayerActivity.class);
+            Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
             intent.putExtra("path", recourseUrl);
-            intent.putExtra("img",img);
+            intent.putExtra("img", img);
             intent.putExtra("parent", "");
             startActivity(intent);
         }
