@@ -32,7 +32,7 @@ public class ChannelAdaptor extends RecyclerView.Adapter<ChannelAdaptor.ChannelV
     public ChannelViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         mInflater = LayoutInflater.from(mContext);
-        View view = mInflater.inflate(R.layout.item_channel, parent, false);
+        View view = mInflater.inflate(R.layout.item_channel_for_activity, parent, false);
         WindowUtil.resizeRecursively(view);
         ChannelViewHolder holder = new ChannelViewHolder(view);
         view.setOnClickListener(this);

@@ -11,7 +11,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.app.basevideo.base.MFBaseApplication;
 import com.app.basevideo.base.MFBaseFragment;
 import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.framework.listener.MessageListener;
@@ -102,6 +104,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
     private void getRecommendInfo(String pageNo) {
         if (mVideoModel.curPageNo < 0 && mVideoModel.videoData.page != null && mVideoModel.videoData.page.result != null && mVideoModel.videoData.page.result.size() > 0) {
             mSwipeRefresh.setRefreshing(false);
+            Toast.makeText(MFBaseApplication.getInstance(), "已加载全部视频!", Toast.LENGTH_SHORT).show();
             return;
         }
         CommonHttpRequest request = new CommonHttpRequest();
