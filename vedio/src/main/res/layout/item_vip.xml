@@ -24,8 +24,10 @@
             android:layout_alignParentRight="true"
             android:background="@color/video_typeback"
             android:text="VIP"
+            android:paddingRight="@dimen/finance_dimen_5px"
+            android:paddingLeft="@dimen/finance_dimen_5px"
             android:textColor="@color/video_typetext"
-            android:textSize="@dimen/finance_dimen_46px"/>
+            android:textSize="@dimen/finance_dimen_38px"/>
 
         <TextView
             android:id="@+id/vip_name"

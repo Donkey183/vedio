@@ -42,41 +42,37 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:node="replace"
         tools:replace="android:icon">
-
         <activity android:name=".ui.activity.HomeActivity">
             <data android:scheme="wx310fce993d9b2cc7"/>
         </activity>
-
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop">
-            <!--<data android:scheme="wx310fce993d9b2cc7"/>-->
-        </activity>
 
+            <!-- <data android:scheme="wx310fce993d9b2cc7"/> -->
+        </activity>
         <activity
             android:name=".ui.activity.VideoPlayerActivity"
             android:screenOrientation="landscape"/>
-
         <activity android:name=".ui.activity.VedioDetailActivity"/>
-
         <activity android:name=".ui.activity.ChannelActivity"/>
-
         <activity
             android:name=".ui.activity.PayActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
+
                 <category android:name="android.intent.category.DEFAULT"/>
+
                 <data android:scheme="wx310fce993d9b2cc7"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".ui.activity.UserInfoActivity"></activity>
+        <activity android:name=".ui.activity.UserInfoActivity"/>
         <activity android:name=".ui.activity.SpalshActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
