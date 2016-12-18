@@ -7,7 +7,9 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.app.basevideo.base.MFBaseApplication;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.data.VideoData;
@@ -60,6 +62,7 @@ public class BlackGoldAdapter extends PagerAdapter {
                     alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
                 } else {
                     if (!PlayCountUtil.hasAuth("BLACK")) {
+                        Toast.makeText(MFBaseApplication.getInstance(), "您的播放次数已超过五次!", Toast.LENGTH_LONG).show();
                         CommonAlert alert = new CommonAlert(context);
                         alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
                         return;
