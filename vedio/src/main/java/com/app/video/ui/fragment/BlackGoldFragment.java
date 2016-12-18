@@ -58,7 +58,6 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
         backgroundImg = (ImageView) view.findViewById(R.id.background_img);
         String url = MFSimpleCache.get(MFBaseApplication.getInstance()).getAsString("PIC_DOMAIN") + "/dapp/heijinbj.jpg";
         Glide.with(MFBaseApplication.getInstance()).load(url).into(backgroundImg);
-        Glide.with(BlackGoldFragment.this.getActivity()).load(url).into(backgroundImg);
         gallery_pager = (ViewPager) view.findViewById(R.id.gallery_pager);
         ll_main = (RelativeLayout) view.findViewById(R.id.gallery_layout);
         gallery_pager.setOffscreenPageLimit(3);

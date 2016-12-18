@@ -12,9 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.basevideo.base.MFBaseMVCView;
-import com.app.basevideo.config.VedioCmd;
-import com.app.basevideo.framework.listener.MessageListener;
-import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.framework.util.LogUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
@@ -267,27 +264,27 @@ public class HomeActivityView extends MFBaseMVCView {
             tittle_text.setText(videoCount == null ? "体验区" : "体验区(共" + videoCount + "部电影)");
             return mRecommendFragment;
         } else if (str.equals("黄金区")) {
-            String videoCount = mRecommendFragment.getVideoCount();
+            String videoCount = goldFragment.getVideoCount();
             tittle_text.setText(videoCount == null ? "黄金区" : "黄金区(共" + videoCount + "部电影)");
             return goldFragment;
         } else if (str.equals("钻石区")) {
-            String videoCount = mRecommendFragment.getVideoCount();
+            String videoCount = diamondFragment.getVideoCount();
             tittle_text.setText(videoCount == null ? "钻石区" : "钻石区(共" + videoCount + "部电影)");
             return diamondFragment;
         } else if (str.equals("黑金区")) {
-            String videoCount = mRecommendFragment.getVideoCount();
+            String videoCount = blackGoldFragment.getVideoCount();
             tittle_text.setText(videoCount == null ? "黑金区" : "黑金区(共" + videoCount + "部电影)");
             return blackGoldFragment;
         } else if (str.equals("皇冠区")) {
-            String videoCount = mRecommendFragment.getVideoCount();
+            String videoCount = crownFragment.getVideoCount();
             tittle_text.setText(videoCount == null ? "皇冠区" : "皇冠区(共" + videoCount + "部电影)");
             return crownFragment;
         } else if (str.equals("紫钻区")) {
-            String videoCount = mRecommendFragment.getVideoCount();
+            String videoCount = purpleFragment.getVideoCount();
             tittle_text.setText(videoCount == null ? "紫钻区" : "紫钻区(共" + videoCount + "部电影)");
             return purpleFragment;
         } else if (str.equals("蓝钻区")) {
-            String videoCount = mRecommendFragment.getVideoCount();
+            String videoCount = blueFragment.getVideoCount();
             tittle_text.setText(videoCount == null ? "蓝钻区" : "蓝钻区(共" + videoCount + "部电影)");
             return blueFragment;
         } else {

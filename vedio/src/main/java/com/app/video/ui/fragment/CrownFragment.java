@@ -92,9 +92,10 @@ public class CrownFragment extends MFBaseFragment implements INetFinish {
         dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
     }
 
+
     public String getVideoCount() {
-        if (mVideoModel.videoData != null && mVideoModel.videoData.getTotal() > 0) {
-            return "" + mVideoModel.videoData.getTotal();
+        if (mVideoModel != null && mVideoModel.videoData != null && mVideoModel.videoData.page != null && mVideoModel.videoData.page.getTotalCount() > 0) {
+            return "" + mVideoModel.videoData.page.getTotalCount();
         }
         return null;
     }
