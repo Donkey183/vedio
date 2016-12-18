@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/gallery_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:layerType="software"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/channel_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_150px"
+        android:layout_alignParentTop="true"
+        android:background="@color/finance_fd6b6b">
+
+        <ImageView
+            android:id="@+id/channel_back"
+            android:layout_width="@dimen/finance_dimen_70px"
+            android:layout_height="@dimen/finance_dimen_70px"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/finance_dimen_20px"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:id="@+id/channel_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="顶级片库"
+            android:textColor="@color/finance_ffffffff"
+            android:textSize="@dimen/finance_dimen_60px"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/gallery_pager"
+        android:layout_width="@dimen/finance_dimen_830px"
+        android:layout_height="@dimen/finance_dimen_1100px"
+        android:layout_centerInParent="true">
+
+    </android.support.v4.view.ViewPager>
+
+</RelativeLayout>

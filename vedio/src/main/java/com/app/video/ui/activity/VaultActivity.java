@@ -42,7 +42,7 @@ public class VaultActivity extends MFBaseActivity implements INetFinish {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new VaultContentModel(VaultActivity.this);
-        setContentView(R.layout.fragment_gallery);
+        setContentView(R.layout.vault_activity);
         gallery_pager = (ViewPager) findViewById(R.id.gallery_pager);
         ll_main = (RelativeLayout) findViewById(R.id.gallery_layout);
         vault_back = (ImageView) findViewById(R.id.vault_back);
