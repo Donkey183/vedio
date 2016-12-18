@@ -19,6 +19,7 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.adaptor.CrownAdapter;
+import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.model.VideoModel;
@@ -89,7 +90,9 @@ public class CrownFragment extends MFBaseFragment implements INetFinish {
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
         List<VideoData.Page.Video> resultBeenList = mVideoModel.videoData.page.result;
         gallery_pager.setAdapter(new CrownAdapter(resultBeenList, getActivity()));
-        dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
+        if(Constants.select_fragment.equals("home")){
+            dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
+        }
     }
 
     public String getVideoCount() {

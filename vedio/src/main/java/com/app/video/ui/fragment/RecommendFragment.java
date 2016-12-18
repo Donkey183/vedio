@@ -20,6 +20,7 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.adaptor.RecommendAdaptor;
+import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
@@ -120,7 +121,9 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
         mSwipeRefresh.setRefreshing(false);
 //        my_recyclerView.smoothScrollBy(0, (lastVisibleItem));
         my_recyclerView.smoothScrollToPosition(lastVisibleItem);
-        dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
+        if(Constants.select_fragment.equals("home")){
+            dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
+        }
     }
 
     @Override

@@ -50,6 +50,9 @@ public class Constants {
     public static Config pay_config;
 
 
+    public static String select_fragment;
+
+
     public static void upDatePayOff(PayLevelData payLevelData) {
         if (!StringUtils.isEmpty(payLevelData.getData().getGoldPay())) {
             vip_gold.setVip_money(payLevelData.getData().getGoldPay());
