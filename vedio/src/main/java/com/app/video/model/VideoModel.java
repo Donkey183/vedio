@@ -64,7 +64,6 @@ public class VideoModel extends MFBaseFragmentModel {
                     }
                 }
 
-
                 disPatchRequestSuccessMessage(code);
             }
         });

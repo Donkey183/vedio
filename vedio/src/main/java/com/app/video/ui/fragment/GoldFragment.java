@@ -11,7 +11,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.app.basevideo.base.MFBaseApplication;
 import com.app.basevideo.base.MFBaseFragment;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
@@ -29,7 +31,7 @@ import com.app.video.ui.widget.CommonAlert;
 import com.app.video.util.PlayCountUtil;
 
 
-public class GoldFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
+public class GoldFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     private RecyclerView vip_recyclerView;
     private VIPFragmentAdaptor mAdapter;
     private VideoModel mModel;
@@ -100,6 +102,7 @@ public class GoldFragment extends MFBaseFragment implements INetFinish, OnRecycl
     private void getVideoInfo(String pageNo) {
         if (mModel.curPageNo < 0 && mModel.videoData.page != null && mModel.videoData.page.result != null && mModel.videoData.page.result.size() > 0) {
             mSwipeRefresh.setRefreshing(false);
+            Toast.makeText(MFBaseApplication.getInstance(), "已加载全部视频!", Toast.LENGTH_SHORT).show();
             return;
         }
         CommonHttpRequest request = new CommonHttpRequest();
@@ -132,6 +135,7 @@ public class GoldFragment extends MFBaseFragment implements INetFinish, OnRecycl
             alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
         } else {
             if (!PlayCountUtil.hasAuth("GOLD")) {
+                Toast.makeText(MFBaseApplication.getInstance(), "您的播放次数已超过五次!", Toast.LENGTH_LONG).show();
                 CommonAlert alert = new CommonAlert(GoldFragment.this.getActivity());
                 alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
                 return;

@@ -3,12 +3,17 @@ package com.app.video.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.app.basevideo.base.MFBaseApplication;
 import com.app.basevideo.base.MFBaseFragment;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
@@ -25,17 +30,20 @@ import com.app.video.ui.activity.VideoPlayerActivity;
 import com.app.video.ui.widget.CommonAlert;
 import com.app.video.util.PlayCountUtil;
 
-public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener {
+public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView vip_recyclerView;
     private LanZuanFragmentAdaptor mAdapter;
     private VideoModel mModel;
 
+    private SwipeRefreshLayout mSwipeRefresh;
+    private int lastVisibleItem;
+    private GridLayoutManager mLayoutManager;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new VideoModel(this);
-        getVideoInfo();
     }
 
     @Nullable
@@ -45,35 +53,70 @@ public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecycl
         View view = inflater.inflate(R.layout.fragment_vip, container, false);
 
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
-        GridLayoutManager manager = new GridLayoutManager(getActivity(), 3) {
-            @Override
-            public boolean canScrollVertically() {
-                return true;
-            }
-        };
-        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+
+        mSwipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.pull_to_refresh);
+        mSwipeRefresh.setOnRefreshListener(this);
+        vip_recyclerView.setHasFixedSize(true);
+        vip_recyclerView.setItemAnimator(new DefaultItemAnimator());
+        mSwipeRefresh.setProgressViewOffset(false, 0, (int) TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
+                        .getDisplayMetrics()));
+
+        mLayoutManager = new GridLayoutManager(getActivity(), 3);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
                 return 1;
             }
         });
-        vip_recyclerView.setLayoutManager(manager);
+
+        vip_recyclerView.setLayoutManager(mLayoutManager);
+
+
+        vip_recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView,
+                                             int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE
+                        && lastVisibleItem + 1 == mAdapter.getItemCount()) {
+                    mSwipeRefresh.setRefreshing(true);
+                    getVideoInfo(String.valueOf(mModel.curPageNo + 1));
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+            }
+
+        });
+
+        vip_recyclerView.setLayoutManager(mLayoutManager);
 
         WindowUtil.resizeRecursively(view);
         return view;
     }
 
-    private void getVideoInfo() {
+    private void getVideoInfo(String pageNo) {
+        if (mModel.curPageNo < 0 && mModel.videoData.page != null && mModel.videoData.page.result != null && mModel.videoData.page.result.size() > 0) {
+            mSwipeRefresh.setRefreshing(false);
+            Toast.makeText(MFBaseApplication.getInstance(), "已加载全部视频!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam(VedioConstant.R_TYPE, "6");
-        request.addParam(VedioConstant.PAGE_NO, "1");
+        request.addParam(VedioConstant.PAGE_NO, pageNo);
         mModel.sendHttpRequest(request, VideoModel.GET_VEDIO_BLUE);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getVideoInfo();
+        getVideoInfo("" + mModel.curPageNo);
     }
 
     @Override
@@ -91,6 +134,7 @@ public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecycl
             alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
         } else {
             if (!PlayCountUtil.hasAuth("BLUE") && Constants.config.getVip_now().equals(Constants.BLUE)) {
+                Toast.makeText(MFBaseApplication.getInstance(), "您的播放次数已超过五次!", Toast.LENGTH_LONG).show();
                 CommonAlert alert = new CommonAlert(BlueFragment.this.getActivity());
                 alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
                 return;
@@ -122,4 +166,8 @@ public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecycl
     }
 
 
+    @Override
+    public void onRefresh() {
+        mSwipeRefresh.setRefreshing(false);
+    }
 }

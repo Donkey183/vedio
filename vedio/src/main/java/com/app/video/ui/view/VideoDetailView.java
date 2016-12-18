@@ -8,7 +8,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.app.basevideo.base.MFBaseApplication;
 import com.app.basevideo.base.MFBaseMVCView;
 import com.app.video.R;
 import com.app.video.adaptor.VideoDetailAdapter;
@@ -91,6 +93,7 @@ public class VideoDetailView extends MFBaseMVCView {
             @Override
             public void onClick(View v) {
                 if (!PlayCountUtil.hasAuth("DETAIL_VIEW")) {
+                    Toast.makeText(MFBaseApplication.getInstance(),"您的播放次数已超过五次!",Toast.LENGTH_LONG).show();
                     CommonAlert alert = new CommonAlert(mActivity);
                     alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
                     return;
