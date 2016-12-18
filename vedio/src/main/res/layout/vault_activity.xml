@@ -7,14 +7,14 @@
                 android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/channel_bar"
+        android:id="@+id/vault_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/finance_dimen_150px"
         android:layout_alignParentTop="true"
         android:background="@color/finance_fd6b6b">
 
         <ImageView
-            android:id="@+id/channel_back"
+            android:id="@+id/vault_back"
             android:layout_width="@dimen/finance_dimen_70px"
             android:layout_height="@dimen/finance_dimen_70px"
             android:layout_alignParentLeft="true"
@@ -23,7 +23,7 @@
             android:src="@drawable/back"/>
 
         <TextView
-            android:id="@+id/channel_text"
+            android:id="@+id/vault_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"

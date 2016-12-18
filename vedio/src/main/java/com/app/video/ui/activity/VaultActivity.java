@@ -33,7 +33,6 @@ public class VaultActivity extends MFBaseActivity implements INetFinish {
     private ImageView vault_back;
     private TextView vault_text;
 
-
     private ViewPager gallery_pager;
     private RelativeLayout ll_main;
     private int pagerWidth;

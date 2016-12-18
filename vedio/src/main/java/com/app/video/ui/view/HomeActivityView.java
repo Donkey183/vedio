@@ -77,8 +77,8 @@ public class HomeActivityView extends MFBaseMVCView {
         mActivity = activity;
         mOnClickListener = onClickListener;
         init();
-        registerListener(titleChangeListener);
-        registerListener(titleChangeListener2);
+//        registerListener(titleChangeListener);
+//        registerListener(titleChangeListener2);
     }
 
     private void init() {
@@ -245,20 +245,20 @@ public class HomeActivityView extends MFBaseMVCView {
 
     }
 
+//
+//    MessageListener titleChangeListener = new MessageListener(VedioCmd.TITLE_CHANGE) {
+//        @Override
+//        public void onMessage(CommonMessage<?> responsedMessage) {
+//            checkFragment(Constants.config.getTittle_first());
+//        }
+//    };
 
-    MessageListener titleChangeListener = new MessageListener(VedioCmd.TITLE_CHANGE) {
-        @Override
-        public void onMessage(CommonMessage<?> responsedMessage) {
-            checkFragment(Constants.config.getTittle_first());
-        }
-    };
-
-    MessageListener titleChangeListener2 = new MessageListener(VedioCmd.TITLE_CHANGE2) {
-        @Override
-        public void onMessage(CommonMessage<?> responsedMessage) {
-            tittle_text.setText("" + responsedMessage.getData());
-        }
-    };
+//    MessageListener titleChangeListener2 = new MessageListener(VedioCmd.TITLE_CHANGE2) {
+//        @Override
+//        public void onMessage(CommonMessage<?> responsedMessage) {
+//            tittle_text.setText("" + responsedMessage.getData());
+//        }
+//    };
 
 
     private Fragment checkFragment(String str) {
