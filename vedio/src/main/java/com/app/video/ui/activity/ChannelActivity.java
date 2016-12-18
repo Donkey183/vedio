@@ -5,16 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.app.basevideo.base.MFBaseActivity;
+import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
-import com.app.video.R;
-import com.app.video.config.Constants;
 import com.app.video.data.ChannelContentData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.ChannelContentModel;
 import com.app.video.ui.view.ChannelActivityView;
-import com.app.video.ui.widget.CommonAlert;
 
 public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRecyclerViewItemClickListener {
 
@@ -32,7 +31,7 @@ public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRec
     private void loadPageData() {
         CommonHttpRequest request = new CommonHttpRequest();
         String cid = getIntent().getExtras().getString("cid");
-        request.addParam("cid", "5");
+        request.addParam("cid", cid);
         mChanneModel.sendHttpRequest(request, ChannelContentModel.GET_CHANNEL_CONTENT_INFO);
     }
 
@@ -55,27 +54,12 @@ public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRec
             intent.putExtra("path", content.getCresource());
             startActivity(intent);
         }
-
     }
 
 
-    public void onBtnClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn1:
-            case R.id.btn2:
-            case R.id.btn3:
-            case R.id.btn4:
-            case R.id.btn5:
-            case R.id.btn6:
-            case R.id.btn7:
-            case R.id.btn_next:
-                if (!Constants.config.getVip_now().equals(Constants.RED)) {
-                    CommonAlert alert = new CommonAlert(this);
-                    alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), -1);
-                    break;
-                }
-
-        }
+    @Override
+    protected void onDestroy() {
+        MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.TITLE_CHANGE2, "频道"));
+        super.onDestroy();
     }
-
 }

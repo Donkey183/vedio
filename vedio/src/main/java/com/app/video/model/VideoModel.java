@@ -25,7 +25,7 @@ public class VideoModel extends MFBaseFragmentModel {
     }
 
     public VideoData videoData = new VideoData();
-    public int curPageNo = 1;
+    public int curPageNo = 0;
 
     private int code;
 

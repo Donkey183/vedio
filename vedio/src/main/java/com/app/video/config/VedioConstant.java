@@ -5,6 +5,8 @@ public class VedioConstant {
     public static final String PAGE_NO = "pageNo";
     public static final String R_TYPE = "rtype";
     public static final String PROXY_ID = "proxyid";
+    public static final String CID = "cid";
+    public static final String PID = "pid";
 
     /**
      * 频道参数

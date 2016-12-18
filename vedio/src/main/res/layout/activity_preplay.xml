@@ -25,9 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:text="详情"
             android:textColor="@color/finance_ffffffff"
             android:textSize="@dimen/finance_dimen_60px"
-            android:text="详情"
             android:textStyle="bold"/>
 
     </RelativeLayout>
@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/finance_f0f0f0">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -117,6 +118,7 @@
                         android:id="@+id/text1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/finance_dimen_10px"
                         android:layout_marginLeft="@dimen/finance_dimen_10px"
                         android:singleLine="true"
                         android:textSize="@dimen/finance_dimen_40px"/>
@@ -144,6 +146,7 @@
                         android:id="@+id/text2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/finance_dimen_10px"
                         android:layout_marginLeft="@dimen/finance_dimen_5px"
                         android:singleLine="true"
                         android:textSize="@dimen/finance_dimen_40px"/>
@@ -171,6 +174,7 @@
                         android:id="@+id/text3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/finance_dimen_10px"
                         android:layout_marginLeft="@dimen/finance_dimen_5px"
                         android:singleLine="true"
                         android:textSize="@dimen/finance_dimen_40px"/>
@@ -227,7 +231,6 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </LinearLayout>

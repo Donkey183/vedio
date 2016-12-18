@@ -57,6 +57,7 @@
             android:screenOrientation="landscape"/>
         <activity android:name=".ui.activity.VedioDetailActivity"/>
         <activity android:name=".ui.activity.ChannelActivity"/>
+        <activity android:name=".ui.activity.VaultActivity"/>
         <activity
             android:name=".ui.activity.PayActivity"
             android:exported="true">

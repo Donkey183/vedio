@@ -1,7 +1,6 @@
 package com.app.video.ui.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,34 +9,34 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.app.basevideo.base.MFBaseActivity;
+import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
-import com.app.video.adaptor.LanZuanFragmentAdaptor;
+import com.app.video.adaptor.VaultContentAdaptor;
 import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
-import com.app.video.model.VideoActivityModel;
-import com.app.video.model.VideoModel;
-import com.app.video.ui.fragment.BlueFragment;
+import com.app.video.model.VaultContentModel;
 import com.app.video.ui.widget.CommonAlert;
 import com.app.video.util.PlayCountUtil;
 
 public class VaultActivity extends MFBaseActivity implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener {
 
     private RecyclerView vip_recyclerView;
-    private LanZuanFragmentAdaptor mAdapter;
-    private VideoActivityModel mModel;
+    private VaultContentAdaptor mAdapter;
+    private VaultContentModel mModel;
     private ImageView vault_back;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vault);
-        mModel = new VideoActivityModel(this);
+        mModel = new VaultContentModel(this);
         vault_back = (ImageView) findViewById(R.id.vault_back);
         vault_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,30 +63,28 @@ public class VaultActivity extends MFBaseActivity implements INetFinish, OnRecyc
 
         WindowUtil.resizeRecursively(view);
 
-
-        getVideoInfo();
+        String pid = getIntent().getExtras().getString("pid");
+        getVideoInfo(pid);
     }
 
 
-    private void getVideoInfo() {
+    private void getVideoInfo(String pid) {
         CommonHttpRequest request = new CommonHttpRequest();
-        request.addParam(VedioConstant.R_TYPE, "6");
-        request.addParam(VedioConstant.PAGE_NO, "1");
-        mModel.sendHttpRequest(request, VideoModel.GET_VEDIO_BLUE);
+        request.addParam(VedioConstant.PID, pid);
+        mModel.sendHttpRequest(request, VaultContentModel.GET_VAULT_CONTENT);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getVideoInfo();
     }
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        mAdapter = new LanZuanFragmentAdaptor(this.getApplicationContext());
+        mAdapter = new VaultContentAdaptor(this.getApplicationContext());
         mAdapter.setOnItemClickListener(this);
         vip_recyclerView.setAdapter(mAdapter);
-        mAdapter.showVIPView(mModel.videoData.page.result, mModel.videoData.page.list1);
+        mAdapter.showVIPView(mModel.vaultContentDatas);
     }
 
     @Override
@@ -125,5 +122,12 @@ public class VaultActivity extends MFBaseActivity implements INetFinish, OnRecyc
             CommonAlert alert = new CommonAlert(this);
             alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
         }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<String>(VedioCmd.TITLE_CHANGE2, "顶级片库"));
+        super.onDestroy();
     }
 }

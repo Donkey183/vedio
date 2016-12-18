@@ -70,7 +70,7 @@ public class VideoDetailData {
         private String dytype;
         private String content;
         private int psort;
-        private String userName;
+        private String username;
         private String userimg;
         private String utime;
         private String dypic;
@@ -127,11 +127,11 @@ public class VideoDetailData {
         }
 
         public String getUserName() {
-            return userName;
+            return username;
         }
 
         public void setUserName(String userName) {
-            this.userName = userName;
+            this.username = userName;
         }
 
         public String getUserimg() {

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.app.basevideo.base.MFBaseApplication;
 import com.app.basevideo.base.MFBaseFragment;
+import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
@@ -103,7 +104,7 @@ public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecycl
     private void getVideoInfo(String pageNo) {
         if (mModel.curPageNo < 0 && mModel.videoData.page != null && mModel.videoData.page.result != null && mModel.videoData.page.result.size() > 0) {
             mSwipeRefresh.setRefreshing(false);
-            Toast.makeText(MFBaseApplication.getInstance(), "已加载全部视频!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MFBaseApplication.getInstance(), "已加载全部视频!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -125,6 +126,7 @@ public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecycl
         mAdapter.setOnItemClickListener(this);
         vip_recyclerView.setAdapter(mAdapter);
         mAdapter.showVIPView(mModel.videoData.page.result, mModel.videoData.page.list1);
+        dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
     }
 
     @Override
@@ -170,4 +172,13 @@ public class BlueFragment extends MFBaseFragment implements INetFinish, OnRecycl
     public void onRefresh() {
         mSwipeRefresh.setRefreshing(false);
     }
+
+
+    public String getVideoCount() {
+        if (mModel != null && mModel.videoData != null && mModel.videoData.page != null && mModel.videoData.page.getTotalCount() > 0) {
+            return "" + mModel.videoData.page.getTotalCount();
+        }
+        return null;
+    }
+
 }

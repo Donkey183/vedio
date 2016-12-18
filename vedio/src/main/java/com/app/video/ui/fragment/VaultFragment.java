@@ -1,5 +1,6 @@
 package com.app.video.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,10 +15,10 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.adaptor.VaultAdaptor;
-import com.app.video.config.Constants;
+import com.app.video.data.VaultData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.VaultModel;
-import com.app.video.ui.widget.CommonAlert;
+import com.app.video.ui.activity.VaultActivity;
 
 
 public class VaultFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener {
@@ -55,9 +56,14 @@ public class VaultFragment extends MFBaseFragment implements INetFinish, OnRecyc
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-        if(!Constants.config.getVip_now().equals(Constants.RED)){
-            CommonAlert alert = new CommonAlert(getActivity());
-            alert.showAlert(Constants.config.getPay1(),Constants.config.getPay2(),Constants.config.getPay_img(), R.id.vault_layout);
-        }
+//        if (!Constants.config.getVip_now().equals(Constants.RED)) {
+//            CommonAlert alert = new CommonAlert(getActivity());
+//            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vault_layout);
+//        } else {
+        Intent intent = new Intent(VaultFragment.this.getActivity(), VaultActivity.class);
+        final String pid = "" + ((VaultData) obj).getId();
+        intent.putExtra("pid", pid);
+        startActivity(intent);
+//        }
     }
 }

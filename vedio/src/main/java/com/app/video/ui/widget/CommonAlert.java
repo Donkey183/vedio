@@ -96,8 +96,8 @@ public class CommonAlert {
         window.setContentView(contentView);
 
         dialog_img = (ImageView) window.findViewById(R.id.dialog_img);
-        String domain = MFSimpleCache.get(context).getAsString("PIC_DOMAIN");
-        Glide.with(context).load(domain + id).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(dialog_img);
+        String url = MFSimpleCache.get(context).getAsString("PIC_DOMAIN") + id;
+        Glide.with(context).load(url).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(dialog_img);
 
         zhifu1_img = (ImageView) window.findViewById(R.id.zhifu1_img);
         zhifu1_text = (TextView) window.findViewById(R.id.zhifu1_text);

@@ -13,7 +13,6 @@ import com.app.basevideo.cache.MFSimpleCache;
 import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.framework.listener.MessageListener;
 import com.app.basevideo.framework.message.CommonMessage;
-import com.app.basevideo.framework.util.LogUtil;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.HttpRequestService;
 import com.app.basevideo.net.INetFinish;
@@ -85,7 +84,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                     if (entity == null || !entity.success) {
                         return;
                     }
-                    Toast.makeText(HomeActivity.this, "第一次安装调用成功，代理号:" + ChannelUtil.getChannel(HomeActivity.this), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(HomeActivity.this, "第一次安装调用成功，代理号:" + ChannelUtil.getChannel(HomeActivity.this), Toast.LENGTH_LONG).show();
                     MFSimpleCache.get(HomeActivity.this).put("FIRST_INSTALL", "FIRST_INSTALL");
                 }
             });
@@ -105,8 +104,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
     protected void onResume() {
         super.onResume();
         getPayInfos();
-        choseClick(R.id.vip_layout);
-        choseClick(R.id.home_layout);
     }
 
     View.OnClickListener linenter = new View.OnClickListener() {
@@ -134,8 +131,8 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 editor.putString("vip", Constants.pay_config.getVip_now());
                 editor.commit();
                 checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
-                int id = Integer.parseInt(str.split("\\*")[1]);
-
+                choseClick(R.id.vip_layout);
+                choseClick(R.id.home_layout);
             }
         }
     };

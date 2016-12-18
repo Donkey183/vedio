@@ -1,11 +1,9 @@
 package com.app.video.ui.view;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +25,6 @@ public class ChannelActivityView extends MFBaseMVCView {
     private RecyclerView vip_recyclerView;
     private ChannelContentAdaptor mAdapter;
     private OnRecyclerViewItemClickListener mClickListener;
-    private Button btn1;
-    private Button btn2;
     private ImageView back;
     private TextView channel_text;
 
@@ -42,8 +38,6 @@ public class ChannelActivityView extends MFBaseMVCView {
 
     private void init() {
         vip_recyclerView = (RecyclerView) mActivity.findViewById(R.id.vip_recycler);
-        btn1 = (Button) mActivity.findViewById(R.id.btn1);
-        btn2 = (Button) mActivity.findViewById(R.id.btn2);
         channel_text = (TextView) mActivity.findViewById(R.id.channel_text);
         back = (ImageView) mActivity.findViewById(R.id.channel_back);
         back.setOnClickListener(new View.OnClickListener() {

@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import com.app.basevideo.base.MFBaseApplication;
 import com.app.basevideo.base.MFBaseFragment;
 import com.app.basevideo.cache.MFSimpleCache;
+import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
@@ -84,6 +85,16 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
         List<VideoData.Page.Video> resultBeenList = mVideoModel.videoData.page.result;
         gallery_pager.setAdapter(new BlackGoldAdapter(resultBeenList, getActivity()));
+        dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
     }
+
+
+    public String getVideoCount() {
+        if (mVideoModel != null && mVideoModel.videoData != null && mVideoModel.videoData.page != null && mVideoModel.videoData.page.getTotalCount() > 0) {
+            return "" + mVideoModel.videoData.page.getTotalCount();
+        }
+        return null;
+    }
+
 
 }

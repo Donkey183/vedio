@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.app.basevideo.base.MFBaseApplication;
 import com.app.basevideo.base.MFBaseFragment;
+import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
@@ -100,7 +101,7 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
     private void getVideoInfo(String pageNo) {
         if (mModel.curPageNo < 0 && mModel.videoData.page != null && mModel.videoData.page.result != null && mModel.videoData.page.result.size() > 0) {
             mSwipeRefresh.setRefreshing(false);
-            Toast.makeText(MFBaseApplication.getInstance(), "已加载全部视频!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MFBaseApplication.getInstance(), "已加载全部视频!", Toast.LENGTH_SHORT).show();
             return;
         }
         CommonHttpRequest request = new CommonHttpRequest();
@@ -123,6 +124,7 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
         mAdapter.showVIPView(mModel.videoData.page.result, mModel.videoData.page.list1);
         mSwipeRefresh.setRefreshing(false);
         vip_recyclerView.smoothScrollToPosition(lastVisibleItem);
+        dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
     }
 
     @Override
@@ -132,7 +134,7 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
             alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
         } else {
             if (!PlayCountUtil.hasAuth("DIAMOND")) {
-                Toast.makeText(MFBaseApplication.getInstance(),"您的播放次数已超过五次!",Toast.LENGTH_LONG).show();
+                Toast.makeText(MFBaseApplication.getInstance(), "您的播放次数已超过五次!", Toast.LENGTH_LONG).show();
                 CommonAlert alert = new CommonAlert(DiamondFragment.this.getActivity());
                 alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
                 return;
@@ -167,5 +169,13 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
     @Override
     public void onRefresh() {
         mSwipeRefresh.setRefreshing(false);
+    }
+
+
+    public String getVideoCount() {
+        if (mModel != null && mModel.videoData != null && mModel.videoData.page != null && mModel.videoData.page.getTotalCount() > 0) {
+            return "" + mModel.videoData.page.getTotalCount();
+        }
+        return null;
     }
 }

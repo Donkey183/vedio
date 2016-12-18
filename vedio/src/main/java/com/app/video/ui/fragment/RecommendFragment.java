@@ -11,9 +11,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.app.basevideo.base.MFBaseApplication;
 import com.app.basevideo.base.MFBaseFragment;
 import com.app.basevideo.config.VedioCmd;
 import com.app.basevideo.framework.listener.MessageListener;
@@ -57,6 +55,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
                 return position == 0 ? 2 : 1;
             }
         });
+//        mLayoutManager.setReverseLayout(true);
         my_recyclerView.setLayoutManager(mLayoutManager);
 
 
@@ -104,7 +103,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
     private void getRecommendInfo(String pageNo) {
         if (mVideoModel.curPageNo < 0 && mVideoModel.videoData.page != null && mVideoModel.videoData.page.result != null && mVideoModel.videoData.page.result.size() > 0) {
             mSwipeRefresh.setRefreshing(false);
-            Toast.makeText(MFBaseApplication.getInstance(), "已加载全部视频!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(MFBaseApplication.getInstance(), "已加载全部视频!", Toast.LENGTH_SHORT).show();
             return;
         }
         CommonHttpRequest request = new CommonHttpRequest();
@@ -119,7 +118,9 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
         my_recyclerView.setAdapter(mAdapter);
         mAdapter.showRecommendView(mVideoModel.videoData.page.result, mVideoModel.videoData.page.list1);
         mSwipeRefresh.setRefreshing(false);
+//        my_recyclerView.smoothScrollBy(0, (lastVisibleItem));
         my_recyclerView.smoothScrollToPosition(lastVisibleItem);
+        dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
     }
 
     @Override
@@ -153,4 +154,13 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
             mSwipeRefresh.setRefreshing(false);
         }
     };
+
+
+    public String getVideoCount() {
+        if (mVideoModel != null && mVideoModel.videoData != null && mVideoModel.videoData.page != null && mVideoModel.videoData.page.getTotalCount() > 0) {
+            return "" + mVideoModel.videoData.page.getTotalCount();
+        }
+        return null;
+    }
+
 }

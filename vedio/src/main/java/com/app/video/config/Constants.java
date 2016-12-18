@@ -42,8 +42,8 @@ public class Constants {
 
     public static Config purple_config = new Config(PURPLE, "紫钻区", R.drawable.zuanshi, R.drawable.zuanshi2, "蓝钻区", R.drawable.zuanshi, R.drawable.zuanshi2, vip_blue, null, "/dapp/zi.jpg", 120, 6045);
     public static Config blue_config = new Config(BLUE, "蓝钻区", R.drawable.zuanshi, R.drawable.zuanshi2, "皇冠区", R.drawable.crown1, R.drawable.crown2, vip_king, null, "/dapp/lan.jpg", 180, 6609);
-    public static Config red_config = new Config(RED, "蓝钻区", R.drawable.zuanshi, R.drawable.zuanshi2, "皇冠区", R.drawable.crown1, R.drawable.crown2, null, null, "/dapp/lan.jpg", -1, -1);
-    public static Config crown_config = new Config(CROWN, "蓝钻区", R.drawable.black, R.drawable.black2, "皇冠区", R.drawable.crown1, R.drawable.crown2, vip_red, null, "/dapp/huang.jpg", -1, -1);
+    public static Config red_config = new Config(RED, "蓝钻区", R.drawable.zuanshi, R.drawable.zuanshi2, "皇冠区", R.drawable.crown1, R.drawable.crown2, null, null, "/dapp/rg.jpg", -1, -1);
+    public static Config crown_config = new Config(CROWN, "蓝钻区", R.drawable.black, R.drawable.black2, "皇冠区", R.drawable.crown1, R.drawable.crown2, vip_red, null, "dapp/rg.jpg", -1, -1);
 
     public static Config config;
 

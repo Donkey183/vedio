@@ -14,7 +14,7 @@ public class PlayCountUtil {
         }
         int count = Integer.parseInt(playCount) + 1;
         MFSimpleCache.get(MFBaseApplication.getInstance()).put(curArea, "" + count);
-        return count < 3;
+        return count < 6;
     }
 
 }

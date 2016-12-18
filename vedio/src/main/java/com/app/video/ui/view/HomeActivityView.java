@@ -12,6 +12,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.basevideo.base.MFBaseMVCView;
+import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.framework.listener.MessageListener;
+import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.framework.util.LogUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
@@ -74,6 +77,8 @@ public class HomeActivityView extends MFBaseMVCView {
         mActivity = activity;
         mOnClickListener = onClickListener;
         init();
+        registerListener(titleChangeListener);
+        registerListener(titleChangeListener2);
     }
 
     private void init() {
@@ -240,20 +245,50 @@ public class HomeActivityView extends MFBaseMVCView {
 
     }
 
+
+    MessageListener titleChangeListener = new MessageListener(VedioCmd.TITLE_CHANGE) {
+        @Override
+        public void onMessage(CommonMessage<?> responsedMessage) {
+            checkFragment(Constants.config.getTittle_first());
+        }
+    };
+
+    MessageListener titleChangeListener2 = new MessageListener(VedioCmd.TITLE_CHANGE2) {
+        @Override
+        public void onMessage(CommonMessage<?> responsedMessage) {
+            tittle_text.setText("" + responsedMessage.getData());
+        }
+    };
+
+
     private Fragment checkFragment(String str) {
         if (str.equals("体验区")) {
+            String videoCount = mRecommendFragment.getVideoCount();
+            tittle_text.setText(videoCount == null ? "体验区" : "体验区(共" + videoCount + "部电影)");
             return mRecommendFragment;
         } else if (str.equals("黄金区")) {
+            String videoCount = mRecommendFragment.getVideoCount();
+            tittle_text.setText(videoCount == null ? "黄金区" : "黄金区(共" + videoCount + "部电影)");
             return goldFragment;
         } else if (str.equals("钻石区")) {
+            String videoCount = mRecommendFragment.getVideoCount();
+            tittle_text.setText(videoCount == null ? "钻石区" : "钻石区(共" + videoCount + "部电影)");
             return diamondFragment;
         } else if (str.equals("黑金区")) {
+            String videoCount = mRecommendFragment.getVideoCount();
+            tittle_text.setText(videoCount == null ? "黑金区" : "黑金区(共" + videoCount + "部电影)");
             return blackGoldFragment;
         } else if (str.equals("皇冠区")) {
+            String videoCount = mRecommendFragment.getVideoCount();
+            tittle_text.setText(videoCount == null ? "皇冠区" : "皇冠区(共" + videoCount + "部电影)");
             return crownFragment;
         } else if (str.equals("紫钻区")) {
+            String videoCount = mRecommendFragment.getVideoCount();
+            tittle_text.setText(videoCount == null ? "紫钻区" : "紫钻区(共" + videoCount + "部电影)");
             return purpleFragment;
         } else if (str.equals("蓝钻区")) {
+            String videoCount = mRecommendFragment.getVideoCount();
+            tittle_text.setText(videoCount == null ? "蓝钻区" : "蓝钻区(共" + videoCount + "部电影)");
             return blueFragment;
         } else {
             return crownFragment;
@@ -262,77 +297,76 @@ public class HomeActivityView extends MFBaseMVCView {
 
     private void hideFragment(Fragment fragment) {
         if (channelFragment != null) {
-            if (fragment instanceof ChannelFragment){
+            if (fragment instanceof ChannelFragment) {
                 transaction.show(channelFragment);
-            }else{
+            } else {
                 transaction.hide(channelFragment);
             }
         }
         if (vaultFragment != null) {
-            if (fragment instanceof VaultFragment){
+            if (fragment instanceof VaultFragment) {
                 transaction.show(vaultFragment);
-            }else{
+            } else {
                 transaction.hide(vaultFragment);
             }
         }
         if (forumFragment != null) {
-            if (fragment instanceof ForumFragment){
+            if (fragment instanceof ForumFragment) {
                 transaction.show(forumFragment);
-            }else{
+            } else {
                 transaction.hide(forumFragment);
             }
         }
         if (blackGoldFragment != null) {
-            if (fragment instanceof BlackGoldFragment){
+            if (fragment instanceof BlackGoldFragment) {
                 transaction.show(blackGoldFragment);
-            }else{
+            } else {
                 transaction.hide(blackGoldFragment);
             }
         }
         if (mRecommendFragment != null) {
-            if (fragment instanceof RecommendFragment){
+            if (fragment instanceof RecommendFragment) {
                 transaction.show(mRecommendFragment);
-            }else{
+            } else {
                 transaction.hide(mRecommendFragment);
             }
         }
         if (goldFragment != null) {
-            if (fragment instanceof GoldFragment){
+            if (fragment instanceof GoldFragment) {
                 transaction.show(goldFragment);
-            }else{
+            } else {
                 transaction.hide(goldFragment);
             }
         }
         if (diamondFragment != null) {
-            if (fragment instanceof DiamondFragment){
+            if (fragment instanceof DiamondFragment) {
                 transaction.show(diamondFragment);
-            }else{
+            } else {
                 transaction.hide(diamondFragment);
             }
         }
         if (crownFragment != null) {
-            if (fragment instanceof CrownFragment){
+            if (fragment instanceof CrownFragment) {
                 transaction.show(crownFragment);
-            }else{
+            } else {
                 transaction.hide(crownFragment);
             }
         }
         if (blueFragment != null) {
-            if (fragment instanceof BlueFragment){
+            if (fragment instanceof BlueFragment) {
                 transaction.show(blueFragment);
-            }else{
+            } else {
                 transaction.hide(blueFragment);
             }
         }
         if (purpleFragment != null) {
-            if (fragment instanceof PurpleFragment){
+            if (fragment instanceof PurpleFragment) {
                 transaction.show(purpleFragment);
-            }else{
+            } else {
                 transaction.hide(purpleFragment);
             }
         }
     }
-
 
     @Override
     protected int getLayoutRecourseId() {
