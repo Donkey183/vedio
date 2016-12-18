@@ -127,7 +127,9 @@ public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecy
         mAdapter.showVIPView(mModel.videoData.page.result, mModel.videoData.page.list1);
         mSwipeRefresh.setRefreshing(false);
         vip_recyclerView.smoothScrollToPosition(lastVisibleItem);
-        dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
+        if(Constants.select_fragment.equals("home")){
+            dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
+        }
     }
 
     @Override

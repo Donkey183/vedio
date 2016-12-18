@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -74,7 +75,7 @@ public class HomeActivityView extends MFBaseMVCView {
         mActivity = activity;
         mOnClickListener = onClickListener;
         init();
-//        registerListener(titleChangeListener);
+        registerListener(titleChangeListener);
 //        registerListener(titleChangeListener2);
     }
 
@@ -101,7 +102,6 @@ public class HomeActivityView extends MFBaseMVCView {
 
         text_vip.setText(Constants.config.getTittle_vip());
         text_home.setText(Constants.config.getTittle_first());
-        tittle_text.setText(Constants.config.getTittle_first());
         main_home.setImageResource(Constants.config.getImg_first1());
         main_vip.setImageResource(Constants.config.getImg_vip1());
 
@@ -128,7 +128,7 @@ public class HomeActivityView extends MFBaseMVCView {
         editor.commit();
     }
 
-    private void setDefaultFragment() {
+    public void setDefaultFragment() {
         main_home.setImageResource(Constants.config.getImg_first2());
         main_vip.setImageResource(Constants.config.getImg_vip1());
         fm = mActivity.getFragmentManager();
@@ -177,24 +177,28 @@ public class HomeActivityView extends MFBaseMVCView {
             transaction.add(R.id.main_frame, blueFragment);
         }
         transaction.commit();
+        Constants.select_fragment = "home";
         resetTabUi(main_home, checkFragment(Constants.config.getTittle_first()));
     }
 
     public void clickForum() {
         tittle_text.setText("论坛");
         text_forum.setText("论坛");
+        Constants.select_fragment = "forum";
         resetTabUi(main_forum, forumFragment);
     }
 
     public void clickVault() {
         tittle_text.setText("顶级片库");
         text_vault.setText("片库");
+        Constants.select_fragment = "vault";
         resetTabUi(main_vault, vaultFragment);
     }
 
     public void clickChannel() {
         tittle_text.setText("频道");
         text_channel.setText("频道");
+        Constants.select_fragment = "channel";
         resetTabUi(main_channel, channelFragment);
     }
 
@@ -204,12 +208,14 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     public void clickVip() {
+        Constants.select_fragment = "vip";
         text_vip.setText(Constants.config.getTittle_vip());
         tittle_text.setText(Constants.config.getTittle_vip());
         resetTabUi(main_vip, checkFragment(Constants.config.getTittle_vip()));
     }
 
     public void clickHome() {
+        Constants.select_fragment = "home";
         text_home.setText(Constants.config.getTittle_first());
         tittle_text.setText(Constants.config.getTittle_first());
         resetTabUi(main_home, checkFragment(Constants.config.getTittle_first()));
@@ -242,13 +248,13 @@ public class HomeActivityView extends MFBaseMVCView {
 
     }
 
-//
-//    MessageListener titleChangeListener = new MessageListener(VedioCmd.TITLE_CHANGE) {
-//        @Override
-//        public void onMessage(CommonMessage<?> responsedMessage) {
-//            checkFragment(Constants.config.getTittle_first());
-//        }
-//    };
+
+    MessageListener titleChangeListener = new MessageListener(VedioCmd.TITLE_CHANGE) {
+        @Override
+        public void onMessage(CommonMessage<?> responsedMessage) {
+            checkFragment(Constants.config.getTittle_first());
+        }
+    };
 
 //    MessageListener titleChangeListener2 = new MessageListener(VedioCmd.TITLE_CHANGE2) {
 //        @Override
@@ -259,6 +265,7 @@ public class HomeActivityView extends MFBaseMVCView {
 
 
     private Fragment checkFragment(String str) {
+        Log.d("aaaa",str);
         if (str.equals("体验区")) {
             String videoCount = mRecommendFragment.getVideoCount();
             tittle_text.setText(videoCount == null ? "体验区" : "体验区(共" + videoCount + "部电影)");
