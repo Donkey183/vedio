@@ -174,10 +174,7 @@ public class HomeActivityView extends MFBaseMVCView {
             blueFragment = new BlueFragment();
             transaction.add(R.id.main_frame, blueFragment);
         }
-
-
         transaction.commit();
-        hideFragment();
         resetTabUi(main_home, checkFragment(Constants.config.getTittle_first()));
     }
 
@@ -231,11 +228,11 @@ public class HomeActivityView extends MFBaseMVCView {
 
         main_forum.setImageResource(selectedView == main_forum ? R.drawable.forum2 : R.drawable.forum);
         text_forum.setTextColor(selectedView == main_forum ? mActivity.getResources().getColor(R.color.finance_fd6b6b) : mActivity.getResources().getColor(R.color.finance_515151));
-        hideFragment();
+
         fm = mActivity.getFragmentManager();
         transaction = fm.beginTransaction();
         try {
-            transaction.show(selectedFragMent);
+            hideFragment(selectedFragMent);
             transaction.commit();
         } catch (Exception e) {
             LogUtil.e(e.getMessage());
@@ -263,40 +260,77 @@ public class HomeActivityView extends MFBaseMVCView {
         }
     }
 
-    private void hideFragment() {
-        fm = mActivity.getFragmentManager();
-        transaction = fm.beginTransaction();
+    private void hideFragment(Fragment fragment) {
         if (channelFragment != null) {
-            transaction.hide(channelFragment);
+            if (fragment instanceof ChannelFragment){
+                transaction.show(channelFragment);
+            }else{
+                transaction.hide(channelFragment);
+            }
         }
         if (vaultFragment != null) {
-            transaction.hide(vaultFragment);
+            if (fragment instanceof VaultFragment){
+                transaction.show(vaultFragment);
+            }else{
+                transaction.hide(vaultFragment);
+            }
         }
         if (forumFragment != null) {
-            transaction.hide(forumFragment);
+            if (fragment instanceof ForumFragment){
+                transaction.show(forumFragment);
+            }else{
+                transaction.hide(forumFragment);
+            }
         }
         if (blackGoldFragment != null) {
-            transaction.hide(blackGoldFragment);
+            if (fragment instanceof BlackGoldFragment){
+                transaction.show(blackGoldFragment);
+            }else{
+                transaction.hide(blackGoldFragment);
+            }
         }
         if (mRecommendFragment != null) {
-            transaction.hide(mRecommendFragment);
+            if (fragment instanceof RecommendFragment){
+                transaction.show(mRecommendFragment);
+            }else{
+                transaction.hide(mRecommendFragment);
+            }
         }
         if (goldFragment != null) {
-            transaction.hide(goldFragment);
+            if (fragment instanceof GoldFragment){
+                transaction.show(goldFragment);
+            }else{
+                transaction.hide(goldFragment);
+            }
         }
         if (diamondFragment != null) {
-            transaction.hide(diamondFragment);
+            if (fragment instanceof DiamondFragment){
+                transaction.show(diamondFragment);
+            }else{
+                transaction.hide(diamondFragment);
+            }
         }
         if (crownFragment != null) {
-            transaction.hide(crownFragment);
+            if (fragment instanceof CrownFragment){
+                transaction.show(crownFragment);
+            }else{
+                transaction.hide(crownFragment);
+            }
         }
         if (blueFragment != null) {
-            transaction.hide(blueFragment);
+            if (fragment instanceof BlueFragment){
+                transaction.show(blueFragment);
+            }else{
+                transaction.hide(blueFragment);
+            }
         }
         if (purpleFragment != null) {
-            transaction.hide(purpleFragment);
+            if (fragment instanceof PurpleFragment){
+                transaction.show(purpleFragment);
+            }else{
+                transaction.hide(purpleFragment);
+            }
         }
-        transaction.commit();
     }
 
 

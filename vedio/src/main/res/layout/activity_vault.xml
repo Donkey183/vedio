@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pull_to_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/finance_f0f0f0">
+    <RelativeLayout
+        android:id="@+id/vault_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_150px"
+        android:background="@color/finance_fd6b6b">
+
+        <ImageView
+            android:id="@+id/vault_back"
+            android:layout_width="@dimen/finance_dimen_70px"
+            android:layout_height="@dimen/finance_dimen_70px"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/finance_dimen_20px"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:id="@+id/vault_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="片库"
+            android:textColor="@color/finance_ffffffff"
+            android:textSize="@dimen/finance_dimen_60px"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/vip_recycler"
+        android:layout_below="@+id/vault_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

@@ -105,6 +105,8 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
     protected void onResume() {
         super.onResume();
         getPayInfos();
+        choseClick(R.id.vip_layout);
+        choseClick(R.id.home_layout);
     }
 
     View.OnClickListener linenter = new View.OnClickListener() {
@@ -133,16 +135,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 editor.commit();
                 checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
                 int id = Integer.parseInt(str.split("\\*")[1]);
-                try {
-                    choseClick(R.id.vip_layout);
-                } catch (Exception e) {
-                    LogUtil.e("tabClick" + e.getMessage());
-                }
-                try {
-                    choseClick(R.id.home_layout);
-                } catch (Exception e) {
-                    LogUtil.e("tabClick" + e.getMessage());
-                }
 
             }
         }
