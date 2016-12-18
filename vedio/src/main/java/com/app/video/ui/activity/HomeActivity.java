@@ -50,7 +50,6 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         getPayInfos();
         registerListener(paySuccessListener);
         checkFirstInstall();
-//        registerListener(payCallBackListener);
     }
 
     private void checkConfig(String config) {

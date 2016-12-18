@@ -20,13 +20,11 @@ import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
 import com.app.video.R;
 import com.app.video.adaptor.RecommendAdaptor;
-import com.app.video.config.Constants;
 import com.app.video.config.VedioConstant;
 import com.app.video.data.VideoData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.VideoModel;
 import com.app.video.ui.activity.VedioDetailActivity;
-import com.app.video.ui.widget.CommonAlert;
 
 
 public class RecommendFragment extends MFBaseFragment implements INetFinish, OnRecyclerViewItemClickListener, SwipeRefreshLayout.OnRefreshListener {
@@ -61,11 +59,6 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
 
 
         mSwipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.pull_to_refresh);
-
-//        mSwipeRefresh.setColorScheme(R.color.dark_gray, getResources().getColor(R.color.finance_191d20),
-//                getResources().getColor(R.color.finance_fd6b6b), getResources().getColor(R.color.finance_48fa63));
-
-
         mSwipeRefresh.setOnRefreshListener(this);
 
         // 这句话是为了，第一次进入页面的时候显示加载进度条

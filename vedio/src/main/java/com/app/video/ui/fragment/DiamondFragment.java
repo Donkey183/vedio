@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.app.basevideo.base.MFBaseFragment;
 import com.app.basevideo.framework.message.CommonMessage;
@@ -33,25 +33,15 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
     private RecyclerView vip_recyclerView;
     private VIPFragmentAdaptor mAdapter;
     private VideoModel mModel;
-    private LinearLayout btn_layout;
 
-    private Button btn1;
-    private Button btn2;
-    private Button btn3;
-    private Button btn4;
-    private Button btn5;
-    private Button btn6;
-    private Button btn7;
-    private Button btn_next;
-
-    private SwipeRefreshLayout mSwipeRefresh;
+//    private SwipeRefreshLayout mSwipeRefresh;
     private int lastVisibleItem;
+    GridLayoutManager mLayoutManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mModel = new VideoModel(this);
-        getVideoInfo();
     }
 
     @Nullable
@@ -60,56 +50,62 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
 
         View view = inflater.inflate(R.layout.fragment_vip, container, false);
 
-        btn_layout = (LinearLayout) view.findViewById(R.id.btn_layout);
-        btn_layout.setVisibility(View.GONE);
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
-        GridLayoutManager manager = new GridLayoutManager(getActivity(), 3) {
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        };
-        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+//        mSwipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.pull_to_refresh);
+//        mSwipeRefresh.setOnRefreshListener(this);
+        vip_recyclerView.setHasFixedSize(true);
+        vip_recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        mSwipeRefresh.setProgressViewOffset(false, 0, (int) TypedValue
+//                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
+//                        .getDisplayMetrics()));
+
+        mLayoutManager = new GridLayoutManager(getActivity(), 3);
+        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
                 return position == 0 ? 3 : 1;
             }
         });
-        vip_recyclerView.setLayoutManager(manager);
 
-        btn1 = (Button) view.findViewById(R.id.btn1);
-        btn2 = (Button) view.findViewById(R.id.btn2);
-        btn3 = (Button) view.findViewById(R.id.btn3);
-        btn4 = (Button) view.findViewById(R.id.btn4);
-        btn5 = (Button) view.findViewById(R.id.btn5);
-        btn6 = (Button) view.findViewById(R.id.btn6);
-        btn7 = (Button) view.findViewById(R.id.btn7);
-        btn_next = (Button) view.findViewById(R.id.btn_next);
+        vip_recyclerView.setLayoutManager(mLayoutManager);
 
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
-        btn5.setOnClickListener(this);
-        btn6.setOnClickListener(this);
-        btn7.setOnClickListener(this);
-        btn_next.setOnClickListener(this);
+
+        vip_recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView,
+                                             int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE
+                        && lastVisibleItem + 1 == mAdapter.getItemCount()) {
+//                    mSwipeRefresh.setRefreshing(true);
+                    getVideoInfo(String.valueOf(mModel.curPageNo + 1));
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+            }
+
+        });
 
         WindowUtil.resizeRecursively(view);
         return view;
     }
 
-    private void getVideoInfo() {
+    private void getVideoInfo(String pageNo) {
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam(VedioConstant.R_TYPE, "3");
-        request.addParam(VedioConstant.PAGE_NO, "1");
+        request.addParam(VedioConstant.PAGE_NO, pageNo);
         mModel.sendHttpRequest(request, VideoModel.GET_VEDIO_DIAMOND);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getVideoInfo();
+        getVideoInfo("" + mModel.curPageNo);
     }
 
     @Override
