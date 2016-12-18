@@ -8,9 +8,36 @@
                 android:layerType="software"
                 android:orientation="vertical"
                 tools:context=".ui.fragment.BlackGoldFragment">
+    <RelativeLayout
+        android:id="@+id/vault_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/finance_dimen_150px"
+        android:background="@color/finance_fd6b6b">
+
+        <ImageView
+            android:id="@+id/vault_back"
+            android:layout_width="@dimen/finance_dimen_70px"
+            android:layout_height="@dimen/finance_dimen_70px"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/finance_dimen_20px"
+            android:src="@drawable/back"/>
+
+        <TextView
+            android:id="@+id/vault_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="片库"
+            android:textColor="@color/finance_ffffffff"
+            android:textSize="@dimen/finance_dimen_60px"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/background_img"
+        android:layout_below="@id/vault_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"/>

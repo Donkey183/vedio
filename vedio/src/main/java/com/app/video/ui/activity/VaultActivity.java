@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.config.VedioCmd;
@@ -30,6 +31,7 @@ public class VaultActivity extends MFBaseActivity implements INetFinish {
     private BlackGoldAdapter2 mAdapter;
     private VaultContentModel mModel;
     private ImageView vault_back;
+    private TextView vault_text;
 
 
     private ViewPager gallery_pager;
@@ -43,6 +45,16 @@ public class VaultActivity extends MFBaseActivity implements INetFinish {
         setContentView(R.layout.fragment_gallery);
         gallery_pager = (ViewPager) findViewById(R.id.gallery_pager);
         ll_main = (RelativeLayout) findViewById(R.id.gallery_layout);
+        vault_back = (ImageView) findViewById(R.id.vault_back);
+        vault_text = (TextView) findViewById(R.id.vault_text);
+        vault_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        vault_text.setText(getIntent().getExtras().getString("tittle"));
+
         gallery_pager.setOffscreenPageLimit(3);
         pagerWidth = (int) (getResources().getDisplayMetrics().widthPixels * 3.0f / 3.6f);
         ViewGroup.LayoutParams lp = gallery_pager.getLayoutParams();
