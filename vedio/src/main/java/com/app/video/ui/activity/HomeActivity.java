@@ -149,7 +149,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 choseClick(R.id.channel_layout);
                 choseClick(R.id.vault_layout);
                 choseClick(R.id.forum_layout);
-                choseClick(id);
+                choseClick(R.id.home_layout);
             }
         }
     };

@@ -49,6 +49,7 @@ public class LanZuanFragmentAdaptor extends RecyclerView.Adapter<LanZuanFragment
     public void onBindViewHolder(final VIPViewHolder holder, int position) {
 
         holder.video_name.setText(getItem(position).getDname());
+        holder.video_type.setText(mVIPList.get(position).getDlabel());
         Glide.with(mContext).load(getItem(position).getDypic()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(holder.video_img);
         if (mOnItemClickListener != null) {
             //为ItemView设置监听器
@@ -106,12 +107,14 @@ public class LanZuanFragmentAdaptor extends RecyclerView.Adapter<LanZuanFragment
     class VIPViewHolder extends RecyclerView.ViewHolder {
         TextView video_name;
         ImageView video_img;
+        TextView video_type;
         Banner binner;
 
         public VIPViewHolder(View view) {
             super(view);
             video_name = (TextView) view.findViewById(R.id.vip_name);
             video_img = (ImageView) view.findViewById(R.id.vip_image);
+            video_type = (TextView) view.findViewById(R.id.home_type);
             binner = (Banner) view.findViewById(R.id.home_banner);
         }
     }
