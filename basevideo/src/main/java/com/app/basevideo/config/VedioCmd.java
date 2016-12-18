@@ -60,4 +60,18 @@ public class VedioCmd {
      */
 
     public static final int GET_VIDEO_INFO_FAILED = CMD_START + 8;
+
+
+    /**
+     * 改变标题
+     */
+
+    public static final int TITLE_CHANGE = CMD_START + 9;
+
+
+    /**
+     * 频道、片库返回 变标题
+     */
+
+    public static final int TITLE_CHANGE2 = CMD_START + 10;
 }

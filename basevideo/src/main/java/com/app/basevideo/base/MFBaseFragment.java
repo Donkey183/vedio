@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.view.View;
 
-import com.app.basevideo.cache.MFSimpleCache;
 import com.app.basevideo.config.VideoErrorData;
 import com.app.basevideo.framework.UniqueId;
 import com.app.basevideo.framework.listener.AbsMessageListener;
@@ -126,6 +125,18 @@ public abstract class MFBaseFragment extends Fragment {
         MessageManager.getInstance().sendMessage(taskMessage);
     }
 
+
+    /**
+     * 发送消息，不支持的消息类型无法发送，调试模式打印error日志
+     *
+     * @param message
+     */
+    public void dispatchMessage(CommonMessage message) {
+        if (message == null) {
+            return;
+        }
+        MessageManager.getInstance().dispatchResponsedMessage(message);
+    }
 
     /**
      * 注册responsedMessage的事件监听
