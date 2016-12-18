@@ -1,13 +1,13 @@
 package com.app.video.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.config.VedioCmd;
@@ -15,59 +15,52 @@ import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
-import com.app.basevideo.util.WindowUtil;
 import com.app.video.R;
-import com.app.video.adaptor.VaultContentAdaptor;
-import com.app.video.config.Constants;
+import com.app.video.adaptor.BlackGoldAdapter2;
 import com.app.video.config.VedioConstant;
-import com.app.video.data.VideoData;
-import com.app.video.listener.OnRecyclerViewItemClickListener;
+import com.app.video.data.VaultContentData;
 import com.app.video.model.VaultContentModel;
-import com.app.video.ui.widget.CommonAlert;
-import com.app.video.util.PlayCountUtil;
+import com.app.video.util.GallyPageTransformer;
 
-public class VaultActivity extends MFBaseActivity implements INetFinish, OnRecyclerViewItemClickListener, View.OnClickListener {
+import java.util.List;
+
+public class VaultActivity extends MFBaseActivity implements INetFinish {
 
     private RecyclerView vip_recyclerView;
-    private VaultContentAdaptor mAdapter;
+    private BlackGoldAdapter2 mAdapter;
     private VaultContentModel mModel;
     private ImageView vault_back;
-    private TextView vault_text;
+
+
+    private ViewPager gallery_pager;
+    private RelativeLayout ll_main;
+    private int pagerWidth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vault);
-        mModel = new VaultContentModel(this);
-        vault_back = (ImageView) findViewById(R.id.vault_back);
-        vault_back.setOnClickListener(new View.OnClickListener() {
+        mModel = new VaultContentModel(VaultActivity.this);
+        setContentView(R.layout.fragment_gallery);
+        gallery_pager = (ViewPager) findViewById(R.id.gallery_pager);
+        ll_main = (RelativeLayout) findViewById(R.id.gallery_layout);
+        gallery_pager.setOffscreenPageLimit(3);
+        pagerWidth = (int) (getResources().getDisplayMetrics().widthPixels * 3.0f / 3.6f);
+        ViewGroup.LayoutParams lp = gallery_pager.getLayoutParams();
+        if (lp == null) {
+            lp = new ViewGroup.LayoutParams(pagerWidth, ViewGroup.LayoutParams.MATCH_PARENT);
+        } else {
+            lp.width = pagerWidth;
+        }
+        gallery_pager.setLayoutParams(lp);
+        gallery_pager.setPageMargin(-50);
+        ll_main.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                finish();
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return gallery_pager.dispatchTouchEvent(motionEvent);
             }
         });
-        vault_text = (TextView) findViewById(R.id.vault_text);
-        final LayoutInflater inflate = LayoutInflater.from(this);
-        View view = inflate.inflate(R.layout.activity_vault, null, false);
-        vip_recyclerView = (RecyclerView) findViewById(R.id.vip_recycler);
-        GridLayoutManager manager = new GridLayoutManager(this, 3) {
-            @Override
-            public boolean canScrollVertically() {
-                return true;
-            }
-        };
-        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                return 1;
-            }
-        });
-        vip_recyclerView.setLayoutManager(manager);
-
-        WindowUtil.resizeRecursively(view);
-
+        gallery_pager.setPageTransformer(true, new GallyPageTransformer());
         String pid = getIntent().getExtras().getString("pid");
-        vault_text.setText(getIntent().getExtras().getString("tittle"));
         getVideoInfo(pid);
     }
 
@@ -85,47 +78,8 @@ public class VaultActivity extends MFBaseActivity implements INetFinish, OnRecyc
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        mAdapter = new VaultContentAdaptor(this.getApplicationContext());
-        mAdapter.setOnItemClickListener(this);
-        vip_recyclerView.setAdapter(mAdapter);
-        mAdapter.showVIPView(mModel.vaultContentDatas);
-    }
-
-    @Override
-    public void onItemClick(View view, int position, Object obj) {
-        if (Constants.config.getVip_now().equals(Constants.PURPLE)) {
-            CommonAlert alert = new CommonAlert(this);
-            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
-        } else {
-            if (!PlayCountUtil.hasAuth("BLUE") && Constants.config.getVip_now().equals(Constants.BLUE)) {
-                CommonAlert alert = new CommonAlert(this);
-                alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.forum_layout);
-                return;
-            }
-            String recourseUrl = "";
-            String img = "";
-            if (obj instanceof VideoData.Page.Video) {
-                recourseUrl = ((VideoData.Page.Video) obj).getDyres();
-                img = ((VideoData.Page.Video) obj).getDypic();
-            } else if (obj instanceof VideoData.Page.Banner) {
-                recourseUrl = ((VideoData.Page.Banner) obj).getDyresource();
-                img = ((VideoData.Page.Banner) obj).getDypic();
-            }
-            Intent intent = new Intent(this, VideoPlayerActivity.class);
-            intent.putExtra("path", recourseUrl);
-            intent.putExtra("img", img);
-            intent.putExtra("parent", "");
-            startActivity(intent);
-        }
-
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (!Constants.config.getVip_now().equals(Constants.RED)) {
-            CommonAlert alert = new CommonAlert(this);
-            alert.showAlert(Constants.config.getPay1(), Constants.config.getPay2(), Constants.config.getPay_img(), R.id.vip_layout);
-        }
+        List<VaultContentData> resultBeenList = mModel.vaultContentDatas;
+        gallery_pager.setAdapter(new BlackGoldAdapter2(resultBeenList, VaultActivity.this));
     }
 
 
