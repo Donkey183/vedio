@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.app.basevideo.base.MFBaseActivity;
 import com.app.basevideo.config.VedioCmd;
@@ -31,6 +32,7 @@ public class VaultActivity extends MFBaseActivity implements INetFinish, OnRecyc
     private VaultContentAdaptor mAdapter;
     private VaultContentModel mModel;
     private ImageView vault_back;
+    private TextView vault_text;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class VaultActivity extends MFBaseActivity implements INetFinish, OnRecyc
                 finish();
             }
         });
+        vault_text = (TextView) findViewById(R.id.vault_text);
         final LayoutInflater inflate = LayoutInflater.from(this);
         View view = inflate.inflate(R.layout.activity_vault, null, false);
         vip_recyclerView = (RecyclerView) findViewById(R.id.vip_recycler);
@@ -64,6 +67,7 @@ public class VaultActivity extends MFBaseActivity implements INetFinish, OnRecyc
         WindowUtil.resizeRecursively(view);
 
         String pid = getIntent().getExtras().getString("pid");
+        vault_text.setText(getIntent().getExtras().getString("tittle"));
         getVideoInfo(pid);
     }
 

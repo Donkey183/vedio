@@ -63,6 +63,7 @@ public class VaultFragment extends MFBaseFragment implements INetFinish, OnRecyc
         Intent intent = new Intent(VaultFragment.this.getActivity(), VaultActivity.class);
         final String pid = "" + ((VaultData) obj).getId();
         intent.putExtra("pid", pid);
+        intent.putExtra("tittle",((VaultData) obj).getPname());
         startActivity(intent);
 //        }
     }

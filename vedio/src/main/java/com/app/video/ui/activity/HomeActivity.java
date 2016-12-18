@@ -37,6 +37,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private PayLevelModel mPayModel;
+    private boolean update = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,12 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
     protected void onResume() {
         super.onResume();
         getPayInfos();
+        if(update){
+            choseClick(R.id.vip_layout);
+            choseClick(R.id.home_layout);
+            update = false;
+        }
+
     }
 
     View.OnClickListener linenter = new View.OnClickListener() {
@@ -131,8 +138,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
                 editor.putString("vip", Constants.pay_config.getVip_now());
                 editor.commit();
                 checkConfig(sharedPreferences.getString("vip", Constants.NORMAL));
-                choseClick(R.id.vip_layout);
-                choseClick(R.id.home_layout);
+                update = true;
             }
         }
     };
