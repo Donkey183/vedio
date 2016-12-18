@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/channel_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/finance_dimen_565px"
+        android:layout_height="@dimen/finance_dimen_320px"
         android:layout_marginLeft="@dimen/finance_dimen_25px"
         android:layout_marginRight="@dimen/finance_dimen_20px"
         android:scaleType="fitXY"/>

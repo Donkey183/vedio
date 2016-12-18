@@ -10,8 +10,10 @@ import com.app.video.data.ChannelContentData;
 import com.app.video.net.VedioNetService;
 import com.app.video.net.response.ChannelContentResponse;
 
-import retrofit2.Response;
+import java.util.ArrayList;
+import java.util.List;
 
+import retrofit2.Response;
 
 public class ChannelContentModel extends MFBaseModel {
 
@@ -19,7 +21,7 @@ public class ChannelContentModel extends MFBaseModel {
         super(activityContext);
     }
 
-    public ChannelContentData channelContentData = new ChannelContentData();
+    public List<ChannelContentData> channelContentDatas = new ArrayList<>();
     public static final int GET_CHANNEL_CONTENT_INFO = 0x30001;
 
     @Override
@@ -28,11 +30,11 @@ public class ChannelContentModel extends MFBaseModel {
         call.doRequest(new MFCallbackAdapter<ChannelContentResponse>() {
             @Override
             public void onResponse(ChannelContentResponse entity, Response<?> response, Throwable throwable) {
-                if (entity == null || !entity.success) {
+                if (entity == null || !entity.success || entity.list == null) {
                     disPatchNetErrorMessage(-1, entity == null ? null : entity.msg);
                     return;
                 }
-                channelContentData = entity.page;
+                channelContentDatas = entity.list;
                 disPatchRequestSuccessMessage(GET_CHANNEL_CONTENT_INFO);
             }
         });

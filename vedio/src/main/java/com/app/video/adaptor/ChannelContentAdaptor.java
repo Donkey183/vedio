@@ -22,7 +22,7 @@ public class ChannelContentAdaptor extends RecyclerView.Adapter<ChannelContentAd
     private LayoutInflater mInflater;
     private OnRecyclerViewItemClickListener mOnItemClickListener = null;
     private Context mContext;
-    private List<ChannelContentData.ResultBean> mChannelList = new ArrayList<>();
+    private List<ChannelContentData> mChannelList = new ArrayList<>();
 
     public ChannelContentAdaptor(Context context, OnRecyclerViewItemClickListener clickListener) {
         mContext = context;
@@ -62,7 +62,7 @@ public class ChannelContentAdaptor extends RecyclerView.Adapter<ChannelContentAd
         return mChannelList.size();
     }
 
-    private ChannelContentData.ResultBean getItem(int position) {
+    private ChannelContentData getItem(int position) {
         return mChannelList.get(position);
     }
 
@@ -75,7 +75,7 @@ public class ChannelContentAdaptor extends RecyclerView.Adapter<ChannelContentAd
         this.mOnItemClickListener = listener;
     }
 
-    public void showChannelView(List<ChannelContentData.ResultBean> channelDatas) {
+    public void showChannelView(List<ChannelContentData> channelDatas) {
         mChannelList = channelDatas;
         this.notifyDataSetChanged();
     }

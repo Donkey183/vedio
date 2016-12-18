@@ -34,7 +34,7 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
     private VIPFragmentAdaptor mAdapter;
     private VideoModel mModel;
 
-//    private SwipeRefreshLayout mSwipeRefresh;
+    private SwipeRefreshLayout mSwipeRefresh;
     private int lastVisibleItem;
     GridLayoutManager mLayoutManager;
 
@@ -51,13 +51,13 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
         View view = inflater.inflate(R.layout.fragment_vip, container, false);
 
         vip_recyclerView = (RecyclerView) view.findViewById(R.id.vip_recycler);
-//        mSwipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.pull_to_refresh);
-//        mSwipeRefresh.setOnRefreshListener(this);
+        mSwipeRefresh = (SwipeRefreshLayout) view.findViewById(R.id.pull_to_refresh);
+        mSwipeRefresh.setOnRefreshListener(this);
         vip_recyclerView.setHasFixedSize(true);
         vip_recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        mSwipeRefresh.setProgressViewOffset(false, 0, (int) TypedValue
-//                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
-//                        .getDisplayMetrics()));
+        mSwipeRefresh.setProgressViewOffset(false, 0, (int) TypedValue
+                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
+                        .getDisplayMetrics()));
 
         mLayoutManager = new GridLayoutManager(getActivity(), 3);
         mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -78,7 +78,7 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
                         && lastVisibleItem + 1 == mAdapter.getItemCount()) {
-//                    mSwipeRefresh.setRefreshing(true);
+                    mSwipeRefresh.setRefreshing(true);
                     getVideoInfo(String.valueOf(mModel.curPageNo + 1));
                 }
             }
@@ -96,6 +96,10 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
     }
 
     private void getVideoInfo(String pageNo) {
+        if (mModel.curPageNo < 0 && mModel.videoData.page != null && mModel.videoData.page.result != null && mModel.videoData.page.result.size() > 0) {
+            mSwipeRefresh.setRefreshing(false);
+            return;
+        }
         CommonHttpRequest request = new CommonHttpRequest();
         request.addParam(VedioConstant.R_TYPE, "3");
         request.addParam(VedioConstant.PAGE_NO, pageNo);
@@ -114,6 +118,8 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
         mAdapter.setOnItemClickListener(this);
         vip_recyclerView.setAdapter(mAdapter);
         mAdapter.showVIPView(mModel.videoData.page.result, mModel.videoData.page.list1);
+        mSwipeRefresh.setRefreshing(false);
+        vip_recyclerView.smoothScrollToPosition(lastVisibleItem);
     }
 
     @Override
@@ -156,6 +162,6 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
 
     @Override
     public void onRefresh() {
-
+        mSwipeRefresh.setRefreshing(false);
     }
 }

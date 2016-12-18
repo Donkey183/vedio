@@ -32,13 +32,13 @@ public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRec
     private void loadPageData() {
         CommonHttpRequest request = new CommonHttpRequest();
         String cid = getIntent().getExtras().getString("cid");
-        request.addParam("cid", cid);
+        request.addParam("cid", "5");
         mChanneModel.sendHttpRequest(request, ChannelContentModel.GET_CHANNEL_CONTENT_INFO);
     }
 
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
-        mChannelView.showPageView(mChanneModel.channelContentData.result);
+        mChannelView.showPageView(mChanneModel.channelContentDatas);
     }
 
     @Override
@@ -49,8 +49,8 @@ public class ChannelActivity extends MFBaseActivity implements INetFinish, OnRec
 
     @Override
     public void onItemClick(View view, int position, Object obj) {
-        if (obj != null && obj instanceof ChannelContentData.ResultBean) {
-            ChannelContentData.ResultBean content = (ChannelContentData.ResultBean) obj;
+        if (obj != null && obj instanceof ChannelContentData) {
+            ChannelContentData content = (ChannelContentData) obj;
             Intent intent = new Intent(ChannelActivity.this, VideoPlayerActivity.class);
             intent.putExtra("path", content.getCresource());
             startActivity(intent);

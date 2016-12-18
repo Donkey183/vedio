@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.basevideo.base.MFBaseMVCView;
+import com.app.basevideo.framework.util.LogUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
 import com.app.video.config.Settings;
@@ -134,7 +135,6 @@ public class HomeActivityView extends MFBaseMVCView {
             forumFragment = new ForumFragment();
             transaction.add(R.id.main_frame, forumFragment);
         }
-
         if (vaultFragment == null) {
             vaultFragment = new VaultFragment();
             transaction.add(R.id.main_frame, vaultFragment);
@@ -175,8 +175,9 @@ public class HomeActivityView extends MFBaseMVCView {
             transaction.add(R.id.main_frame, blueFragment);
         }
 
-        hideFragment();
+
         transaction.commit();
+        hideFragment();
         resetTabUi(main_home, checkFragment(Constants.config.getTittle_first()));
     }
 
@@ -230,12 +231,16 @@ public class HomeActivityView extends MFBaseMVCView {
 
         main_forum.setImageResource(selectedView == main_forum ? R.drawable.forum2 : R.drawable.forum);
         text_forum.setTextColor(selectedView == main_forum ? mActivity.getResources().getColor(R.color.finance_fd6b6b) : mActivity.getResources().getColor(R.color.finance_515151));
-
+        hideFragment();
         fm = mActivity.getFragmentManager();
         transaction = fm.beginTransaction();
-        hideFragment();
-        transaction.show(selectedFragMent);
-        transaction.commit();
+        try {
+            transaction.show(selectedFragMent);
+            transaction.commit();
+        } catch (Exception e) {
+            LogUtil.e(e.getMessage());
+        }
+
     }
 
     private Fragment checkFragment(String str) {
@@ -259,6 +264,8 @@ public class HomeActivityView extends MFBaseMVCView {
     }
 
     private void hideFragment() {
+        fm = mActivity.getFragmentManager();
+        transaction = fm.beginTransaction();
         if (channelFragment != null) {
             transaction.hide(channelFragment);
         }
@@ -289,6 +296,7 @@ public class HomeActivityView extends MFBaseMVCView {
         if (purpleFragment != null) {
             transaction.hide(purpleFragment);
         }
+        transaction.commit();
     }
 
 

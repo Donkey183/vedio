@@ -30,8 +30,6 @@ public class VideoModel extends MFBaseFragmentModel {
     private int code;
 
     public static final int GET_VEDIO_EXPERINCE = 0;
-    public static final int GET_VEDIO_COMMON = 1;
-    public static final int GET_XXX_INFO = 2;
     public static final int GET_VEDIO_GLOD = 3;
     public static final int GET_VEDIO_DIAMOND = 4;
     public static final int GET_VEDIO_BLACK_GLOD = 5;
@@ -50,7 +48,9 @@ public class VideoModel extends MFBaseFragmentModel {
                     MessageManager.getInstance().dispatchResponsedMessage(new CommonMessage<Object>(VedioCmd.GET_VIDEO_INFO_FAILED));
                     return;
                 }
-                if (requestCode == GET_VEDIO_EXPERINCE) {
+                if (requestCode == GET_VEDIO_BLACK_GLOD || requestCode == GET_VEDIO_CROWN) {
+                    videoData.page = entity.page;
+                } else {
                     if (videoData.page == null) {
                         videoData.page = new VideoData.Page();
                         videoData.page.result = new ArrayList<VideoData.Page.Video>();
@@ -62,8 +62,6 @@ public class VideoModel extends MFBaseFragmentModel {
                     if (entity.page.result.size() == 0) {
                         curPageNo = -1;
                     }
-                } else {
-                    videoData.page = entity.page;
                 }
 
 
