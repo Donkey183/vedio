@@ -34,6 +34,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
     private VideoModel mVideoModel;
     private SwipeRefreshLayout mSwipeRefresh;
     private int lastVisibleItem;
+    private int offsetHeight;
     private GridLayoutManager mLayoutManager;
 
     @Override
@@ -56,7 +57,6 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
                 return position == 0 ? 2 : 1;
             }
         });
-//        mLayoutManager.setReverseLayout(true);
         my_recyclerView.setLayoutManager(mLayoutManager);
 
 
@@ -85,6 +85,7 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+                offsetHeight = recyclerView.computeVerticalScrollOffset();
             }
 
         });
@@ -119,9 +120,9 @@ public class RecommendFragment extends MFBaseFragment implements INetFinish, OnR
         my_recyclerView.setAdapter(mAdapter);
         mAdapter.showRecommendView(mVideoModel.videoData.page.result, mVideoModel.videoData.page.list1);
         mSwipeRefresh.setRefreshing(false);
-//        my_recyclerView.smoothScrollBy(0, (lastVisibleItem));
-        my_recyclerView.smoothScrollToPosition(lastVisibleItem);
-        if(Constants.select_fragment.equals("home")){
+        my_recyclerView.scrollBy(0, offsetHeight);
+//        my_recyclerView.smoothScrollToPosition(lastVisibleItem);
+        if (Constants.select_fragment.equals("home")) {
             dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
         }
     }

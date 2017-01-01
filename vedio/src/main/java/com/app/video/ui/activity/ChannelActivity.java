@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.app.basevideo.base.MFBaseActivity;
-import com.app.basevideo.config.VedioCmd;
-import com.app.basevideo.framework.manager.MessageManager;
 import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.net.CommonHttpRequest;
 import com.app.basevideo.net.INetFinish;
-import com.app.video.config.Constants;
 import com.app.video.data.ChannelContentData;
 import com.app.video.listener.OnRecyclerViewItemClickListener;
 import com.app.video.model.ChannelContentModel;

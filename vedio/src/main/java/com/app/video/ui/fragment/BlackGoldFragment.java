@@ -36,7 +36,6 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
     private VideoModel mVideoModel;
     private ImageView backgroundImg;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +84,7 @@ public class BlackGoldFragment extends MFBaseFragment implements INetFinish {
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
         List<VideoData.Page.Video> resultBeenList = mVideoModel.videoData.page.result;
         gallery_pager.setAdapter(new BlackGoldAdapter(resultBeenList, getActivity()));
-        if(Constants.select_fragment.equals("home")){
+        if (Constants.select_fragment.equals("home")) {
             dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
         }
     }

@@ -13,6 +13,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.app.basevideo.base.MFBaseMVCView;
+import com.app.basevideo.config.VedioCmd;
+import com.app.basevideo.framework.listener.MessageListener;
+import com.app.basevideo.framework.message.CommonMessage;
 import com.app.basevideo.framework.util.LogUtil;
 import com.app.video.R;
 import com.app.video.config.Constants;
@@ -265,7 +268,7 @@ public class HomeActivityView extends MFBaseMVCView {
 
 
     private Fragment checkFragment(String str) {
-        Log.d("aaaa",str);
+        Log.d("aaaa", str);
         if (str.equals("体验区")) {
             String videoCount = mRecommendFragment.getVideoCount();
             tittle_text.setText(videoCount == null ? "体验区" : "体验区(共" + videoCount + "部电影)");

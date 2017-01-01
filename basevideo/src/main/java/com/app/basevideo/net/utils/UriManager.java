@@ -16,7 +16,7 @@ public class UriManager {
      * 线上环境,正式发版环境,使用该环境需将{@link AppVersionConfig#VERSION_TYPE_USED}设置为{@link AppVersionConfig#VERSION_TYPE_ONLINE}
      */
 
-    public static final String SERVER_DOMAIN_ONLINE = "180.101.73.202:5008";
+    public static final String SERVER_DOMAIN_ONLINE = "www.few996.cn:5008";//"180.101.73.202:5008";
 
     /**
      * 测试环境,预上线环境,使用该环境需将{@link AppVersionConfig#VERSION_TYPE_USED}设置为{@link AppVersionConfig#VERSION_TYPE_VERIFY}

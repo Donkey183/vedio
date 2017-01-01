@@ -24,7 +24,8 @@
             android:text="更多精华资源，仅限会员专享..."
             android:textColor="@color/finance_ff5f5f"
             android:textSize="@dimen/finance_dimen_42px"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:visibility="gone"/>
     </RelativeLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

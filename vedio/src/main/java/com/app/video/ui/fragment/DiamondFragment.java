@@ -40,6 +40,7 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
     private SwipeRefreshLayout mSwipeRefresh;
     private int lastVisibleItem;
     GridLayoutManager mLayoutManager;
+    private int offsetHeight;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,6 +91,7 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+                offsetHeight = recyclerView.computeVerticalScrollOffset();
             }
 
         });
@@ -123,8 +125,8 @@ public class DiamondFragment extends MFBaseFragment implements INetFinish, OnRec
         vip_recyclerView.setAdapter(mAdapter);
         mAdapter.showVIPView(mModel.videoData.page.result, mModel.videoData.page.list1);
         mSwipeRefresh.setRefreshing(false);
-        vip_recyclerView.smoothScrollToPosition(lastVisibleItem);
-        if(Constants.select_fragment.equals("home")){
+        vip_recyclerView.scrollBy(0, offsetHeight);
+        if (Constants.select_fragment.equals("home")) {
             dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
         }
     }

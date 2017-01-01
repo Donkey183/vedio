@@ -60,6 +60,7 @@ public class ChannelActivityView extends MFBaseMVCView {
                     ChannelContentData content = (ChannelContentData) object;
                     Intent intent = new Intent(mActivity, VideoPlayerActivity.class);
                     intent.putExtra("path", content.getCresource());
+                    intent.putExtra("FROM_CHANNEL", "FROM_CHANNEL");
                     mActivity.startActivity(intent);
                 }
             }

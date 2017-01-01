@@ -40,6 +40,7 @@ public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecy
     private SwipeRefreshLayout mSwipeRefresh;
     private int lastVisibleItem;
     private GridLayoutManager mLayoutManager;
+    private int offsetHeight;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,6 +92,7 @@ public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecy
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+                offsetHeight = recyclerView.computeVerticalScrollOffset();
             }
 
         });
@@ -126,8 +128,8 @@ public class PurpleFragment extends MFBaseFragment implements INetFinish, OnRecy
         vip_recyclerView.setAdapter(mAdapter);
         mAdapter.showVIPView(mModel.videoData.page.result, mModel.videoData.page.list1);
         mSwipeRefresh.setRefreshing(false);
-        vip_recyclerView.smoothScrollToPosition(lastVisibleItem);
-        if(Constants.select_fragment.equals("home")){
+        vip_recyclerView.scrollBy(0, offsetHeight);
+        if (Constants.select_fragment.equals("home")) {
             dispatchMessage(new CommonMessage(VedioCmd.TITLE_CHANGE));
         }
     }

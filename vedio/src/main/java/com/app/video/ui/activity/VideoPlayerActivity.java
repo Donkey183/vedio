@@ -381,6 +381,10 @@ public class VideoPlayerActivity extends MFBaseActivity
 
 
     private void getVedioDetailInfo() {
+        String fromChannel = getIntent().getStringExtra("FROM_CHANNEL");
+        if ("FROM_CHANNEL".equals(fromChannel)) {
+            return;
+        }
         CommonHttpRequest request = new CommonHttpRequest();
         int a = (int) Math.ceil((Math.random() * 7));
         request.addParam(VedioConstant.R_TYPE, a + "");
