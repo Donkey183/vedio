@@ -25,6 +25,7 @@ import com.app.video.data.PayLevelData;
 import com.app.video.model.PayLevelModel;
 import com.app.video.net.VedioNetService;
 import com.app.video.net.response.InitAppResponse;
+import com.app.video.net.response.VerifyCodeResponse;
 import com.app.video.ui.view.HomeActivityView;
 import com.app.video.ui.widget.CommonAlert;
 import com.ta.utdid2.android.utils.StringUtils;
@@ -92,12 +93,38 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
         }
     }
 
+
+    private void verifyCode(String verifyCode) {
+        String ifVerify = MFSimpleCache.get(HomeActivity.this).getAsString("IF_VERIFY");
+        if (!StringUtils.isEmpty(ifVerify)) {
+            return;
+        }
+        MFSimpleCache.get(HomeActivity.this).put("IF_PAY", mPayModel.mPayLevelData.data.getIfpay());
+        CommonHttpRequest request = new CommonHttpRequest();
+        request.addParam("verify", verifyCode);
+        MFCall<VerifyCodeResponse> call = HttpRequestService.createService(VedioNetService.class).getVerifyCode(request.buildParams());
+        call.doRequest(new MFCallbackAdapter<VerifyCodeResponse>() {
+            @Override
+            public void onResponse(VerifyCodeResponse entity, Response<?> response, Throwable throwable) {
+                if (entity == null || !entity.success) {
+                    return;
+                }
+                Toast.makeText(HomeActivity.this, "哈哈哈", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     @Override
     public void onHttpResponse(CommonMessage<?> responsedMessage) {
         if (((Integer) responsedMessage.getData() == PayLevelModel.GET_PAY_INFO)) {
             PayLevelData payLevelData = mPayModel.mPayLevelData;
             Constants.upDatePayOff(payLevelData);
             MFSimpleCache.get(HomeActivity.this).put("PIC_DOMAIN", mPayModel.mPayLevelData.data.getPicdomain());
+            MFSimpleCache.get(HomeActivity.this).put("IF_VERIFY", mPayModel.mPayLevelData.data.getIfVerify());
+            MFSimpleCache.get(HomeActivity.this).put("IF_PAY", mPayModel.mPayLevelData.data.getIfpay());
+            if ("0".equals(mPayModel.mPayLevelData.data.getIfpay()) && StringUtils.isEmpty(MFSimpleCache.get(HomeActivity.this).getAsString("IF_PAY"))) {
+                checkConfig(sharedPreferences.getString("vip", Constants.RED));
+            }
         }
     }
 
@@ -105,7 +132,7 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
     protected void onResume() {
         super.onResume();
         getPayInfos();
-        if(update){
+        if (update) {
             choseClick(R.id.vip_layout);
             choseClick(R.id.home_layout);
             update = false;
