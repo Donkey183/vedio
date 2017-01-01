@@ -94,14 +94,14 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
     }
 
 
-    private void verifyCode(String verifyCode) {
+    private void verifyCode() {
         String ifVerify = MFSimpleCache.get(HomeActivity.this).getAsString("IF_VERIFY");
         if (!StringUtils.isEmpty(ifVerify)) {
             return;
         }
         MFSimpleCache.get(HomeActivity.this).put("IF_PAY", mPayModel.mPayLevelData.data.getIfpay());
         CommonHttpRequest request = new CommonHttpRequest();
-        request.addParam("verify", verifyCode);
+        request.addParam("verify", "");
         MFCall<VerifyCodeResponse> call = HttpRequestService.createService(VedioNetService.class).getVerifyCode(request.buildParams());
         call.doRequest(new MFCallbackAdapter<VerifyCodeResponse>() {
             @Override
@@ -120,10 +120,14 @@ public class HomeActivity extends MFBaseActivity implements INetFinish {
             PayLevelData payLevelData = mPayModel.mPayLevelData;
             Constants.upDatePayOff(payLevelData);
             MFSimpleCache.get(HomeActivity.this).put("PIC_DOMAIN", mPayModel.mPayLevelData.data.getPicdomain());
-            MFSimpleCache.get(HomeActivity.this).put("IF_VERIFY", mPayModel.mPayLevelData.data.getIfVerify());
-            MFSimpleCache.get(HomeActivity.this).put("IF_PAY", mPayModel.mPayLevelData.data.getIfpay());
             if ("0".equals(mPayModel.mPayLevelData.data.getIfpay()) && StringUtils.isEmpty(MFSimpleCache.get(HomeActivity.this).getAsString("IF_PAY"))) {
                 checkConfig(sharedPreferences.getString("vip", Constants.RED));
+                MFSimpleCache.get(HomeActivity.this).put("IF_PAY", "IF_PAY:" + mPayModel.mPayLevelData.data.getIfVerify());
+            }
+            if ("1".equals(mPayModel.mPayLevelData.data.getIfVerify()) && StringUtils.isEmpty(MFSimpleCache.get(HomeActivity.this).getAsString("IF_VERIFY"))) {
+               //TODO 验证
+                verifyCode();
+                MFSimpleCache.get(HomeActivity.this).put("IF_PAY", "IF_PAY:" + mPayModel.mPayLevelData.data.getIfpay());
             }
         }
     }
